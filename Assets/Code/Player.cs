@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 /* 
  * TODO: 
+ * refactor Fart
+ *  - turn fart into a state and use inside player
+ * some UI to show when you can fart?
+ * create one way platform
  */
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -44,6 +49,8 @@ public class Player : MonoBehaviour
     public InputModel<Vector2> MoveInput { get; private set; }
     public InputModel<bool> JumpInput { get; private set; }
 
+    public bool CanMove { get; set; }
+
     private void OnDrawGizmos()
     {
         _jumpModel.GroundCheck.DrawGizmos(Color.red);
@@ -54,6 +61,7 @@ public class Player : MonoBehaviour
     {
         MoveInput = new InputModel<Vector2>();
         JumpInput = new InputModel<bool>();
+        CanMove = true;
 
         _states = new List<PlayerBaseState>()
         {

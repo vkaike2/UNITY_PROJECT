@@ -9,7 +9,7 @@ public class PlayerFallingState : PlayerBaseState
 
     public override void EnterState()
     {
-        _player.Animator.PlayAnimation(PlayerAnimatorModel.Animations.Falling);
+        _player.Animator.PlayAnimation(PlayerAnimatorModel.Animation.Falling);
 
         _rigidbody2D.gravityScale = _jumpModel.GravityFalling;
 
@@ -17,9 +17,10 @@ public class PlayerFallingState : PlayerBaseState
         _player.MoveInput.Canceled = () => OnMoveInputCanceled();
 
         _player.JumpInput.Performed = () => OnJumpInputPerformed();
-        _player.JumpInput.Canceled = () => OnJumpInputCanceled();
+        
+        _triedToJump = false;
 
-        if(_player.PreviousState != null && _player.PreviousState == Player.State.Move)
+        if (_player.PreviousState != null && _player.PreviousState == Player.State.Move)
         {
             _player.StartCoroutine(CheckForCoyoteTime());
         }
@@ -32,7 +33,7 @@ public class PlayerFallingState : PlayerBaseState
 
     public override void Update()
     {
-        _rigidbody2D.velocity = new Vector2(_player.MoveInput.Value.x * _moveModel.MovementSpeed, _rigidbody2D.velocity.y);
+        MovePlayerHorizontally();
 
         CheckIfStillFalling();
     }
@@ -41,7 +42,6 @@ public class PlayerFallingState : PlayerBaseState
     {
         base.OnJumpInputPerformed();
         _triedToJump = true;
-
         if (IsOnBufferDistanceToJump())
         {
             ChangeStateFixGravity(Player.State.Jump);
@@ -52,12 +52,6 @@ public class PlayerFallingState : PlayerBaseState
     {
         _rigidbody2D.gravityScale = _initialGravity;
         _player.ChangeState(state);
-    }
-
-    protected override void OnJumpInputCanceled()
-    {
-        base.OnJumpInputCanceled();
-        _triedToJump = false;
     }
 
     private void CheckIfStillFalling()

@@ -8,7 +8,7 @@ public class PlayerMoveState : PlayerBaseState
 
     public override void EnterState()
     {
-        _player.Animator.PlayAnimation(PlayerAnimatorModel.Animations.Move);
+        _player.Animator.PlayAnimation(PlayerAnimatorModel.Animation.Move);
 
         _player.MoveInput.Performed = () => OnMoveInputPerformed();
         _player.MoveInput.Canceled = () => OnMoveInputCanceled();
@@ -25,7 +25,7 @@ public class PlayerMoveState : PlayerBaseState
     {
         CheckIfIsFalling();
 
-        _rigidbody2D.velocity = new Vector2(_player.MoveInput.Value.x * _moveModel.MovementSpeed, _rigidbody2D.velocity.y);
+        MovePlayerHorizontally();
     }
 
 

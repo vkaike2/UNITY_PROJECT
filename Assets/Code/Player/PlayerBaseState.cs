@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class PlayerBaseState
@@ -54,6 +55,29 @@ public abstract class PlayerBaseState
     protected virtual void OnJumpInputCanceled()
     {
         //Debug.Log($"{State}canceled");
+    }
+
+    protected void MovePlayerHorizontally()
+    {
+        //Debug.Log(_player.CanMove);
+        if (!_player.CanMove) return;
+
+        if (_player.MoveInput.Value.x != 0)
+        {
+            _rigidbody2D.drag = 0;
+            _rigidbody2D.velocity = new Vector2(_player.MoveInput.Value.x * _moveModel.MovementSpeed, _rigidbody2D.velocity.y);
+        }
+        else
+        {
+            if (_rigidbody2D.velocity.x != 0 && _player.IsOnTheGround() && _rigidbody2D.velocity.y == 0)
+            {
+                _rigidbody2D.drag = 10;
+            }
+            else
+            {
+                _rigidbody2D.drag = 0;
+            }
+        }
     }
 
     private void FlipPlayer()

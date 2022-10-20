@@ -9,7 +9,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void EnterState()
     {
-        _player.Animator.PlayAnimation(PlayerAnimatorModel.Animations.Idle);
+        _player.Animator.PlayAnimation(PlayerAnimatorModel.Animation.Idle);
 
         _player.MoveInput.Started = () => OnMoveInputStarted();
         _player.JumpInput.Started = () => OnJumpInputStarted();
@@ -23,6 +23,7 @@ public class PlayerIdleState : PlayerBaseState
     public override void Update()
     {
         CheckIfIsFalling();
+        MovePlayerHorizontally();
     }
 
     protected override void OnMoveInputStarted()

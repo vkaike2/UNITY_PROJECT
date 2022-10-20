@@ -10,9 +10,10 @@ public class PlayerJumpState : PlayerBaseState
     private bool _isJumping = false;
     public override void EnterState()
     {
+        //_rigidbody2D.angularDrag = 0;
         _initialGravity = _rigidbody2D.gravityScale;
 
-        _player.Animator.PlayAnimation(PlayerAnimatorModel.Animations.Jump);
+        _player.Animator.PlayAnimation(PlayerAnimatorModel.Animation.Jump);
 
         _player.MoveInput.Performed = () => OnMoveInputPerformed();
         _player.MoveInput.Canceled = () => OnMoveInputCanceled();
@@ -37,7 +38,7 @@ public class PlayerJumpState : PlayerBaseState
     {
         CheckIfPlayerStillJumping();
 
-        _rigidbody2D.velocity = new Vector2(_player.MoveInput.Value.x * _moveModel.MovementSpeed, _rigidbody2D.velocity.y);
+        MovePlayerHorizontally();
     }
 
     protected override void OnJumpInputPerformed()
