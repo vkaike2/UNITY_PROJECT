@@ -22,7 +22,6 @@ public class PlayerJumpState : PlayerBaseState
 
         if (_player.PreviousState == Player.State.Falling)
         {
-            _player.JumpInput.Value = true;
             _player.StartCoroutine(Jump());
             _isNotTouchingTheGround = true;
         }

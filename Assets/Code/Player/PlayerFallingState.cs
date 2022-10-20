@@ -16,7 +16,7 @@ public class PlayerFallingState : PlayerBaseState
         _player.MoveInput.Performed = () => OnMoveInputPerformed();
         _player.MoveInput.Canceled = () => OnMoveInputCanceled();
 
-        _player.JumpInput.Started = () => OnJumpInputStarted();
+        _player.JumpInput.Performed = () => OnJumpInputPerformed();
         _player.JumpInput.Canceled = () => OnJumpInputCanceled();
 
         if(_player.PreviousState != null && _player.PreviousState == Player.State.Move)
@@ -37,9 +37,9 @@ public class PlayerFallingState : PlayerBaseState
         CheckIfStillFalling();
     }
 
-    protected override void OnJumpInputStarted()
+    protected override void OnJumpInputPerformed()
     {
-        base.OnJumpInputStarted();
+        base.OnJumpInputPerformed();
         _triedToJump = true;
 
         if (IsOnBufferDistanceToJump())

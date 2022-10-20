@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 /* 
  * TODO: 
- * Bug while moving out of some platform  
  */
 
 [RequireComponent(typeof(Rigidbody2D))]
