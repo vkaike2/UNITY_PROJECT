@@ -54,6 +54,7 @@ public class PlayerAnimatorModel
         Move,
         Jump,
         Falling,
-        Fart
+        Fart,
+        Pooping
     }
 }

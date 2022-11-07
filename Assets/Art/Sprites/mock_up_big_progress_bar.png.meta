@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 39bacb9b3ff8fab4aa757cbd667c5b20
+guid: cb1ca3eaf5a73334f963e70956b53520
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,85 +117,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mockup_mouse_Indication_0
+      name: background_bar
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
-        width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.78125, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5438855a2744d314896d3f1d7a5e933b
-      internalID: 738405028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mockup_mouse_Indication_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.78125, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa8df6af0ade8284989db1389decdd3a
-      internalID: -246093617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mockup_mouse_Indication_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.78125, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8cace6c0e5596494890323cdaa48700e
-      internalID: 1227122052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dot
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 25
-        width: 2
-        height: 2
+        x: 1
+        y: 17
+        width: 334
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61f3dda71f0d3bc429faeb6b59b4fde6
-      internalID: -1731363736
+      spriteID: 36199aa6b4bb6b94880a4dd5a3061815
+      internalID: 880798206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: progress_bar
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 330
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 3, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c3478b324ef77645ae935ccfdc5be09
+      internalID: 577729132
       vertices: []
       indices: 
       edges: []
@@ -211,10 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dot: -1731363736
-      mockup_mouse_Indication_1: -246093617
-      mockup_mouse_Indication_2: 1227122052
-      mockup_mouse_Indication_0: 738405028
+      progress_bar: 577729132
+      background_bar: 880798206
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

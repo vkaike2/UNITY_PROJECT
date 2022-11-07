@@ -2,15 +2,15 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerJumpState : PlayerBaseState
+public class PlayerJumpState : PlayerFiniteBaseState
 {
-    public override Player.State State => Player.State.Jump;
+    public override Player.FiniteState State => Player.FiniteState.Jump;
 
     private bool _isNotTouchingTheGround;
     private bool _isJumping = false;
+
     public override void EnterState()
     {
-        //_rigidbody2D.angularDrag = 0;
         _initialGravity = _rigidbody2D.gravityScale;
 
         _player.Animator.PlayAnimation(PlayerAnimatorModel.Animation.Jump);
@@ -19,9 +19,12 @@ public class PlayerJumpState : PlayerBaseState
         _player.MoveInput.Canceled = () => OnMoveInputCanceled();
 
         _player.JumpInput.Performed = () => OnJumpInputPerformed();
+
+        _player.PoopInput.Started = () => OnPoopInputStarted();
+
         _isJumping = false;
 
-        if (_player.PreviousState == Player.State.Falling)
+        if (_player.PreviousState == Player.FiniteState.Falling)
         {
             _player.StartCoroutine(Jump());
             _isNotTouchingTheGround = true;
@@ -55,7 +58,7 @@ public class PlayerJumpState : PlayerBaseState
 
         if (_rigidbody2D.velocity.y <= 0)
         {
-            _player.ChangeState(Player.State.Falling);
+            _player.ChangeState(Player.FiniteState.Falling);
         }
     }
 
@@ -71,8 +74,6 @@ public class PlayerJumpState : PlayerBaseState
 
     IEnumerator Jump()
     {
-       
-
         _isJumping = true;
         float cdw = 0;
         float actualJumpForce = _jumpModel.JumpForce;
@@ -83,6 +84,10 @@ public class PlayerJumpState : PlayerBaseState
                 break;
             }
 
+            if (_player.FartInput.Value)
+            {
+                break;
+            }
 
             cdw += Time.deltaTime;
             actualJumpForce -= _jumpModel.CdwJumpAceleration * (cdw / _jumpModel.CdwJumpAceleration);

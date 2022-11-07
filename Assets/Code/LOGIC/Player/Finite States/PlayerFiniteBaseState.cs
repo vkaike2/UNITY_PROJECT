@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class PlayerBaseState
+public abstract class PlayerFiniteBaseState
 {
     protected Player _player;
     protected Rigidbody2D _rigidbody2D;
@@ -12,7 +12,7 @@ public abstract class PlayerBaseState
 
     protected bool ImTheActiveState => _player.CurrentState == State;
 
-    public abstract Player.State State { get; }
+    public abstract Player.FiniteState State { get; }
 
     public virtual bool ImFistState()
     {
@@ -56,6 +56,10 @@ public abstract class PlayerBaseState
     {
         //Debug.Log($"{State}canceled");
     }
+    protected virtual void OnPoopInputStarted()
+    {
+        _player.ChangeState(Player.FiniteState.Pooping);
+    }
 
     protected void MovePlayerHorizontally()
     {
@@ -83,5 +87,14 @@ public abstract class PlayerBaseState
     private void FlipPlayer()
     {
         _player.transform.localScale = new Vector3(_player.MoveInput.Value.x > 0 ? 1 : -1, 1, 1);
+    }
+
+    protected void DownPlatform()
+    {
+        OneWayPlatform platform = _player.IsOverPlatform();
+        if (platform == null) return;
+
+        platform.PlayerDownPlatform();
+        _player.ChangeState(Player.FiniteState.Falling);
     }
 }

@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class ProgressBarUI : MonoBehaviour
 {
 
+    [Header("components")]
+    [SerializeField]
+    private Image _imageBar;
+    [SerializeField]
+    private GameObject _backgroundBar;
+
     [Header("configuration")]
     [SerializeField]
     private bool _startActive = false;
@@ -13,15 +19,13 @@ public class ProgressBarUI : MonoBehaviour
     private float _cdwToHide = 0.5f;
 
     public StartEvent OnStart { get; private set; }
-    
-    private Image _imageBar;
+
 
     private void Awake()
     {
         OnStart = new StartEvent();
 
-        _imageBar = GetComponent<Image>();
-        _imageBar.enabled = _startActive;
+        _backgroundBar.SetActive(_startActive);
 
         OnStart.AddListener(StartProgressBar);
     }
@@ -36,28 +40,27 @@ public class ProgressBarUI : MonoBehaviour
     IEnumerator ManageProgress(float completionCdw)
     {
         _imageBar.fillAmount = 0;
-        _imageBar.enabled = true;
+        _backgroundBar.SetActive(true);
 
         float cdw = 0;
         float percentage = 0;
 
         while (cdw <= completionCdw)
-        {
+        {   
             cdw += Time.deltaTime;
             percentage = cdw / completionCdw;
             _imageBar.fillAmount = percentage;
             yield return new WaitForFixedUpdate();
         }
 
-        StartCoroutine(HideBarAfertCdw());
+        StartCoroutine(HideBarAfertCdw(_cdwToHide));
     }
 
-    IEnumerator HideBarAfertCdw()
+    IEnumerator HideBarAfertCdw(float cdwToHide)
     {
-        yield return new WaitForSeconds(_cdwToHide);
-        _imageBar.enabled = false;
+        yield return new WaitForSeconds(cdwToHide);
+        _backgroundBar.SetActive(false);
     }
-
 
     public enum Behaviour
     {

@@ -3,9 +3,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerIdleState : PlayerBaseState
+public class PlayerIdleState : PlayerFiniteBaseState
 {
-    public override Player.State State => Player.State.Idle;
+    public override Player.FiniteState State => Player.FiniteState.Idle;
 
     public override void EnterState()
     {
@@ -13,6 +13,10 @@ public class PlayerIdleState : PlayerBaseState
 
         _player.MoveInput.Started = () => OnMoveInputStarted();
         _player.JumpInput.Started = () => OnJumpInputStarted();
+
+        _player.DownPlatform.Performed = () => OnDownPlatform();
+
+        _player.PoopInput.Started = () => OnPoopInputStarted();
     }
 
     public override bool ImFistState()
@@ -29,21 +33,27 @@ public class PlayerIdleState : PlayerBaseState
     protected override void OnMoveInputStarted()
     {
         base.OnMoveInputStarted();
-        _player.ChangeState(Player.State.Move);
+        _player.ChangeState(Player.FiniteState.Move);
     }
 
     protected override void OnJumpInputStarted()
     {
         base.OnJumpInputStarted();
-        _player.ChangeState(Player.State.Jump);
+        _player.ChangeState(Player.FiniteState.Jump);
+    }
+
+    private void OnDownPlatform()
+    {
+        DownPlatform();
     }
 
     private void CheckIfIsFalling()
     {
         if (!_player.IsOnTheGround())
         {
-            _player.ChangeState(Player.State.Falling);
+            _player.ChangeState(Player.FiniteState.Falling);
         }
     }
+
 }
 

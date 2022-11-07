@@ -10,6 +10,7 @@ public class FartAttributeModel
     private ParticleSystem _particleSystem;
     [SerializeField]
     private ProgressBarUI _progressBar;
+
     [Space]
     [Header("configuration")]
     [SerializeField]

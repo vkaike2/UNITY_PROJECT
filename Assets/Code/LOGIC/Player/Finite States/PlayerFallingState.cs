@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerFallingState : PlayerBaseState
+public class PlayerFallingState : PlayerFiniteBaseState
 {
-    public override Player.State State => Player.State.Falling;
+    public override Player.FiniteState State => Player.FiniteState.Falling;
     private bool _triedToJump = false;
 
     public override void EnterState()
@@ -17,10 +17,12 @@ public class PlayerFallingState : PlayerBaseState
         _player.MoveInput.Canceled = () => OnMoveInputCanceled();
 
         _player.JumpInput.Performed = () => OnJumpInputPerformed();
-        
+
+        _player.PoopInput.Started = () => OnPoopInputStarted();
+
         _triedToJump = false;
 
-        if (_player.PreviousState != null && _player.PreviousState == Player.State.Move)
+        if (_player.PreviousState != null && _player.PreviousState == Player.FiniteState.Move)
         {
             _player.StartCoroutine(CheckForCoyoteTime());
         }
@@ -44,11 +46,11 @@ public class PlayerFallingState : PlayerBaseState
         _triedToJump = true;
         if (IsOnBufferDistanceToJump())
         {
-            ChangeStateFixGravity(Player.State.Jump);
+            ChangeStateFixGravity(Player.FiniteState.Jump);
         }
     }
 
-    private void ChangeStateFixGravity(Player.State state)
+    private void ChangeStateFixGravity(Player.FiniteState state)
     {
         _rigidbody2D.gravityScale = _initialGravity;
         _player.ChangeState(state);
@@ -60,11 +62,11 @@ public class PlayerFallingState : PlayerBaseState
 
         if (_player.MoveInput.Value.x == 0)
         {
-            ChangeStateFixGravity(Player.State.Idle);
+            ChangeStateFixGravity(Player.FiniteState.Idle);
         }
         else
         {
-            ChangeStateFixGravity(Player.State.Move);
+            ChangeStateFixGravity(Player.FiniteState.Move);
         }
     }
 
@@ -78,7 +80,7 @@ public class PlayerFallingState : PlayerBaseState
 
             if (_triedToJump)
             {
-                _player.ChangeState(Player.State.Jump);
+                _player.ChangeState(Player.FiniteState.Jump);
             }
         }
     }

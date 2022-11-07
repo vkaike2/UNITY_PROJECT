@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 39bacb9b3ff8fab4aa757cbd667c5b20
+guid: c2272cc022ed59149932ae6e8c3aeb51
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,76 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mockup_mouse_Indication_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.78125, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5438855a2744d314896d3f1d7a5e933b
-      internalID: 738405028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mockup_mouse_Indication_1
+      name: poop_projectile_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.78125, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa8df6af0ade8284989db1389decdd3a
-      internalID: -246093617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mockup_mouse_Indication_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.78125, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8cace6c0e5596494890323cdaa48700e
-      internalID: 1227122052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dot
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 25
-        width: 2
-        height: 2
+        width: 17
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +131,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61f3dda71f0d3bc429faeb6b59b4fde6
-      internalID: -1731363736
+      spriteID: dcf0ab1c8b4864744a3063975bc76866
+      internalID: -1730273584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poop_projectile_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b89f8985b5f66c64e88f6e3710fbe2c3
+      internalID: -1659981117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poop_projectile_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb21daeb48345474cae9fdc2973a13e1
+      internalID: 700198594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poop_projectile_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e367756d33f3678428bfd3145b28dd54
+      internalID: 313498050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poop_projectile_4
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 0
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0dc8d6bef46e61419f4320e9f488fdb
+      internalID: 907270464
       vertices: []
       indices: 
       edges: []
@@ -211,10 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dot: -1731363736
-      mockup_mouse_Indication_1: -246093617
-      mockup_mouse_Indication_2: 1227122052
-      mockup_mouse_Indication_0: 738405028
+      poop_projectile_0: -1730273584
+      poop_projectile_1: -1659981117
+      poop_projectile_3: 313498050
+      poop_projectile_2: 700198594
+      poop_projectile_4: 907270464
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

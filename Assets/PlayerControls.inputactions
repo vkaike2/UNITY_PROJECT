@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
+                    "name": "Fart",
                     "type": "Button",
                     "id": "dec90196-8d4f-4c93-b162-a4987a6be9c7",
                     "expectedControlType": "Button",
@@ -27,6 +27,24 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "993b923e-25fd-4fab-818a-eae8f40d0b8f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DownPlatform",
+                    "type": "Button",
+                    "id": "9b86c418-27dd-4d56-9a10-0c7bea1557bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Poop",
+                    "type": "Button",
+                    "id": "6f03d87c-9e61-40f8-a3e0-2ab2c0759da3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -129,7 +147,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "Fart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -140,7 +158,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
+                    "action": "Fart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -151,7 +169,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Fire",
+                    "action": "Fart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -162,7 +180,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Fire",
+                    "action": "Fart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -173,7 +191,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Fire",
+                    "action": "Fart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -185,6 +203,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a469f01e-5739-48fa-b90c-19fe191ea942",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DownPlatform",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82a4646a-9452-431a-9672-761cdf95ab16",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Poop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

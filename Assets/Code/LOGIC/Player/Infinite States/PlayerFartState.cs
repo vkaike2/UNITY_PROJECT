@@ -1,20 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 
-public class PlayerFartState : PlayerBaseState
+public class PlayerFartState : PlayerInfiniteBaseState
 {
-    public override Player.State State => Player.State.Fart;
     FartAttributeModel _fartModel;
 
     /// <summary>
     ///  turn false everytime that fart is on Cdw
     /// </summary>
     private bool _canFart = true;
-
-    //not implemented by infinite states
-    public override void EnterState() { }
 
     public override void Start(Player player)
     {
@@ -31,32 +26,29 @@ public class PlayerFartState : PlayerBaseState
     {
         if (!_canFart) return;
 
-        Vector2 mousePosition = Input.mousePosition;
-        Vector3 objectPos = Camera.main.WorldToScreenPoint(_player.transform.position);
-        mousePosition.x -= objectPos.x;
-        mousePosition.y -= objectPos.y;
+        (Vector2 position, Vector2 direction, Quaternion rotation) mouse = _player.GetMouseInformationRelatedToPlayer();
 
-        float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
-        Quaternion mouseRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        Vector2 fartForce  = _fartModel.KnockBackForce * -mouse.direction;
 
         _player.StartCoroutine(WaitToFartAgain());
+        _player.StartCoroutine(WaitAnimationTime(CheckIfNeedToFlipPlayer(-mouse.direction)));
 
-        Vector2 direction = -mousePosition.normalized;
-        direction *= _fartModel.KnockBackForce;
+        fartForce = new Vector2(fartForce.x, fartForce.y * _fartModel.HelpForcePercentage);
 
-        _player.StartCoroutine(WaitAnimationTime((_player.transform.localScale.x == 1 && direction.x < 0) || (_player.transform.localScale.x == -1 && direction.x > 0)));
-
-        direction = new Vector2(direction.x * _fartModel.HelpForcePercentage, direction.y);
-
-        _fartModel.ParticleSystem.transform.rotation = mouseRotation;
+        _fartModel.ParticleSystem.transform.rotation = mouse.rotation;
         _fartModel.ParticleSystem.Play();
 
-        if (direction.y > 0)
+        if (fartForce.y > 0)
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
         }
 
-        _rigidbody2D.AddForce(direction);
+        _rigidbody2D.AddForce(fartForce);
+    }
+
+    private bool CheckIfNeedToFlipPlayer(Vector2 actionDirection)
+    {
+        return (_player.transform.localScale.x == 1 && actionDirection.x < 0) || (_player.transform.localScale.x == -1 && actionDirection.x > 0);
     }
 
     IEnumerator WaitAnimationTime(bool flipPlayer)
@@ -87,4 +79,5 @@ public class PlayerFartState : PlayerBaseState
 
         _canFart = true;
     }
+
 }

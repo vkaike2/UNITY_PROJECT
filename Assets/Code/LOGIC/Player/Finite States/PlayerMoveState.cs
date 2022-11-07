@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMoveState : PlayerBaseState
+public class PlayerMoveState : PlayerFiniteBaseState
 {
-    public override Player.State State => Player.State.Move;
+    public override Player.FiniteState State => Player.FiniteState.Move;
 
     public override void EnterState()
     {
@@ -14,6 +14,10 @@ public class PlayerMoveState : PlayerBaseState
         _player.MoveInput.Canceled = () => OnMoveInputCanceled();
 
         _player.JumpInput.Started = () => OnJumpInputStarted();
+
+        _player.DownPlatform.Performed = () => OnDownPlatform();
+
+        _player.PoopInput.Started = () => OnPoopInputStarted();
     }
 
     public override bool ImFistState()
@@ -28,7 +32,6 @@ public class PlayerMoveState : PlayerBaseState
         MovePlayerHorizontally();
     }
 
-
     protected override void OnMoveInputCanceled()
     {
         base.OnMoveInputCanceled();
@@ -38,14 +41,19 @@ public class PlayerMoveState : PlayerBaseState
     protected override void OnJumpInputStarted()
     {
         base.OnJumpInputStarted();
-        _player.ChangeState(Player.State.Jump);
+        _player.ChangeState(Player.FiniteState.Jump);
+    }
+
+    private void OnDownPlatform()
+    {
+        DownPlatform();
     }
 
     private void CheckIfIsFalling()
     {
         if (!_player.IsOnTheGround())
         {
-            _player.ChangeState(Player.State.Falling);
+            _player.ChangeState(Player.FiniteState.Falling);
         }
     }
 
@@ -59,7 +67,7 @@ public class PlayerMoveState : PlayerBaseState
 
         if (_player.MoveInput.Value == Vector2.zero)
         {
-            _player.ChangeState(Player.State.Idle);
+            _player.ChangeState(Player.FiniteState.Idle);
         }
     }
 }
