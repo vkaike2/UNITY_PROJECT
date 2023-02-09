@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json.Bson;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -18,26 +19,37 @@ public class ProgressBarUI : MonoBehaviour
     [SerializeField]
     private float _cdwToHide = 0.5f;
 
-    public StartEvent OnStart { get; private set; }
+    public SetBehaviour OnSetBehaviour { get; private set; }
 
 
     private void Awake()
     {
-        OnStart = new StartEvent();
+        OnSetBehaviour = new SetBehaviour();
 
         _backgroundBar.SetActive(_startActive);
 
-        OnStart.AddListener(StartProgressBar);
+        OnSetBehaviour.AddListener(StartProgressBar);
     }
 
-    private void StartProgressBar(float cdw, Behaviour behaviour)
+    private void StartProgressBar(float value, Behaviour behaviour)
     {
         StopAllCoroutines();
 
-        StartCoroutine(ManageProgress(cdw));
+        switch (behaviour)
+        {
+            case Behaviour.ProgressBar_Hide:
+                StartCoroutine(ManageProgressBar(value));
+                break;
+            case Behaviour.LifeBar_Hide:
+                ManageLifeBar(value);
+                break;
+            default:
+                break;
+        }
+
     }
 
-    IEnumerator ManageProgress(float completionCdw)
+    IEnumerator ManageProgressBar(float completionCdw)
     {
         _imageBar.fillAmount = 0;
         _backgroundBar.SetActive(true);
@@ -56,6 +68,15 @@ public class ProgressBarUI : MonoBehaviour
         StartCoroutine(HideBarAfertCdw(_cdwToHide));
     }
 
+    private void ManageLifeBar(float percentage)
+    {
+        _imageBar.fillAmount = percentage;
+
+        _backgroundBar.SetActive(true);
+
+        StartCoroutine(HideBarAfertCdw(_cdwToHide));
+    }
+
     IEnumerator HideBarAfertCdw(float cdwToHide)
     {
         yield return new WaitForSeconds(cdwToHide);
@@ -64,8 +85,13 @@ public class ProgressBarUI : MonoBehaviour
 
     public enum Behaviour
     {
-        Hide_After_Completion
+        ProgressBar_Hide,
+        LifeBar_Hide
     }
 
-    public class StartEvent : UnityEvent<float, Behaviour> { }
+    /// <summary>
+    /// float -> used in different ways depending on the behaviour
+    /// Behaviour -> what it will do after fills
+    /// </summary>
+    public class SetBehaviour : UnityEvent<float, Behaviour> { }
 }

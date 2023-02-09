@@ -116,6 +116,8 @@ GameObject:
   - component: {fileID: 7484034754883789877}
   - component: {fileID: 2342271616896070309}
   - component: {fileID: 7855923119754135850}
+  - component: {fileID: 1033099448857419931}
+  - component: {fileID: 5431365499810466549}
   m_Layer: 0
   m_Name: Poop Projectile
   m_TagString: Untagged
@@ -173,6 +175,32 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009811282, y: 0.029433966}
+  m_Offset: {x: 0.00413996, y: 0.029433787}
   serializedVersion: 2
-  m_Radius: 0.23264074
+  m_Radius: 0.22016382
+--- !u!114 &1033099448857419931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7484034754883789878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9c16e290f51014fb9abe733dad9980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colisionLayer: 3
+--- !u!114 &5431365499810466549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7484034754883789878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569ab4c24ad573b48becfc28d24db9fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitboxType: 1
