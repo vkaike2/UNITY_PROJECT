@@ -1,17 +1,11 @@
-﻿using Assets.Code.MANAGER;
-
-public abstract class WormInifiniteBaseBehaviour
+﻿
+public abstract class WormInifiniteBaseBehaviour : EnemyInfiniteBaseBehaviours
 {
-    protected Hitbox _hitbox;
     protected Worm _worm;
-    protected GameManager _gameManager;
 
-    public virtual void Start(Worm worm)
+    public override void Start(Enemy enemy)
     {
-        _worm = worm;
-        _gameManager = worm.GameManager;
-        _hitbox = worm.HitBox;
+        _worm = (Worm) enemy;
+        base.Start(enemy);
     }
-
-    public abstract void Update();
 }

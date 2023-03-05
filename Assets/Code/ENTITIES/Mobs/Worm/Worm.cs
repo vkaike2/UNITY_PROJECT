@@ -1,31 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Code.MANAGER;
 
-public class Worm : MonoBehaviour
+public class Worm : Enemy
 {
-    //TODO = create a EntityManager to have the player
-    //TODO = add ever enemy to it
-    public Transform target;
-
     [Header("debug")]
     [SerializeField]
     private Behaviour _behaviourDebug;
-
-    [Space]
-    [Header("components")]
-    [SerializeField]
-    private Transform _rotationalTransform;
-    [SerializeField]
-    private Hitbox _hitbox;
-    [SerializeField]
-    private SpriteRenderer _spriteRenderer;
     
     [Header("configuration")]
-    [SerializeField]
-    private float _movementSpeed = 3f;
-    [Space]
     [SerializeField]
     private WormAnimatorModel _wormAnimator;
     [Space]
@@ -35,22 +18,16 @@ public class Worm : MonoBehaviour
     [SerializeField]
     private WormDamageableBehavourModel _damageableModel;
 
-    public Transform RotationalTransform => _rotationalTransform;
     public WormAnimatorModel Animator => _wormAnimator;
     public WormPatrolBehaviourModel PatrolModel => _patrolModel;
     public WormDamageableBehavourModel DamageableModel => _damageableModel;
 
-    public Hitbox HitBox => _hitbox;
-    public GameManager GameManager { get; private set; }
-    public float MovementSpeed => _movementSpeed;
-    public bool CanMove { get; set; }
-    public Behaviour? CurrentBehaviour => _currentBehaviour?.Behaviour;
-    public SpriteRenderer SpriteRenderer => _spriteRenderer;
+    public Behaviour? CurrentBehaviour => ((WormFiniteBaseBehaviour) _currentFiniteBehaviour)?.Behaviour;
 
     //Finite Behaviours
     private readonly List<WormFiniteBaseBehaviour> _finiteBaseBehaviours = new List<WormFiniteBaseBehaviour>()
     {
-        new WormFollowingPlayerBehaviour(),
+        new WormFollowingPlayerBehaviour(), 
         new WormPatrolBehaviour(),
         new WormDieBehaviour()
     };
@@ -61,9 +38,6 @@ public class Worm : MonoBehaviour
         new WormDamageableBehaviour()
     };
 
-    private WormFiniteBaseBehaviour _currentBehaviour;
-
-
     private void OnDrawGizmos()
     {
         _patrolModel.OnDrawGizmos();
@@ -71,37 +45,21 @@ public class Worm : MonoBehaviour
 
     private void Awake()
     {
-        CanMove = false;
+        base.Awake();
         _behaviourDebug = Behaviour.Born;
-
-        GameManager = GameObject.FindObjectOfType<GameManager>();
+        base.SetFiniteBaseBehaviours(_finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour) e ).ToList());
+        base.SetInfiniteBaseBehaviours(_infiniteBaseBehaviours.Select(e => (EnemyInfiniteBaseBehaviours)e).ToList());
     }
 
     private void Start()
     {
-        foreach (var behaviour in _infiniteBaseBehaviours)
-        {
-            behaviour.Start(this);
-        }
-
-        foreach (var behaviour in _finiteBaseBehaviours)
-        {
-            behaviour.Start(this);
-        }
-
-        
+        base.Start();
+        GameManager.SetWorm(this);
     }
 
-    private void FixedUpdate()
+    private void OnDestroy()
     {
-        foreach (var behaviour in _infiniteBaseBehaviours)
-        {
-            behaviour.Update();
-        }
-
-        if (_currentBehaviour == null) return;
-
-        _currentBehaviour.Update();
+        GameManager.RemoveWorm(this);
     }
 
     // called by animator events
@@ -113,15 +71,15 @@ public class Worm : MonoBehaviour
 
     public void ChangeBehaviour(Behaviour behaviour)
     {
-        if (_currentBehaviour != null)
+        if (_currentFiniteBehaviour != null)
         {
-            _currentBehaviour.OnExitBehaviour();
+            _currentFiniteBehaviour.OnExitBehaviour();
         }
 
         _behaviourDebug = behaviour;
-        _currentBehaviour = _finiteBaseBehaviours.FirstOrDefault(e => e.Behaviour == behaviour);
+        _currentFiniteBehaviour = _finiteBaseBehaviours.FirstOrDefault(e => e.Behaviour == behaviour);
 
-        _currentBehaviour.OnEnterBehaviour();
+        _currentFiniteBehaviour.OnEnterBehaviour();
     }
 
     public enum Behaviour

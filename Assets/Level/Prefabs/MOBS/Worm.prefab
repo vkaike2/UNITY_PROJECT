@@ -270,12 +270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066bcb89b71b04f4fb41dddd6935af0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  _behaviourDebug: 0
   _rotationalTransform: {fileID: 7775297798183939865}
   _hitbox: {fileID: 639897441110562317}
   _spriteRenderer: {fileID: 7775297797329079548}
   _movementSpeed: 3
+  _behaviourDebug: 0
   _wormAnimator:
     _animator: {fileID: 7775297797329079550}
   _patrolModel:
@@ -284,7 +283,7 @@ MonoBehaviour:
     _collidingWithLayerMask:
       serializedVersion: 2
       m_Bits: 8
-    _distanceToStopPatrolling: 0.1
+    _distanceToStopPatrolling: 0.3
     _initialRaycastPosition: {fileID: 7775297796580280215}
     _willColideWithGround: {fileID: 7775297797564265287}
   _damageableModel:
@@ -332,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7775297796580280215}
   m_Layer: 7
-  m_Name: Raycasst Start
+  m_Name: Raycast Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,7 +470,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8bf67cf63351c43b5fc0ea7b6b7818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _worm: {fileID: 7775297796345805180}
+  _onCanMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7775297796345805180}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: set_CanMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onSetInitialBehaviour:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7775297796345805180}
+        m_TargetAssemblyTypeName: Worm, Assembly-CSharp
+        m_MethodName: SetInitialBehaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7775297797564265290
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,11 +571,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271e13dae0e1bd84eacfa8ec18ef2bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collisionType: 0
+  _collisonLayers: []
   _layerMask:
     serializedVersion: 2
     m_Bits: 8
   _horizontalRaycastSize: 0.5
-  test: 0
 --- !u!1 &7775297798183939866
 GameObject:
   m_ObjectHideFlags: 0

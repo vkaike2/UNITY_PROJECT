@@ -8,7 +8,7 @@ public class WormDieBehaviour : WormFiniteBaseBehaviour
 
     public override void OnEnterBehaviour()
     {
-        _worm.Animator.PlayAnimation(WormAnimatorModel.Animation.Die);
+        _worm.Animator.PlayAnimation(WormAnimatorModel.AnimationName.Die);
         _worm.HitBox.gameObject.SetActive(false);
         _rigidbody2D.velocity = Vector3.zero;
         _rigidbody2D.isKinematic = true;

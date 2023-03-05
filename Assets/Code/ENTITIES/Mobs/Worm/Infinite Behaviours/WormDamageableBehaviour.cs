@@ -8,9 +8,9 @@ public class WormDamageableBehaviour : WormInifiniteBaseBehaviour
     private WormDamageableBehavourModel _damageableModel;
     private readonly DamageService _damageService = new DamageService();
 
-    public override void Start(Worm worm)
+    public override void Start(Enemy enemy)
     {
-        base.Start(worm);
+        base.Start(enemy);
         _hitbox.OnHitboxTriggerEnter.AddListener(OnHitboxEnter);
         _damageableModel = _worm.DamageableModel;
         _damageableModel.CurrentHealth = _damageableModel.InitialHealth;
@@ -28,10 +28,10 @@ public class WormDamageableBehaviour : WormInifiniteBaseBehaviour
         if (targetHitbox == null) return;
         if(targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_damageableModel.InitialDamage, _hitbox.GetInstanceID());
+        targetHitbox.OnReceivingDamage.Invoke(_damageableModel.InitialDamage, _hitbox.GetInstanceID(), _worm.transform.position);
     }
 
-    private void ReceiveDamage(float incomingDamage, int instance)
+    private void ReceiveDamage(float incomingDamage, int instance, Vector2 playerPosition)
     {
         if (_worm.CurrentBehaviour == Worm.Behaviour.Die) return;
         if (!_damageService.CanReceiveDamageFrom(instance)) return;

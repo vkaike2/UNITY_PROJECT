@@ -8,16 +8,18 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 {
     public override Player.FiniteState State => Player.FiniteState.Pooping;
 
-    private bool _hasBeingFlipped = false;
     private PlayerPoopStateModel _poopModel;
     private GameObject[] _fullTrajectory;
+    private PlayerDamageableStateModel _damageableModel;
+
+    private bool _hasBeingFlipped = false;
     private float _velocityMultiplyer;
     private bool _canPoop = true;
     private Vector2 _previousVelocity;
 
     public override void EnterState()
     {
-        if (!_canPoop)
+        if (!_canPoop || !_damageableModel.CanAtk)
         {
             _player.PoopInput.Value = false;
             _player.ChangeState(_player.GetPossibleState());
@@ -47,9 +49,9 @@ public class PlayerPoopingState : PlayerFiniteBaseState
     {
         base.Start(player);
         _poopModel = _player.PoopStateModel;
+        _damageableModel = _player.DamageableStateModel;
 
         _fullTrajectory = new GameObject[_poopModel.NumberOfDots];
-
 
         for (int i = 0; i < _poopModel.NumberOfDots; i++)
         {

@@ -61,5 +61,6 @@ public class OnHitboxTriggerEnter : UnityEvent<Hitbox> { }
 /// <summary>
 /// float - incoming damage
 /// int - instanceiD that is dealing the damage
+/// Vector2 - damage dealer position
 /// </summary>
-public class OnReceivingDamage : UnityEvent<float, int> { }
+public class OnReceivingDamage : UnityEvent<float, int, Vector2> { }

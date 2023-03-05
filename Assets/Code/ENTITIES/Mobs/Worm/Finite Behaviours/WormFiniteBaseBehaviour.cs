@@ -1,27 +1,13 @@
-using Assets.Code.MANAGER;
-using Pathfinding;
-using System;
-using UnityEngine;
 
-public abstract class WormFiniteBaseBehaviour
+public abstract class WormFiniteBaseBehaviour : EnemyFiniteBaseBehaviour
 {
     protected Worm _worm;
-    protected Rigidbody2D _rigidbody2D;
-    protected MySeeker _mySeeker;
-    protected GameManager _gameManager;
 
     public abstract Worm.Behaviour Behaviour { get; }
 
-    public virtual void Start(Worm worm)
+    public override void Start(Enemy enemy)
     {
-        _worm = worm;
-        _gameManager = worm.GameManager;
-        _mySeeker = worm.GetComponent<MySeeker>();
-        _rigidbody2D = worm.GetComponent<Rigidbody2D>();
+        base.Start(enemy);
+        _worm = (Worm) enemy;
     }
-
-    public abstract void Update();
-
-    public abstract void OnEnterBehaviour();
-    public abstract void OnExitBehaviour();
 }

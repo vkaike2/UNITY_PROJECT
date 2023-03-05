@@ -38,6 +38,9 @@ public class PlayerIdleState : PlayerFiniteBaseState
 
     protected override void OnJumpInputStarted()
     {
+        // idk why but this bugs the jump action
+        if (_player.FartInput.Value) return;
+
         base.OnJumpInputStarted();
         _player.ChangeState(Player.FiniteState.Jump);
     }

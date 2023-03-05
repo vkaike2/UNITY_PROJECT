@@ -1,13 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WormAnimatorEvents : MonoBehaviour
 {
-    [Header("components")]
     [SerializeField]
-    private Worm _worm;
+    private OnToggleMovement _onCanMove;
+    [SerializeField]
+    private UnityEvent _onSetInitialBehaviour;
 
-    public void SetInitialBehaviour() => _worm.SetInitialBehaviour();
-    public void CanMove() => _worm.CanMove = true;
-    public void CanNotMove() => _worm.CanMove = false;
+    public void SetInitialBehaviour() => _onSetInitialBehaviour.Invoke();
+    public void CanMove() => _onCanMove.Invoke(true);
+    public void CanNotMove() => _onCanMove.Invoke(false);
+
+    [Serializable]
+    public class OnToggleMovement : UnityEvent<bool> { }
 }

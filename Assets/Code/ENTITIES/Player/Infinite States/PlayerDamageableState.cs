@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerDamageableState : PlayerInfiniteBaseState
 {
@@ -14,7 +16,9 @@ public class PlayerDamageableState : PlayerInfiniteBaseState
     public override void Start(Player player)
     {
         base.Start(player);
+
         _damageableModel = player.DamageableStateModel;
+        _damageableModel.CanAtk = true;
         _damageableModel.CurrentHealth = _damageableModel.InitialHealth;
 
         player.Hitbox.OnReceivingDamage.AddListener(ReceiveDamage);
@@ -56,7 +60,7 @@ public class PlayerDamageableState : PlayerInfiniteBaseState
         _player.UiEventManager.OnPlayerLifeChange.Invoke(1);
     }
 
-    private void ReceiveDamage(float incomingDamage, int instance)
+    private void ReceiveDamage(float incomingDamage, int instance, Vector2 enemyPosition)
     {
         if (!_damageService.CanReceiveDamageFrom(instance)) return;
 
@@ -66,6 +70,8 @@ public class PlayerDamageableState : PlayerInfiniteBaseState
         {
             _damageableModel.CurrentHealth = 0;
         }
+        
+        ApplyKnockBackOnDamage(enemyPosition);
 
         _player.StartCoroutine(_damageService.ManageDamageEntry(instance));
 
@@ -87,7 +93,7 @@ public class PlayerDamageableState : PlayerInfiniteBaseState
 
             foreach (var hitbox in hitboxes)
             {
-                hitbox.OnReceivingDamage.Invoke(_damageableModel.FartDamage, _fartParticleInstanceIds[i]);
+                hitbox.OnReceivingDamage.Invoke(_damageableModel.FartDamage, _fartParticleInstanceIds[i], _fartParticles[i].position);
             }
         }
     }
@@ -116,10 +122,27 @@ public class PlayerDamageableState : PlayerInfiniteBaseState
         if (targetHitbox.Type == Hitbox.HitboxType.Player) return;
         if (_poopHitbox == null) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_damageableModel.PoopDamage, _poopHitbox.GetInstanceID());
+        targetHitbox.OnReceivingDamage.Invoke(_damageableModel.PoopDamage, _poopHitbox.GetInstanceID(), _poopHitbox.transform.position);
 
         GameObject.Destroy(_poopHitbox.gameObject);
         _poopHitbox = null;
     }
 
+    private void ApplyKnockBackOnDamage(Vector2 damagePosition)
+    {
+        Vector2 direction = damagePosition.normalized;
+        Vector2 knockbackForce = _damageableModel.KnockBackForce * -direction;
+        _rigidbody2D.AddForce(knockbackForce);
+
+        _player.StartCoroutine(WaitToAtkAgain());
+    }
+
+
+    IEnumerator WaitToAtkAgain()
+    {
+        _damageableModel.CanAtk = false;
+        yield return new WaitForSeconds(_damageableModel.CdwToAtkAfterDamage);
+
+        _damageableModel.CanAtk = true;
+    }
 }

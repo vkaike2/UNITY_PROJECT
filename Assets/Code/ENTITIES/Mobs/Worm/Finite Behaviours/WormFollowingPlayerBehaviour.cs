@@ -1,8 +1,6 @@
 ﻿using Pathfinding;
 using System.Collections;
-using TMPro;
 using UnityEngine;
-using static WormPatrolBehaviour;
 
 public class WormFollowingPlayerBehaviour : WormFiniteBaseBehaviour
 {
@@ -12,7 +10,6 @@ public class WormFollowingPlayerBehaviour : WormFiniteBaseBehaviour
     private Vector2 _direction = Vector2.zero;
 
     private Coroutine _updatePlayerPathCoroutine = null;
-
 
     public override void OnEnterBehaviour()
     {

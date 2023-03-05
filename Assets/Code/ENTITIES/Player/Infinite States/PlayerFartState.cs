@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerFartState : PlayerInfiniteBaseState
 {
-    FartStateModel _fartModel;
-
+    private FartStateModel _fartModel;
+    private PlayerDamageableStateModel _damageableModel;
     /// <summary>
     ///  turn false everytime that fart is on Cdw
     /// </summary>
@@ -16,6 +16,7 @@ public class PlayerFartState : PlayerInfiniteBaseState
         base.Start(player);
         _player.FartInput.Performed = () => DoesFart();
         _fartModel = player.FartStateModel;
+        _damageableModel = _player.DamageableStateModel;
     }
 
     public override void Update()
@@ -24,7 +25,7 @@ public class PlayerFartState : PlayerInfiniteBaseState
 
     private void DoesFart()
     {
-        if (!_canFart) return;
+        if (!_canFart || !_damageableModel.CanAtk) return;
 
         (Vector2 position, Vector2 direction, Quaternion rotation) mouse = _player.GetMouseInformationRelatedToPlayer();
 
