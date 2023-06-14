@@ -12,11 +12,8 @@ public class PlayerMoveState : PlayerFiniteBaseState
 
         _player.MoveInput.Performed = () => OnMoveInputPerformed();
         _player.MoveInput.Canceled = () => OnMoveInputCanceled();
-
         _player.JumpInput.Started = () => OnJumpInputStarted();
-
-        _player.DownPlatform.Performed = () => OnDownPlatform();
-
+        _player.DownPlatformInput.Performed = () => OnDownPlatform();
         _player.PoopInput.Started = () => OnPoopInputStarted();
     }
 
@@ -34,16 +31,16 @@ public class PlayerMoveState : PlayerFiniteBaseState
 
     protected override void OnMoveInputCanceled()
     {
+        _rigidbody2D.velocity = new Vector2(0, 0);
         base.OnMoveInputCanceled();
         _player.StartCoroutine(WaitThenChangeToIdle());
     }
 
     protected override void OnJumpInputStarted()
     {
-        // idk why but this bugs the jump action
-        if (_player.FartInput.Value) return;
-
         base.OnJumpInputStarted();
+        if (!_player.IsOnTheGround()) return;
+
         _player.ChangeState(Player.FiniteState.Jump);
     }
 

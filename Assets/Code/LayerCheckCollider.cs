@@ -30,7 +30,7 @@ namespace Assets.Code.LOGIC
 
         private void OnValidate()
         {
-            if (_collisonLayers.Count() == 0) return;
+            if (_collisonLayers != null && _collisonLayers.Count() == 0) return;
 
             foreach (var layer in _collisonLayers)
             {
@@ -79,6 +79,7 @@ namespace Assets.Code.LOGIC
         {
             RaycastHit2D col = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - _horizontalRaycastSize), _layerMask);
 
+            Debug.Log(col.collider != null);
             return col.collider != null;
         }
     

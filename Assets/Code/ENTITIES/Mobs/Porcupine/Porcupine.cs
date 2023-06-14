@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class Porcupine : Enemy
 {
-    [Header("debug")]
+    [Header("DEBUG")]
     [SerializeField]
     private Behaviour _behaviourDebug;
 
-    [Header("my components")]
+    [Header("MY COMPONENTS")]
     [SerializeField]
     private PorcupineAnimatorEvents _animatorEvents;
 
-    [Header("configuration")]
+    [Header("MY CONFIGURATIONS")]
     [SerializeField]
     private PorcupineAnimatorModel _porcupineAnimator;
     [Space]

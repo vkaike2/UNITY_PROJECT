@@ -61,7 +61,6 @@ public class PlayerPoopingState : PlayerFiniteBaseState
         }
     }
 
-
     public override void Update()
     {
         if (!_player.PoopInput.Value) return;
@@ -88,7 +87,6 @@ public class PlayerPoopingState : PlayerFiniteBaseState
             }
 
             _fullTrajectory[i].SetActive(true);
-
         }
     }
 

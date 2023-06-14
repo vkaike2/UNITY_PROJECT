@@ -1,19 +1,16 @@
-﻿using System.Collections;
-using Unity.VisualScripting.Dependencies.Sqlite;
+﻿using Calcatz.MeshPathfinding;
 using UnityEngine;
 
 public class ChickenPatrolBehaviour : ChickenFiniteBaseBehaviour
 {
     public override Chicken.Behaviour Behaviour => Chicken.Behaviour.Patrol;
 
-    private MySeeker _mySeeker;
     private PatrolService _patrolService;
     private ChickenPatrolBehaviourModel _patrolModel;
 
     public override void Start(Enemy enemy)
     {
         base.Start(enemy);
-        _mySeeker = enemy.GetComponent<MySeeker>();
 
         _patrolService = new PatrolService(
             enemy,
@@ -27,36 +24,52 @@ public class ChickenPatrolBehaviour : ChickenFiniteBaseBehaviour
     public override void OnEnterBehaviour()
     {
         _patrolService.StartPatrolBehaviour();
-        StartCheckIfPlayerIsInRange();
     }
 
     public override void OnExitBehaviour()
     {
         _patrolService.ResetCoroutines();
         _patrolService.DisabelGizmo();
+
+        _chicken.PlayerPathfinding.StopPathFinding();
     }
 
     public override void Update()
     {
-        if (_mySeeker.IsTargetInRange)
+        FindFollowingTarget();
+    }
+
+    private void FindFollowingTarget()
+    {
+        if (!_chicken.IsMaxTier() && ChefIfWormIsReachable())
+        {
+            _chicken.ChangeBehaviour(Chicken.Behaviour.FollowingWorm);
+            return;
+        }
+
+        if (CheckIfPlayerIsReachable())
         {
             _chicken.ChangeBehaviour(Chicken.Behaviour.FollowingPlayer);
         }
     }
 
-    /// <summary>
-    /// It stops automatically when player is in range
-    /// </summary>
-    private void StartCheckIfPlayerIsInRange()
+    private bool ChefIfWormIsReachable()
     {
-        if (_gameManager == null || _gameManager.Player == null) return;
+        Worm worm = _chicken.GameManager.GetNearestWorm(_chicken.transform.position);
+        if (worm == null) return false;
 
-        _chicken.StartCoroutine(
-            _mySeeker.CheckIfTargetInRange(
-                MySeeker.AvailableMovements.Jump,
-                _chicken.gameObject,
-                _gameManager.Player.gameObject));
+        _chicken.AtkWormModel.WormTarget = worm;
+        _chicken.WormPathfinding.FindPath(_chicken.JumpForce, target: worm.transform);
 
+        Node[] pathResult = _chicken.WormPathfinding.GetPathResult();
+        return pathResult != null;
+    }
+
+    private bool CheckIfPlayerIsReachable()
+    {
+        Node[] pathResult = _chicken.PlayerPathfinding.FindPath(_chicken.JumpForce);
+
+        return pathResult != null;
     }
 
 }

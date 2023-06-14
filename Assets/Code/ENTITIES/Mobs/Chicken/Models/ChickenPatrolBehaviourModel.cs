@@ -4,8 +4,4 @@ using System.Collections;
 using UnityEngine;
 
 [Serializable]
-public class ChickenPatrolBehaviourModel : EnemyPatrolModel
-{
-
-
-}
+public class ChickenPatrolBehaviourModel : EnemyPatrolModel { }

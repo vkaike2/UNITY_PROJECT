@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Calcatz.MeshPathfinding;
 
 
 public class WormPatrolBehaviour : WormFiniteBaseBehaviour
@@ -22,36 +20,29 @@ public class WormPatrolBehaviour : WormFiniteBaseBehaviour
     public override void OnEnterBehaviour()
     {
         _patrolService.StartPatrolBehaviour();
-
-        StartCheckIfPlayerIsInRange();
+        _worm.Pathfinding.StartFindPath(0);
     }
 
     public override void OnExitBehaviour()
     {
         _patrolService.ResetCoroutines();
-        _patrolService.DisabelGizmo();  
+        _patrolService.DisabelGizmo();
+        _worm.Pathfinding.StopPathFinding();
     }
 
     public override void Update()
     {
-        if (_mySeeker.IsTargetInRange)
+        if (CheckIfPlayerIsReachable())
         {
             _worm.ChangeBehaviour(Worm.Behaviour.FollowingPlayer);
         }
     }
 
-    /// <summary>
-    /// It stops automatically when player is in range
-    /// </summary>
-    private void StartCheckIfPlayerIsInRange()
+
+    private bool CheckIfPlayerIsReachable()
     {
-        if (_gameManager == null || _gameManager.Player == null) return;
+        Node[] pathResult = _worm.Pathfinding.GetPathResult();
 
-        _worm.StartCoroutine(
-            _mySeeker.CheckIfTargetInRange(
-                MySeeker.AvailableMovements.Walk,
-                _worm.gameObject,
-                _gameManager.Player.gameObject));
-
+        return pathResult != null;
     }
 }

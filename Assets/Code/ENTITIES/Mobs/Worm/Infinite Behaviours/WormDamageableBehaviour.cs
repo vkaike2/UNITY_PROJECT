@@ -13,7 +13,7 @@ public class WormDamageableBehaviour : WormInifiniteBaseBehaviour
         base.Start(enemy);
         _hitbox.OnHitboxTriggerEnter.AddListener(OnHitboxEnter);
         _damageableModel = _worm.DamageableModel;
-        _damageableModel.CurrentHealth = _damageableModel.InitialHealth;
+        _worm.Status.InitializeHealth();
 
         _hitbox.OnReceivingDamage.AddListener(ReceiveDamage);
 
@@ -28,7 +28,7 @@ public class WormDamageableBehaviour : WormInifiniteBaseBehaviour
         if (targetHitbox == null) return;
         if(targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_damageableModel.InitialDamage, _hitbox.GetInstanceID(), _worm.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_worm.Status.Damage.Get(), _hitbox.GetInstanceID(), _worm.transform.position);
     }
 
     private void ReceiveDamage(float incomingDamage, int instance, Vector2 playerPosition)
@@ -36,14 +36,13 @@ public class WormDamageableBehaviour : WormInifiniteBaseBehaviour
         if (_worm.CurrentBehaviour == Worm.Behaviour.Die) return;
         if (!_damageService.CanReceiveDamageFrom(instance)) return;
 
-        _damageableModel.CurrentHealth -= incomingDamage;
-
-        if (_damageableModel.CurrentHealth <= 0)
+        _worm.Status.Health.ReduceFlatValue(incomingDamage);
+        if (_worm.Status.Health.Get() <= 0)
         {
-            _damageableModel.CurrentHealth = 0;
+            _worm.Status.Health.Set(0);
             _worm.ChangeBehaviour(Worm.Behaviour.Die);
         }
-        _damageableModel.ProgresBarUI.OnSetBehaviour.Invoke(_damageableModel.CurrentHealth / _damageableModel.InitialHealth, ProgressBarUI.Behaviour.LifeBar_Hide);
+        _damageableModel.ProgresBarUI.OnSetBehaviour.Invoke(_worm.Status.Health.Get() / _worm.Status.MaxHealth.Get(), ProgressBarUI.Behaviour.LifeBar_Hide);
 
 
         _worm.StartCoroutine(_damageService.ManageDamageEntry(instance));

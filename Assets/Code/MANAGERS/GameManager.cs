@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using Calcatz.MeshPathfinding;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,12 +10,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("ui scene name")]
+    [Header("UI SCENE NAME")]
     [SerializeField]
     private string _scenePlayerUI;
 
+    [Header("PATHFINDING")]
+    [SerializeField]
+    private Waypoints _waypoints;
+
     public Player Player { get; private set; }
     public List<Worm> Worms { get; private set; }
+    public Waypoints Waypoints => _waypoints;
 
     private bool _gameIsPaused = false;
 
@@ -23,6 +30,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(_scenePlayerUI, LoadSceneMode.Additive);
     }
 
+    #region GET & SET
     public void SetPlayer(Player player)
     {
         Player = player;
@@ -42,7 +50,28 @@ public class GameManager : MonoBehaviour
     {
         Worms.Remove(worm);
     }
+    #endregion
 
+    #region Worms
+
+    public Worm GetNearestWorm(Vector2 position)
+    {
+        if (Worms.Count == 0) return null;
+
+        return Worms
+            .Where(e => e.CurrentBehaviour != Worm.Behaviour.Die)
+            .Select(e => new
+            {
+                Worm = e,
+                Distance = Vector2.Distance(position, e.transform.position)
+            })
+            .OrderBy(e => e.Distance)
+            .Select(e => e.Worm)
+            .FirstOrDefault();
+    }
+    #endregion
+
+    #region PAUSE
     public void OnPauseGameInput(InputAction.CallbackContext context)
     {
         if (context.phase != InputActionPhase.Performed) return;
@@ -62,4 +91,5 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+    #endregion
 }

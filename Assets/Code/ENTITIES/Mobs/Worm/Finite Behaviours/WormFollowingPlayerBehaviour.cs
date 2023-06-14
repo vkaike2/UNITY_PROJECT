@@ -1,70 +1,60 @@
-﻿using Pathfinding;
+﻿using Calcatz.MeshPathfinding;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class WormFollowingPlayerBehaviour : WormFiniteBaseBehaviour
 {
     public override Worm.Behaviour Behaviour => Worm.Behaviour.FollowingPlayer;
 
-    private Path _path = null;
     private Vector2 _direction = Vector2.zero;
-
-    private Coroutine _updatePlayerPathCoroutine = null;
 
     public override void OnEnterBehaviour()
     {
-        _updatePlayerPathCoroutine = _worm.StartCoroutine(UpdatePlayerPath());
+        _worm.Animator.PlayAnimation(WormAnimatorModel.AnimationName.Move);
+        _worm.Pathfinding.StartFindPath(0);
     }
 
     public override void OnExitBehaviour()
     {
-        if (_updatePlayerPathCoroutine == null) return;
-
-        _worm.StopCoroutine(_updatePlayerPathCoroutine);
+        _worm.Pathfinding.StopPathFinding();
     }
 
     public override void Update()
     {
-        if (!_worm.CanMove) return;
-
-        _rigidbody2D.velocity = new Vector2(_direction.x * _worm.MovementSpeed, _rigidbody2D.velocity.y);
-    }
-
-    private IEnumerator UpdatePlayerPath()
-    {
-        _mySeeker.StartPath(_worm.transform.position, _gameManager.Player.transform.position, (Path path) =>
+        if (!_worm.CanMove)
         {
-            if (path.error)
-            {
-                _path = null;
-                return;
-            }
-            else
-            {
-                _path = path;
-            }
-        });
+            _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+            return;
+        };
 
-        while (!_mySeeker.IsDone())
-        {
-            yield return new WaitForFixedUpdate();
-        }
-
-        if (_path == null || !_mySeeker.CheckIfTargetIsInRangeIfYouWalk(_path))
+        Node[] paths = _worm.Pathfinding.GetPathResult();
+        if (paths == null)
         {
             _worm.ChangeBehaviour(Worm.Behaviour.Patrol);
-            _direction = Vector2.zero;
-            yield return null;
+            return;
         }
+        CalculateDirection(paths);
 
-
-        Vector2 offsetDirection = ((Vector2)_path.vectorPath[1] - _rigidbody2D.position);
-        _direction = offsetDirection.Normalized();
-        _worm.RotationalTransform.localScale = new Vector3(_direction.x == 1 ? 1 : -1, 1, 1);
-
-        yield return new WaitForSeconds(_mySeeker.TICK_PATH_CDW);
-
-        _updatePlayerPathCoroutine = _worm.StartCoroutine(UpdatePlayerPath());
+        _worm.RotationalTransform.localScale = new Vector3(_direction.x, 1, 1);
+        _rigidbody2D.velocity = new Vector2(_direction.x * _worm.Status.MovementSpeed.Get(), 0);
     }
 
+    private void CalculateDirection(Node[] paths)
+    {
+        Transform targetPosition = _worm.GameManager.Player.transform;
+        if (paths.Length > 0)
+        {
+            targetPosition = paths[0].transform;
+        }
+
+        if (targetPosition.position.x > _worm.transform.position.x)
+        {
+            _direction = new Vector2(1, 0);
+        }
+        else if (targetPosition.position.x < _worm.transform.position.x)
+        {
+            _direction = new Vector2(-1, 0);
+        }
+    }
 }

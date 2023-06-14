@@ -144,12 +144,17 @@ public class PatrolService
         {
             if (_enemy.CanMove)
             {
+                Debug.Log("patrol ?");
                 if (!_patrolModel.WillCollideWithGround)
                 {
                     break;
                 }
 
-                _rigidbody2D.velocity = nextDirection * _enemy.MovementSpeed;
+                _rigidbody2D.velocity = nextDirection * _enemy.Status.MovementSpeed.Get();
+            }
+            else
+            {
+                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
             }
             yield return new WaitForFixedUpdate();
         }

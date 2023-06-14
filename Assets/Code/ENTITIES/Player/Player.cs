@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,38 +10,37 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
-    [Header("debug")]
+    [Header("DEBUG")]
     [SerializeField]
     private FiniteState _stateDebug;
 
-    [Space]
-    [Header("components")]
+    [Space(5)]
+    [Header("COMPONENTS")]
     [SerializeField]
     private Hitbox _hitbox;
-
-    [Space]
-    [Header("configuration")]
     [SerializeField]
     private Transform _rotationalTransform;
-    [Space]
+
+    [Space(5)]
+    [Header("ATTRIBUTES")]
+    [Tooltip("will deactivate collider for this amount of time")]
+    [SerializeField]
+    private float _cdwOneWayPlatform = 0.5f;
+
+    [Space(5)]
+    [Header("CONFIGURATION")]
     [SerializeField]
     private AudioController _audioController;
-    [Space]
     [SerializeField]
     private PlayerMoveStateModel _moveModel;
-    [Space]
     [SerializeField]
     private PlayerJumpStateModel _jumpModel;
-    [Space]
     [SerializeField]
     private PlayerAnimatorModel _playerAnimator;
-    [Space]
     [SerializeField]
     private FartStateModel _fartModel;
-    [Space]
     [SerializeField]
     private PlayerPoopStateModel _poopModel;
-    [Space]
     [SerializeField]
     private PlayerDamageableStateModel _damageableModel;
 
@@ -49,50 +49,43 @@ public class Player : MonoBehaviour
     /// - GameObject: Poop GameObject
     /// </summary>
     public Action<GameObject> OnPoopEvent { get; set; }
-
     public Transform RotationalTransform => _rotationalTransform;
     public AudioController AudioController => _audioController;
-
     public Hitbox Hitbox => _hitbox;
-
     public PlayerMoveStateModel MoveStateModel => _moveModel;
     public PlayerJumpStateModel JumpStateModel => _jumpModel;
     public PlayerPoopStateModel PoopStateModel => _poopModel;
     public FartStateModel FartStateModel => _fartModel;
     public PlayerDamageableStateModel DamageableStateModel => _damageableModel;
-
     public PlayerAnimatorModel Animator => _playerAnimator;
-
     public FiniteState? PreviousState { get; private set; }
     public FiniteState CurrentState => _currentState.State;
-
-    private PlayerFiniteBaseState _currentState;
-    private List<PlayerFiniteBaseState> _finiteStates;
-    private List<PlayerInfiniteBaseState> _infiniteStates;
-
     public UIEventManager UiEventManager => _uiEventManager;
+
+    private BoxCollider2D _boxCollider;
+    private PlayerFiniteBaseState _currentState;
+    private readonly List<PlayerFiniteBaseState> _finiteStates = new()
+    {
+        new PlayerIdleState(),
+        new PlayerMoveState(),
+        new PlayerJumpState(),
+        new PlayerFallingState(),
+        new PlayerPoopingState()
+    };
+    private readonly List<PlayerInfiniteBaseState> _infiniteStates = new()
+    {
+         new PlayerFartState(),
+         new PlayerDamageableState()
+    };
 
     //Game Manager
     private GameManager _gameManager;
     private UIEventManager _uiEventManager;
 
-
-    //Finite State
-    private readonly PlayerIdleState _playerStateIdle = new PlayerIdleState();
-    private readonly PlayerMoveState _playerStateRunning = new PlayerMoveState();
-    private readonly PlayerJumpState _playerJumpState = new PlayerJumpState();
-    private readonly PlayerFallingState _playerFallingState = new PlayerFallingState();
-    private readonly PlayerPoopingState _playerPoopingState = new PlayerPoopingState();
-
-    //Infinite State
-    private readonly PlayerFartState _playerFartState = new PlayerFartState();
-    private readonly PlayerDamageableState _playerDamageableState = new PlayerDamageableState();
-
     public InputModel<Vector2> MoveInput { get; private set; }
     public InputModel<bool> JumpInput { get; private set; }
     public InputModel<bool> FartInput { get; private set; }
-    public InputModel<bool> DownInput { get; private set; }
-    public InputModel<bool> DownPlatform { get; private set; }
+    public InputModel<bool> DownPlatformInput { get; private set; }
     public InputModel<bool> PoopInput { get; private set; }
 
     public bool CanMove { get; set; }
@@ -106,44 +99,37 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         MoveInput = new InputModel<Vector2>();
-        MoveInput.ClearActions();
         JumpInput = new InputModel<bool>();
-        JumpInput.ClearActions();
         FartInput = new InputModel<bool>();
-        FartInput.ClearActions();
-        DownInput = new InputModel<bool>();
-        DownInput.ClearActions();
-        DownPlatform = new InputModel<bool>();
-        DownPlatform.ClearActions();
+        DownPlatformInput = new InputModel<bool>();
         PoopInput = new InputModel<bool>();
-        PoopInput.ClearActions();
+        ClearAllInputActions();
 
         CanMove = true;
 
-        _finiteStates = new List<PlayerFiniteBaseState>()
-        {
-            _playerStateIdle,
-            _playerStateRunning,
-            _playerJumpState,
-            _playerFallingState,
-            _playerPoopingState
-        };
+        _boxCollider = GetComponent<BoxCollider2D>();
 
-        _infiniteStates = new List<PlayerInfiniteBaseState>()
-        {
-            _playerFartState,
-            _playerDamageableState
-        };
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
+        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
+        _gameManager.SetPlayer(this);
+    }
 
+    private void ClearFiniteInputActions()
+    {
+        MoveInput.ClearActions();
+        JumpInput.ClearActions();
+        DownPlatformInput.ClearActions();
+        PoopInput.ClearActions();
+    }
+
+    private void ClearAllInputActions()
+    {
+        FartInput.ClearActions();
+        ClearFiniteInputActions();
     }
 
     private void Start()
     {
-        _gameManager = GameObject.FindObjectOfType<GameManager>();
-        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
-        
-        _gameManager.SetPlayer(this);
-
         foreach (var state in _finiteStates)
         {
             state.Start(this);
@@ -177,15 +163,15 @@ public class Player : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                DownInput.Started();
+                DownPlatformInput.Started();
                 break;
             case InputActionPhase.Performed:
-                DownInput.Value = true;
-                DownInput.Performed();
+                DownPlatformInput.Value = true;
+                DownPlatformInput.Performed();
                 break;
             case InputActionPhase.Canceled:
-                DownInput.Value = false;
-                DownInput.Canceled();
+                DownPlatformInput.Value = false;
+                DownPlatformInput.Canceled();
                 break;
         }
     }
@@ -250,26 +236,15 @@ public class Player : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                if (DownInput.Value) return;
-
                 JumpInput.Started();
                 break;
             case InputActionPhase.Performed:
-                if (DownInput.Value)
-                {
-                    DownPlatform.Value = true;
-                    DownPlatform.Performed();
-                }
-                else
-                {
-                    JumpInput.Value = true;
-                    JumpInput.Performed();
-                }
+                JumpInput.Value = true;
+                JumpInput.Performed();
                 break;
             case InputActionPhase.Canceled:
-                DownPlatform.Value = false;
+                DownPlatformInput.Value = false;
                 JumpInput.Value = false;
-                JumpInput.Canceled();
                 break;
         }
     }
@@ -280,13 +255,10 @@ public class Player : MonoBehaviour
         {
             PreviousState = _currentState.State;
             _currentState.OnExitState();
+            ClearFiniteInputActions();
         }
 
-
         _currentState = _finiteStates.First(e => e.State == state);
-        MoveInput.ClearActions();
-        JumpInput.ClearActions();
-        PoopInput.ClearActions();
 
         _currentState.EnterState();
         _stateDebug = _currentState.State;
@@ -327,6 +299,19 @@ public class Player : MonoBehaviour
         Collider2D col = _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer);
         if (col == null) return null;
         return col.GetComponent<OneWayPlatform>();
+    }
+
+    public void DownPlatform()
+    {
+        if (!_boxCollider.enabled) return;
+        StartCoroutine(DeactivateColliderFor(_cdwOneWayPlatform));
+    }
+
+    public IEnumerator DeactivateColliderFor(float seconds)
+    {
+        _boxCollider.enabled = false;
+        yield return new WaitForSeconds(seconds);
+        _boxCollider.enabled = true;
     }
 
     public FiniteState GetPossibleState()

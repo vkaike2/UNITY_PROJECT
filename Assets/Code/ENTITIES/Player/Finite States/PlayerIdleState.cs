@@ -1,7 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerIdleState : PlayerFiniteBaseState
 {
@@ -13,9 +10,7 @@ public class PlayerIdleState : PlayerFiniteBaseState
 
         _player.MoveInput.Started = () => OnMoveInputStarted();
         _player.JumpInput.Started = () => OnJumpInputStarted();
-
-        _player.DownPlatform.Performed = () => OnDownPlatform();
-
+        _player.DownPlatformInput.Performed = () => OnDownPlatform();
         _player.PoopInput.Started = () => OnPoopInputStarted();
     }
 
@@ -38,10 +33,9 @@ public class PlayerIdleState : PlayerFiniteBaseState
 
     protected override void OnJumpInputStarted()
     {
-        // idk why but this bugs the jump action
-        if (_player.FartInput.Value) return;
-
         base.OnJumpInputStarted();
+        if (!_player.IsOnTheGround()) return;
+
         _player.ChangeState(Player.FiniteState.Jump);
     }
 

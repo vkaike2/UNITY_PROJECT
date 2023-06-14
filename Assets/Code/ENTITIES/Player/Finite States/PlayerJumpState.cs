@@ -17,9 +17,7 @@ public class PlayerJumpState : PlayerFiniteBaseState
 
         _player.MoveInput.Performed = () => OnMoveInputPerformed();
         _player.MoveInput.Canceled = () => OnMoveInputCanceled();
-
         _player.JumpInput.Performed = () => OnJumpInputPerformed();
-
         _player.PoopInput.Started = () => OnPoopInputStarted();
 
         _isJumping = false;

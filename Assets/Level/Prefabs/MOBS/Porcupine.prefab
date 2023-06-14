@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 7667328545476076448}
   - component: {fileID: 7667328545476076449}
   - component: {fileID: 7667328545476076463}
-  - component: {fileID: 7667328545476076462}
+  - component: {fileID: 1884100624}
   m_Layer: 7
   m_Name: Porcupine
   m_TagString: Untagged
@@ -676,7 +676,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4d6f719c4fffad84eafbf2a50c8cd6de, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -722,7 +722,6 @@ MonoBehaviour:
   _rotationalTransform: {fileID: 7667328544681208190}
   _hitbox: {fileID: 7667328545285336123}
   _spriteRenderer: {fileID: 7667328544943017496}
-  _movementSpeed: 4
   _behaviourDebug: 0
   _animatorEvents: {fileID: 7667328544943017499}
   _porcupineAnimator:
@@ -732,7 +731,7 @@ MonoBehaviour:
     _patrolDistance: 6
     _collidingWithLayerMask:
       serializedVersion: 2
-      m_Bits: 8
+      m_Bits: 520
     _distanceToStopPatrolling: 0.3
     _initialRaycastPosition: {fileID: 7667328545300512277}
     _willColideWithGround: {fileID: 7667328544511929336}
@@ -747,9 +746,7 @@ MonoBehaviour:
     _cdwBetweenAtks: 2
   _damageableModel:
     _progressBarUI: {fileID: 820863692838617430}
-    _initialHealth: 2.5
-    _initialDamage: 3
---- !u!114 &7667328545476076462
+--- !u!114 &1884100624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -758,28 +755,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7667328545476076461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2caa9c82ba738ee408a944b3e9a66a32, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d60935b5408573419abbb7c5b610075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  MovementSpeed:
+    _value: 5
+  Damage:
+    _value: 4
+  MaxHealth:
+    _value: 5
+  Health:
+    _value: 0
 --- !u!1001 &7667328544725851789
 PrefabInstance:
   m_ObjectHideFlags: 0

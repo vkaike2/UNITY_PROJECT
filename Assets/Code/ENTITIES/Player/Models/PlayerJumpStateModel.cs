@@ -32,31 +32,4 @@ public class PlayerJumpStateModel
 
     public RaycastModel GroundCheck => _groundCheck;
     public RaycastModel BufferCheck => _bufferCheck;    
-
-    [Serializable]
-    public class RaycastModel
-    {
-        [SerializeField]
-        private float _colliderRadius = 0.9f;
-        [SerializeField]
-        private Transform _transform;
-
-
-        public float ColliderRadius => _colliderRadius;
-        public Transform GroundRaycastTransform => _transform;
-
-        public void DrawGizmos(Color color)
-        {
-            Gizmos.color = color;
-            Gizmos.DrawWireCube(_transform.position, new Vector3(_colliderRadius, _colliderRadius / 2, 0));
-        }
-
-        public Collider2D DrawPhysics2D(LayerMask colisionLayer)
-        {
-            return Physics2D.OverlapArea(
-                new Vector2(_transform.position.x - _colliderRadius / 2, _transform.position.y - _colliderRadius / 4),
-                new Vector2(_transform.position.x + _colliderRadius / 2, _transform.position.y + _colliderRadius / 4),
-                colisionLayer);
-        }
-    }
 }

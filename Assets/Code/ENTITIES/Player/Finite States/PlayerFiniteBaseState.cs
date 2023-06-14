@@ -32,32 +32,24 @@ public abstract class PlayerFiniteBaseState
     public abstract void EnterState();
     public abstract void Update();
 
-    protected virtual void OnMoveInputStarted()
-    {
-        //Debug.Log($"{State} started");
-    }
+    protected virtual void OnMoveInputStarted() { }
+
     protected virtual void OnMoveInputPerformed()
     {
-        //Debug.Log($"{State} performded");
         FlipPlayer();
     }
+
     protected virtual void OnMoveInputCanceled()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-        //Debug.Log($"{State}canceled");
     }
-    protected virtual void OnJumpInputStarted()
-    {
-        //Debug.Log($"{State} started");
-    }
-    protected virtual void OnJumpInputPerformed()
-    {
-        //Debug.Log($"{State} performded");
-    }
-    protected virtual void OnJumpInputCanceled()
-    {
-        //Debug.Log($"{State}canceled");
-    }
+
+    protected virtual void OnJumpInputStarted() { }
+
+    protected virtual void OnJumpInputPerformed() { }
+
+    protected virtual void OnJumpInputCanceled() { }
+
     protected virtual void OnPoopInputStarted()
     {
         _player.ChangeState(Player.FiniteState.Pooping);
@@ -65,7 +57,6 @@ public abstract class PlayerFiniteBaseState
 
     protected void MovePlayerHorizontally()
     {
-        //Debug.Log(_player.CanMove);
         if (!_player.CanMove) return;
 
         if (_player.MoveInput.Value.x != 0)
@@ -77,8 +68,14 @@ public abstract class PlayerFiniteBaseState
         {
             if (_rigidbody2D.velocity.x != 0 && _player.IsOnTheGround() && _rigidbody2D.velocity.y == 0)
             {
+                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+
                 _rigidbody2D.drag = 10;
             }
+            //else if( _rigidbody2D.velocity.x == 0 && _player.IsOnTheGround())
+            //{
+            //    _rigidbody2D.velocity = Vector2.zero;
+            //}
             else
             {
                 _rigidbody2D.drag = 0;
@@ -96,7 +93,7 @@ public abstract class PlayerFiniteBaseState
         OneWayPlatform platform = _player.IsOverPlatform();
         if (platform == null) return;
 
-        platform.PlayerDownPlatform();
+        _player.DownPlatform();
         _player.ChangeState(Player.FiniteState.Falling);
     }
 }

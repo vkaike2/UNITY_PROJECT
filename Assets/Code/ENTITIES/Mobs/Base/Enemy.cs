@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [Header("components")]
+    [Header("COMPONENTS")]
     [SerializeField]
     private Transform _rotationalTransform;
     [SerializeField]
@@ -14,24 +14,23 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _spriteRenderer;
 
-    [Header("configuration")]
-    [SerializeField]
-    private float _movementSpeed = 3f;
-
     public Transform RotationalTransform => _rotationalTransform;
     public Hitbox HitBox => _hitbox;
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
     public GameManager GameManager { get; private set; }
-    public float MovementSpeed => _movementSpeed;
     public bool CanMove { get; set; }
+    public EnemyStatus Status => _status;
 
     private List<EnemyFiniteBaseBehaviour> _finiteBaseBehaviours;
     private List<EnemyInfiniteBaseBehaviours> _infiniteBaseBehaviours;
 
     protected EnemyFiniteBaseBehaviour _currentFiniteBehaviour;
 
+    protected EnemyStatus _status;
+
     protected void Awake()
     {
+        _status = GetComponent<EnemyStatus>();
         GameManager = GameObject.FindObjectOfType<GameManager>();
         CanMove = false;
     }

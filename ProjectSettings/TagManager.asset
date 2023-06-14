@@ -14,7 +14,7 @@ TagManager:
   - Player
   - Enemy
   - Hitbox
-  - 
+  - Platform
   - 
   - 
   - 
@@ -40,4 +40,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Map Background
+    uniqueID: 517289591
+    locked: 0
+  - name: Map
+    uniqueID: 3160737017
+    locked: 0
+  - name: Entities
+    uniqueID: 3111104427
+    locked: 0
+  - name: Entities VFX
+    uniqueID: 3745989411
+    locked: 0
+  - name: Player VFX
+    uniqueID: 2198114425
     locked: 0

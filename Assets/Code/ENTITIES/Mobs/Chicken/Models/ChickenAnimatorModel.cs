@@ -25,6 +25,9 @@ public class ChickenAnimatorModel : EnemyAnimatorModel
     {
         Born,
         Idle,
-        Move
+        Move,
+        Jump,
+        Air,
+        MeleeAtk
     }
 }

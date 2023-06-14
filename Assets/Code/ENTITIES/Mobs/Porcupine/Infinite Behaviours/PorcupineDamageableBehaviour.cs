@@ -16,7 +16,7 @@ public class PorcupineDamageableBehaviour : PorcupineInfiniteBaseBehaviour
         _damageableModel = _porcupine.DamageableModel;
         _atkModel = _porcupine.AtkModel;
 
-        _damageableModel.CurrentHealth = _damageableModel.InitialHealth;
+        _porcupine.Status.InitializeHealth();
 
         _atkModel.OnRegisterProjectile.AddListener(OnRegisterProjectile);
         _hitbox.OnHitboxTriggerEnter.AddListener(OnHitboxEnter);
@@ -40,7 +40,7 @@ public class PorcupineDamageableBehaviour : PorcupineInfiniteBaseBehaviour
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_damageableModel.InitialDamage, _hitbox.GetInstanceID(), _porcupine.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_porcupine.Status.Damage.Get(), _hitbox.GetInstanceID(), _porcupine.transform.position);
     }
 
     private void ReceiveDamage(float incomingDamage, int instance, Vector2 playerPosition)
@@ -48,14 +48,14 @@ public class PorcupineDamageableBehaviour : PorcupineInfiniteBaseBehaviour
         if (_porcupine.CurrentBehaviour == Porcupine.Behaviour.Die) return;
         if (!_damageService.CanReceiveDamageFrom(instance)) return;
 
-        _damageableModel.CurrentHealth -= incomingDamage;
+        _porcupine.Status.Health.ReduceFlatValue(incomingDamage);
 
-        if (_damageableModel.CurrentHealth <= 0)
+        if (_porcupine.Status.Health.Get() <= 0)
         {
-            _damageableModel.CurrentHealth = 0;
+            _porcupine.Status.Health.Set(0);
             _porcupine.ChangeBehaviour(Porcupine.Behaviour.Die);
         }
-        _damageableModel.ProgresBarUI.OnSetBehaviour.Invoke(_damageableModel.CurrentHealth / _damageableModel.InitialHealth, ProgressBarUI.Behaviour.LifeBar_Hide);
+        _damageableModel.ProgresBarUI.OnSetBehaviour.Invoke(_porcupine.Status.Health.Get() / _porcupine.Status.MaxHealth.Get(), ProgressBarUI.Behaviour.LifeBar_Hide);
 
 
         _porcupine.StartCoroutine(_damageService.ManageDamageEntry(instance));
