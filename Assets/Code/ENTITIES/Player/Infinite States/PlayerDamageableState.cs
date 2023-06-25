@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerDamageableState : PlayerInfiniteBaseState
 {
@@ -64,7 +63,7 @@ public class PlayerDamageableState : PlayerInfiniteBaseState
     {
         if (!_damageService.CanReceiveDamageFrom(instance)) return;
 
-        _damageableModel.CurrentHealth -= incomingDamage;
+        _damageableModel.CurrentHealth -= _damageService.CalculateDamageEntry(incomingDamage);
 
         if (_damageableModel.CurrentHealth <= 0)
         {

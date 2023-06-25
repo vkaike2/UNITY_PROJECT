@@ -21,6 +21,12 @@ public class PorcupineAtkBehaviour : PorcupineFiniteBaseBehaviour
 
     public override void OnEnterBehaviour()
     {
+        // is dead
+        if (!_atkModel.CanAtk)
+        {
+            return;
+        }
+
         _porcupine.CanMove = false;
         _rigidbody2D.velocity = Vector3.zero;
         _porcupine.Animator.PlayAnimation(PorcupineAnimatorModel.AnimationName.Atk);
@@ -56,9 +62,19 @@ public class PorcupineAtkBehaviour : PorcupineFiniteBaseBehaviour
     private void OnEndAnimation()
     {
         _porcupine.StartCoroutine(CountCdwBetweenAtks());
-        _porcupine.ChangeBehaviour(Porcupine.Behaviour.Patrol);
+        _porcupine.StartCoroutine(WaitTouchGroundThenChangeToPatrol());
     }
 
+    private IEnumerator WaitTouchGroundThenChangeToPatrol()
+    {
+        while (!_atkModel.GroundCheckRaycast.IsRaycastCollidingWithLayer)
+        {
+            Debug.Log(_atkModel.GroundCheckRaycast.IsRaycastCollidingWithLayer);
+            yield return new WaitForFixedUpdate();
+        }
+
+        _porcupine.ChangeBehaviour(Porcupine.Behaviour.Patrol);
+    }
 
     private IEnumerator CountCdwBetweenAtks()
     {
@@ -71,5 +87,4 @@ public class PorcupineAtkBehaviour : PorcupineFiniteBaseBehaviour
         }
         _atkModel.CanAtk = true;
     }
-
 }

@@ -7,14 +7,18 @@ public class ChickenAnimatorEvents : MonoBehaviour
     [SerializeField]
     private UnityEvent _onSetInitialBehaviour;
     [SerializeField]
-    private UnityEvent _onInteractWithWorm;
+    private UnityEvent _onInteractWithTarget;
     [SerializeField]
-    private UnityEvent _onEndAtkWithWorm;
-    
+    private UnityEvent _onEndMeleeAtk;
+    [Space]
+    [SerializeField]
+    private UnityEvent _onThrowingEgg;
 
     public void SetInitialBehaviour() => _onSetInitialBehaviour.Invoke();
 
-    public void InteractWithWorm() => _onInteractWithWorm.Invoke();
+    public void InteractWithWorm() => _onInteractWithTarget.Invoke();
 
-    public void EndAtkWormAnimation() => _onEndAtkWithWorm.Invoke();
+    public void EndMeleeAtkAnimation() => _onEndMeleeAtk.Invoke();
+
+    public void ThrowingEgg() => _onThrowingEgg.Invoke();
 }

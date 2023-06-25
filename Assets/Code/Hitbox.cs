@@ -40,7 +40,6 @@ public class Hitbox : MonoBehaviour
 
     private IEnumerator ResetTrigger()
     {
-
         _canCallTriggerEnter = false;
         yield return new WaitForSeconds(1f);
         _canCallTriggerEnter = true;

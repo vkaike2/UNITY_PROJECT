@@ -24,6 +24,8 @@ public class WormAnimatorModel : EnemyAnimatorModel
         Born,
         Idle,
         Move,
-        Die
+        Die,
+        Reborn_Idle,
+        Reborning
     }
 }

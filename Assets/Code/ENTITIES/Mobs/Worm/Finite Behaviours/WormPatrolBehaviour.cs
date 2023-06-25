@@ -20,13 +20,12 @@ public class WormPatrolBehaviour : WormFiniteBaseBehaviour
     public override void OnEnterBehaviour()
     {
         _patrolService.StartPatrolBehaviour();
-        _worm.Pathfinding.StartFindPath(0);
+        _worm.Pathfinding.StartFindPath(Pathfinding.PossibleActions.Horizontal);
     }
 
     public override void OnExitBehaviour()
     {
-        _patrolService.ResetCoroutines();
-        _patrolService.DisabelGizmo();
+        _patrolService.StopPatrolBehaviour();
         _worm.Pathfinding.StopPathFinding();
     }
 

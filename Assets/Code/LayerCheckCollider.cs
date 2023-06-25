@@ -78,8 +78,6 @@ namespace Assets.Code.LOGIC
         private bool CheckRaycastColision()
         {
             RaycastHit2D col = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - _horizontalRaycastSize), _layerMask);
-
-            Debug.Log(col.collider != null);
             return col.collider != null;
         }
     

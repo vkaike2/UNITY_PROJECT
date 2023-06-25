@@ -1,16 +1,8 @@
 ﻿using Calcatz.MeshPathfinding;
-using Cinemachine.Utility;
-using System.Collections;
-using System.Linq;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEngine;
-
 
 public class ChickenFollowingPlayerBehaviour : ChickenFollowingBehaviour
 {
     public override Chicken.Behaviour Behaviour => Chicken.Behaviour.FollowingPlayer;
-
 
     public override void Start(Enemy enemy)
     {
@@ -21,7 +13,7 @@ public class ChickenFollowingPlayerBehaviour : ChickenFollowingBehaviour
 
     public override void OnEnterBehaviour()
     {
-        _chicken.PlayerPathfinding.StartFindPath(_chicken.JumpForce);
+        _chicken.PlayerPathfinding.StartFindPath(Pathfinding.PossibleActions.Vertical);
         _pathfinding = _chicken.PlayerPathfinding;
     }
 
@@ -34,10 +26,11 @@ public class ChickenFollowingPlayerBehaviour : ChickenFollowingBehaviour
     private void InteractWithTarget(Target target)
     {
         if (target == null) return;
-        if(target.TargetTransform== null) return;
-
+        if(target.TargeTransform == null) return;
 
         Player player = _chicken.gameObject.GetComponent<Player>();
-        Debug.Log("Atk Player");
+
+        _chicken.ChangeBehaviour(Chicken.Behaviour.Atk_Player);
     }
+
 }

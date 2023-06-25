@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Unity.VisualScripting.Dependencies.Sqlite;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class PorcupineDamageableBehaviour : PorcupineInfiniteBaseBehaviour
@@ -8,7 +6,6 @@ public class PorcupineDamageableBehaviour : PorcupineInfiniteBaseBehaviour
     private PorcupineDamageableModel _damageableModel;
     private PorcupineAtkBehaviourModel _atkModel;
     private readonly DamageService _damageService = new DamageService();
-
 
     public override void Start(Enemy enemy)
     {
@@ -40,7 +37,7 @@ public class PorcupineDamageableBehaviour : PorcupineInfiniteBaseBehaviour
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_porcupine.Status.Damage.Get(), _hitbox.GetInstanceID(), _porcupine.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_porcupine.Status.ImpactDamage.Get(), _hitbox.GetInstanceID(), _porcupine.transform.position);
     }
 
     private void ReceiveDamage(float incomingDamage, int instance, Vector2 playerPosition)
@@ -48,7 +45,7 @@ public class PorcupineDamageableBehaviour : PorcupineInfiniteBaseBehaviour
         if (_porcupine.CurrentBehaviour == Porcupine.Behaviour.Die) return;
         if (!_damageService.CanReceiveDamageFrom(instance)) return;
 
-        _porcupine.Status.Health.ReduceFlatValue(incomingDamage);
+        _porcupine.Status.Health.ReduceFlatValue(_damageService.CalculateDamageEntry(incomingDamage));
 
         if (_porcupine.Status.Health.Get() <= 0)
         {

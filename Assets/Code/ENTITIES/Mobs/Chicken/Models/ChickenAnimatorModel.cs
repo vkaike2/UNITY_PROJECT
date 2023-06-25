@@ -28,6 +28,8 @@ public class ChickenAnimatorModel : EnemyAnimatorModel
         Move,
         Jump,
         Air,
-        MeleeAtk
+        MeleeAtk,
+        Die,
+        ThrowingEgg
     }
 }

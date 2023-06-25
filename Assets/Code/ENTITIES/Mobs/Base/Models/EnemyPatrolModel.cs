@@ -4,12 +4,12 @@ using static PatrolService;
 
 public class EnemyPatrolModel
 {
-    [Header("idle state")]
+    [Header("IDLE STATE")]
     [SerializeField]
     private float _cdwBetweenWalks = 2f;
 
     [Space]
-    [Header("patrol state")]
+    [Header("PATROL STATE")]
     [SerializeField]
     private float _patrolDistance = 4f;
     [Space]

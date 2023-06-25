@@ -29,8 +29,7 @@ public class PorcupinePatrolBehaviour : PorcupineFiniteBaseBehaviour
 
     public override void OnExitBehaviour()
     {
-        _patrolService.ResetCoroutines();
-        _patrolService.DisabelGizmo();
+        _patrolService.StopPatrolBehaviour();
     }
 
     public override void Update() { }

@@ -15,7 +15,7 @@ public class TestPathFinding : MonoBehaviour
 
     void Start()
     {
-        _pathfinding.StartFindPath(0.3f, true, jumpForce);
+        _pathfinding.StartFindPath(jumpForce);
     }
 
     void FixedUpdate()

@@ -36,20 +36,25 @@ public class Chicken : Enemy
     private ChickenFollowingBehaviourModel _followingPlayerModel;
     [SerializeField]
     private ChickenAtkWormBehaviourModel _atkWormModel;
-
-
-    public float JumpForce => _jumpForce;
+    [SerializeField]
+    private ChickenAtkPlayerBehaviourModel _atkPlayerModel;
+    [SerializeField]
+    private ChickenDamageableBehaviourModel _damageableModel;
+    
     public ChickenAnimatorModel Animator => _chickenAnimator;
     public ChickenPatrolBehaviourModel PatrolModel => _patrolModel;
     public ChickenFollowingBehaviourModel FollowingPlayerModel => _followingPlayerModel;
     public ChickenAtkWormBehaviourModel AtkWormModel => _atkWormModel;
+    public ChickenAtkPlayerBehaviourModel AtkPlayerModel => _atkPlayerModel;
+    public ChickenDamageableBehaviourModel DamageableModel => _damageableModel;
     public PlayerPathfinding PlayerPathfinding => _playerPathfinding;
     public WormPathfinding WormPathfinding => _wormPathfinding;
     public BoxCollider2D BoxCollider2D => _boxCollider;
     public int CurrentTier { get; private set; }
+    public Behaviour? CurrentBehaviour => ((ChickenFiniteBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
 
     private BoxCollider2D _boxCollider;
-  
+
 
     //Finite Behaviours
     private readonly List<ChickenFiniteBaseBehaviour> _finiteBaseBehaviours = new List<ChickenFiniteBaseBehaviour>()
@@ -57,12 +62,15 @@ public class Chicken : Enemy
         new ChickenPatrolBehaviour(),
         new ChickenFollowingPlayerBehaviour(),
         new ChickenFollowingWormBehaviour(),
-        new ChickenAtkWormBehaviour()
+        new ChickenAtkWormBehaviour(),
+        new ChickenAtkPlayerBehaviour(),
+        new ChickenDieBehaviour()
     };
 
     //Infinite Behaviours
     private readonly List<ChickenInfiniteBaseBehaviour> _infiniteBaseBehaviours = new List<ChickenInfiniteBaseBehaviour>()
     {
+        new ChickenDamageableBehaviour()
     };
 
     private void OnDrawGizmos()
@@ -71,7 +79,7 @@ public class Chicken : Enemy
         _followingPlayerModel.GroundCheck.DrawGizmos(Color.blue);
         _followingPlayerModel.WallCheck.DrawGizmos(Color.red, false);
         _followingPlayerModel.GizmosTest();
-    }   
+    }
 
     private void Awake()
     {
@@ -98,8 +106,21 @@ public class Chicken : Enemy
         this.ChangeBehaviour(Behaviour.Patrol);
     }
 
-    public void InteractWithWorm() => _atkWormModel.InteractWithWorm();
-    public void EndAtkWormAnimation() => _atkWormModel.EndAtkAnimation();
+    public void InteractWithTarget()
+    {
+        _atkWormModel.InteractWithWorm();
+        _atkPlayerModel.InteractWithPlayer();
+    }
+    public void EndMeleeAtkAnimation()
+    {
+        _atkWormModel.EndAtkAnimation();
+        _atkPlayerModel.EndAtkAnimation();
+    }
+
+    public void ThrowingEgg()
+    {
+        _atkWormModel.ThrowingEgg();
+    }
     #endregion
 
     public void AddTier()
@@ -120,7 +141,7 @@ public class Chicken : Enemy
         {
             _currentFiniteBehaviour.OnExitBehaviour();
         }
-        
+
         _behaviourDebug = behaviour;
         _currentFiniteBehaviour = _finiteBaseBehaviours.FirstOrDefault(e => e.Behaviour == behaviour);
 
@@ -142,5 +163,7 @@ public class Chicken : Enemy
         FollowingPlayer,
         FollowingWorm,
         Atk_Worm,
+        Atk_Player,
+        Die
     }
 }

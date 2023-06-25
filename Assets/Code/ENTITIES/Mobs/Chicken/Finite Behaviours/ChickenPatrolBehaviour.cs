@@ -28,9 +28,7 @@ public class ChickenPatrolBehaviour : ChickenFiniteBaseBehaviour
 
     public override void OnExitBehaviour()
     {
-        _patrolService.ResetCoroutines();
-        _patrolService.DisabelGizmo();
-
+        _patrolService.StopPatrolBehaviour();
         _chicken.PlayerPathfinding.StopPathFinding();
     }
 
@@ -59,7 +57,7 @@ public class ChickenPatrolBehaviour : ChickenFiniteBaseBehaviour
         if (worm == null) return false;
 
         _chicken.AtkWormModel.WormTarget = worm;
-        _chicken.WormPathfinding.FindPath(_chicken.JumpForce, target: worm.transform);
+        _chicken.WormPathfinding.FindPath(Pathfinding.PossibleActions.Vertical, target: worm.transform);
 
         Node[] pathResult = _chicken.WormPathfinding.GetPathResult();
         return pathResult != null;
@@ -67,9 +65,8 @@ public class ChickenPatrolBehaviour : ChickenFiniteBaseBehaviour
 
     private bool CheckIfPlayerIsReachable()
     {
-        Node[] pathResult = _chicken.PlayerPathfinding.FindPath(_chicken.JumpForce);
+        Node[] pathResult = _chicken.PlayerPathfinding.FindPath(Pathfinding.PossibleActions.Vertical);
 
         return pathResult != null;
     }
-
 }

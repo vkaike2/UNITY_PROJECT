@@ -1,20 +1,23 @@
-﻿using System;
+﻿using Assets.Code.LOGIC;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
 public class PorcupineAtkBehaviourModel
 {
-    [Header("components")]
+    [Header("COMPONENTS")]
     [SerializeField]
     private PorcupineProjectile _projectile;
     [SerializeField]
     private Transform _projectileContainer;
     [SerializeField]
     private Transform _projectileSpawnPoint;
+    [SerializeField]
+    private LayerCheckCollider _groundCheckRaycast;
 
     [Space]
-    [Header("configurations")]
+    [Header("CONFIGURATIONS")]
     [SerializeField]
     private float _projectileSpeed = 5f;
     [SerializeField]
@@ -27,6 +30,7 @@ public class PorcupineAtkBehaviourModel
 
     public PorcupineProjectile Projectile => _projectile;
     public Transform ProjectileContainer => _projectileContainer;
+    public LayerCheckCollider GroundCheckRaycast => _groundCheckRaycast;
 
     public bool CanAtk { get; set; }
     public float ProjectileSpeed => _projectileSpeed;

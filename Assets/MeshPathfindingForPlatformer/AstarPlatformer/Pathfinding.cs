@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
 using System.Linq;
+using Unity.VisualScripting;
 
 namespace Calcatz.MeshPathfinding
 {
@@ -49,15 +50,15 @@ namespace Calcatz.MeshPathfinding
             StartFindPath(_unitHeight, _looping);
         }
 
-        public void StartFindPath(float _jumpForce)
+        public void StartFindPath(PossibleActions _possibleActions)
         {
-            StartFindPath(1, true, _jumpForce);
+            StartFindPath(1, true, _possibleActions);
         }
 
-        public void StartFindPath(float _unitHeight, bool _looping = true, float _jumpForce = 0)
+        public void StartFindPath(float _unitHeight, bool _looping = true, PossibleActions _possibleActions = PossibleActions.Horizontal)
         {
             InitNodeDataDictionary();
-            StartCoroutine(FindPath(_unitHeight, _looping, _jumpForce));
+            StartCoroutine(FindPath(_unitHeight, _looping, _possibleActions));
         }
 
         public void SetTarget(Transform _target)
@@ -83,7 +84,7 @@ namespace Calcatz.MeshPathfinding
             }
         }
 
-        private IEnumerator FindPath(float _unitHeight, bool _looping, float _jumpForce)
+        private IEnumerator FindPath(float _unitHeight, bool _looping, PossibleActions _possibleActions)
         {
             do
             {
@@ -139,13 +140,13 @@ namespace Calcatz.MeshPathfinding
                 }
                 if (success)
                 {
-                    MakePath(startNodeData, targetNodeData, _jumpForce);
+                    MakePath(startNodeData, targetNodeData, _possibleActions);
                 }
                 yield return new WaitForSeconds(0.25f);
             } while (_looping);
         }
 
-        public Node[] FindPath(float _jumpForce, float _unitHeight = 1, Transform target = null)
+        public Node[] FindPath(PossibleActions _possibleActions, float _unitHeight = 1, Transform target = null)
         {
             if(target != null)
             {
@@ -206,25 +207,42 @@ namespace Calcatz.MeshPathfinding
             }
             if (success)
             {
-                return MakePath(startNodeData, targetNodeData, _jumpForce);
+                return MakePath(startNodeData, targetNodeData, _possibleActions);
             }
 
             return null;
         }
 
-        Node[] MakePath(Node.Data _startNodeData, Node.Data _targetNodeData, float _jumpForce)
+        Node[] MakePath(Node.Data _startNodeData, Node.Data _targetNodeData, PossibleActions _possibleActions)
         {
             List<Node> path = new List<Node>();
             Node.Data currentNode = _targetNodeData;
 
             while (currentNode != _startNodeData)
             {
+                if(path == null)
+                {
+                    break;
+                }
+
                 path.Add(currentNode.nodeObject);
 
-                if (currentNode.parent.nodeObject.neighbours.FirstOrDefault(e => e.node == currentNode.nodeObject).jumpForceToReach > _jumpForce)
+                switch (_possibleActions)
                 {
-                    path = null;
-                    break;
+                    case PossibleActions.Horizontal:
+
+                        Node.Neighbours parentNode = currentNode.parent.nodeObject.neighbours.FirstOrDefault(e => e.node == currentNode.nodeObject);
+                        if (parentNode.needToJump || parentNode.needToGoDownPlatform)
+                        {
+                            path = null;
+                            break;
+                        }
+
+                        break;
+                    case PossibleActions.Vertical:
+                        break;
+                    default:
+                        break;
                 }
                 currentNode = currentNode.parent;
             }
@@ -267,5 +285,10 @@ namespace Calcatz.MeshPathfinding
             }
         }
 
+        public enum PossibleActions
+        {
+            Horizontal,
+            Vertical
+        }
     }
 }

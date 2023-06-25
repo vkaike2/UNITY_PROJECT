@@ -1,6 +1,4 @@
 ﻿using Calcatz.MeshPathfinding;
-using System.Collections;
-using UnityEngine;
 
 
 public class ChickenFollowingWormBehaviour : ChickenFollowingBehaviour
@@ -17,7 +15,8 @@ public class ChickenFollowingWormBehaviour : ChickenFollowingBehaviour
     public override void OnEnterBehaviour()
     {
         _chicken.WormPathfinding.SetTarget(_chicken.AtkWormModel.WormTarget.transform);
-        _chicken.WormPathfinding.StartFindPath(_chicken.JumpForce);
+        _chicken.WormPathfinding.StartFindPath(Pathfinding.PossibleActions.Vertical);
+
         _pathfinding = _chicken.WormPathfinding;
     }
 
@@ -30,7 +29,8 @@ public class ChickenFollowingWormBehaviour : ChickenFollowingBehaviour
     private void InteractWithTarget(Target target)
     {
         if (target == null) return;
-        if (target.TargetTransform == null) return;
+        if (target.TargeTransform == null) return;
+
         _chicken.ChangeBehaviour(Chicken.Behaviour.Atk_Worm);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 
@@ -44,7 +43,14 @@ public class PatrolService
         _waitingCoroutine = _enemy.StartCoroutine(Wainting());
     }
 
-    public void ResetCoroutines()
+    public void StopPatrolBehaviour()
+    {
+        _rigidbody2D.isKinematic = false;
+        ResetCoroutines();
+        DisabelGizmo();
+    }
+
+    private void ResetCoroutines()
     {
         if (_waitingCoroutine != null)
         {
@@ -56,18 +62,21 @@ public class PatrolService
         }
     }
 
-    public void DisabelGizmo() => _patrolModel.DisablePatrolGizmos();
+    private void DisabelGizmo() => _patrolModel.DisablePatrolGizmos();
 
-    IEnumerator Wainting()
+    private IEnumerator Wainting()
     {
         _onChangeAnimationToIdle?.Invoke();
+        _rigidbody2D.velocity = Vector3.zero;
+        _rigidbody2D.isKinematic = true;
 
-        //_enemy.CanMove = true;
         yield return new WaitForSeconds(_patrolModel.CdwBetweenWalks);
+
 
         Vector2 nextMove = CalculateNextMove();
         if (nextMove != Vector2.zero)
         {
+            _rigidbody2D.isKinematic = false;
             _patrolCoroutine = _enemy.StartCoroutine(Patrol(nextMove));
         }
     }
@@ -120,7 +129,7 @@ public class PatrolService
 
         PatrolDirection currentDirection = excluded[UnityEngine.Random.Range(0, excluded.Count)];
 
-        if (CheckIfCanPatrolToThisDirection(currentDirection))
+        if (CheckIfCanPatrolToThisDirection(currentDirection) || excluded.Count == 2)
         {
             return currentDirection;
         }
@@ -140,11 +149,13 @@ public class PatrolService
     {
         _onChangeAnimationToMove?.Invoke();
 
-        while (Vector2.Distance(_enemy.transform.position, _currentPatrolEndPosition) >= _patrolModel.DistanceToStopPatrolling)
+        Vector2 myHorizontalPosition = new Vector2(_enemy.transform.position.x, 0);
+        Vector2 patrolHorizontalPosition = new Vector2(_currentPatrolEndPosition.x, 0);
+
+        while (Vector2.Distance(myHorizontalPosition, patrolHorizontalPosition) >= _patrolModel.DistanceToStopPatrolling)
         {
             if (_enemy.CanMove)
             {
-                Debug.Log("patrol ?");
                 if (!_patrolModel.WillCollideWithGround)
                 {
                     break;
@@ -156,6 +167,8 @@ public class PatrolService
             {
                 _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
             }
+
+            myHorizontalPosition = new Vector2(_enemy.transform.position.x, 0);
             yield return new WaitForFixedUpdate();
         }
 

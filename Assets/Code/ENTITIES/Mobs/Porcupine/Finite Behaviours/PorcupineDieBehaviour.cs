@@ -10,6 +10,7 @@ public class PorcupineDieBehaviour : PorcupineFiniteBaseBehaviour
     {
         _porcupine.AtkModel.CanAtk = false;
 
+
         _porcupine.Animator.PlayAnimation(PorcupineAnimatorModel.AnimationName.Die);
         _porcupine.HitBox.gameObject.SetActive(false);
         _rigidbody2D.velocity = Vector3.zero;

@@ -1,8 +1,6 @@
 ﻿using Calcatz.MeshPathfinding;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -27,7 +25,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Worms = new List<Worm>();
-        SceneManager.LoadScene(_scenePlayerUI, LoadSceneMode.Additive);
+
+        LoadUIScene();
     }
 
     #region GET & SET
@@ -52,14 +51,14 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region Worms
-
+    #region WORMS
     public Worm GetNearestWorm(Vector2 position)
     {
         if (Worms.Count == 0) return null;
 
-        return Worms
-            .Where(e => e.CurrentBehaviour != Worm.Behaviour.Die)
+        Worm worm = Worms
+            .Where(e => !e.IsBeingTargeted)
+            .Where(e => e.CurrentBehaviour != Worm.Behaviour.Die && e.CurrentBehaviour != Worm.Behaviour.Reborn)
             .Select(e => new
             {
                 Worm = e,
@@ -68,6 +67,13 @@ public class GameManager : MonoBehaviour
             .OrderBy(e => e.Distance)
             .Select(e => e.Worm)
             .FirstOrDefault();
+
+        if (worm != null)
+        {
+            worm.IsBeingTargeted = true;
+        }
+
+        return worm;
     }
     #endregion
 
@@ -92,4 +98,25 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
+    private void LoadUIScene()
+    {
+        if (!IsSceneLoaded(_scenePlayerUI))
+        {
+            SceneManager.LoadScene(_scenePlayerUI, LoadSceneMode.Additive);
+        }
+    }
+
+    private bool IsSceneLoaded(string sceneName)
+    {
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+            if (scene.name == sceneName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

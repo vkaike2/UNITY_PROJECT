@@ -8,15 +8,12 @@ public class MobTier : MonoBehaviour
     [SerializeField]
     private GameObject _tierIconPrefab;
 
-
-    private void Awake()
-    {
-    }
+    private void Awake() { }
 
     public void AddTier()
     {
         GameObject tierIcon = GameObject.Instantiate(_tierIconPrefab, this.transform.position, Quaternion.identity);
-        tierIcon.transform.parent = this.transform;
+        tierIcon.transform.SetParent(this.transform);
     }
 
 }

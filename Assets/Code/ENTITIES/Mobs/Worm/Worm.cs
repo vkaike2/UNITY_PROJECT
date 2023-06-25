@@ -8,7 +8,7 @@ public class Worm : Enemy
     [Header("DEBUG")]
     [SerializeField]
     private Behaviour _behaviourDebug;
-    
+
     [Header("MY CONFIGURATIONS")]
     [SerializeField]
     private WormAnimatorModel _wormAnimator;
@@ -18,21 +18,28 @@ public class Worm : Enemy
     [Space]
     [SerializeField]
     private WormDamageableBehavourModel _damageableModel;
+    [Space]
+    [SerializeField]
+    private WormRebornBehaviourModel _rebornModel;
 
     public WormAnimatorModel Animator => _wormAnimator;
     public WormPatrolBehaviourModel PatrolModel => _patrolModel;
     public WormDamageableBehavourModel DamageableModel => _damageableModel;
-    public Behaviour? CurrentBehaviour => ((WormFiniteBaseBehaviour) _currentFiniteBehaviour)?.Behaviour;
+    public WormRebornBehaviourModel RebornModel => _rebornModel;
+    public Behaviour? CurrentBehaviour => ((WormFiniteBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
     public Pathfinding Pathfinding => _pathfinding;
+    public bool IsBeingTargeted { get; set; }
+
 
     private Pathfinding _pathfinding;
 
     //Finite Behaviours
     private readonly List<WormFiniteBaseBehaviour> _finiteBaseBehaviours = new List<WormFiniteBaseBehaviour>()
     {
-        new WormFollowingPlayerBehaviour(), 
+        new WormFollowingPlayerBehaviour(),
         new WormPatrolBehaviour(),
-        new WormDieBehaviour()
+        new WormDieBehaviour(),
+        new WormRebornBehaviour()
     };
 
     //Infinite Behaviours
@@ -53,16 +60,18 @@ public class Worm : Enemy
         _pathfinding = GetComponent<Pathfinding>();
 
         _behaviourDebug = Behaviour.Born;
-        base.SetFiniteBaseBehaviours(_finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour) e ).ToList());
+        base.SetFiniteBaseBehaviours(_finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList());
         base.SetInfiniteBaseBehaviours(_infiniteBaseBehaviours.Select(e => (EnemyInfiniteBaseBehaviours)e).ToList());
     }
 
     private void Start()
     {
+        DamageableModel.CanReceiveDamage = true;
+
         InitializePathfinding();
         GameManager.SetWorm(this);
 
-        base.Start();        
+        base.Start();
     }
 
     private void OnDestroy()
@@ -73,7 +82,7 @@ public class Worm : Enemy
     #region CALLED BY OTHER GAME OBJECTS
     public void InteractWithChicken()
     {
-        this.ChangeBehaviour(Behaviour.Die);
+        this.ChangeBehaviour(Behaviour.Reborn);
     }
     #endregion
 
@@ -109,7 +118,8 @@ public class Worm : Enemy
         Born,
         Patrol,
         FollowingPlayer,
-        Die
+        Die,
+        Reborn
     }
 
 }

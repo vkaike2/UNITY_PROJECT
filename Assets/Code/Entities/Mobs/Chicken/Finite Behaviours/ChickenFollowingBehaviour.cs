@@ -14,11 +14,10 @@ public class ChickenFollowingBehaviour : ChickenFiniteBaseBehaviour
     //Parent attributes
     protected Pathfinding _pathfinding;
     private ChickenFollowingBehaviourModel _followingPlayerModel;
-    protected GameManager _gameManager;
     private BoxCollider2D _collider;
 
     //Internal attributes
-    private readonly Target _target = new Target();
+    protected readonly Target _target = new Target();
     private readonly Direction _direction = new Direction();
 
     //State helpers
@@ -93,23 +92,34 @@ public class ChickenFollowingBehaviour : ChickenFiniteBaseBehaviour
             return false;
         }
 
-        if (!GetTarget(paths)) return false;
+        GetTarget(paths);
 
         CalculateDirection();
 
         return true;
     }
 
-    private bool GetTarget(Node[] paths)
+    private void GetTarget(Node[] paths)
     {
+        _target.ClearBooleans();
+
         Node node = paths.FirstOrDefault();
         if (node == null)
         {
-            return false;
-        }
-        _target.TargetTransform = node.transform;
+            _target.TargeTransform = _pathfinding.Target.transform;
+            _target.ParentNode = null;
 
-        return true;
+            return;
+        }
+
+        if (_target.ParentNode != null)
+        {
+            _target.CheckIfNeedToGoDownPlatform(node);
+            _target.CheckIfNeedToJump(node);
+        }
+
+        _target.ParentNode = node;
+        _target.TargeTransform = node.transform;
     }
 
     private void CalculateDirection()
@@ -117,8 +127,8 @@ public class ChickenFollowingBehaviour : ChickenFiniteBaseBehaviour
         if (_target == null) return;
 
         Vector2 myPosition = _chicken.transform.position;
-        float myJumpPosition = (_collider.bounds.max.y + _collider.bounds.min.y) / 2;
-        float myBottonPosition = _collider.bounds.min.y;
+        //float myJumpPosition = (_collider.bounds.max.y + _collider.bounds.min.y) / 2;
+        //float myBottonPosition = _collider.bounds.min.y;
 
         if (_isJumping)
         {
@@ -138,11 +148,11 @@ public class ChickenFollowingBehaviour : ChickenFiniteBaseBehaviour
 
         FlipPlayer(_direction.CurrentDirection.x > 0);
 
-        if (_target.Position.y >= myJumpPosition)
+        if (_target.NeedToJump)
         {
             _direction.Action = Action.Jump;
         }
-        else if (_target.Position.y < myBottonPosition && IsOverPlatform())
+        else if (_target.NeedToGoDownPlatform && IsOverPlatform())
         {
             _direction.Action = Action.DownPlatform;
         }
@@ -177,15 +187,6 @@ public class ChickenFollowingBehaviour : ChickenFiniteBaseBehaviour
         if (_isJumping) return;
         if (!IsOnTheGround()) return;
 
-        //if (_target.IsPlayer)
-        //{
-        //    Debug.Log($"<color=#00FF00>jumpa: {_target.TargetTransform.name}</color>");
-        //}
-        //else
-        //{
-        //    Debug.Log($"jumpa: {_target.TargetTransform.name}");
-        //}
-
         _target.JumpTarget = _target;
         _isJumping = true;
 
@@ -199,7 +200,7 @@ public class ChickenFollowingBehaviour : ChickenFiniteBaseBehaviour
 
         yield return new WaitForSeconds(_followingPlayerModel.CdwBeforeJump);
 
-        Vector3 jumpVelocity = CalculateJumpVelocity(_target.TargetTransform);
+        Vector3 jumpVelocity = CalculateJumpVelocity(_target.TargeTransform);
 
         if (float.IsNaN(jumpVelocity.x))
         {
@@ -324,7 +325,7 @@ public class ChickenFollowingBehaviour : ChickenFiniteBaseBehaviour
     }
     #endregion
 
-    #region UTILITY METHODS
+    #region CHECK METHODS
     private bool IsCloseToWall()
     {
         Collider2D col = _followingPlayerModel.WallCheck.DrawPhysics2D(_followingPlayerModel.WallLayer, false);
@@ -356,14 +357,34 @@ public class ChickenFollowingBehaviour : ChickenFiniteBaseBehaviour
 
     protected class Target
     {
-        public Transform TargetTransform { get; set; }
-        public Vector2 Position => TargetTransform.position;
+        public bool NeedToJump { get; private set; }
+        public bool NeedToGoDownPlatform { get; private set; }
+
+        public Node ParentNode { get; set; }
+        public Transform TargeTransform { get; set; }
+        public Vector2 Position => TargeTransform.position;
 
         public Target JumpTarget { get; set; }
 
+        public void ClearBooleans()
+        {
+            NeedToGoDownPlatform = false;
+            NeedToJump = false;
+        }
+
+        public void CheckIfNeedToJump(Node node)
+        {
+            NeedToJump = ParentNode.neighbours.Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToJump).Any();
+        }
+
+        public void CheckIfNeedToGoDownPlatform(Node node)
+        {
+            NeedToGoDownPlatform = ParentNode.neighbours.Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToGoDownPlatform).Any();
+        }
+
         public void Log()
         {
-            Debug.Log($"position: {Position} \t name: {TargetTransform.name}");
+            Debug.Log($"position: {Position} \t name: {TargeTransform.name}");
         }
     }
 

@@ -46,4 +46,10 @@ public class DamageService
         yield return new WaitForSeconds(0.5f);
         _recivingDamageFrom.Remove(instance);
     }
+
+
+    public float CalculateDamageEntry(float incomingDamage)
+    {
+        return incomingDamage;
+    }
 }

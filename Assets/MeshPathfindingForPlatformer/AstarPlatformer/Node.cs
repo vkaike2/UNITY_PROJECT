@@ -71,7 +71,6 @@ namespace Calcatz.MeshPathfinding
         [Tooltip("This node will be ignored in calculation if it's not traversable.")]
         public bool traversable = true;
         public List<Neighbours> neighbours;
-        //public AccelerationEvent action;
 
         private void OnDrawGizmos()
         {
@@ -171,7 +170,9 @@ namespace Calcatz.MeshPathfinding
             [HideInInspector]
             public string name;
             public Node node;
-            public float jumpForceToReach;
+
+            public bool needToJump;
+            public bool needToGoDownPlatform;
 
             public Neighbours() { }
 
@@ -181,10 +182,5 @@ namespace Calcatz.MeshPathfinding
             }
 
         }
-
-        //public enum ActionToAccess
-        //{
-        //    None, Walk, Jump
-        //}
     }
 }

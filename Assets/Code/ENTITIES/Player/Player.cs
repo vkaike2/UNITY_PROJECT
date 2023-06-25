@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     //Game Manager
     private GameManager _gameManager;
     private UIEventManager _uiEventManager;
+    private CustomMouse _customMouse;
 
     public InputModel<Vector2> MoveInput { get; private set; }
     public InputModel<bool> JumpInput { get; private set; }
@@ -110,6 +111,7 @@ public class Player : MonoBehaviour
         _boxCollider = GetComponent<BoxCollider2D>();
 
         _gameManager = GameObject.FindObjectOfType<GameManager>();
+        _customMouse = GameObject.FindObjectOfType<CustomMouse>();
         _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
         _gameManager.SetPlayer(this);
     }

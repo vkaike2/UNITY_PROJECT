@@ -5,9 +5,9 @@ using UnityEngine;
 [Serializable]
 public class PorcupinePatrolBehaviourModel : EnemyPatrolModel
 {
-    [Header("components")]
+    [Header("COMPONENTS")]
     [SerializeField]
     private LayerCheckCollider _layerCheckCollider;
-
+    
     public LayerCheckCollider LayerCheckCollider => _layerCheckCollider;
 }

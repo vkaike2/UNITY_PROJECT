@@ -10,7 +10,8 @@ public class EnemyStatus : MonoBehaviour
     public EnemyFloatAttribute MovementSpeed;
 
     [Header("DAMAGE")]
-    public EnemyFloatAttribute Damage;
+    public EnemyFloatAttribute AtkDamage;
+    public EnemyFloatAttribute ImpactDamage;
     [Space]
     public EnemyFloatAttribute MaxHealth;
     [HideInInspector]

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class WormDamageableBehaviour : WormInifiniteBaseBehaviour
@@ -26,17 +23,18 @@ public class WormDamageableBehaviour : WormInifiniteBaseBehaviour
     {
         if (_worm.CurrentBehaviour == Worm.Behaviour.Die) return;
         if (targetHitbox == null) return;
-        if(targetHitbox.Type != Hitbox.HitboxType.Player) return;
+        if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_worm.Status.Damage.Get(), _hitbox.GetInstanceID(), _worm.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_worm.Status.ImpactDamage.Get(), _hitbox.GetInstanceID(), _worm.transform.position);
     }
 
     private void ReceiveDamage(float incomingDamage, int instance, Vector2 playerPosition)
     {
+        if (!_worm.DamageableModel.CanReceiveDamage) return;
         if (_worm.CurrentBehaviour == Worm.Behaviour.Die) return;
         if (!_damageService.CanReceiveDamageFrom(instance)) return;
 
-        _worm.Status.Health.ReduceFlatValue(incomingDamage);
+        _worm.Status.Health.ReduceFlatValue(_damageService.CalculateDamageEntry(incomingDamage));
         if (_worm.Status.Health.Get() <= 0)
         {
             _worm.Status.Health.Set(0);
