@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CustomMouse : MonoBehaviour
 {
-    public ScriptableItem item;
+    public ScriptableItem firstTest;
+    public ScriptableItem secondTest;
+    public ScriptableItem thirdTest;
+    public ScriptableItem fourthTest;
 
-    
-    private InventoryDraggableUI _inventoryDraggableUI; 
+
+    private InventoryDraggableUI _inventoryDraggableUI;
     private bool _isDragging = false;
 
     //Game Manager
@@ -33,7 +38,46 @@ public class CustomMouse : MonoBehaviour
             case InputActionPhase.Started:
                 break;
             case InputActionPhase.Performed:
-                StartDragItem();
+                StartDragItem(new ItemData(Guid.NewGuid(), firstTest));
+                break;
+            case InputActionPhase.Canceled:
+                break;
+        }
+    }
+    public void OnInputSecondTest(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                break;
+            case InputActionPhase.Performed:
+                StartDragItem(new ItemData(Guid.NewGuid(), secondTest));
+                break;
+            case InputActionPhase.Canceled:
+                break;
+        }
+    }
+    public void OnInputThirdTest(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                break;
+            case InputActionPhase.Performed:
+                StartDragItem(new ItemData(Guid.NewGuid(), thirdTest));
+                break;
+            case InputActionPhase.Canceled:
+                break;
+        }
+    }
+    public void OnInputFourthTest(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                break;
+            case InputActionPhase.Performed:
+                StartDragItem(new ItemData(Guid.NewGuid(), fourthTest));
                 break;
             case InputActionPhase.Canceled:
                 break;
@@ -55,6 +99,10 @@ public class CustomMouse : MonoBehaviour
         if (_isDragging)
         {
             StopDragItem();
+        }
+        else
+        {
+            TryToDragItem();
         }
     }
 
@@ -81,20 +129,40 @@ public class CustomMouse : MonoBehaviour
 
     private void GameObjectFollowMouse() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-    private void StartDragItem()
+    private void StartDragItem(ItemData itemData)
     {
-        _inventoryDraggableUI.StartDragItem(item);
+        _inventoryDraggableUI.StartDragItem(itemData);
         _isDragging = true;
     }
 
     private void StopDragItem()
     {
-        _inventoryDraggableUI.StopDragItem();
-        _isDragging = false;
+        DragAction action = _inventoryDraggableUI.StopDragItem();
+        _isDragging = action != DragAction.Stop;
+    }
+
+    private void TryToDragItem()
+    {
+        InventoryItemUI itemUnderMouse = RaycastUtils
+            .GetComponentsUnderMouseUI<InventoryItemUI>(new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Children })
+            .FirstOrDefault();
+
+        if (itemUnderMouse == null) return;
+
+        ItemData itemData = itemUnderMouse.ItemData;
+
+        itemUnderMouse.RemoveFromInventory();
+
+        StartDragItem(itemData);
     }
 
     private enum MouseButton
     {
         Left, Right
+    }
+
+    public enum DragAction
+    {
+        Stop, Continue
     }
 }

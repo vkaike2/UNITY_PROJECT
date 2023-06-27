@@ -8,14 +8,20 @@ public class InventoryItemUI : MonoBehaviour
 {
     public bool IsBeingDragged { get; set; }
 
-    private List<InventoryItemSlotUI> _slots;
-    private ScriptableItem _item = null;
+    public ItemData ItemData { get; set; }
 
+    private List<InventoryItemSlotUI> _slots;
     private List<InventorySlotUI> _tempInventorySlots = new List<InventorySlotUI>();
+    private InventoryUI _inventory = null;
 
     private void Awake()
     {
         _slots = GetComponentsInChildren<InventoryItemSlotUI>().ToList();
+    }
+
+    private void Start()
+    {
+        _inventory = GameObject.FindObjectOfType<InventoryUI>();
     }
 
     private void FixedUpdate()
@@ -23,28 +29,38 @@ public class InventoryItemUI : MonoBehaviour
         ManageDrag();
     }
 
-    public void SetItem(ScriptableItem item)
-    {
-        _item = item;
-    }
-
     public bool CheckIfCanFit()
     {
-        var slotsUnderItem = GetEveryInventorySlotUnderItem();
+        List<InventorySlotUI> slotsUnderItem = GetEveryInventorySlotUnderItem();
+        slotsUnderItem = slotsUnderItem.Where(e => !e.HasItem).ToList();
+
         return slotsUnderItem.Count == _slots.Count;
     }
 
-    public void SetPositionInsideInventory(Transform itemParent)
+    public bool CheckIfCanSwap()
+    {
+        List<InventorySlotUI> slotsUnderItem = GetEveryInventorySlotUnderItem();
+
+        if (slotsUnderItem.Count != _slots.Count) return false;
+        if (slotsUnderItem.Where(e => e.HasItem).Select(e => e.ItemUI.ItemData.Id).Distinct().Count() > 1) return false;
+
+        return true;
+    }
+
+    public List<InventorySlotUI> AddToInventory(Transform itemParent, InventoryUI inventory)
     {
         List<InventorySlotUI> inventorySlotsUnderItem = GetEveryInventorySlotUnderItem();
 
         this.transform.position = CalculateMiddlePosition(inventorySlotsUnderItem.Select(e => (Vector2) e.transform.position).ToList());
         this.transform.SetParent(itemParent);
 
-        foreach (var slot in inventorySlotsUnderItem)
-        {
-            slot.AddItem();
-        }
+        return inventorySlotsUnderItem;
+    }
+
+    public void RemoveFromInventory()
+    {
+        _inventory.RemoveItem(ItemData.Id);
+        Destroy(this.gameObject);
     }
 
     public void StopDrag()
@@ -55,6 +71,28 @@ public class InventoryItemUI : MonoBehaviour
         {
             slot.ChangeAnimationOnItemOver(false);
         }
+    }
+
+    public List<InventorySlotUI> GetEveryInventorySlotUnderItem()
+    {
+        List<InventorySlotUI> inventorySlots = new List<InventorySlotUI>();
+        foreach (InventoryItemSlotUI slot in _slots)
+        {
+            InventorySlotUI inventorySlot = RaycastUtils
+                .GetComponentsUnderPositionUI<InventorySlotUI>(slot.transform.position, new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Children })
+                .FirstOrDefault();
+
+            if (inventorySlot == null) continue;
+            inventorySlots.Add(inventorySlot);
+        }
+
+        return inventorySlots;
+    }
+
+    public InventoryItemUI GetItemToSwap()
+    {
+        List<InventorySlotUI> slotsUnderItem = GetEveryInventorySlotUnderItem();
+        return slotsUnderItem.Where(e => e.HasItem).Select(e => e.ItemUI).FirstOrDefault();
     }
 
     private void ManageDrag()
@@ -77,21 +115,6 @@ public class InventoryItemUI : MonoBehaviour
         }
     }
 
-    private List<InventorySlotUI> GetEveryInventorySlotUnderItem()
-    {
-        List<InventorySlotUI> inventorySlots = new List<InventorySlotUI>();
-        foreach (InventoryItemSlotUI slot in _slots)
-        {
-            InventorySlotUI inventorySlot = RaycastUtils
-                .GetComponentsUnderPositionUI<InventorySlotUI>(slot.transform.position, new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Children })
-                .FirstOrDefault();
-
-            if (inventorySlot == null) continue;
-            inventorySlots.Add(inventorySlot);
-        }
-
-        return inventorySlots;
-    }
 
     private Vector2 CalculateMiddlePosition(List<Vector2> positions)
     {

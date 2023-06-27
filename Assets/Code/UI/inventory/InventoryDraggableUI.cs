@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static CustomMouse;
 
 public class InventoryDraggableUI : MonoBehaviour
 {
@@ -18,27 +20,57 @@ public class InventoryDraggableUI : MonoBehaviour
         this.transform.position = Input.mousePosition;
     }
 
-    public void StartDragItem(ScriptableItem item)
+    public void StartDragItem(ItemData itemData)
     {
-        _activePrefab = Instantiate(item.PrefabUI, this.transform);
+        _activePrefab = Instantiate(itemData.Item.PrefabUI, this.transform);
         _activePrefab.transform.position = this.transform.position;
-        _activePrefab.SetItem(item);
+        _activePrefab.ItemData = itemData;
         _activePrefab.IsBeingDragged = true;
 
         _isBeingDragged = true;
     }
 
-    public void StopDragItem()
+    public DragAction StopDragItem()
     {
-        _activePrefab.StopDrag();
+        DragAction dragAction;
+        
+        bool dropInsideInventory = RaycastUtils.GetComponentsUnderMouseUI<InventoryUI>().Any();
 
-        if (!TryToAddItemToInventory())
+        if (dropInsideInventory)
         {
+            dragAction = ManagItemDropInsideInventory();
+        }
+        else
+        {
+            Debug.Log("drop item");
+
             Destroy(_activePrefab.gameObject);
+            dragAction = CustomMouse.DragAction.Stop;
+
         }
 
-        _activePrefab = null;
-        _isBeingDragged = false;
+        if(dragAction == DragAction.Stop)
+        {
+            _activePrefab.StopDrag();
+            _activePrefab = null;
+            _isBeingDragged = false;
+        }
+
+        return dragAction;
+    }
+
+    private DragAction ManagItemDropInsideInventory()
+    {
+        bool isHasBeingAddedToInventory = TryToAddItemToInventory();
+
+        if (isHasBeingAddedToInventory)
+        {
+            return DragAction.Stop;
+        }
+
+        TryToSwapItensInYourHand();
+
+        return DragAction.Continue;
     }
 
     private bool TryToAddItemToInventory()
@@ -52,6 +84,20 @@ public class InventoryDraggableUI : MonoBehaviour
         _inventoryUI.AddItem(_activePrefab);
 
         return true;
+    }
+
+    private void TryToSwapItensInYourHand()
+    {
+        if (!_activePrefab.CheckIfCanSwap()) return;
+
+        InventoryItemUI itemToSwap = _activePrefab.GetItemToSwap();
+        ItemData itemDataToSwap = itemToSwap.ItemData;
+        itemToSwap.RemoveFromInventory();
+
+        _inventoryUI.AddItem(_activePrefab);
+        _activePrefab = null;
+
+        StartDragItem(itemDataToSwap);
     }
 
 }

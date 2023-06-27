@@ -26,9 +26,38 @@ public class InventoryUI : MonoBehaviour
     #region PUBLIC METHODS
     public void AddItem(InventoryItemUI activePrefab)
     {
-        activePrefab.SetPositionInsideInventory(_itemParent);
+        List<InventorySlotUI> slotsUnderItem = activePrefab.AddToInventory(_itemParent, this);
+
+        foreach (InventorySlotUI slot in slotsUnderItem)
+        {
+            slot.AddItem(activePrefab);
+        }
+
         _itens.Add(activePrefab);
     }
+
+    public void RemoveItem(Guid itemId)
+    {
+        foreach (var i in _itens)
+        {
+           var sl = i.GetEveryInventorySlotUnderItem().First();
+           Debug.Log($"item: {i.ItemData.Id} \t slot: {sl.name}");
+
+        }
+
+        InventoryItemUI item = _itens.FirstOrDefault(e => e.ItemData.Id == itemId);
+        _itens.Remove(item);
+        Debug.Log($"remove item {item.ItemData.Id}");
+
+
+        List<InventorySlotUI> slotsUnderItem = item.GetEveryInventorySlotUnderItem();
+
+        foreach (var slot in slotsUnderItem)
+        {
+            slot.RemoveItem();
+        }
+    }
+
     #endregion
 
     [Serializable]
