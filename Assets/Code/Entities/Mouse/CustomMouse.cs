@@ -197,9 +197,11 @@ public class CustomMouse : MonoBehaviour
 
     private void TryToPickupItem(ItemDrop item)
     {
-        if (_gameManager.PlayerInventory.CheckIfCanAddItem(item.ItemData.Item.InventoryItemLayout))
+        List<Vector2> itemCoordinates = _gameManager.PlayerInventory.CheckIfCanAddItem(item.ItemData.Item.InventoryItemLayout);
+
+        if (itemCoordinates != null)
         {
-            _gameManager.PlayerInventory.AddItem(item.ItemData);
+            _gameManager.PlayerInventory.AddItem(item.ItemData, itemCoordinates);
             Destroy(item.gameObject);
         }
         else

@@ -43,7 +43,7 @@ public class InventoryUI : MonoBehaviour
     IEnumerator WaitUntilEndOfFrame()
     {
         yield return new WaitForEndOfFrame();
-        _uiEventManager.OnInventoryChange.Invoke(GenerateInventoryData(), EventSentBy.UI);
+        UpdatePlayerInventory();
     }
 
     #region PUBLIC METHODS
@@ -66,6 +66,8 @@ public class InventoryUI : MonoBehaviour
             slot.RemoveItem();
         }
     }
+
+    public void UpdatePlayerInventory() => _uiEventManager.OnInventoryChange.Invoke(GenerateInventoryData(), EventSentBy.UI);
     #endregion
 
     private void OnToggleInventoryOpen()
@@ -116,7 +118,6 @@ public class InventoryUI : MonoBehaviour
     private void UpdateInventoryFromEvent(InventoryData inventoryData)
     {
         CleanInventory();
-
         foreach (ItemData item in inventoryData.Itens)
         {
             List<Vector2> coordinatesUnderItem = inventoryData.Slots.Where(e => e.ItemId == item.Id)
@@ -137,7 +138,7 @@ public class InventoryUI : MonoBehaviour
             itemUI.ItemData = item;
             itemUI.transform.position = itemPosition;
 
-            this.InternalAddItem(slotsUnderItem, itemUI);
+            this.InternalAddItem(slotsUnderItem, itemUI, false);
         }
     }
 
@@ -146,11 +147,11 @@ public class InventoryUI : MonoBehaviour
 
     }
 
-    private void InternalAddItem(List<InventorySlotUI> slotsUnderItem, InventoryItemUI itemUI)
+    private void InternalAddItem(List<InventorySlotUI> slotsUnderItem, InventoryItemUI itemUI, bool updatePlayer = true)
     {
         foreach (InventorySlotUI slot in slotsUnderItem)
         {
-            slot.AddItem(itemUI);
+            slot.AddItem(itemUI, updatePlayer);
         }
 
         _itens.Add(itemUI);
@@ -168,9 +169,10 @@ public class InventoryUI : MonoBehaviour
         {
             if (!slot.HasItem) continue;
 
-            slot.RemoveItem();
+            slot.RemoveItem(false);
         }
     }
+
 
     private enum MyAnimations
     {

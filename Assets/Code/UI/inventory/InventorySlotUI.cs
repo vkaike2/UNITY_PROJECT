@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class InventorySlotUI : MonoBehaviour
 {
@@ -21,11 +22,14 @@ public class InventorySlotUI : MonoBehaviour
     public InventoryItemUI ItemUI { get; private set; }
 
     private Animator _animator;
+    private InventoryUI _inventoryUI;
 
+    private readonly List<Action> _executeSyncronousWithEvent = new List<Action>();
     private readonly List<Action> _executeSyncronous = new List<Action>();
 
     private void Awake()
     {
+        _inventoryUI = GetComponentInParent<InventoryUI>();
         _animator = GetComponent<Animator>();
         HasItem = false;
     }
@@ -37,31 +41,54 @@ public class InventorySlotUI : MonoBehaviour
     private void FixedUpdate()
     {
         _coordinate = Coordinate;
+        ExecuteSyncronousWithEvent();
 
+        ExecuteSyncronous();
+    }
+
+    private void ExecuteSyncronousWithEvent()
+    {
+        if (_executeSyncronousWithEvent.Count == 0) return;
+
+        _executeSyncronousWithEvent.FirstOrDefault().Invoke();
+        _executeSyncronousWithEvent.RemoveAt(0);
+
+        if (_executeSyncronousWithEvent.Count == 0)
+        {
+            _inventoryUI.UpdatePlayerInventory();
+        }
+    }
+
+    private void ExecuteSyncronous()
+    {
         if (_executeSyncronous.Count == 0) return;
 
         _executeSyncronous.FirstOrDefault().Invoke();
         _executeSyncronous.RemoveAt(0);
     }
 
-    public void AddItem(InventoryItemUI item)
+    public void AddItem(InventoryItemUI item, bool updatePlayer = true)
     {
-        _executeSyncronous.Add(() =>
+        if (updatePlayer)
         {
-            HasItem = true;
-            ItemUI = item;
-            _animator.Play(MyAnimations.WithItem.ToString());
-        });
+            _executeSyncronousWithEvent.Add(() => AddItemInternal(item));
+        }
+        else
+        {
+            _executeSyncronous.Add(() => AddItemInternal(item));
+        }
     }
 
-    public void RemoveItem()
+    public void RemoveItem(bool updatePlayer = true)
     {
-        _executeSyncronous.Add(() =>
+        if (updatePlayer)
         {
-            HasItem = false;
-            ItemUI = null;
-            _animator.Play(MyAnimations.Idle.ToString());
-        });
+            _executeSyncronousWithEvent.Add(RemoveItemInternal);
+        }
+        else
+        {
+            _executeSyncronous.Add(RemoveItemInternal);
+        }
     }
 
     public void ChangeAnimationOnItemOver(bool isItemOver)
@@ -91,6 +118,20 @@ public class InventorySlotUI : MonoBehaviour
 
         if (newCoordinate == null) _coordinate = Vector2.zero;
         else _coordinate = newCoordinate.Value;
+    }
+
+    private void AddItemInternal(InventoryItemUI item)
+    {
+        HasItem = true;
+        ItemUI = item;
+        _animator.Play(MyAnimations.WithItem.ToString());
+    }
+
+    private void RemoveItemInternal()
+    {
+        HasItem = false;
+        ItemUI = null;
+        _animator.Play(MyAnimations.Idle.ToString());
     }
 
     private enum MyAnimations

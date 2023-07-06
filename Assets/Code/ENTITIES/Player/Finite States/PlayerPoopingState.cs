@@ -14,12 +14,12 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 
     private bool _hasBeingFlipped = false;
     private float _velocityMultiplyer;
-    private bool _canPoop = true;
     private Vector2 _previousVelocity;
 
     public override void EnterState()
     {
-        if (!_canPoop || !_damageableModel.CanAtk)
+        //TODO: you should check this before entering the state and not after
+        if (!_poopModel.CanPoop || !_damageableModel.CanAtk)
         {
             _player.PoopInput.Value = false;
             _player.ChangeState(_player.GetPossibleState());
@@ -205,12 +205,12 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 
     IEnumerator WaitToPoopAgain()
     {
-        _canPoop = false;
+        _poopModel.CanPoop = false;
         _poopModel.CdwProgressBar.OnSetBehaviour.Invoke(_poopModel.CdwToPoop, ProgressBarUI.Behaviour.ProgressBar_Hide);
 
         yield return new WaitForSeconds(_poopModel.CdwToPoop);
 
-        _canPoop = true;
+        _poopModel.CanPoop = true;
     }
 
     private void PlayPoopSoundEfect()

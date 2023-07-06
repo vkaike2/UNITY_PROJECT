@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static InventoryData;
@@ -31,7 +33,12 @@ public class PlayerInventory : MonoBehaviour
     }
 
     #region CHECK IF CAN ADD ITEM
-    public bool CheckIfCanAddItem(ScriptableItem.ItemLayout itemLayout)
+    /// <summary>
+    ///     Returns an List of Coordinate where the item will be alocated
+    /// </summary>
+    /// <param name="itemLayout"></param>
+    /// <returns></returns>
+    public List<Vector2> CheckIfCanAddItem(ScriptableItem.ItemLayout itemLayout)
     {
         return itemLayout switch
         {
@@ -39,52 +46,100 @@ public class PlayerInventory : MonoBehaviour
             ScriptableItem.ItemLayout.OneByTwo => CheckifCanAddItemOneByTwo(),
             ScriptableItem.ItemLayout.TwoByTwo => CheckifCanAddItemTwoByTwo(),
             ScriptableItem.ItemLayout.TwoByThree => CheckifCanAddItemTwoByThree(),
-            _ => false,
+            _ => null,
         };
     }
 
-    private bool CheckIfCanAddItemOneByOne()
+    private List<Vector2> CheckIfCanAddItemOneByOne()
     {
-        return _inventoryData.Slots.Any(e => !e.HasItem);
+        return CheckIfCanAdditem((Vector2 coordinate) =>
+        {
+            return new List<Vector2>()
+            {
+                coordinate
+            };
+        });
     }
 
-    private bool CheckifCanAddItemOneByTwo()
+    private List<Vector2> CheckifCanAddItemOneByTwo()
     {
-        return false;
+        return CheckIfCanAdditem((Vector2 coordinate) =>
+        {
+            return new List<Vector2>()
+            {
+                coordinate,
+                new Vector2(coordinate.x, coordinate.y -1),
+            };
+        });
+
     }
 
-    private bool CheckifCanAddItemTwoByTwo()
+    private List<Vector2> CheckifCanAddItemTwoByTwo()
     {
-        return false;
+        return CheckIfCanAdditem((Vector2 coordinate) =>
+        {
+            return new List<Vector2>()
+            {
+                coordinate,
+                new Vector2(coordinate.x +1, coordinate.y),
+                new Vector2(coordinate.x, coordinate.y -1),
+                new Vector2(coordinate.x +1, coordinate.y -1),
+            };
+        });
     }
 
-    private bool CheckifCanAddItemTwoByThree()
+    private List<Vector2> CheckifCanAddItemTwoByThree()
     {
-        return false;
+        return CheckIfCanAdditem((Vector2 coordinate) =>
+        {
+            return new List<Vector2>()
+            {
+                coordinate,
+                new Vector2(coordinate.x +1, coordinate.y),
+                new Vector2(coordinate.x, coordinate.y -1),
+                new Vector2(coordinate.x +1, coordinate.y -1),
+                new Vector2(coordinate.x, coordinate.y -2),
+                new Vector2(coordinate.x +1, coordinate.y -2),
+            };
+        });
+    }
+
+
+    private List<Vector2> CheckIfCanAdditem(Func<Vector2, List<Vector2>> getRequiredCoordinates)
+    {
+        List<Slot> emptySlots = _inventoryData.Slots.Where(e => !e.HasItem).ToList();
+
+        foreach (var slot in emptySlots)
+        {
+            List<Vector2> requiredCoordinates = getRequiredCoordinates(slot.Coordinate);
+
+            if (emptySlots.Count(e => requiredCoordinates.Contains(e.Coordinate)) == requiredCoordinates.Count)
+            {
+                return requiredCoordinates;
+            }
+        }
+
+        return null;
     }
     #endregion
 
     #region ADD ITEM
-    public void AddItem(ItemData itemData)
+    public void AddItem(ItemData itemData, List<Vector2> coordinates)
     {
-        switch (itemData.Item.InventoryItemLayout)
-        {
-            case ScriptableItem.ItemLayout.OneByOne:
-                AddItemOneByOne(itemData);
-                break;
-            default: 
-                break;
-        }
+        List<Slot> itemSlots = _inventoryData.Slots.Where(e => coordinates.Contains(e.Coordinate)).ToList();
+
+        AddItemToSlots(itemSlots, itemData.Id);
+        _inventoryData.Itens.Add(itemData);
 
         _uiEventManager.OnInventoryChange.Invoke(_inventoryData, EventSentBy.Player);
     }
 
-    private void AddItemOneByOne(ItemData itemData)
+    private void AddItemToSlots(List<Slot> itemSlots, Guid itemId)
     {
-        Slot emtySlot = _inventoryData.Slots.FirstOrDefault(e => !e.HasItem);
-        emtySlot.AddItem(itemData.Id);
-
-        _inventoryData.Itens.Add(itemData);
+        foreach (var slot in itemSlots)
+        {
+            slot.AddItem(itemId);
+        }
     }
 
     #endregion
@@ -105,11 +160,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void UpdateInventoryFromEvent(InventoryData inventoryData)
     {
-        if (_inventoryData == null)
-        {
-            _inventoryData = inventoryData;
-            return;
-        }
+        _inventoryData = inventoryData;
     }
 
     private void UpdateEquipFromEvent(InventoryData equipData)
