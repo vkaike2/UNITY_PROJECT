@@ -12,9 +12,10 @@ public class CustomMouse : MonoBehaviour
     public ScriptableItem thirdTest;
     public ScriptableItem fourthTest;
 
-
     private InventoryDraggableUI _inventoryDraggableUI;
     private bool _isDragging = false;
+
+    private ItemDrop _tempItemDrop = null;
 
     //Game Manager
     private GameManager _gameManager;
@@ -28,6 +29,11 @@ public class CustomMouse : MonoBehaviour
     private void Update()
     {
         GameObjectFollowMouse();
+    }
+
+    private void FixedUpdate()
+    {
+        ManageMouseOver();
     }
 
     #region TEST INPUTS
@@ -96,6 +102,13 @@ public class CustomMouse : MonoBehaviour
 
         if (context.phase != InputActionPhase.Performed) return;
 
+        ItemDrop itemUnderMouse = RaycastUtils.GetComponentsUnderMouse<ItemDrop>().FirstOrDefault();
+        if (itemUnderMouse != null)
+        {
+            TryToPickupItem(itemUnderMouse);
+            return;
+        }
+
         if (_isDragging)
         {
             StopDragItem();
@@ -116,15 +129,56 @@ public class CustomMouse : MonoBehaviour
     }
     #endregion
 
+    #region MOUSE OVER
+    private void ManageMouseOver()
+    {
+        if (_isDragging) return;
+
+        ItemDrop itemUnderMouse = RaycastUtils.GetComponentsUnderMouse<ItemDrop>().FirstOrDefault();
+
+        if (itemUnderMouse == null)
+        {
+            if (_tempItemDrop != null)
+            {
+                _tempItemDrop.ChangeAnimationOnItemOver(false);
+                _tempItemDrop = null;
+            }
+            return;
+        }
+
+        if (_tempItemDrop != null && _tempItemDrop.GetInstanceID() != itemUnderMouse.GetInstanceID())
+        {
+            _tempItemDrop.ChangeAnimationOnItemOver(false);
+        }
+
+        itemUnderMouse.ChangeAnimationOnItemOver(true);
+
+        _tempItemDrop = itemUnderMouse;
+    }
+    #endregion
+
+    //TODO: MOVE TO MOUSE MANAGER
     private bool CheckIfShouldSendClickToPlayer(MouseButton button)
     {
-        bool mouseIsNotOverUI = !RaycastUtils.HitSomethingUnderMouseUI();
-        return button switch
+        bool mouseIsNotOverUI = RaycastUtils.HitSomethingUnderMouseUI();
+
+        // will return true if need to send to player
+        if (button == MouseButton.Left)
         {
-            MouseButton.Left => mouseIsNotOverUI && !_isDragging,
-            MouseButton.Right => mouseIsNotOverUI && !_isDragging,
-            _ => false,
-        };
+            if (mouseIsNotOverUI) return false;
+            if (_isDragging) return false;
+
+            if (RaycastUtils.GetComponentsUnderMouse<ItemDrop>().FirstOrDefault() != null) return false;
+
+            return true;
+        }
+        else
+        {
+            if (mouseIsNotOverUI) return false;
+            if (_isDragging) return false;
+
+            return true;
+        }
     }
 
     private void GameObjectFollowMouse() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -139,6 +193,19 @@ public class CustomMouse : MonoBehaviour
     {
         DragAction action = _inventoryDraggableUI.StopDragItem();
         _isDragging = action != DragAction.Stop;
+    }
+
+    private void TryToPickupItem(ItemDrop item)
+    {
+        if (_gameManager.PlayerInventory.CheckIfCanAddItem(item.ItemData.Item.InventoryItemLayout))
+        {
+            _gameManager.PlayerInventory.AddItem(item.ItemData);
+            Destroy(item.gameObject);
+        }
+        else
+        {
+            item.DropItem();
+        }
     }
 
     private void TryToDragItem()

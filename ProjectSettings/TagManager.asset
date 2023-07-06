@@ -15,7 +15,7 @@ TagManager:
   - Enemy
   - Hitbox
   - Platform
-  - 
+  - Item
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Player VFX
     uniqueID: 2198114425
+    locked: 0
+  - name: Item
+    uniqueID: 1487569649
     locked: 0

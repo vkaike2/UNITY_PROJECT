@@ -19,13 +19,13 @@ public class RaycastUtils : MonoBehaviour
         return Physics2D.GetRayIntersectionAll(ray);
     }
 
-    public static List<T> GetComponentUnderMouse<T>() where T : MonoBehaviour
+    public static List<T> GetComponentsUnderMouse<T>() where T : MonoBehaviour
     {
         RaycastHit2D[] hits = ObjectsUnderMouse();
         return GetComponentsFromRaycastHits<T>(hits);
     }
 
-    public static List<T> GetComponentUnderPosition<T>(Vector3 position) where T : MonoBehaviour
+    public static List<T> GetComponentsUnderPosition<T>(Vector3 position) where T : MonoBehaviour
     {
         RaycastHit2D[] hits = ObjectsUnderPosition(position);
         return GetComponentsFromRaycastHits<T>(hits);

@@ -10,45 +10,32 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
-    [Header("DEBUG")]
-    [SerializeField]
-    private FiniteState _stateDebug;
+    [Header("DEBUG")] [SerializeField] private FiniteState _stateDebug;
 
-    [Space(5)]
-    [Header("COMPONENTS")]
-    [SerializeField]
+    [Space(5)] [Header("COMPONENTS")] [SerializeField]
     private Hitbox _hitbox;
-    [SerializeField]
-    private Transform _rotationalTransform;
 
-    [Space(5)]
-    [Header("ATTRIBUTES")]
-    [Tooltip("will deactivate collider for this amount of time")]
-    [SerializeField]
+    [SerializeField] private Transform _rotationalTransform;
+
+    [Space(5)] [Header("ATTRIBUTES")] [Tooltip("will deactivate collider for this amount of time")] [SerializeField]
     private float _cdwOneWayPlatform = 0.5f;
 
-    [Space(5)]
-    [Header("CONFIGURATION")]
-    [SerializeField]
+    [Space(5)] [Header("CONFIGURATION")] [SerializeField]
     private AudioController _audioController;
-    [SerializeField]
-    private PlayerMoveStateModel _moveModel;
-    [SerializeField]
-    private PlayerJumpStateModel _jumpModel;
-    [SerializeField]
-    private PlayerAnimatorModel _playerAnimator;
-    [SerializeField]
-    private FartStateModel _fartModel;
-    [SerializeField]
-    private PlayerPoopStateModel _poopModel;
-    [SerializeField]
-    private PlayerDamageableStateModel _damageableModel;
+
+    [SerializeField] private PlayerMoveStateModel _moveModel;
+    [SerializeField] private PlayerJumpStateModel _jumpModel;
+    [SerializeField] private PlayerAnimatorModel _playerAnimator;
+    [SerializeField] private FartStateModel _fartModel;
+    [SerializeField] private PlayerPoopStateModel _poopModel;
+    [SerializeField] private PlayerDamageableStateModel _damageableModel;
 
     /// <summary>
     ///     Is called when you poop
     /// - GameObject: Poop GameObject
     /// </summary>
     public Action<GameObject> OnPoopEvent { get; set; }
+
     public Transform RotationalTransform => _rotationalTransform;
     public AudioController AudioController => _audioController;
     public Hitbox Hitbox => _hitbox;
@@ -61,9 +48,11 @@ public class Player : MonoBehaviour
     public FiniteState? PreviousState { get; private set; }
     public FiniteState CurrentState => _currentState.State;
     public UIEventManager UiEventManager => _uiEventManager;
+    public PlayerInventory PlayerInventory { get; private set; }
 
     private BoxCollider2D _boxCollider;
     private PlayerFiniteBaseState _currentState;
+
     private readonly List<PlayerFiniteBaseState> _finiteStates = new()
     {
         new PlayerIdleState(),
@@ -72,16 +61,16 @@ public class Player : MonoBehaviour
         new PlayerFallingState(),
         new PlayerPoopingState()
     };
+
     private readonly List<PlayerInfiniteBaseState> _infiniteStates = new()
     {
-         new PlayerFartState(),
-         new PlayerDamageableState()
+        new PlayerFartState(),
+        new PlayerDamageableState()
     };
 
     //Game Manager
     private GameManager _gameManager;
     private UIEventManager _uiEventManager;
-    private CustomMouse _customMouse;
 
     public InputModel<Vector2> MoveInput { get; private set; }
     public InputModel<bool> JumpInput { get; private set; }
@@ -109,9 +98,9 @@ public class Player : MonoBehaviour
         CanMove = true;
 
         _boxCollider = GetComponent<BoxCollider2D>();
-
+        PlayerInventory = GetComponent<PlayerInventory>();
+        
         _gameManager = GameObject.FindObjectOfType<GameManager>();
-        _customMouse = GameObject.FindObjectOfType<CustomMouse>();
         _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
         _gameManager.SetPlayer(this);
     }
@@ -160,6 +149,7 @@ public class Player : MonoBehaviour
         _gameManager.RemovePlayer();
     }
 
+    #region INPUTS
     public void OnDownInput(InputAction.CallbackContext context)
     {
         switch (context.phase)
@@ -230,7 +220,6 @@ public class Player : MonoBehaviour
                 MoveInput.Canceled();
                 break;
         }
-
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -250,6 +239,7 @@ public class Player : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
     public void ChangeState(FiniteState state)
     {

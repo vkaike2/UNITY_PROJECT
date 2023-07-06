@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     private Waypoints _waypoints;
 
     public Player Player { get; private set; }
+    public PlayerInventory PlayerInventory { get; private set; }
+
     public List<Worm> Worms { get; private set; }
     public Waypoints Waypoints => _waypoints;
 
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
     public void SetPlayer(Player player)
     {
         Player = player;
+        PlayerInventory = player.GetComponent<PlayerInventory>();
     }
 
     public void RemovePlayer()

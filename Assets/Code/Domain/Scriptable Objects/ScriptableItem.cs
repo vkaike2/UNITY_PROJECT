@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Item")]
@@ -14,10 +13,26 @@ public class ScriptableItem : ScriptableObject
     public string Name => _name;
     public string Description => _description;
 
-
     [Header("INVENTORY INFO")]
     [SerializeField]
     private InventoryItemUI _prefabUI;
+    [SerializeField]
+    private ItemLayout _itemLayout;
 
     public InventoryItemUI PrefabUI => _prefabUI;
+    public ItemLayout InventoryItemLayout => _itemLayout;
+
+    [Header("DROP")]
+    [SerializeField]
+    private ItemDrop _itemDrop;
+
+    public ItemDrop ItemDrop => _itemDrop;
+
+    public enum ItemLayout
+    {
+        OneByOne,
+        OneByTwo,
+        TwoByTwo,
+        TwoByThree
+    }
 }

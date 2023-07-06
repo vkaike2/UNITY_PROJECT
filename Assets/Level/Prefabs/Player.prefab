@@ -318,9 +318,10 @@ GameObject:
   - component: {fileID: 1569341936492780418}
   - component: {fileID: 1569341936492780416}
   - component: {fileID: 1569341936492780420}
+  - component: {fileID: 7035229750320139327}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +422,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateDebug: 0
+  _hitbox: {fileID: 0}
   _rotationalTransform: {fileID: 1569341937118538250}
+  _cdwOneWayPlatform: 0.5
   _audioController: {fileID: 1569341936288374814}
   _moveModel:
     _movementSpeed: 7
@@ -441,9 +444,9 @@ MonoBehaviour:
       _transform: {fileID: 1569341936835987516}
   _playerAnimator:
     _animator: {fileID: 1569341937639352533}
-  _fartAttribute:
-    _particleSystem: {fileID: 1569341937181109250}
-    _progressBar: {fileID: 1569341936894167719}
+  _fartModel:
+    _particleSystem: {fileID: 0}
+    _progressBar: {fileID: 0}
     _cdwToManipulateKnockBack: 0.3
     _knockBackForce: 500
     _helpForcePercentage: 1.5
@@ -459,6 +462,26 @@ MonoBehaviour:
     _velocityTimer: 1
     _cdwToPoop: 0.5
     _gravityWhilePooping: 0.1
+  _damageableModel:
+    _spriteRenderer: {fileID: 0}
+    _fartParticleSystem: {fileID: 0}
+    _initalHealth: 10
+    _fartDamage: 0.2
+    _poopDamage: 2.5
+    _knockBackForce: 700
+    _cdwToAtkAfterDamage: 1
+--- !u!114 &7035229750320139327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569341936492780421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794657d897e2419cb95fc6cb0f684184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1569341936615432260
 GameObject:
   m_ObjectHideFlags: 0
@@ -10833,14 +10856,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6990599949825187812, guid: d53f1d3786f5fbd46b62e2325aabf9b0, type: 3}
   m_PrefabInstance: {fileID: 8414120142774130044}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1569341936894167719 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6990599949825187803, guid: d53f1d3786f5fbd46b62e2325aabf9b0, type: 3}
-  m_PrefabInstance: {fileID: 8414120142774130044}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec5f33f2660f7c04198bc4f064cf800a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

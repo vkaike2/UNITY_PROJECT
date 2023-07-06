@@ -134,6 +134,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _isFirst
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -236,6 +248,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7539581873940414975, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: e
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _isFirst
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _neighboors._right
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -337,6 +365,10 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -577,6 +609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -678,6 +714,10 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -781,6 +821,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -882,6 +926,10 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -985,6 +1033,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1087,6 +1139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1188,6 +1244,10 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -1397,6 +1457,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1523,7 +1587,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -219, y: 22}
+  m_AnchoredPosition: {x: 242, y: -108}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &576271625
@@ -1659,6 +1723,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1760,6 +1828,10 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -1863,6 +1935,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1965,6 +2045,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2056,6 +2144,43 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
   m_PrefabInstance: {fileID: 676300581}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &798424956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798424957}
+  m_Layer: 5
+  m_Name: Inventory Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &798424957
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798424956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1619881395}
+  m_Father: {fileID: 1133858596}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &896047925
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,6 +2382,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2358,6 +2491,14 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -2678,7 +2819,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1509221274}
-  - {fileID: 1619881395}
+  - {fileID: 798424957}
   - {fileID: 576271623}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -2698,6 +2839,14 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -2877,6 +3026,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3010,6 +3167,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3112,6 +3277,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3213,6 +3386,14 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -3401,6 +3582,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3555,6 +3744,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3656,6 +3853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1619881395}
   - component: {fileID: 1619881396}
+  - component: {fileID: 1619881397}
   m_Layer: 5
   m_Name: UI Inventory
   m_TagString: Untagged
@@ -3670,18 +3868,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619881394}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1931627307}
-  m_Father: {fileID: 1133858596}
-  m_RootOrder: 1
+  m_Father: {fileID: 798424957}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 433.2, y: -68.8}
+  m_AnchoredPosition: {x: 450, y: -68.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1619881396
@@ -3701,6 +3899,26 @@ MonoBehaviour:
     _slotParent: {fileID: 417443231}
   _inventoyInfo:
     _slotParent: {fileID: 1441205763}
+--- !u!95 &1619881397
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619881394}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 11f5639fe1eb52f45992297a95e1203e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1721323401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3711,6 +3929,14 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -3814,6 +4040,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3915,6 +4149,10 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -4018,6 +4256,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4120,6 +4366,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4221,6 +4475,14 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
@@ -4505,6 +4767,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4606,6 +4876,14 @@ PrefabInstance:
     - target: {fileID: 3034079082740321264, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Name
       value: Inventory Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432768608844716450, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
+      propertyPath: _coordinate.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9028171920587574896, guid: d66db97c75f3c8b43a065085a96cfce3, type: 3}
       propertyPath: m_Pivot.x

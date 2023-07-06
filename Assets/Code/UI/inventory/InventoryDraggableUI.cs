@@ -8,10 +8,12 @@ public class InventoryDraggableUI : MonoBehaviour
     private bool _isBeingDragged = false;
     private InventoryItemUI _activePrefab;
     private InventoryUI _inventoryUI;
+    private GameManager _gameManager;
 
     private void Start()
     {
         _inventoryUI = GameObject.FindObjectOfType<InventoryUI>();
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -42,11 +44,9 @@ public class InventoryDraggableUI : MonoBehaviour
         }
         else
         {
-            Debug.Log("drop item");
-
+            DropItemOnTheGround();
             Destroy(_activePrefab.gameObject);
             dragAction = CustomMouse.DragAction.Stop;
-
         }
 
         if(dragAction == DragAction.Stop)
@@ -98,6 +98,11 @@ public class InventoryDraggableUI : MonoBehaviour
         _activePrefab = null;
 
         StartDragItem(itemDataToSwap);
+    }
+
+    private void DropItemOnTheGround()
+    {
+        _gameManager.Player.PlayerInventory.DropItem(_activePrefab.ItemData);
     }
 
 }

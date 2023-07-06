@@ -31,7 +31,6 @@ public class PatrolService
         _onChangeAnimationToMove = onChangeAnimationToMove;
     }
 
-
     /// <summary>
     ///     - wait for a patroll cdw
     ///     - calculate next movement
