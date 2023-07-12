@@ -105,7 +105,7 @@ public class Fart : MonoBehaviour
     IEnumerator TakeControllOfEntity(Vector2 mouseDirection)
     {
         _entity.CanMove = false;
-        bool needToFlipPlayer = CheckIfNeedToFlipEntity(-mouseDirection);
+        bool needToFlipPlayer = CheckIfNeedToFlipEntity(mouseDirection);
 
         if (needToFlipPlayer)
         {
@@ -124,11 +124,12 @@ public class Fart : MonoBehaviour
         _entity.CanMove = true;
     }
 
-    private bool CheckIfNeedToFlipEntity(Vector2 actionDirection)
+    private bool CheckIfNeedToFlipEntity(Vector2 mouseDirection)
     {
         bool isFacingRight = _rotationalTransform.localScale.x == 1;
-        return (isFacingRight && actionDirection.x < 0) 
-            || (isFacingRight && actionDirection.x > 0);
+
+        return (!isFacingRight && mouseDirection.x < 0) 
+            || (isFacingRight && mouseDirection.x > 0);
     }
 }
 
