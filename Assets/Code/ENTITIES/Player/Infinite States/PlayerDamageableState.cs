@@ -136,7 +136,6 @@ public class PlayerDamageableState : PlayerInfiniteBaseState
         _player.StartCoroutine(WaitToAtkAgain());
     }
 
-
     IEnumerator WaitToAtkAgain()
     {
         _damageableModel.CanAtk = false;

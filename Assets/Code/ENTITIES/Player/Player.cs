@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     [Header("DEBUG")][SerializeField] private FiniteState _stateDebug;
 
@@ -37,8 +38,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerAnimatorModel _playerAnimator;
     [SerializeField]
-    private FartStateModel _fartModel;
-    [SerializeField]
     private PlayerPoopStateModel _poopModel;
     [SerializeField]
     private PlayerDamageableStateModel _damageableModel;
@@ -55,7 +54,6 @@ public class Player : MonoBehaviour
     public PlayerMoveStateModel MoveStateModel => _moveModel;
     public PlayerJumpStateModel JumpStateModel => _jumpModel;
     public PlayerPoopStateModel PoopStateModel => _poopModel;
-    public FartStateModel FartStateModel => _fartModel;
     public PlayerDamageableStateModel DamageableStateModel => _damageableModel;
     public PlayerAnimatorModel Animator => _playerAnimator;
     public FiniteState? PreviousState { get; private set; }
@@ -65,6 +63,7 @@ public class Player : MonoBehaviour
 
     private BoxCollider2D _boxCollider;
     private PlayerFiniteBaseState _currentState;
+    private Fart _fart;
 
     private readonly List<PlayerFiniteBaseState> _finiteStates = new()
     {
@@ -76,7 +75,6 @@ public class Player : MonoBehaviour
     };
     private readonly List<PlayerInfiniteBaseState> _infiniteStates = new()
     {
-        new PlayerFartState(),
         new PlayerDamageableState()
     };
 
@@ -90,7 +88,7 @@ public class Player : MonoBehaviour
     public InputModel<bool> DownPlatformInput { get; private set; }
     public InputModel<bool> PoopInput { get; private set; }
 
-    public bool CanMove { get; set; }
+    public override bool CanMove { get; set; }
 
     private void OnDrawGizmos()
     {
@@ -115,20 +113,8 @@ public class Player : MonoBehaviour
         _gameManager = GameObject.FindObjectOfType<GameManager>();
         _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
         _gameManager.SetPlayer(this);
-    }
 
-    private void ClearFiniteInputActions()
-    {
-        MoveInput.ClearActions();
-        JumpInput.ClearActions();
-        DownPlatformInput.ClearActions();
-        PoopInput.ClearActions();
-    }
-
-    private void ClearAllInputActions()
-    {
-        FartInput.ClearActions();
-        ClearFiniteInputActions();
+        _fart = GetComponent<Fart>();
     }
 
     private void Start()
@@ -144,6 +130,11 @@ public class Player : MonoBehaviour
         }
 
         ChangeState(GetPossibleState());
+
+        _fart.OnFartEvent.AddListener((fartCdw) =>
+        {
+            _playerAnimator.PlayAnimationHightPriority(this, PlayerAnimatorModel.Animation.Fart, fartCdw);
+        });
     }
 
     private void FixedUpdate()
@@ -206,6 +197,7 @@ public class Player : MonoBehaviour
                 FartInput.Started();
                 break;
             case InputActionPhase.Performed:
+                _fart.DoFart();
                 FartInput.Value = true;
                 FartInput.Performed();
                 break;
@@ -334,6 +326,20 @@ public class Player : MonoBehaviour
         mousePosition.x -= objectPos.x;
         mousePosition.y -= objectPos.y;
         return mousePosition;
+    }
+
+    private void ClearFiniteInputActions()
+    {
+        MoveInput.ClearActions();
+        JumpInput.ClearActions();
+        DownPlatformInput.ClearActions();
+        PoopInput.ClearActions();
+    }
+
+    private void ClearAllInputActions()
+    {
+        FartInput.ClearActions();
+        ClearFiniteInputActions();
     }
 
     public enum FiniteState
