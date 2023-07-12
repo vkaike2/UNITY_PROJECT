@@ -13,11 +13,10 @@ public class CustomMouse : MonoBehaviour
     public ScriptableItem fourthTest;
 
     private InventoryDraggableUI _inventoryDraggableUI;
-    private bool _isDragging = false;
+    public bool IsDragging { get; private set; } = false;
 
     private ItemDrop _tempItemDrop = null;
 
-    //Game Manager
     private GameManager _gameManager;
 
     private void Start()
@@ -94,12 +93,6 @@ public class CustomMouse : MonoBehaviour
     #region INPUT EVENTS
     public void OnLeftMouseButton(InputAction.CallbackContext context)
     {
-        if (CheckIfShouldSendClickToPlayer(MouseButton.Left))
-        {
-            _gameManager.Player.OnLeftMouseButton(context);
-            return;
-        }
-
         if (context.phase != InputActionPhase.Performed) return;
 
         ItemDrop itemUnderMouse = RaycastUtils.GetComponentsUnderMouse<ItemDrop>().FirstOrDefault();
@@ -109,7 +102,7 @@ public class CustomMouse : MonoBehaviour
             return;
         }
 
-        if (_isDragging)
+        if (IsDragging)
         {
             StopDragItem();
         }
@@ -121,18 +114,13 @@ public class CustomMouse : MonoBehaviour
 
     public void OnRightMouseButton(InputAction.CallbackContext context)
     {
-        if (CheckIfShouldSendClickToPlayer(MouseButton.Right))
-        {
-            _gameManager.Player.OnRightMouseButton(context);
-            return;
-        }
     }
     #endregion
 
     #region MOUSE OVER
     private void ManageMouseOver()
     {
-        if (_isDragging) return;
+        if (IsDragging) return;
 
         ItemDrop itemUnderMouse = RaycastUtils.GetComponentsUnderMouse<ItemDrop>().FirstOrDefault();
 
@@ -157,46 +145,30 @@ public class CustomMouse : MonoBehaviour
     }
     #endregion
 
-    //TODO: MOVE TO MOUSE MANAGER
-    private bool CheckIfShouldSendClickToPlayer(MouseButton button)
-    {
-        bool mouseIsNotOverUI = RaycastUtils.HitSomethingUnderMouseUI();
-
-        // will return true if need to send to player
-        if (button == MouseButton.Left)
-        {
-            if (mouseIsNotOverUI) return false;
-            if (_isDragging) return false;
-
-            if (RaycastUtils.GetComponentsUnderMouse<ItemDrop>().FirstOrDefault() != null) return false;
-
-            return true;
-        }
-        else
-        {
-            if (mouseIsNotOverUI) return false;
-            if (_isDragging) return false;
-
-            return true;
-        }
-    }
-
     private void GameObjectFollowMouse() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
     private void StartDragItem(ItemData itemData)
     {
         _inventoryDraggableUI.StartDragItem(itemData);
-        _isDragging = true;
+        IsDragging = true;
     }
 
     private void StopDragItem()
     {
         DragAction action = _inventoryDraggableUI.StopDragItem();
-        _isDragging = action != DragAction.Stop;
+        IsDragging = action != DragAction.Stop;
     }
 
     private void TryToPickupItem(ItemDrop item)
     {
+        // Add Item to your hand
+        if (_gameManager.InventoryIsOpen)
+        {
+            StartDragItem(item.ItemData);
+            Destroy(item.gameObject);
+            return;
+        }
+
         List<Vector2> itemCoordinates = _gameManager.PlayerInventory.CheckIfCanAddItem(item.ItemData.Item.InventoryItemLayout);
 
         if (itemCoordinates != null)

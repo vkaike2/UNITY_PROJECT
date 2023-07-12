@@ -16,11 +16,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Waypoints _waypoints;
 
+    //GAME OBJECTS
     public Player Player { get; private set; }
     public PlayerInventory PlayerInventory { get; private set; }
 
     public List<Worm> Worms { get; private set; }
     public Waypoints Waypoints => _waypoints;
+
+    //UI
+    private InventoryUI _inventoryUI;
+    public bool InventoryIsOpen => _inventoryUI.IsOpen;
 
     private bool _gameIsPaused = false;
 
@@ -51,6 +56,11 @@ public class GameManager : MonoBehaviour
     public void RemoveWorm(Worm worm)
     {
         Worms.Remove(worm);
+    }
+
+    public void SetInventory(InventoryUI inventoryUI)
+    {
+        _inventoryUI = inventoryUI;
     }
     #endregion
 

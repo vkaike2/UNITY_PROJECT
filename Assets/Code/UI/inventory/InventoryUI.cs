@@ -18,10 +18,12 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]
     SlotInformation _inventoyInfo;
 
+    public bool IsOpen { get; private set; }
+
     private readonly List<InventoryItemUI> _itens = new List<InventoryItemUI>();
     private Animator _animator;
     private UIEventManager _uiEventManager;
-    private bool _isOpen = false;
+    private GameManager _gameManager;
 
     private void Awake()
     {
@@ -34,10 +36,10 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
-        _uiEventManager.OnToggleInventoryOpen.AddListener(OnToggleInventoryOpen);
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
 
-        _uiEventManager.OnInventoryChange.AddListener(OnInventoryChange);
-        StartCoroutine(WaitUntilEndOfFrame());
+        _gameManager.SetInventory(this);
+        SetupEvents();
     }
 
     IEnumerator WaitUntilEndOfFrame()
@@ -70,9 +72,16 @@ public class InventoryUI : MonoBehaviour
     public void UpdatePlayerInventory() => _uiEventManager.OnInventoryChange.Invoke(GenerateInventoryData(), EventSentBy.UI);
     #endregion
 
+    private void SetupEvents()
+    {
+        _uiEventManager.OnToggleInventoryOpen.AddListener(OnToggleInventoryOpen);
+        _uiEventManager.OnInventoryChange.AddListener(OnInventoryChange);
+        StartCoroutine(WaitUntilEndOfFrame());
+    }
+
     private void OnToggleInventoryOpen()
     {
-        if (_isOpen)
+        if (IsOpen)
         {
             _animator.Play(MyAnimations.Close.ToString());
         }
@@ -81,7 +90,7 @@ public class InventoryUI : MonoBehaviour
             _animator.Play(MyAnimations.Open.ToString());
         }
 
-        _isOpen = !_isOpen;
+        IsOpen = !IsOpen;
     }
 
     private InventoryData GenerateInventoryData()

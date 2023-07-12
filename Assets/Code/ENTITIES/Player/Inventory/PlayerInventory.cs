@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static InventoryData;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -107,7 +106,7 @@ public class PlayerInventory : MonoBehaviour
 
     private List<Vector2> CheckIfCanAdditem(Func<Vector2, List<Vector2>> getRequiredCoordinates)
     {
-        List<Slot> emptySlots = _inventoryData.Slots.Where(e => !e.HasItem).ToList();
+        List<InventoryData.Slot> emptySlots = _inventoryData.Slots.Where(e => !e.HasItem).ToList();
 
         foreach (var slot in emptySlots)
         {
@@ -126,7 +125,7 @@ public class PlayerInventory : MonoBehaviour
     #region ADD ITEM
     public void AddItem(ItemData itemData, List<Vector2> coordinates)
     {
-        List<Slot> itemSlots = _inventoryData.Slots.Where(e => coordinates.Contains(e.Coordinate)).ToList();
+        List<InventoryData.Slot> itemSlots = _inventoryData.Slots.Where(e => coordinates.Contains(e.Coordinate)).ToList();
 
         AddItemToSlots(itemSlots, itemData.Id);
         _inventoryData.Itens.Add(itemData);
@@ -134,7 +133,7 @@ public class PlayerInventory : MonoBehaviour
         _uiEventManager.OnInventoryChange.Invoke(_inventoryData, EventSentBy.Player);
     }
 
-    private void AddItemToSlots(List<Slot> itemSlots, Guid itemId)
+    private void AddItemToSlots(List<InventoryData.Slot> itemSlots, Guid itemId)
     {
         foreach (var slot in itemSlots)
         {
@@ -148,7 +147,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (sentBy == EventSentBy.Player) return;
 
-        if (inventoryData.Type == SlotType.Inventory)
+        if (inventoryData.Type == InventoryData.SlotType.Inventory)
         {
             UpdateInventoryFromEvent(inventoryData);
         }

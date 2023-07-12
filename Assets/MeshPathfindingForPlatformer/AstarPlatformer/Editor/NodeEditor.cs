@@ -1,6 +1,5 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using Kit.Editor;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,27 +8,11 @@ namespace Calcatz.MeshPathfinding
     [CustomEditor(typeof(Node)), CanEditMultipleObjects]
     class NodeEditor : Editor
     {
-
-        //private ReorderableListExtend neighboursList;
-
-        private void OnEnable()
-        {
-            //neighboursList = new ReorderableListExtend(serializedObject, "neighbours", true, false, true, true);
-        }
-
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
             Node nodeTarget = (Node)target;
             serializedObject.Update();
-
-            if (nodeTarget.neighbours != null)
-            {
-                if (nodeTarget.neighbours.Count > 0)
-                {
-                    //neighboursList.DoLayoutList();
-                }
-            }
 
             if (GUI.changed)
                 serializedObject.ApplyModifiedProperties();

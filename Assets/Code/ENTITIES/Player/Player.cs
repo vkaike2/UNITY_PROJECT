@@ -10,25 +10,38 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
-    [Header("DEBUG")] [SerializeField] private FiniteState _stateDebug;
+    [Header("DEBUG")][SerializeField] private FiniteState _stateDebug;
 
-    [Space(5)] [Header("COMPONENTS")] [SerializeField]
+    [Space(5)]
+    [Header("COMPONENTS")]
+    [SerializeField]
     private Hitbox _hitbox;
 
     [SerializeField] private Transform _rotationalTransform;
 
-    [Space(5)] [Header("ATTRIBUTES")] [Tooltip("will deactivate collider for this amount of time")] [SerializeField]
+    [Space(5)]
+    [Header("ATTRIBUTES")]
+    [Tooltip("will deactivate collider for this amount of time")]
+    [SerializeField]
     private float _cdwOneWayPlatform = 0.5f;
 
-    [Space(5)] [Header("CONFIGURATION")] [SerializeField]
+    [Space(5)]
+    [Header("CONFIGURATION")]
+    [SerializeField]
     private AudioController _audioController;
 
-    [SerializeField] private PlayerMoveStateModel _moveModel;
-    [SerializeField] private PlayerJumpStateModel _jumpModel;
-    [SerializeField] private PlayerAnimatorModel _playerAnimator;
-    [SerializeField] private FartStateModel _fartModel;
-    [SerializeField] private PlayerPoopStateModel _poopModel;
-    [SerializeField] private PlayerDamageableStateModel _damageableModel;
+    [SerializeField]
+    private PlayerMoveStateModel _moveModel;
+    [SerializeField]
+    private PlayerJumpStateModel _jumpModel;
+    [SerializeField]
+    private PlayerAnimatorModel _playerAnimator;
+    [SerializeField]
+    private FartStateModel _fartModel;
+    [SerializeField]
+    private PlayerPoopStateModel _poopModel;
+    [SerializeField]
+    private PlayerDamageableStateModel _damageableModel;
 
     /// <summary>
     ///     Is called when you poop
@@ -61,7 +74,6 @@ public class Player : MonoBehaviour
         new PlayerFallingState(),
         new PlayerPoopingState()
     };
-
     private readonly List<PlayerInfiniteBaseState> _infiniteStates = new()
     {
         new PlayerFartState(),
@@ -99,7 +111,7 @@ public class Player : MonoBehaviour
 
         _boxCollider = GetComponent<BoxCollider2D>();
         PlayerInventory = GetComponent<PlayerInventory>();
-        
+
         _gameManager = GameObject.FindObjectOfType<GameManager>();
         _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
         _gameManager.SetPlayer(this);
@@ -243,6 +255,11 @@ public class Player : MonoBehaviour
 
     public void ChangeState(FiniteState state)
     {
+        if (state == FiniteState.Pooping && !CheckIfCanPoop())
+        {
+            return;
+        }
+
         if (_currentState != null)
         {
             PreviousState = _currentState.State;
@@ -277,15 +294,6 @@ public class Player : MonoBehaviour
         return GetMousePosition().normalized;
     }
 
-    public Vector2 GetMousePosition()
-    {
-        Vector2 mousePosition = Input.mousePosition;
-        Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
-        mousePosition.x -= objectPos.x;
-        mousePosition.y -= objectPos.y;
-        return mousePosition;
-    }
-
     public OneWayPlatform IsOverPlatform()
     {
         Collider2D col = _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer);
@@ -309,6 +317,23 @@ public class Player : MonoBehaviour
     public FiniteState GetPossibleState()
     {
         return _finiteStates.Where(e => e.ImFistState()).Select(e => e.State).FirstOrDefault();
+    }
+
+    public bool CheckIfCanPoop()
+    {
+        if (!_poopModel.CanPoop) return false;
+        if (!_damageableModel.CanAtk) return false;
+
+        return true;
+    }
+
+    private Vector2 GetMousePosition()
+    {
+        Vector2 mousePosition = Input.mousePosition;
+        Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
+        mousePosition.x -= objectPos.x;
+        mousePosition.y -= objectPos.y;
+        return mousePosition;
     }
 
     public enum FiniteState

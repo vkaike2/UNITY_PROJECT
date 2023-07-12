@@ -47,6 +47,5 @@ public class PlayerPoopStateModel
     public float CdwToPoop => _cdwToPoop;
     public float GravityWhilePooping => _gravityWhilePooping;
 
-
     public bool CanPoop { get; set; }
 }

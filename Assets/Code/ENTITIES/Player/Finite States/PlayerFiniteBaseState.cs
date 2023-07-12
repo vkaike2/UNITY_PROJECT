@@ -18,6 +18,7 @@ public abstract class PlayerFiniteBaseState
     {
         return false;
     }
+
     public virtual void Start(Player player)
     {
         _player = player;
@@ -72,10 +73,6 @@ public abstract class PlayerFiniteBaseState
 
                 _rigidbody2D.drag = 10;
             }
-            //else if( _rigidbody2D.velocity.x == 0 && _player.IsOnTheGround())
-            //{
-            //    _rigidbody2D.velocity = Vector2.zero;
-            //}
             else
             {
                 _rigidbody2D.drag = 0;

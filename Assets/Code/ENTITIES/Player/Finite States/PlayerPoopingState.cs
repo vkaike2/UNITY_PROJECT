@@ -18,17 +18,9 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 
     public override void EnterState()
     {
-        //TODO: you should check this before entering the state and not after
-        if (!_poopModel.CanPoop || !_damageableModel.CanAtk)
-        {
-            _player.PoopInput.Value = false;
-            _player.ChangeState(_player.GetPossibleState());
-            return;
-        }
-
         _initialGravity = _rigidbody2D.gravityScale;
         _previousVelocity = _rigidbody2D.velocity;
-      
+
         StopPlayer();
 
         Vector2 mouseDirection = _player.GetMouseDirectionRelatedToPlayer();
@@ -50,6 +42,8 @@ public class PlayerPoopingState : PlayerFiniteBaseState
         base.Start(player);
         _poopModel = _player.PoopStateModel;
         _damageableModel = _player.DamageableStateModel;
+
+        _poopModel.CanPoop = true;
 
         _fullTrajectory = new GameObject[_poopModel.NumberOfDots];
 
@@ -104,6 +98,7 @@ public class PlayerPoopingState : PlayerFiniteBaseState
         if (_hasBeingFlipped)
         {
             FlipPlayer();
+            _hasBeingFlipped = false;
         }
 
         _rigidbody2D.gravityScale = _initialGravity;
@@ -142,14 +137,16 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 
     private void FlipPlayer()
     {
-        if (!_hasBeingFlipped)
-        {
-            _player.transform.localScale = new Vector3(_player.transform.localScale.x == -1 ? 1 : -1, 1, 1);
-        }
-        else
-        {
-            _player.transform.localScale = new Vector3(_player.transform.localScale.x == -1 ? 1 : -1, 1, 1);
-        }
+        _player.RotationalTransform.localScale = new Vector3(-Mathf.Sign(_player.RotationalTransform.localScale.x), 1, 1);
+
+        //if (!_hasBeingFlipped)
+        //{
+        //    _player.transform.localScale = new Vector3(_player.transform.localScale.x == -1 ? 1 : -1, 1, 1);
+        //}
+        //else
+        //{
+        //    _player.transform.localScale = new Vector3(_player.transform.localScale.x == -1 ? 1 : -1, 1, 1);
+        //}
     }
 
     private void TrhowPoop()

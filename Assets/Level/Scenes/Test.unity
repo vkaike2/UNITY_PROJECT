@@ -1141,6 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 49867074}
   - component: {fileID: 49867073}
+  - component: {fileID: 49867075}
   m_Layer: 0
   m_Name: Input Manager
   m_TagString: Untagged
@@ -1175,8 +1176,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1336665731}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 49867075}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnMoveInput
         m_Mode: 0
         m_Arguments:
@@ -1191,8 +1192,8 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1226084883}
-        m_TargetAssemblyTypeName: CustomMouse, Assembly-CSharp
+      - m_Target: {fileID: 49867075}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnLeftMouseButton
         m_Mode: 0
         m_Arguments:
@@ -1207,8 +1208,8 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1336665731}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 49867075}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnJumpInput
         m_Mode: 0
         m_Arguments:
@@ -1223,8 +1224,8 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1336665731}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 49867075}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnDownInput
         m_Mode: 0
         m_Arguments:
@@ -1239,8 +1240,8 @@ MonoBehaviour:
     m_ActionName: Player/DownPlatform[/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1226084883}
-        m_TargetAssemblyTypeName: CustomMouse, Assembly-CSharp
+      - m_Target: {fileID: 49867075}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnRightMouseButton
         m_Mode: 0
         m_Arguments:
@@ -1255,9 +1256,9 @@ MonoBehaviour:
     m_ActionName: Player/Poop[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 713616522}
-        m_TargetAssemblyTypeName: Assets.Code.MANAGER.GameManager, Assembly-CSharp
-        m_MethodName: OnPauseGameInput
+      - m_Target: {fileID: 49867075}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnPauseInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1271,9 +1272,9 @@ MonoBehaviour:
     m_ActionName: Player/Pause Game[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1336665736}
-        m_TargetAssemblyTypeName: PlayerInventory, Assembly-CSharp
-        m_MethodName: OnOpenInventoryInput
+      - m_Target: {fileID: 49867075}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnToggleInventoryInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1306,6 +1307,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &49867075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49867072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5691e1e3592984595f5f030f09c94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &51539455
 GameObject:
   m_ObjectHideFlags: 0
@@ -15256,33 +15269,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1336665731 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1569341936492780420, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
-  m_PrefabInstance: {fileID: 1569341937309023495}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a408a9539b157b34a99af94846b952f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1336665732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1569341936492780419, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
   m_PrefabInstance: {fileID: 1569341937309023495}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1336665736 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7035229750320139327, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
-  m_PrefabInstance: {fileID: 1569341937309023495}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794657d897e2419cb95fc6cb0f684184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1338153369
 GameObject:
   m_ObjectHideFlags: 0
