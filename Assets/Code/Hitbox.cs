@@ -11,18 +11,23 @@ public class Hitbox : MonoBehaviour
     public HitboxType Type => _hitboxType;
     public OnHitboxTriggerEnter OnHitboxTriggerEnter { get; set; }
     public OnReceivingDamage OnReceivingDamage { get; set; }
+    public Collider2D Collider => _collider;
 
-    private bool _canCallTriggerEnter = true;
+    private bool _canCallTriggerEnter = false;
+    private Coroutine _resetTriggerCoroutine;
+    private Collider2D _collider;
 
     private void Awake()
     {
         OnHitboxTriggerEnter = new OnHitboxTriggerEnter();
         OnReceivingDamage = new OnReceivingDamage();
+        _collider = GetComponent<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Hitbox targetHitbox = collision.GetComponent<Hitbox>();
+        if (targetHitbox == null) return;
         OnHitboxTriggerEnter.Invoke(targetHitbox);
     }
 
@@ -32,9 +37,14 @@ public class Hitbox : MonoBehaviour
         if (targetHitbox == null) return;
         if (!_canCallTriggerEnter) return;
 
+
         OnHitboxTriggerEnter.Invoke(targetHitbox);
 
-        StartCoroutine(ResetTrigger());
+        if (_resetTriggerCoroutine != null)
+        {
+            StopCoroutine(_resetTriggerCoroutine);
+        }
+        _resetTriggerCoroutine = StartCoroutine(ResetTrigger());
     }
 
 

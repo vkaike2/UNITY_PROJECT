@@ -10,7 +10,6 @@ public class WormRebornBehaviour : WormFiniteBaseBehaviour
     public override void OnEnterBehaviour()
     {
         _worm.Animator.PlayAnimation(WormAnimatorModel.AnimationName.Reborn_Idle);
-        _worm.DamageableModel.CanReceiveDamage = false;
 
         _rigidbody2D.velocity = Vector3.zero;
         _rigidbody2D.isKinematic = true;
@@ -21,7 +20,6 @@ public class WormRebornBehaviour : WormFiniteBaseBehaviour
 
     public override void OnExitBehaviour()
     {
-        _worm.DamageableModel.CanReceiveDamage = true;
         _rigidbody2D.isKinematic = false;
     }
 

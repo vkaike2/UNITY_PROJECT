@@ -7,11 +7,14 @@ public class PorcupineAtkBehaviour : PorcupineFiniteBaseBehaviour
     public override Porcupine.Behaviour Behaviour => Porcupine.Behaviour.Atk;
 
     private PorcupineAtkBehaviourModel _atkModel;
+    private PorcupineDamageDealer _damageDealer;
+
 
     public override void Start(Enemy enemy)
     {
         base.Start(enemy);
 
+        _damageDealer = _porcupine.GetComponent<PorcupineDamageDealer>();
         _atkModel = _porcupine.AtkModel;
         _porcupine.AnimatorEvents.OnTriggerAtkProjectile.AddListener(OnTriggerAtkProjectile);
         _porcupine.AnimatorEvents.OnStartAtkJump.AddListener(OnStartAtkJump);
@@ -46,17 +49,17 @@ public class PorcupineAtkBehaviour : PorcupineFiniteBaseBehaviour
         // facing left
         PorcupineProjectile leftProjectile = GameObject.Instantiate(_atkModel.Projectile, _atkModel.ProjectileSpawnPoint.position, Quaternion.identity, _atkModel.ProjectileContainer);
         leftProjectile.SetInitialInitialValues(new Vector2(_atkModel.ProjectileSpeed * -0.5f, _atkModel.ProjectileSpeed), _atkModel.ProjectileDuration);
-        _atkModel.OnRegisterProjectile.Invoke(leftProjectile);
+        _damageDealer.OnRegisterProjectileEvent.Invoke(leftProjectile);
 
         // facing up
         PorcupineProjectile upProjectile = GameObject.Instantiate(_atkModel.Projectile, _atkModel.ProjectileSpawnPoint.position, Quaternion.identity, _atkModel.ProjectileContainer);
         upProjectile.SetInitialInitialValues(new Vector2(0, _atkModel.ProjectileSpeed), _atkModel.ProjectileDuration);
-        _atkModel.OnRegisterProjectile.Invoke(upProjectile);
+        _damageDealer.OnRegisterProjectileEvent.Invoke(upProjectile);
 
         // facing right
         PorcupineProjectile rightProjectile = GameObject.Instantiate(_atkModel.Projectile, _atkModel.ProjectileSpawnPoint.position, Quaternion.identity, _atkModel.ProjectileContainer);
         rightProjectile.SetInitialInitialValues(new Vector2(_atkModel.ProjectileSpeed * 0.5f, _atkModel.ProjectileSpeed), _atkModel.ProjectileDuration);
-        _atkModel.OnRegisterProjectile.Invoke(rightProjectile);
+        _damageDealer.OnRegisterProjectileEvent.Invoke(rightProjectile);
     }
 
     private void OnEndAnimation()

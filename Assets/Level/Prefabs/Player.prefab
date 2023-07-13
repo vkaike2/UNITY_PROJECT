@@ -316,10 +316,13 @@ GameObject:
   - component: {fileID: 1569341936492780419}
   - component: {fileID: 1569341936492780417}
   - component: {fileID: 1569341936492780418}
-  - component: {fileID: 1569341936492780416}
-  - component: {fileID: 1569341936492780420}
-  - component: {fileID: 7035229750320139327}
   - component: {fileID: 5333638089992704905}
+  - component: {fileID: 1569341936492780416}
+  - component: {fileID: 7035229750320139327}
+  - component: {fileID: 1270919217769633935}
+  - component: {fileID: 4861577130738542633}
+  - component: {fileID: 1569341936492780420}
+  - component: {fileID: 3800125060539463934}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -397,6 +400,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9372467, y: 0.9960129}
   m_EdgeRadius: 0
+--- !u!114 &5333638089992704905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569341936492780421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58014c0446861d24ba707459d44e94c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 1569341937181109250}
+  _progressBar: {fileID: 1569341936894167719}
+  _rotationalTransform: {fileID: 1569341937118538250}
+  _cdwToManipulateKnockBack: 0.3
+  _knockBackForce: 500
+  _helpForcePercentage: 1.5
+  _fartCdw: 0.5
 --- !u!114 &1569341936492780416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +432,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseIndication: {fileID: 1569341936452759848}
+--- !u!114 &7035229750320139327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569341936492780421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794657d897e2419cb95fc6cb0f684184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1270919217769633935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569341936492780421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ccc2102c12dd2543876a7da58fbf080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _status: {fileID: 4861577130738542633}
+  _hitbox: {fileID: 1056524188317340118}
+  _progressBarUI: {fileID: 0}
+  _spriteRenderer: {fileID: 1569341937639352535}
+  _shouldApplyKnockback: 1
+--- !u!114 &4861577130738542633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569341936492780421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f109d6f40b19954abd97e97590ed567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth:
+    _value: 10
+  _knockBackForce: 700
+  Health:
+    _value: 0
+  PoopDamage:
+    _value: 2.5
+  FartDamage:
+    _value: 0.2
 --- !u!114 &1569341936492780420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,13 +517,6 @@ MonoBehaviour:
       _transform: {fileID: 1569341936835987516}
   _playerAnimator:
     _animator: {fileID: 1569341937639352533}
-  _fartModel:
-    _particleSystem: {fileID: 1569341937181109250}
-    _progressBar: {fileID: 1569341936894167719}
-    _cdwToManipulateKnockBack: 0.3
-    _knockBackForce: 500
-    _helpForcePercentage: 1.5
-    _fartCdw: 0.5
   _poopModel:
     _poopProjectilePrefab: {fileID: 7484034754883789878, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
     _projectileTrajectoryPrefab: {fileID: 4896166672386539369, guid: 5304255ed98f32d42b6ef53a934a1d13, type: 3}
@@ -471,7 +536,7 @@ MonoBehaviour:
     _poopDamage: 2.5
     _knockBackForce: 700
     _cdwToAtkAfterDamage: 0.5
---- !u!114 &7035229750320139327
+--- !u!114 &3800125060539463934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -480,28 +545,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1569341936492780421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794657d897e2419cb95fc6cb0f684184, type: 3}
+  m_Script: {fileID: 11500000, guid: d469806f6e1ff49468aa88c57c37dc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5333638089992704905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569341936492780421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58014c0446861d24ba707459d44e94c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 1569341937181109250}
-  _progressBar: {fileID: 1569341936894167719}
-  _rotationalTransform: {fileID: 1569341937118538250}
-  _cdwToManipulateKnockBack: 0.3
-  _knockBackForce: 500
-  _helpForcePercentage: 1.5
-  _fartCdw: 0.5
+  _status: {fileID: 4861577130738542633}
+  _fartParticleSystem: {fileID: 1569341937181109250}
 --- !u!1 &1569341936615432260
 GameObject:
   m_ObjectHideFlags: 0

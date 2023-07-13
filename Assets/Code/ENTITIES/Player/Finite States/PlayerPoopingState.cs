@@ -10,7 +10,6 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 
     private PlayerPoopStateModel _poopModel;
     private GameObject[] _fullTrajectory;
-    private PlayerDamageableStateModel _damageableModel;
 
     private bool _hasBeingFlipped = false;
     private float _velocityMultiplyer;
@@ -25,7 +24,7 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 
         Vector2 mouseDirection = _player.GetMouseDirectionRelatedToPlayer();
 
-        if (CheckIfNeedToFlipPlayer(-mouseDirection))
+        if (CheckIfNeedToFlipPlayer(mouseDirection))
         {
             FlipPlayer();
             _hasBeingFlipped = true;
@@ -41,7 +40,6 @@ public class PlayerPoopingState : PlayerFiniteBaseState
     {
         base.Start(player);
         _poopModel = _player.PoopStateModel;
-        _damageableModel = _player.DamageableStateModel;
 
         _poopModel.CanPoop = true;
 
@@ -129,24 +127,18 @@ public class PlayerPoopingState : PlayerFiniteBaseState
         _player.CanMove = false;
         _rigidbody2D.velocity = Vector2.zero;
     }
-
-    private bool CheckIfNeedToFlipPlayer(Vector2 actionDirection)
+    
+    private bool CheckIfNeedToFlipPlayer(Vector2 mouseDirection)
     {
-        return (_player.RotationalTransform.localScale.x == 1 && actionDirection.x < 0) || (_player.RotationalTransform.localScale.x == -1 && actionDirection.x > 0);
+        bool isFacingRight = _player.RotationalTransform.localScale.x == 1;
+
+        return (!isFacingRight && mouseDirection.x < 0) 
+            || (isFacingRight && mouseDirection.x > 0);
     }
 
     private void FlipPlayer()
     {
-        _player.RotationalTransform.localScale = new Vector3(-Mathf.Sign(_player.RotationalTransform.localScale.x), 1, 1);
-
-        //if (!_hasBeingFlipped)
-        //{
-        //    _player.transform.localScale = new Vector3(_player.transform.localScale.x == -1 ? 1 : -1, 1, 1);
-        //}
-        //else
-        //{
-        //    _player.transform.localScale = new Vector3(_player.transform.localScale.x == -1 ? 1 : -1, 1, 1);
-        //}
+        _player.RotationalTransform.localScale = new Vector3(-_player.RotationalTransform.localScale.x, 1, 1);
     }
 
     private void TrhowPoop()

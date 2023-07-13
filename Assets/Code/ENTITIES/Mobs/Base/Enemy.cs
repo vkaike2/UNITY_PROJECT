@@ -21,54 +21,35 @@ public abstract class Enemy : MonoBehaviour
     public bool CanMove { get; set; }
     public EnemyStatus Status => _status;
 
-    private List<EnemyFiniteBaseBehaviour> _finiteBaseBehaviours;
-    private List<EnemyInfiniteBaseBehaviours> _infiniteBaseBehaviours;
-
+    protected abstract List<EnemyFiniteBaseBehaviour> FiniteBaseBehaviours { get; }
     protected EnemyFiniteBaseBehaviour _currentFiniteBehaviour;
-
     protected EnemyStatus _status;
 
-    protected void Awake()
+    private void Awake()
     {
         _status = GetComponent<EnemyStatus>();
         GameManager = GameObject.FindObjectOfType<GameManager>();
         CanMove = false;
+        AfterAwake();
     }
 
-    protected virtual void SetFiniteBaseBehaviours(List<EnemyFiniteBaseBehaviour> finiteBaseBehaviours)
+    private void Start()
     {
-        _finiteBaseBehaviours = finiteBaseBehaviours;
-    }
-
-    protected virtual void SetInfiniteBaseBehaviours(List<EnemyInfiniteBaseBehaviours> infiniteBaseBehaviours)
-    {
-        _infiniteBaseBehaviours = infiniteBaseBehaviours;
-    }
-
-    protected void Start()
-    {
-        if (_finiteBaseBehaviours == null) throw new NotImplementedException(nameof(_finiteBaseBehaviours));
-        if (_infiniteBaseBehaviours == null) throw new NotImplementedException(nameof(_infiniteBaseBehaviours));
-        
-        foreach (var behaviour in _infiniteBaseBehaviours)
+        BeforeStart();
+        foreach (var behaviour in FiniteBaseBehaviours)
         {
             behaviour.Start(this);
         }
-
-        foreach (var behaviour in _finiteBaseBehaviours)
-        {
-            behaviour.Start(this);
-        }
+        AfterStart();
     }
 
     protected void FixedUpdate()
     {
-        foreach (var behaviour in _infiniteBaseBehaviours)
-        {
-            behaviour.Update();
-        }
-
         if (_currentFiniteBehaviour == null) return;
         _currentFiniteBehaviour.Update();
     }
+
+    protected virtual void AfterAwake() { }
+    protected virtual void BeforeStart() { }
+    protected virtual void AfterStart() { }
 }

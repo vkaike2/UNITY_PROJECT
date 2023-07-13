@@ -39,8 +39,8 @@ public class PorcupineAtkBehaviourModel
     public float CdwBetweenAtks => _cdwBetweenAtks;
     public Transform ProjectileSpawnPoint => _projectileSpawnPoint;
 
-    private RegisterProjectile _onRegisterProjectile = new();
-    public RegisterProjectile OnRegisterProjectile => _onRegisterProjectile;
+    //private RegisterProjectile _onRegisterProjectile = new();
+    //public RegisterProjectile OnRegisterProjectile => _onRegisterProjectile;
 
-    public class RegisterProjectile : UnityEvent<PorcupineProjectile> { }
+    //public class RegisterProjectile : UnityEvent<PorcupineProjectile> { }
 }

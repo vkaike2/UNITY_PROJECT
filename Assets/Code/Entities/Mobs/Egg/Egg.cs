@@ -12,16 +12,14 @@ public class Egg : Enemy
     private EggIdleBehaviourModel _idleModel;
     [Space]
     [SerializeField]
-    private EggDamageableBehaviourModel _damageableModel;
-    [Space]
-    [SerializeField]
     private EggSpawningBehaviourModel _spawnableModel;
 
     public EggAnimatorModel Animator => _eggAnimator;
     public Behaviour? CurrentBehaviour => ((EggFiniteBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
     public EggIdleBehaviourModel IdleModel => _idleModel;
-    public EggDamageableBehaviourModel DamageableModel => _damageableModel;
     public EggSpawningBehaviourModel SpawnableModel => _spawnableModel;
+
+    protected override List<EnemyFiniteBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList();
 
     //Finite Behaviours
     private readonly List<EggFiniteBaseBehaviour> _finiteBaseBehaviours = new List<EggFiniteBaseBehaviour>()
@@ -31,23 +29,8 @@ public class Egg : Enemy
         new EggDieBehaviour()
     };
 
-    //Infinite Behaviours
-    private readonly List<EggInfiniteBaseBehaviour> _infiniteBaseBehaviours = new List<EggInfiniteBaseBehaviour>()
+    protected override void AfterStart()
     {
-        new EggDamageableBehaviour()
-    };
-
-    private void Awake()
-    {
-        base.Awake();
-
-        base.SetFiniteBaseBehaviours(_finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList());
-        base.SetInfiniteBaseBehaviours(_infiniteBaseBehaviours.Select(e => (EnemyInfiniteBaseBehaviours)e).ToList());
-    }
-
-    private void Start()
-    {
-        base.Start();
         ChangeBehaviour(Behaviour.Idle);
     }
 

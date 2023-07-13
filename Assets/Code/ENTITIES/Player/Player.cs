@@ -11,22 +11,19 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : Entity
 {
-    [Header("DEBUG")][SerializeField] private FiniteState _stateDebug;
+    [Header("DEBUG")] [SerializeField] private FiniteState _stateDebug;
 
-    [Space(5)]
-    [Header("COMPONENTS")]
-    [SerializeField]
+    [Space(5)] [Header("COMPONENTS")] [SerializeField]
     private Hitbox _hitbox;
 
     [SerializeField] private Transform _rotationalTransform;
 
     [Space(5)]
-    [Header("ATTRIBUTES")]
-    [Tooltip("will deactivate collider for this amount of time")]
-    [SerializeField]
+    [Header("ATTRIBUTES")] 
+    [Tooltip("will deactivate collider for this amount of time")] [SerializeField]
     private float _cdwOneWayPlatform = 0.5f;
 
-    [Space(5)]
+    [Space(5)] 
     [Header("CONFIGURATION")]
     [SerializeField]
     private AudioController _audioController;
@@ -39,13 +36,11 @@ public class Player : Entity
     private PlayerAnimatorModel _playerAnimator;
     [SerializeField]
     private PlayerPoopStateModel _poopModel;
-    [SerializeField]
-    private PlayerDamageableStateModel _damageableModel;
 
-    /// <summary>
-    ///     Is called when you poop
-    /// - GameObject: Poop GameObject
-    /// </summary>
+    /* 
+        Is called when you poop
+        - GameObject: Poop GameObject
+    */
     public Action<GameObject> OnPoopEvent { get; set; }
 
     public Transform RotationalTransform => _rotationalTransform;
@@ -54,7 +49,6 @@ public class Player : Entity
     public PlayerMoveStateModel MoveStateModel => _moveModel;
     public PlayerJumpStateModel JumpStateModel => _jumpModel;
     public PlayerPoopStateModel PoopStateModel => _poopModel;
-    public PlayerDamageableStateModel DamageableStateModel => _damageableModel;
     public PlayerAnimatorModel Animator => _playerAnimator;
     public FiniteState? PreviousState { get; private set; }
     public FiniteState CurrentState => _currentState.State;
@@ -72,10 +66,6 @@ public class Player : Entity
         new PlayerJumpState(),
         new PlayerFallingState(),
         new PlayerPoopingState()
-    };
-    private readonly List<PlayerInfiniteBaseState> _infiniteStates = new()
-    {
-        new PlayerDamageableState()
     };
 
     //Game Manager
@@ -124,11 +114,6 @@ public class Player : Entity
             state.Start(this);
         }
 
-        foreach (var state in _infiniteStates)
-        {
-            state.Start(this);
-        }
-
         ChangeState(GetPossibleState());
 
         _fart.OnFartEvent.AddListener((fartCdw) =>
@@ -140,11 +125,6 @@ public class Player : Entity
     private void FixedUpdate()
     {
         _currentState.Update();
-
-        foreach (var state in _infiniteStates)
-        {
-            state.Update();
-        }
     }
 
     private void OnDestroy()
@@ -153,6 +133,7 @@ public class Player : Entity
     }
 
     #region INPUTS
+
     public void OnDownInput(InputAction.CallbackContext context)
     {
         switch (context.phase)
@@ -243,6 +224,7 @@ public class Player : Entity
                 break;
         }
     }
+
     #endregion
 
     public void ChangeState(FiniteState state)
@@ -299,22 +281,21 @@ public class Player : Entity
         StartCoroutine(DeactivateColliderFor(_cdwOneWayPlatform));
     }
 
-    public IEnumerator DeactivateColliderFor(float seconds)
+    private IEnumerator DeactivateColliderFor(float seconds)
     {
         _boxCollider.enabled = false;
         yield return new WaitForSeconds(seconds);
         _boxCollider.enabled = true;
     }
 
-    public FiniteState GetPossibleState()
+    private FiniteState GetPossibleState()
     {
         return _finiteStates.Where(e => e.ImFistState()).Select(e => e.State).FirstOrDefault();
     }
 
-    public bool CheckIfCanPoop()
+    private bool CheckIfCanPoop()
     {
         if (!_poopModel.CanPoop) return false;
-        if (!_damageableModel.CanAtk) return false;
 
         return true;
     }

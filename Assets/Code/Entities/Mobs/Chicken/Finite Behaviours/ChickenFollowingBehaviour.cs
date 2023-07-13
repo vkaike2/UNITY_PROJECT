@@ -25,7 +25,7 @@ public class ChickenFollowingBehaviour : ChickenFiniteBaseBehaviour
     private bool _isDownPlatform = false;
 
     //Constants
-    private readonly float DISTANCE_TO_STOP_FOLLOW = 1F;
+    private readonly float DISTANCE_TO_STOP_FOLLOW = 2F;
     private readonly float DEACTIVATE_COLLIDER_DOWN_PLATFORM = 0.5F;
     private readonly Vector2 DEFAULT_JUMP_VELOCITY = new Vector2(5, 15);
 

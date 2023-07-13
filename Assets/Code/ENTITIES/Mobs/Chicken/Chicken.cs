@@ -38,20 +38,19 @@ public class Chicken : Enemy
     private ChickenAtkWormBehaviourModel _atkWormModel;
     [SerializeField]
     private ChickenAtkPlayerBehaviourModel _atkPlayerModel;
-    [SerializeField]
-    private ChickenDamageableBehaviourModel _damageableModel;
     
     public ChickenAnimatorModel Animator => _chickenAnimator;
     public ChickenPatrolBehaviourModel PatrolModel => _patrolModel;
     public ChickenFollowingBehaviourModel FollowingPlayerModel => _followingPlayerModel;
     public ChickenAtkWormBehaviourModel AtkWormModel => _atkWormModel;
     public ChickenAtkPlayerBehaviourModel AtkPlayerModel => _atkPlayerModel;
-    public ChickenDamageableBehaviourModel DamageableModel => _damageableModel;
     public PlayerPathfinding PlayerPathfinding => _playerPathfinding;
     public WormPathfinding WormPathfinding => _wormPathfinding;
     public BoxCollider2D BoxCollider2D => _boxCollider;
     public int CurrentTier { get; private set; }
     public Behaviour? CurrentBehaviour => ((ChickenFiniteBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
+
+    protected override List<EnemyFiniteBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList();
 
     private BoxCollider2D _boxCollider;
 
@@ -67,11 +66,6 @@ public class Chicken : Enemy
         new ChickenDieBehaviour()
     };
 
-    //Infinite Behaviours
-    private readonly List<ChickenInfiniteBaseBehaviour> _infiniteBaseBehaviours = new List<ChickenInfiniteBaseBehaviour>()
-    {
-        new ChickenDamageableBehaviour()
-    };
 
     private void OnDrawGizmos()
     {
@@ -81,22 +75,11 @@ public class Chicken : Enemy
         _followingPlayerModel.GizmosTest();
     }
 
-    private void Awake()
+    protected override void AfterAwake()
     {
-        base.Awake();
-
         _boxCollider = GetComponent<BoxCollider2D>();
-
         _behaviourDebug = Behaviour.Born;
-
-        base.SetFiniteBaseBehaviours(_finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList());
-        base.SetInfiniteBaseBehaviours(_infiniteBaseBehaviours.Select(e => (EnemyInfiniteBaseBehaviours)e).ToList());
-    }
-
-    private void Start()
-    {
         InitializePathfinding();
-        base.Start();
     }
 
     #region CALLED BY ANIMATOR EVENTS

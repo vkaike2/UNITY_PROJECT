@@ -20,8 +20,7 @@ public class ChickenAtkPlayerBehaviour : ChickenFiniteBaseBehaviour
 
         _atkPlayerModel = _chicken.AtkPlayerModel;
 
-        _atkPlayerModel.AtkHitbox.OnHitboxTriggerEnter.AddListener(OnHitboxEnter);
-        _atkPlayerModel.AtkHitbox.gameObject.SetActive(false);
+        _atkPlayerModel.AtkHitbox.Collider.enabled = false;
         _player = _chicken.GameManager.Player;
 
         ResetInternalActions();
@@ -44,12 +43,12 @@ public class ChickenAtkPlayerBehaviour : ChickenFiniteBaseBehaviour
 
     private void InteractWithPlayer()
     {
-        _atkPlayerModel.AtkHitbox.gameObject.SetActive(true);       
+        _atkPlayerModel.AtkHitbox.Collider.enabled = true;
     }
 
     private void EndAtkAnimator()
     {
-        _atkPlayerModel.AtkHitbox.gameObject.SetActive(false);
+        _atkPlayerModel.AtkHitbox.Collider.enabled = false;
 
         GoToPatrolBehaviour();
     }
@@ -59,13 +58,12 @@ public class ChickenAtkPlayerBehaviour : ChickenFiniteBaseBehaviour
         _chicken.ChangeBehaviour(Chicken.Behaviour.Patrol);
     }
 
-    private void OnHitboxEnter(Hitbox targetHitbox)
-    {
-        //if (_porcupine.CurrentBehaviour == Porcupine.Behaviour.Die) return;
-        if (targetHitbox == null) return;
-        if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
+    //private void OnHitboxEnter(Hitbox targetHitbox)
+    //{
+    //    if (targetHitbox == null) return;
+    //    if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_chicken.Status.AtkDamage.Get(), _atkPlayerModel.AtkHitbox.GetInstanceID(), _chicken.transform.position);
-    }
+    //    targetHitbox.OnReceivingDamage.Invoke(_chicken.Status.AtkDamage.Get(), _atkPlayerModel.AtkHitbox.GetInstanceID(), _chicken.transform.position);
+    //}
 
 }

@@ -17,19 +17,16 @@ public class Worm : Enemy
     private WormPatrolBehaviourModel _patrolModel;
     [Space]
     [SerializeField]
-    private WormDamageableBehavourModel _damageableModel;
-    [Space]
-    [SerializeField]
     private WormRebornBehaviourModel _rebornModel;
 
     public WormAnimatorModel Animator => _wormAnimator;
     public WormPatrolBehaviourModel PatrolModel => _patrolModel;
-    public WormDamageableBehavourModel DamageableModel => _damageableModel;
     public WormRebornBehaviourModel RebornModel => _rebornModel;
     public Behaviour? CurrentBehaviour => ((WormFiniteBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
     public Pathfinding Pathfinding => _pathfinding;
     public bool IsBeingTargeted { get; set; }
 
+    protected override List<EnemyFiniteBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList();
 
     private Pathfinding _pathfinding;
 
@@ -42,36 +39,21 @@ public class Worm : Enemy
         new WormRebornBehaviour()
     };
 
-    //Infinite Behaviours
-    private readonly List<WormInifiniteBaseBehaviour> _infiniteBaseBehaviours = new List<WormInifiniteBaseBehaviour>()
-    {
-        new WormDamageableBehaviour()
-    };
-
     private void OnDrawGizmos()
     {
         _patrolModel.OnDrawGizmos();
     }
 
-    private void Awake()
+    protected override void AfterAwake()
     {
-        base.Awake();
-
         _pathfinding = GetComponent<Pathfinding>();
-
         _behaviourDebug = Behaviour.Born;
-        base.SetFiniteBaseBehaviours(_finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList());
-        base.SetInfiniteBaseBehaviours(_infiniteBaseBehaviours.Select(e => (EnemyInfiniteBaseBehaviours)e).ToList());
     }
 
-    private void Start()
+    protected override void BeforeStart()
     {
-        DamageableModel.CanReceiveDamage = true;
-
         InitializePathfinding();
         GameManager.SetWorm(this);
-
-        base.Start();
     }
 
     private void OnDestroy()
