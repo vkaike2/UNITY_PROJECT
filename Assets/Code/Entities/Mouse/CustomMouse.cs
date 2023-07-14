@@ -15,7 +15,7 @@ public class CustomMouse : MonoBehaviour
     private InventoryDraggableUI _inventoryDraggableUI;
     public bool IsDragging { get; private set; } = false;
 
-    private ItemDrop _tempItemDrop = null;
+    private MouseInteractable _mouseInteractable = null;
 
     private GameManager _gameManager;
 
@@ -95,21 +95,23 @@ public class CustomMouse : MonoBehaviour
     {
         if (context.phase != InputActionPhase.Performed) return;
 
-        ItemDrop itemUnderMouse = RaycastUtils.GetComponentsUnderMouse<ItemDrop>().FirstOrDefault();
-        if (itemUnderMouse != null)
-        {
-            TryToPickupItem(itemUnderMouse);
-            return;
-        }
-
         if (IsDragging)
         {
             StopDragItem();
+            return;
         }
-        else
+
+        MouseInteractable mouseInteractable = RaycastUtils.GetComponentsUnderMouse<MouseInteractable>()
+            .OrderBy(e => e.Priority)
+            .FirstOrDefault();
+        if (mouseInteractable != null)
         {
-            TryToDragItem();
+            mouseInteractable.InteractWith(this);
+            return;
         }
+
+
+        TryToDragItem();
     }
 
     public void OnRightMouseButton(InputAction.CallbackContext context)
@@ -117,69 +119,46 @@ public class CustomMouse : MonoBehaviour
     }
     #endregion
 
-    #region MOUSE OVER
-    private void ManageMouseOver()
-    {
-        if (IsDragging) return;
-
-        ItemDrop itemUnderMouse = RaycastUtils.GetComponentsUnderMouse<ItemDrop>().FirstOrDefault();
-
-        if (itemUnderMouse == null)
-        {
-            if (_tempItemDrop != null)
-            {
-                _tempItemDrop.ChangeAnimationOnItemOver(false);
-                _tempItemDrop = null;
-            }
-            return;
-        }
-
-        if (_tempItemDrop != null && _tempItemDrop.GetInstanceID() != itemUnderMouse.GetInstanceID())
-        {
-            _tempItemDrop.ChangeAnimationOnItemOver(false);
-        }
-
-        itemUnderMouse.ChangeAnimationOnItemOver(true);
-
-        _tempItemDrop = itemUnderMouse;
-    }
-    #endregion
-
-    private void GameObjectFollowMouse() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-    private void StartDragItem(ItemData itemData)
+    public void StartDragItem(ItemData itemData)
     {
         _inventoryDraggableUI.StartDragItem(itemData);
         IsDragging = true;
     }
 
+    private void ManageMouseOver()
+    {
+        if (IsDragging) return;
+
+        MouseInteractable mouseInteractable = RaycastUtils.GetComponentsUnderMouse<MouseInteractable>()
+            .OrderBy(e => e.Priority)
+            .FirstOrDefault();
+
+        if (mouseInteractable == null)
+        {
+            if (_mouseInteractable != null)
+            {
+                _mouseInteractable.ChangeAnimationOnItemOver(false);
+                _mouseInteractable = null;
+            }
+            return;
+        }
+
+        if (_mouseInteractable != null && _mouseInteractable.GetInstanceID() != mouseInteractable.GetInstanceID())
+        {
+            _mouseInteractable.ChangeAnimationOnItemOver(false);
+        }
+
+        mouseInteractable.ChangeAnimationOnItemOver(true);
+
+        _mouseInteractable = mouseInteractable;
+    }
+
+    private void GameObjectFollowMouse() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
     private void StopDragItem()
     {
         DragAction action = _inventoryDraggableUI.StopDragItem();
         IsDragging = action != DragAction.Stop;
-    }
-
-    private void TryToPickupItem(ItemDrop item)
-    {
-        // Add Item to your hand
-        if (_gameManager.InventoryIsOpen)
-        {
-            StartDragItem(item.ItemData);
-            Destroy(item.gameObject);
-            return;
-        }
-
-        List<Vector2> itemCoordinates = _gameManager.PlayerInventory.CheckIfCanAddItem(item.ItemData.Item.InventoryItemLayout);
-
-        if (itemCoordinates != null)
-        {
-            _gameManager.PlayerInventory.AddItem(item.ItemData, itemCoordinates);
-            Destroy(item.gameObject);
-        }
-        else
-        {
-            item.DropItem();
-        }
     }
 
     private void TryToDragItem()
@@ -195,11 +174,6 @@ public class CustomMouse : MonoBehaviour
         itemUnderMouse.RemoveFromInventory();
 
         StartDragItem(itemData);
-    }
-
-    private enum MouseButton
-    {
-        Left, Right
     }
 
     public enum DragAction

@@ -46,6 +46,7 @@ public class InventoryUI : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         UpdatePlayerInventory();
+        UpdatePlayerEquipInventory();
     }
 
     #region PUBLIC METHODS
@@ -69,7 +70,8 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerInventory() => _uiEventManager.OnInventoryChange.Invoke(GenerateInventoryData(), EventSentBy.UI);
+    public void UpdatePlayerInventory() => _uiEventManager.OnInventoryChange.Invoke(GenerateInventoryData(SlotType.Inventory, _inventoyInfo), EventSentBy.UI);
+    public void UpdatePlayerEquipInventory() => _uiEventManager.OnInventoryChange.Invoke(GenerateInventoryData(SlotType.Equip, _equipmentInfo), EventSentBy.UI);
     #endregion
 
     private void SetupEvents()
@@ -93,11 +95,11 @@ public class InventoryUI : MonoBehaviour
         IsOpen = !IsOpen;
     }
 
-    private InventoryData GenerateInventoryData()
+    private InventoryData GenerateInventoryData(SlotType type, SlotInformation slotInformation)
     {
-        InventoryData data = new InventoryData(InventoryData.SlotType.Inventory);
+        InventoryData data = new InventoryData(type);
 
-        data.Slots = _inventoyInfo.Slots
+        data.Slots = slotInformation.Slots
             .Select(e => new InventoryData.Slot()
             {
                 Coordinate = e.Coordinate,
@@ -126,16 +128,33 @@ public class InventoryUI : MonoBehaviour
 
     private void UpdateInventoryFromEvent(InventoryData inventoryData)
     {
-        CleanInventory();
+        CleanInventory(SlotType.Inventory, _equipmentInfo);
+        UpdateGeneralInventoryEvent(inventoryData, _inventoyInfo);
+    }
+
+    private void UpdateEquipFromEvent(InventoryData inventoryData)
+    {
+        CleanInventory(SlotType.Equip, _equipmentInfo);
+        UpdateGeneralInventoryEvent(inventoryData, _equipmentInfo);
+    }
+
+    private void UpdateGeneralInventoryEvent(InventoryData inventoryData, SlotInformation slotInformation)
+    {
+
         foreach (ItemData item in inventoryData.Itens)
         {
             List<Vector2> coordinatesUnderItem = inventoryData.Slots.Where(e => e.ItemId == item.Id)
                 .Select(e => e.Coordinate)
                 .ToList();
 
-            List<InventorySlotUI> slotsUnderItem = _inventoyInfo.Slots
+            List<InventorySlotUI> slotsUnderItem = slotInformation.Slots
                 .Where(e => coordinatesUnderItem.Contains(e.Coordinate))
                 .ToList();
+
+            if (slotsUnderItem.Count == 0)
+            {
+                continue;
+            }
 
             List<Vector2> slotPositions = slotsUnderItem
                 .Select(e => (Vector2)e.transform.position)
@@ -151,11 +170,6 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private void UpdateEquipFromEvent(InventoryData equipData)
-    {
-
-    }
-
     private void InternalAddItem(List<InventorySlotUI> slotsUnderItem, InventoryItemUI itemUI, bool updatePlayer = true)
     {
         foreach (InventorySlotUI slot in slotsUnderItem)
@@ -166,22 +180,25 @@ public class InventoryUI : MonoBehaviour
         _itens.Add(itemUI);
     }
 
-    private void CleanInventory()
+    private void CleanInventory(SlotType slotType, SlotInformation slotInformation)
     {
-        foreach (InventoryItemUI item in _itens)
+        List<InventoryItemUI> specificItems = _itens.Where(e => e.SlotType == slotType).ToList();
+
+        _itens.RemoveAll(e => specificItems.Select(i => i.ItemData.Id).ToList().Contains(e.ItemData.Id));
+
+        foreach (InventoryItemUI item in specificItems)
         {
             Destroy(item.gameObject);
         }
-        _itens.Clear();
+        //_itens.Clear();
 
-        foreach (InventorySlotUI slot in _inventoyInfo.Slots)
+        foreach (InventorySlotUI slot in slotInformation.Slots.Where(e => e.Type == slotType))
         {
             if (!slot.HasItem) continue;
 
             slot.RemoveItem(false);
         }
     }
-
 
     private enum MyAnimations
     {

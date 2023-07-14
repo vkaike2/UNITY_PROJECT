@@ -15,7 +15,10 @@ public class InventorySlotUI : MonoBehaviour
     [Header("CONFIGURATIONS")]
     [SerializeField]
     private bool _isFirst;
+    [SerializeField]
+    private SlotType _type;
 
+    public SlotType Type => _type;
     public Vector2 Coordinate => _coordinate;
     public bool IsFirst => _isFirst;
     public bool HasItem { get; private set; }
@@ -32,10 +35,6 @@ public class InventorySlotUI : MonoBehaviour
         _inventoryUI = GetComponentInParent<InventoryUI>();
         _animator = GetComponent<Animator>();
         HasItem = false;
-    }
-
-    private void Start()
-    {
     }
 
     private void FixedUpdate()
@@ -55,7 +54,19 @@ public class InventorySlotUI : MonoBehaviour
 
         if (_executeSyncronousWithEvent.Count == 0)
         {
-            _inventoryUI.UpdatePlayerInventory();
+            switch (_type)
+            {
+                case SlotType.Inventory:
+                    _inventoryUI.UpdatePlayerInventory();
+                    break;
+                case SlotType.Equip:
+                    _inventoryUI.UpdatePlayerEquipInventory();
+                    break;
+                default:
+                    break;
+            }
+
+            ;
         }
     }
 

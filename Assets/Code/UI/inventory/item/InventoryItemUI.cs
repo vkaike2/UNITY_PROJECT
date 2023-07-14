@@ -9,6 +9,7 @@ public class InventoryItemUI : MonoBehaviour
     public bool IsBeingDragged { get; set; }
 
     public ItemData ItemData { get; set; }
+    public SlotType SlotType { get; private set; }
 
     private List<InventoryItemSlotUI> _slots;
     private List<InventorySlotUI> _tempInventorySlots = new List<InventorySlotUI>();
@@ -56,6 +57,8 @@ public class InventoryItemUI : MonoBehaviour
     {
         List<InventorySlotUI> inventorySlotsUnderItem = GetEveryInventorySlotUnderItem();
         List<Vector2> everySlotUnderItemPostion = inventorySlotsUnderItem.Select(e => (Vector2)e.transform.position).ToList();
+
+        SlotType = inventorySlotsUnderItem.FirstOrDefault().Type;
 
         this.transform.position = everySlotUnderItemPostion.CalculateMiddlePosition();
         this.transform.SetParent(itemParent);

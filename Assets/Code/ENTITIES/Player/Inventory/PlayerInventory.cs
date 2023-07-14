@@ -147,7 +147,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (sentBy == EventSentBy.Player) return;
 
-        if (inventoryData.Type == InventoryData.SlotType.Inventory)
+        if (inventoryData.Type == SlotType.Inventory)
         {
             UpdateInventoryFromEvent(inventoryData);
         }
@@ -164,10 +164,6 @@ public class PlayerInventory : MonoBehaviour
 
     private void UpdateEquipFromEvent(InventoryData equipData)
     {
-        if (_inventoryData == null)
-        {
-            _equipData = equipData;
-            return;
-        }
+        _equipData = equipData;
     }
 }

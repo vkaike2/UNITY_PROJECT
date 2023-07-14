@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cb1ca3eaf5a73334f963e70956b53520
+guid: 544e74d402b30904e8099285d8612a38
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,43 +117,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: background_bar
+      name: Chest_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 17
-        width: 334
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 4, y: 4, z: 4, w: 4}
+        x: 0
+        y: 0
+        width: 26
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36199aa6b4bb6b94880a4dd5a3061815
-      internalID: 880798206
+      spriteID: 0b880b11cbda5ba49833d31369919acc
+      internalID: 1447161159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_bar
+      name: Chest_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 330
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 2, y: 3, z: 2, w: 2}
+        x: 26
+        y: 0
+        width: 26
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c3478b324ef77645ae935ccfdc5be09
-      internalID: 577729132
+      spriteID: 8519f19a1aac20f49933deca3e5b6ff6
+      internalID: 968564367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chest_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0
+        width: 26
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a3994b8378a434aadcbddb8d4aeca7
+      internalID: -273865606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chest_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 26
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c7988f13deba304da1fa7c6fba2b307
+      internalID: 674279882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chest_4
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0
+        width: 26
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83cefdfb54467b24b8cf6f365683c1ea
+      internalID: 72407087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chest_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 26
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d15612e9101644dba1860580803846
+      internalID: 27233628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chest_6
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 26
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d0086940f5b67a46b2b4217fac14d90
+      internalID: 593571963
       vertices: []
       indices: 
       edges: []
@@ -169,8 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      progress_bar: 577729132
-      background_bar: 880798206
+      Chest_3: 674279882
+      Chest_0: 1447161159
+      Chest_6: 593571963
+      Chest_5: 27233628
+      Chest_2: -273865606
+      Chest_4: 72407087
+      Chest_1: 968564367
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

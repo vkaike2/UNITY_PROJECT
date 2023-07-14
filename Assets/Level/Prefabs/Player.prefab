@@ -62,7 +62,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1569341936492780419}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1569341936288374800
 GameObject:
@@ -95,7 +95,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1569341936492780419}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1569341936288374813
 AudioSource:
@@ -251,7 +251,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1569341936492780419}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1569341936452759849
 SpriteRenderer:
@@ -342,10 +342,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1569341937118538250}
   - {fileID: 1569341936288374815}
   - {fileID: 1569341936082538920}
   - {fileID: 1569341936452759848}
-  - {fileID: 1569341937118538250}
   - {fileID: 1569341935981043649}
   - {fileID: 1569341936953682308}
   - {fileID: 6918133807995317418}
@@ -528,14 +528,6 @@ MonoBehaviour:
     _velocityTimer: 1
     _cdwToPoop: 0.5
     _gravityWhilePooping: 0.1
-  _damageableModel:
-    _spriteRenderer: {fileID: 1569341937639352535}
-    _fartParticleSystem: {fileID: 1569341937181109250}
-    _initalHealth: 10
-    _fartDamage: 0.2
-    _poopDamage: 2.5
-    _knockBackForce: 700
-    _cdwToAtkAfterDamage: 0.5
 --- !u!114 &3800125060539463934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5559,7 +5551,7 @@ Transform:
   m_Children:
   - {fileID: 1569341937639352534}
   m_Father: {fileID: 1569341936492780419}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1569341937181109253
 GameObject:

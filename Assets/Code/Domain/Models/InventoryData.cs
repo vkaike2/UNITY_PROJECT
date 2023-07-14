@@ -14,12 +14,6 @@ public class InventoryData
     public List<Slot> Slots { get; set; }
     public List<ItemData> Itens { get; set; }
 
-    public enum SlotType
-    {
-        Inventory,
-        Equip
-    }
-
     public class Slot
     {
         public Vector2 Coordinate { get; set; }

@@ -5013,6 +5013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc200ba80222dd4ea0655d09bada89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInteractableRange: 5
   _animator: {fileID: 5435193873973497700}
   _spawnSpeed:
     _vertical:

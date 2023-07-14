@@ -11,9 +11,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : Entity
 {
-    [Header("DEBUG")] [SerializeField] private FiniteState _stateDebug;
+    [Header("DEBUG")] 
+    [SerializeField] 
+    private FiniteState _stateDebug;
 
-    [Space(5)] [Header("COMPONENTS")] [SerializeField]
+    [Space(5)] 
+    [Header("COMPONENTS")] 
+    [SerializeField]
     private Hitbox _hitbox;
 
     [SerializeField] private Transform _rotationalTransform;
@@ -252,22 +256,7 @@ public class Player : Entity
         Collider2D col = _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer);
         return col != null;
     }
-
-    public (Vector2 position, Vector2 direction, Quaternion rotation) GetMouseInformationRelatedToPlayer()
-    {
-        Vector2 mousePosition = GetMousePosition();
-
-        float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
-        Quaternion mouseRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
-        return (mousePosition, GetMouseDirectionRelatedToPlayer(), mouseRotation);
-    }
-
-    public Vector2 GetMouseDirectionRelatedToPlayer()
-    {
-        return GetMousePosition().normalized;
-    }
-
+    
     public OneWayPlatform IsOverPlatform()
     {
         Collider2D col = _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer);
@@ -298,15 +287,6 @@ public class Player : Entity
         if (!_poopModel.CanPoop) return false;
 
         return true;
-    }
-
-    private Vector2 GetMousePosition()
-    {
-        Vector2 mousePosition = Input.mousePosition;
-        Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
-        mousePosition.x -= objectPos.x;
-        mousePosition.y -= objectPos.y;
-        return mousePosition;
     }
 
     private void ClearFiniteInputActions()

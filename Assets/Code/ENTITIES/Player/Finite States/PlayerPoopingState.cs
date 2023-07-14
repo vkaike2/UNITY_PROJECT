@@ -22,7 +22,7 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 
         StopPlayer();
 
-        Vector2 mouseDirection = _player.GetMouseDirectionRelatedToPlayer();
+        Vector2 mouseDirection = GetMouseDirectionRelatedToPlayer();
 
         if (CheckIfNeedToFlipPlayer(mouseDirection))
         {
@@ -89,7 +89,7 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 
     private void OnPoopInputCanceled()
     {
-        TrhowPoop();
+        ThrowPoop();
 
         _player.CanMove = true;
 
@@ -141,9 +141,9 @@ public class PlayerPoopingState : PlayerFiniteBaseState
         _player.RotationalTransform.localScale = new Vector3(-_player.RotationalTransform.localScale.x, 1, 1);
     }
 
-    private void TrhowPoop()
+    private void ThrowPoop()
     {
-        PlayPoopSoundEfect();
+        PlayPoopSoundEffect();
 
         for (int i = 0; i < _poopModel.NumberOfDots; i++)
         {
@@ -168,7 +168,7 @@ public class PlayerPoopingState : PlayerFiniteBaseState
 
     private Vector2 CalculateVelocityDirection()
     {
-        Vector2 mouseDirection = _player.GetMouseDirectionRelatedToPlayer();
+        Vector2 mouseDirection = GetMouseDirectionRelatedToPlayer();
         float currentVelocity = _poopModel.MaximumVelocity * _velocityMultiplyer;
         return currentVelocity * mouseDirection;
     }
@@ -178,7 +178,16 @@ public class PlayerPoopingState : PlayerFiniteBaseState
         return (Vector2)_poopModel.SpawnPoint.position + (CalculateVelocityDirection() * time) + (time * time) * 0.5f * Physics2D.gravity;
     }
 
-    IEnumerator CalculatePoopVelocity()
+    private Vector2 GetMouseDirectionRelatedToPlayer()
+    {
+        Vector2 mousePosition = Input.mousePosition;
+        Vector3 objectPos = Camera.main.WorldToScreenPoint(_player.transform.position);
+        mousePosition.x -= objectPos.x;
+        mousePosition.y -= objectPos.y;
+        return mousePosition.normalized;
+    }
+
+    private IEnumerator CalculatePoopVelocity()
     {
         float timer = 0;
         _velocityMultiplyer = 0;
@@ -192,7 +201,7 @@ public class PlayerPoopingState : PlayerFiniteBaseState
         _velocityMultiplyer = 1;
     }
 
-    IEnumerator WaitToPoopAgain()
+    private IEnumerator WaitToPoopAgain()
     {
         _poopModel.CanPoop = false;
         _poopModel.CdwProgressBar.OnSetBehaviour.Invoke(_poopModel.CdwToPoop, ProgressBarUI.Behaviour.ProgressBar_Hide);
@@ -202,7 +211,7 @@ public class PlayerPoopingState : PlayerFiniteBaseState
         _poopModel.CanPoop = true;
     }
 
-    private void PlayPoopSoundEfect()
+    private void PlayPoopSoundEffect()
     {
         if (_player.AudioController == null) return;
         _player.AudioController.PlayClip(AudioController.ClipName.Player_Poop);

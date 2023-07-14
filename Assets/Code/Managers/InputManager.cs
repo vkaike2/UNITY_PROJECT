@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour
             case SendMouseTo.Player:
                 _gameManager.Player.OnLeftMouseButton(context);
                 break;
-            case SendMouseTo.CustomMouse: 
+            case SendMouseTo.CustomMouse:
                 _customMouse.OnLeftMouseButton(context);
                 break;
         }
@@ -62,7 +62,7 @@ public class InputManager : MonoBehaviour
 
     public void OnPauseInput(InputAction.CallbackContext context)
     {
-        _gameManager.OnPauseGameInput(context);
+        _gameManager.PlayerInventory.OnOpenInventoryInput(context);
     }
 
     private SendMouseTo ValidateMouseInput(MouseButton button)
@@ -74,7 +74,7 @@ public class InputManager : MonoBehaviour
 
         if (button == MouseButton.Left)
         {
-            if (RaycastUtils.GetComponentsUnderMouse<ItemDrop>().FirstOrDefault() != null) return SendMouseTo.CustomMouse;
+            if (RaycastUtils.GetComponentsUnderMouse<MouseInteractable>().FirstOrDefault() != null) return SendMouseTo.CustomMouse;
         }
 
         return SendMouseTo.Player;
