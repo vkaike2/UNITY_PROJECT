@@ -21,7 +21,10 @@ public partial class Rat : Enemy
     [field: SerializeField]
     public RatFollowingModel FollowingModel { get; private set; }
 
+    public Behaviour? CurrentBehaviour => ((RatBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
+
     protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();
+
 
     private List<RatBaseBehaviour> _finiteBaseBehaviours = new List<RatBaseBehaviour>()
     {

@@ -9,6 +9,9 @@ public class EnemyFollowModel : EnemyFollowEventsModel
     [field: Header("CONFIGURATIONS")]
     [field: SerializeField]
     public float CdwBeforeJump { get; private set; } = 0.3f;
+    [field: SerializeField]
+    public float DistanceToStopFollow { get; private set; } = 2f;
+
 
     [field: Header("LAYERS")]
     [field: Space]

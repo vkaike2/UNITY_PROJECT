@@ -20,7 +20,6 @@ public partial class EnemyFollowingBehaviour
         private bool _isDownPlatform = false;
 
         //Constants
-        private readonly float DISTANCE_TO_STOP_FOLLOW = 2F;
         private readonly float DEACTIVATE_COLLIDER_DOWN_PLATFORM = 0.5F;
         private readonly Vector2 DEFAULT_JUMP_VELOCITY = new Vector2(5, 15);
 
@@ -66,7 +65,7 @@ public partial class EnemyFollowingBehaviour
         {
             if (_parent.Pathfinding.Target == null) return false;
 
-            if (Vector2.Distance(_enemy.transform.position, _parent.Pathfinding.Target.position) > DISTANCE_TO_STOP_FOLLOW || !IsOnTheGround()) return false;
+            if (Vector2.Distance(_enemy.transform.position, _parent.Pathfinding.Target.position) > _model.DistanceToStopFollow || !IsOnTheGround()) return false;
 
             _model.OnChangeAnimation.Invoke(EnemyFollowModel.PossibleAnimations.Idle);
             _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
@@ -105,6 +104,7 @@ public partial class EnemyFollowingBehaviour
             _target.ClearBooleans();
 
             Node node = paths.FirstOrDefault();
+
             if (node == null)
             {
                 _target.TargeTransform = _parent.Pathfinding.Target.transform;

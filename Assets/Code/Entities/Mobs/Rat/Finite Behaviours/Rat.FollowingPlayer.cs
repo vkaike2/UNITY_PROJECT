@@ -61,19 +61,12 @@ public partial class Rat : Enemy
                     _rat.RatAnimator.PlayAnimation(RatAnimatorModel.AnimationName.Rat_Air);
                     break;
                 case EnemyFollowModel.PossibleAnimations.Jump:
-                    //_rat.RatAnimator.PlayAnimation(RatAnimatorModel.AnimationName.Rat_Jump);
                     break;
             }
 
         }
 
-        private void OnInteractWithTarget(Target target)
-        {
-            //if (target == null) return;
-            //if (target.TargeTransform == null) return;
-
-            //_ra.ChangeBehaviour(Behaviour.Atk_Player);
-        }
+        private void OnInteractWithTarget(Target target) { }
 
         private void OnTargetUnreachable()
         {
