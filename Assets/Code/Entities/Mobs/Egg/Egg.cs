@@ -2,31 +2,26 @@
 using System.Linq;
 using UnityEngine;
 
-public class Egg : Enemy
+public partial class Egg : Enemy
 {
-    [Header("MY CONFIGURATIONS")]
-    [SerializeField]
-    private EggAnimatorModel _eggAnimator;
-    [Space]
-    [SerializeField]
-    private EggIdleBehaviourModel _idleModel;
-    [Space]
-    [SerializeField]
-    private EggSpawningBehaviourModel _spawnableModel;
+    [field: Header("MY CONFIGURATIONS")]
+    [field: SerializeField]
+    public EggAnimatorModel EggAnimator { get; private set; }
+    [field: Space]
+    [field: SerializeField]
+    public EggSpawningModel SpawningModel { get; private set; }
+    [field: SerializeField]
+    public EggIdleModel IdleModel { get; private set; }
 
-    public EggAnimatorModel Animator => _eggAnimator;
-    public Behaviour? CurrentBehaviour => ((EggFiniteBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
-    public EggIdleBehaviourModel IdleModel => _idleModel;
-    public EggSpawningBehaviourModel SpawnableModel => _spawnableModel;
+    public Behaviour? CurrentBehaviour => ((EggBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
+    
+    protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();
 
-    protected override List<EnemyFiniteBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList();
-
-    //Finite Behaviours
-    private readonly List<EggFiniteBaseBehaviour> _finiteBaseBehaviours = new List<EggFiniteBaseBehaviour>()
+    private readonly List<EggBaseBehaviour> _finiteBaseBehaviours = new List<EggBaseBehaviour>()
     {
-        new EggIdleBehaviour(),
-        new EggSpawningBehaviour(),
-        new EggDieBehaviour()
+        new Idle(),
+        new Spawning(),
+        new Die()
     };
 
     protected override void AfterStart()
@@ -36,10 +31,7 @@ public class Egg : Enemy
 
     public void ChangeBehaviour(Behaviour behaviour)
     {
-        if (_currentFiniteBehaviour != null)
-        {
-            _currentFiniteBehaviour.OnExitBehaviour();
-        }
+        _currentFiniteBehaviour?.OnExitBehaviour();
 
         _currentFiniteBehaviour = _finiteBaseBehaviours.FirstOrDefault(e => e.Behaviour == behaviour);
 

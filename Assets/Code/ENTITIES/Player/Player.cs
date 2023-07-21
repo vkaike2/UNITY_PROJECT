@@ -11,23 +11,24 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : Entity
 {
-    [Header("DEBUG")] 
-    [SerializeField] 
+    [Header("DEBUG")]
+    [SerializeField]
     private FiniteState _stateDebug;
 
-    [Space(5)] 
-    [Header("COMPONENTS")] 
+    [Space(5)]
+    [Header("COMPONENTS")]
     [SerializeField]
     private Hitbox _hitbox;
 
     [SerializeField] private Transform _rotationalTransform;
 
     [Space(5)]
-    [Header("ATTRIBUTES")] 
-    [Tooltip("will deactivate collider for this amount of time")] [SerializeField]
+    [Header("ATTRIBUTES")]
+    [Tooltip("will deactivate collider for this amount of time")]
+    [SerializeField]
     private float _cdwOneWayPlatform = 0.5f;
 
-    [Space(5)] 
+    [Space(5)]
     [Header("CONFIGURATION")]
     [SerializeField]
     private AudioController _audioController;
@@ -58,10 +59,20 @@ public class Player : Entity
     public FiniteState CurrentState => _currentState.State;
     public UIEventManager UiEventManager => _uiEventManager;
     public PlayerInventory PlayerInventory { get; private set; }
+    public InputModel<Vector2> MoveInput { get; private set; }
+    public InputModel<bool> JumpInput { get; private set; }
+    public InputModel<bool> FartInput { get; private set; }
+    public InputModel<bool> DownPlatformInput { get; private set; }
+    public InputModel<bool> PoopInput { get; private set; }
 
     private BoxCollider2D _boxCollider;
     private PlayerFiniteBaseState _currentState;
     private Fart _fart;
+    private bool _isFrozen;
+    private Rigidbody2D _rigidbody2D;
+    //Game Manager
+    private GameManager _gameManager;
+    private UIEventManager _uiEventManager;
 
     private readonly List<PlayerFiniteBaseState> _finiteStates = new()
     {
@@ -72,15 +83,6 @@ public class Player : Entity
         new PlayerPoopingState()
     };
 
-    //Game Manager
-    private GameManager _gameManager;
-    private UIEventManager _uiEventManager;
-
-    public InputModel<Vector2> MoveInput { get; private set; }
-    public InputModel<bool> JumpInput { get; private set; }
-    public InputModel<bool> FartInput { get; private set; }
-    public InputModel<bool> DownPlatformInput { get; private set; }
-    public InputModel<bool> PoopInput { get; private set; }
 
     public override bool CanMove { get; set; }
 
@@ -92,6 +94,7 @@ public class Player : Entity
 
     private void Awake()
     {
+
         MoveInput = new InputModel<Vector2>();
         JumpInput = new InputModel<bool>();
         FartInput = new InputModel<bool>();
@@ -101,9 +104,9 @@ public class Player : Entity
 
         CanMove = true;
 
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         PlayerInventory = GetComponent<PlayerInventory>();
-
         _gameManager = GameObject.FindObjectOfType<GameManager>();
         _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
         _gameManager.SetPlayer(this);
@@ -140,6 +143,8 @@ public class Player : Entity
 
     public void OnDownInput(InputAction.CallbackContext context)
     {
+        if (_isFrozen) return;
+
         switch (context.phase)
         {
             case InputActionPhase.Started:
@@ -158,6 +163,8 @@ public class Player : Entity
 
     public void OnRightMouseButton(InputAction.CallbackContext context)
     {
+        if (_isFrozen) return;
+
         switch (context.phase)
         {
             case InputActionPhase.Started:
@@ -176,6 +183,8 @@ public class Player : Entity
 
     public void OnLeftMouseButton(InputAction.CallbackContext context)
     {
+        if (_isFrozen) return;
+
         switch (context.phase)
         {
             case InputActionPhase.Started:
@@ -195,6 +204,8 @@ public class Player : Entity
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
+        if (_isFrozen) return;
+
         MoveInput.Value = context.ReadValue<Vector2>();
 
         switch (context.phase)
@@ -256,7 +267,7 @@ public class Player : Entity
         Collider2D col = _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer);
         return col != null;
     }
-    
+
     public OneWayPlatform IsOverPlatform()
     {
         Collider2D col = _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer);
@@ -268,6 +279,20 @@ public class Player : Entity
     {
         if (!_boxCollider.enabled) return;
         StartCoroutine(DeactivateColliderFor(_cdwOneWayPlatform));
+    }
+
+    public void FreezePlayer(bool freeze)
+    {
+        _isFrozen = freeze;
+
+        if (freeze)
+        {
+            _rigidbody2D.bodyType = RigidbodyType2D.Static;
+        }
+        else
+        {
+            _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        }
     }
 
     private IEnumerator DeactivateColliderFor(float seconds)

@@ -21,8 +21,8 @@ public abstract class Enemy : MonoBehaviour
     public bool CanMove { get; set; }
     public EnemyStatus Status => _status;
 
-    protected abstract List<EnemyFiniteBaseBehaviour> FiniteBaseBehaviours { get; }
-    protected EnemyFiniteBaseBehaviour _currentFiniteBehaviour;
+    protected abstract List<EnemyBaseBehaviour> FiniteBaseBehaviours { get; }
+    protected EnemyBaseBehaviour _currentFiniteBehaviour;
     protected EnemyStatus _status;
 
     private void Awake()

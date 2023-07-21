@@ -3,44 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Porcupine : Enemy
+public partial class Porcupine : Enemy
 {
     [Header("DEBUG")]
     [SerializeField]
     private Behaviour _behaviourDebug;
 
-    [Header("MY COMPONENTS")]
-    [SerializeField]
-    private PorcupineAnimatorEvents _animatorEvents;
+    [field: Header("MY COMPONENTS")]
+    [field: SerializeField]
+    public PorcupineAnimatorEvents AnimatorEvents { get; private set; }
 
-    [Header("MY CONFIGURATIONS")]
-    [SerializeField]
-    private PorcupineAnimatorModel _porcupineAnimator;
-    [Space]
-    [SerializeField]
-    private PorcupinePatrolBehaviourModel _patrolModel;
-    [SerializeField]
-    private PorcupineAtkBehaviourModel _atkModel;
+    [field: Header("MY CONFIGURATIONS")]
+    [field: SerializeField]
+    public PorcupineAnimatorModel PorculineAnimator { get; private set; }
+    [field: Space]
+    [field: SerializeField]
+    public PorcupinePatrolModel PatrolModel { get; private set; }
+    [field: SerializeField]
+    public PorcupineAtkModel AtkModel { get; private set; }
 
-    public PorcupineAnimatorEvents AnimatorEvents => _animatorEvents;
-    public PorcupineAnimatorModel Animator => _porcupineAnimator;
-    public Behaviour? CurrentBehaviour => ((PorcupineFiniteBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
-    public PorcupinePatrolBehaviourModel PatrolModel => _patrolModel;
-    public PorcupineAtkBehaviourModel AtkModel => _atkModel;
+    public Behaviour? CurrentBehaviour => ((PorcupineBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
 
-    protected override List<EnemyFiniteBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList();
+    protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();
 
     //Finite Behaviours
-    private readonly List<PorcupineFiniteBaseBehaviour> _finiteBaseBehaviours = new List<PorcupineFiniteBaseBehaviour>()
+    private readonly List<PorcupineBaseBehaviour> _finiteBaseBehaviours = new List<PorcupineBaseBehaviour>()
     {
-        new PorcupinePatrolBehaviour(),
-        new PorcupineAtkBehaviour(),
-        new PorcupineDieBehaviour()
+        new Patrol(),
+        new Atk(),
+        new Die()
     };
 
     private void OnDrawGizmos()
     {
-        _patrolModel.OnDrawGizmos();
+        PatrolModel.OnDrawGizmos();
     }
 
     protected override void AfterAwake()
@@ -48,12 +44,13 @@ public class Porcupine : Enemy
         _behaviourDebug = Behaviour.Born;
     }
 
-    // called by animator events
+    #region ANIMATOR EVENTS
     public void SetInitialBehaviour()
     {
         CanMove = true;
         this.ChangeBehaviour(Behaviour.Patrol);
     }
+    #endregion
 
     public void ChangeBehaviour(Behaviour behaviour)
     {

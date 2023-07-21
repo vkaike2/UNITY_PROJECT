@@ -452,14 +452,12 @@ MonoBehaviour:
   _rotationalTransform: {fileID: 0}
   _hitbox: {fileID: 8268378247286318889}
   _spriteRenderer: {fileID: 3753992076046500268}
-  _eggAnimator:
+  <EggAnimator>k__BackingField:
     _animator: {fileID: 7259383753717973402}
-  _idleModel:
-    _cdwToSpawn: 5
-  _damageableModel:
-    _progressBarUI: {fileID: 5122824888623081196}
-  _spawnableModel:
-    _spawnedEnemy: {fileID: 6393750100075348890, guid: 77d6c24c42b842348933bb12a089a3b8, type: 3}
+  <SpawningModel>k__BackingField:
+    <SpawnedEnemy>k__BackingField: {fileID: 6393750100075348890, guid: 77d6c24c42b842348933bb12a089a3b8, type: 3}
+  <IdleModel>k__BackingField:
+    <CdwToSpawn>k__BackingField: 5
 --- !u!114 &2432335518610453165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,6 +472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth:
     _value: 2
+  _knockBackForce: 700
   Health:
     _value: 0
   ImpactDamage:
@@ -498,6 +497,7 @@ MonoBehaviour:
   _hitbox: {fileID: 8268378247286318889}
   _progressBarUI: {fileID: 5122824888623081196}
   _spriteRenderer: {fileID: 3753992076046500268}
+  _shouldApplyKnockback: 0
 --- !u!1001 &2743949490331924791
 PrefabInstance:
   m_ObjectHideFlags: 0

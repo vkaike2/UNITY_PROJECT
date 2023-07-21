@@ -3,45 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using Calcatz.MeshPathfinding;
 
-public class Worm : Enemy
+public partial class Worm : Enemy
 {
     [Header("DEBUG")]
     [SerializeField]
     private Behaviour _behaviourDebug;
 
-    [Header("MY CONFIGURATIONS")]
-    [SerializeField]
-    private WormAnimatorModel _wormAnimator;
-    [Space]
-    [SerializeField]
-    private WormPatrolBehaviourModel _patrolModel;
-    [Space]
-    [SerializeField]
-    private WormRebornBehaviourModel _rebornModel;
+    [field: Header("MY CONFIGURATIONS")]
+    [field: SerializeField]
+    public WormAnimatorModel WormAnimator { get; private set; }
+    [field: Space]
+    [field: SerializeField]
+    public WormPatrolModel PatrolModel { get; private set; }
+    [field: SerializeField]
+    public WormRebornModel RebornModel { get; private set; }
 
-    public WormAnimatorModel Animator => _wormAnimator;
-    public WormPatrolBehaviourModel PatrolModel => _patrolModel;
-    public WormRebornBehaviourModel RebornModel => _rebornModel;
-    public Behaviour? CurrentBehaviour => ((WormFiniteBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
+    public Behaviour? CurrentBehaviour => ((WormBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
     public Pathfinding Pathfinding => _pathfinding;
     public bool IsBeingTargeted { get; set; }
 
-    protected override List<EnemyFiniteBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList();
+    protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();
 
     private Pathfinding _pathfinding;
 
     //Finite Behaviours
-    private readonly List<WormFiniteBaseBehaviour> _finiteBaseBehaviours = new List<WormFiniteBaseBehaviour>()
+    private readonly List<WormBaseBehaviour> _finiteBaseBehaviours = new List<WormBaseBehaviour>()
     {
-        new WormFollowingPlayerBehaviour(),
-        new WormPatrolBehaviour(),
-        new WormDieBehaviour(),
-        new WormRebornBehaviour()
+        new FollowingPlayer(),
+        new Patrol(),
+        new Die(),
+        new Reborn()
     };
 
     private void OnDrawGizmos()
     {
-        _patrolModel.OnDrawGizmos();
+        PatrolModel.OnDrawGizmos();
     }
 
     protected override void AfterAwake()

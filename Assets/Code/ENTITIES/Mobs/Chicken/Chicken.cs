@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Chicken : Enemy
+public partial class Chicken : Enemy
 {
+    #region INSPECTOR ATTRIBUTES
     [Header("DEBUG")]
     [SerializeField]
     private Behaviour _behaviourDebug;
@@ -18,91 +19,73 @@ public class Chicken : Enemy
     [Header("MY COMPONENTS")]
     [SerializeField]
     private ChickenAnimatorEvents _animatorEvents;
-    [SerializeField]
-    private PlayerPathfinding _playerPathfinding;
-    [SerializeField]
-    private WormPathfinding _wormPathfinding;
+    [field: SerializeField]
+    public PlayerPathfinding PlayerPathfinding { get; private set; }
+    [field: SerializeField]
+    public WormPathfinding WormPathfinding { get; private set; }
 
     [Header("MY CONFIGURATIONS")]
     [SerializeField]
     private int _maxTier;
-    [SerializeField]
-    private float _jumpForce;
-    [SerializeField]
-    private ChickenAnimatorModel _chickenAnimator;
-    [SerializeField]
-    private ChickenPatrolBehaviourModel _patrolModel;
-    [SerializeField]
-    private ChickenFollowingBehaviourModel _followingPlayerModel;
-    [SerializeField]
-    private ChickenAtkWormBehaviourModel _atkWormModel;
-    [SerializeField]
-    private ChickenAtkPlayerBehaviourModel _atkPlayerModel;
-    
-    public ChickenAnimatorModel Animator => _chickenAnimator;
-    public ChickenPatrolBehaviourModel PatrolModel => _patrolModel;
-    public ChickenFollowingBehaviourModel FollowingPlayerModel => _followingPlayerModel;
-    public ChickenAtkWormBehaviourModel AtkWormModel => _atkWormModel;
-    public ChickenAtkPlayerBehaviourModel AtkPlayerModel => _atkPlayerModel;
-    public PlayerPathfinding PlayerPathfinding => _playerPathfinding;
-    public WormPathfinding WormPathfinding => _wormPathfinding;
-    public BoxCollider2D BoxCollider2D => _boxCollider;
+    [field: Space]
+    [field: SerializeField]
+    public ChickenAnimatorModel ChickenAnimator { get; private set; }
+    [field: Space]
+    [field: SerializeField]
+    public ChickenFollowingModel FollowingModel { get; private set; }
+    #endregion
+
     public int CurrentTier { get; private set; }
-    public Behaviour? CurrentBehaviour => ((ChickenFiniteBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
+    public Behaviour? CurrentBehaviour => ((ChickenBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
 
-    protected override List<EnemyFiniteBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyFiniteBaseBehaviour)e).ToList();
-
+    protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();
     private BoxCollider2D _boxCollider;
 
-
     //Finite Behaviours
-    private readonly List<ChickenFiniteBaseBehaviour> _finiteBaseBehaviours = new List<ChickenFiniteBaseBehaviour>()
+    private readonly List<ChickenBaseBehaviour> _finiteBaseBehaviours = new List<ChickenBaseBehaviour>()
     {
-        new ChickenPatrolBehaviour(),
-        new ChickenFollowingPlayerBehaviour(),
-        new ChickenFollowingWormBehaviour(),
-        new ChickenAtkWormBehaviour(),
-        new ChickenAtkPlayerBehaviour(),
-        new ChickenDieBehaviour()
+        new Patrol(),
+        new FollowingPlayer(),
+        new FollowingWorm(),
+        new AtkWorm(),
+        new AtkPlayer(),
+        new Die()
     };
-
 
     private void OnDrawGizmos()
     {
-        _patrolModel.OnDrawGizmos();
-        _followingPlayerModel.GroundCheck.DrawGizmos(Color.blue);
-        _followingPlayerModel.WallCheck.DrawGizmos(Color.red, false);
-        _followingPlayerModel.GizmosTest();
+        PatrolModel.OnDrawGizmos();
+        FollowingModel.GroundCheck.DrawGizmos(Color.blue);
+        FollowingModel.WallCheck.DrawGizmos(Color.red, false);
     }
 
     protected override void AfterAwake()
     {
-        _boxCollider = GetComponent<BoxCollider2D>();
         _behaviourDebug = Behaviour.Born;
         InitializePathfinding();
     }
 
     #region CALLED BY ANIMATOR EVENTS
-    public void SetInitialBehaviour()
+    public void ANIMATOR_SetInitialBehaviour()
     {
         CanMove = true;
         this.ChangeBehaviour(Behaviour.Patrol);
     }
 
-    public void InteractWithTarget()
+    public void ANIMATOR_InteractWithTarget()
     {
-        _atkWormModel.InteractWithWorm();
-        _atkPlayerModel.InteractWithPlayer();
+        AtkWormModel.InteractWithWorm();
+        AtkPlayerModel.InteractWithPlayer();
     }
-    public void EndMeleeAtkAnimation()
+    public void ANIMATOR_EndMeleeAtkAnimation()
     {
-        _atkWormModel.EndAtkAnimation();
-        _atkPlayerModel.EndAtkAnimation();
+        AtkWormModel.EndAtkAnimation();
+        AtkPlayerModel.EndAtkAnimation();
     }
 
-    public void ThrowingEgg()
+    public void ANIMATOR_ThrowingEgg()
     {
-        _atkWormModel.ThrowingEgg();
+        AtkWormModel.ThrowingEgg();
     }
     #endregion
 
@@ -120,10 +103,7 @@ public class Chicken : Enemy
 
     public void ChangeBehaviour(Behaviour behaviour)
     {
-        if (_currentFiniteBehaviour != null)
-        {
-            _currentFiniteBehaviour.OnExitBehaviour();
-        }
+        _currentFiniteBehaviour?.OnExitBehaviour();
 
         _behaviourDebug = behaviour;
         _currentFiniteBehaviour = _finiteBaseBehaviours.FirstOrDefault(e => e.Behaviour == behaviour);
@@ -133,10 +113,10 @@ public class Chicken : Enemy
 
     private void InitializePathfinding()
     {
-        _playerPathfinding.waypoints = GameManager.Waypoints;
-        _playerPathfinding.SetTarget(GameManager.Player.transform);
+        PlayerPathfinding.waypoints = GameManager.Waypoints;
+        PlayerPathfinding.SetTarget(GameManager.Player.transform);
 
-        _wormPathfinding.waypoints = GameManager.Waypoints;
+        WormPathfinding.waypoints = GameManager.Waypoints;
     }
 
     public enum Behaviour

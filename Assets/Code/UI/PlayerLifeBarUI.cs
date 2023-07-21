@@ -10,8 +10,6 @@ namespace Assets.Code.UI
         [Header("components")]
         [SerializeField]
         private Image _imageBar;
-        [SerializeField]
-        private GameObject _backgroundBar;
 
         private UIEventManager _uiEventManager;
 

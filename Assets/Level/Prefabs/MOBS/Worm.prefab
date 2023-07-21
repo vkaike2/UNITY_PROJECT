@@ -290,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth:
     _value: 3
+  _knockBackForce: 700
   Health:
     _value: 0
   ImpactDamage:
@@ -314,21 +315,18 @@ MonoBehaviour:
   _hitbox: {fileID: 639897441110562317}
   _spriteRenderer: {fileID: 7775297797329079548}
   _behaviourDebug: 0
-  _wormAnimator:
+  <WormAnimator>k__BackingField:
     _animator: {fileID: 7775297797329079550}
-  _patrolModel:
-    _cdwBetweenWalks: 4
-    _patrolDistance: 5
-    _collidingWithLayerMask:
+  <PatrolModel>k__BackingField:
+    <CdwBetweenWalks>k__BackingField: 2
+    <PatrolDistance>k__BackingField: 4
+    <CollidingWithLayerMask>k__BackingField:
       serializedVersion: 2
       m_Bits: 520
-    _distanceToStopPatrolling: 0.5
-    _initialRaycastPosition: {fileID: 7775297796580280215}
+    <InitialRaycastPosition>k__BackingField: {fileID: 7775297796580280215}
     _willColideWithGround: {fileID: 7775297797564265287}
-  _damageableModel:
-    _progressBarUI: {fileID: 785018022060585414}
-  _rebornModel:
-    _reborningTime: 3
+  <RebornModel>k__BackingField:
+    <ReborningTime>k__BackingField: 5
 --- !u!114 &3100037240609274201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +343,7 @@ MonoBehaviour:
   _hitbox: {fileID: 639897441110562317}
   _progressBarUI: {fileID: 785018022060585414}
   _spriteRenderer: {fileID: 7775297797329079548}
+  _shouldApplyKnockback: 0
 --- !u!114 &7331162644406685534
 MonoBehaviour:
   m_ObjectHideFlags: 0

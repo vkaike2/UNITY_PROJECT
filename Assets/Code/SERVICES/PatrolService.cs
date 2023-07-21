@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static EnemyPatrolModel;
 
 public class PatrolService
 {
@@ -174,12 +174,5 @@ public class PatrolService
         _rigidbody2D.velocity = Vector2.zero;
 
         _waitingCoroutine = _enemy.StartCoroutine(Wainting());
-    }
-
-
-    public enum PatrolDirection
-    {
-        Left,
-        Right
     }
 }

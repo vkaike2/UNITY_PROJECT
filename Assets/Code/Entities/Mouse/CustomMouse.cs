@@ -101,9 +101,8 @@ public class CustomMouse : MonoBehaviour
             return;
         }
 
-        MouseInteractable mouseInteractable = RaycastUtils.GetComponentsUnderMouse<MouseInteractable>()
-            .OrderBy(e => e.Priority)
-            .FirstOrDefault();
+        MouseInteractable mouseInteractable = GetMouseInteractableUnderMouse();
+
         if (mouseInteractable != null)
         {
             mouseInteractable.InteractWith(this);
@@ -129,9 +128,7 @@ public class CustomMouse : MonoBehaviour
     {
         if (IsDragging) return;
 
-        MouseInteractable mouseInteractable = RaycastUtils.GetComponentsUnderMouse<MouseInteractable>()
-            .OrderBy(e => e.Priority)
-            .FirstOrDefault();
+        MouseInteractable mouseInteractable = GetMouseInteractableUnderMouse();
 
         if (mouseInteractable == null)
         {
@@ -151,6 +148,13 @@ public class CustomMouse : MonoBehaviour
         mouseInteractable.ChangeAnimationOnItemOver(true);
 
         _mouseInteractable = mouseInteractable;
+    }
+
+    private MouseInteractable GetMouseInteractableUnderMouse()
+    {
+        return RaycastUtils.GetComponentsUnderMouse<MouseInteractable>(new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Parent })
+            .OrderBy(e => e.Priority)
+            .FirstOrDefault();
     }
 
     private void GameObjectFollowMouse() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);

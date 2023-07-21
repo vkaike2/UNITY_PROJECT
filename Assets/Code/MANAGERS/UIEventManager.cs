@@ -3,21 +3,23 @@ using UnityEngine.Events;
 
 public class UIEventManager : MonoBehaviour
 {
-    public OnPlayerLifeChange OnPlayerLifeChange { get; set; }
-    public UnityEvent OnToggleInventoryOpen { get; set; }
-    public OnInventoryChange OnInventoryChange { get; set; }
+    public OnPlayerProgressBar OnPlayerLifeChange { get; set; } = new OnPlayerProgressBar();    
+    public OnPlayerProgressBar OnPlayerFartProgressBar { get; set; } = new OnPlayerProgressBar();
+    public OnPlayerProgressBar OnPlayerPoopProgressBar { get; set; } = new OnPlayerProgressBar();
+    public UnityEvent OnToggleInventoryOpen { get; set; } = new UnityEvent();
+    public OnInventoryChange OnInventoryChange { get; set; } = new OnInventoryChange();
 
-    private void Awake()
-    {
-        OnPlayerLifeChange = new OnPlayerLifeChange();
-        OnToggleInventoryOpen = new UnityEvent();
-        OnInventoryChange = new OnInventoryChange();
-    }
+    //private void Awake()
+    //{
+    //    OnPlayerLifeChange = new OnPlayerProgressBar();
+    //    OnToggleInventoryOpen = new UnityEvent();
+    //    OnInventoryChange = new OnInventoryChange();
+    //}
 }
 /// <summary>
 ///     float -> hp percentage
 /// </summary>
-public class OnPlayerLifeChange : UnityEvent<float> { }
+public class OnPlayerProgressBar : UnityEvent<float> { }
 
 /// <summary>
 ///     update inventory itens 

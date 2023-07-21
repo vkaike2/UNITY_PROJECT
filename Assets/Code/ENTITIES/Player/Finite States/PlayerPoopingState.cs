@@ -51,6 +51,9 @@ public class PlayerPoopingState : PlayerFiniteBaseState
             _fullTrajectory[i].transform.parent = _poopModel.TrajectoryParent;
             _fullTrajectory[i].SetActive(false);
         }
+
+
+        _player.UiEventManager.OnPlayerPoopProgressBar.Invoke(1f);
     }
 
     public override void Update()
@@ -206,7 +209,13 @@ public class PlayerPoopingState : PlayerFiniteBaseState
         _poopModel.CanPoop = false;
         _poopModel.CdwProgressBar.OnSetBehaviour.Invoke(_poopModel.CdwToPoop, ProgressBarUI.Behaviour.ProgressBar_Hide);
 
-        yield return new WaitForSeconds(_poopModel.CdwToPoop);
+        float cdw = 0;
+        while (cdw <= _poopModel.CdwToPoop)
+        {
+            cdw += Time.deltaTime;
+            _player.UiEventManager.OnPlayerPoopProgressBar.Invoke(cdw / _poopModel.CdwToPoop);
+            yield return new WaitForFixedUpdate();
+        }
 
         _poopModel.CanPoop = true;
     }

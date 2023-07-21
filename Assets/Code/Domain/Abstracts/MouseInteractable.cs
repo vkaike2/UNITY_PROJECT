@@ -15,14 +15,15 @@ public abstract class MouseInteractable : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.FindObjectOfType<GameManager>();
+        AfterStart();
     }
 
+    protected virtual void AfterStart() { }
     public abstract void ChangeAnimationOnItemOver(bool isMouseOver);
     public abstract void InteractWith(CustomMouse mouse);
 
     protected bool PlayerIsInRange()
     {
-        //Debug.Log(Vector2.Distance(_gameManager.Player.transform.position, this.transform.position));
         return Vector2.Distance(_gameManager.Player.transform.position, this.transform.position) <= _playerInteractableRange;
     }
 }

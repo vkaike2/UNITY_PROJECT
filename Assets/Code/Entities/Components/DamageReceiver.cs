@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Build;
 using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class DamageReceiver : MonoBehaviour
 {
@@ -36,6 +33,7 @@ public abstract class DamageReceiver : MonoBehaviour
     private void Awake()
     {
         BerofeAwake();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         _status.InitializeHealth();
         AfterAwake();
     }
@@ -73,6 +71,7 @@ public abstract class DamageReceiver : MonoBehaviour
 
         ApplyKnockBackOnDamage(entityPosition);
 
+
         if (!_isPlayer)
         {
             _progressBarUI.OnSetBehaviour.Invoke(_status.Health.Get() / _status.MaxHealth.Get(), ProgressBarUI.Behaviour.LifeBar_Hide);
@@ -103,7 +102,7 @@ public abstract class DamageReceiver : MonoBehaviour
     private void ApplyKnockBackOnDamage(Vector2 damagePosition)
     {
         if (!_shouldApplyKnockback) return;
-
+        
         Vector2 direction = damagePosition.normalized;
         Vector2 knockbackForce = _status.KnockBackForce * -direction;
         _rigidbody2D.AddForce(knockbackForce);

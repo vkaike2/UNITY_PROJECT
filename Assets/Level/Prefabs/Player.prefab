@@ -497,7 +497,7 @@ MonoBehaviour:
   _stateDebug: 0
   _hitbox: {fileID: 1056524188317340118}
   _rotationalTransform: {fileID: 1569341937118538250}
-  _cdwOneWayPlatform: 0.5
+  _cdwOneWayPlatform: 0.2
   _audioController: {fileID: 1569341936288374814}
   _moveModel:
     _movementSpeed: 7

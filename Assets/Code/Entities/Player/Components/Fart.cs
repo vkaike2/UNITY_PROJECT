@@ -35,6 +35,7 @@ public class Fart : MonoBehaviour
 
     private Entity _entity;
     private Rigidbody2D _rigidbody2D;
+    private UIEventManager _uiEventManager;
     private bool _isFartOnCdw = false;
 
     private void Awake()
@@ -43,6 +44,13 @@ public class Fart : MonoBehaviour
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _entity = GetComponent<Entity>();
+    }
+
+    private void Start()
+    {
+        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
+
+        _uiEventManager.OnPlayerFartProgressBar.Invoke(1f);
     }
 
     public void DoFart()
@@ -97,7 +105,15 @@ public class Fart : MonoBehaviour
     {
         _isFartOnCdw = true;
         _progressBar.OnSetBehaviour.Invoke(_fartCdw, ProgressBarUI.Behaviour.ProgressBar_Hide);
-        yield return new WaitForSeconds(_fartCdw);
+
+        float cdw = 0;
+
+        while (cdw <= _fartCdw)
+        {
+            cdw += Time.deltaTime;
+            _uiEventManager.OnPlayerFartProgressBar.Invoke(cdw / _fartCdw);
+            yield return new WaitForFixedUpdate();
+        }
 
         _isFartOnCdw = false;
     }
@@ -128,7 +144,7 @@ public class Fart : MonoBehaviour
     {
         bool isFacingRight = _rotationalTransform.localScale.x == 1;
 
-        return (!isFacingRight && mouseDirection.x < 0) 
+        return (!isFacingRight && mouseDirection.x < 0)
             || (isFacingRight && mouseDirection.x > 0);
     }
 }

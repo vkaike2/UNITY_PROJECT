@@ -1,4 +1,5 @@
 ﻿using Calcatz.MeshPathfinding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -61,6 +62,11 @@ public class GameManager : MonoBehaviour
     public void SetInventory(InventoryUI inventoryUI)
     {
         _inventoryUI = inventoryUI;
+    }
+
+    public void SetWaypoints(Waypoints waypoints)
+    {
+        _waypoints = waypoints;
     }
     #endregion
 
@@ -132,4 +138,6 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
+
+
 }

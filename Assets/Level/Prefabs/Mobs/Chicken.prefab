@@ -249,12 +249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0209ff32db76eb4fbd9c1967ab75ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onSetInitialBehaviour:
+  <OnSetInitialBehaviour>k__BackingField:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6393750100075348890}
         m_TargetAssemblyTypeName: Chicken, Assembly-CSharp
-        m_MethodName: SetInitialBehaviour
+        m_MethodName: ANIMATOR_SetInitialBehaviour
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -264,12 +264,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _onInteractWithTarget:
+  <OnInteractWithTarget>k__BackingField:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6393750100075348890}
         m_TargetAssemblyTypeName: Chicken, Assembly-CSharp
-        m_MethodName: InteractWithTarget
+        m_MethodName: ANIMATOR_InteractWithTarget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -279,12 +279,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _onEndMeleeAtk:
+  <OnEndMeleeAtk>k__BackingField:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6393750100075348890}
         m_TargetAssemblyTypeName: Chicken, Assembly-CSharp
-        m_MethodName: EndMeleeAtkAnimation
+        m_MethodName: ANIMATOR_EndMeleeAtkAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -294,12 +294,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _onThrowingEgg:
+  <OnThrowingEgg>k__BackingField:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6393750100075348890}
         m_TargetAssemblyTypeName: Chicken, Assembly-CSharp
-        m_MethodName: ThrowingEgg
+        m_MethodName: ANIMATOR_ThrowingEgg
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -867,6 +867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth:
     _value: 3
+  _knockBackForce: 700
   Health:
     _value: 0
   ImpactDamage:
@@ -891,6 +892,7 @@ MonoBehaviour:
   _hitbox: {fileID: 4015679732452847455}
   _progressBarUI: {fileID: 5203729678275168126}
   _spriteRenderer: {fileID: 3816588840233173337}
+  _shouldApplyKnockback: 0
 --- !u!114 &3237404317773614461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,49 +927,46 @@ MonoBehaviour:
   _debugCurrentTier: 0
   _tierComponent: {fileID: 5380192308519381418}
   _animatorEvents: {fileID: 8026797471031786935}
-  _playerPathfinding: {fileID: 3672487618165663549}
-  _wormPathfinding: {fileID: 1858083217221617200}
+  <PlayerPathfinding>k__BackingField: {fileID: 3672487618165663549}
+  <WormPathfinding>k__BackingField: {fileID: 1858083217221617200}
   _maxTier: 3
-  _jumpForce: 8.5
-  _chickenAnimator:
+  <ChickenAnimator>k__BackingField:
     _animator: {fileID: 4107953225510964608}
-  _patrolModel:
-    _cdwBetweenWalks: 3.2
-    _patrolDistance: 5
-    _collidingWithLayerMask:
+  <FollowingModel>k__BackingField:
+    <CdwBeforeJump>k__BackingField: 0.3
+    <GroundLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 520
-    _distanceToStopPatrolling: 1
-    _initialRaycastPosition: {fileID: 376385950615867728}
-    _willColideWithGround: {fileID: 2672805859495751015}
-  _followingPlayerModel:
-    _cdwBeforeJump: 0.3
-    _groundLayer:
-      serializedVersion: 2
-      m_Bits: 520
-    _wallLayer:
+    <WallLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 8
-    _platformLayer:
+    <PlatformLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 512
-    _groundCheck:
-      _colliderRadius: 1.46
+    <GroundCheck>k__BackingField:
+      _colliderRadius: 0.9
       _transform: {fileID: 8182132679057442092}
-    _wallCheck:
-      _colliderRadius: 1.18
+    <WallCheck>k__BackingField:
+      _colliderRadius: 0.9
       _transform: {fileID: 314981698953767184}
+    <MainCollider>k__BackingField: {fileID: 8496846626331290896}
     pointA: {x: 0, y: 0}
     pointB: {x: 0, y: 0}
     draw: 0
-  _atkWormModel:
-    _eggVelocity: 3
-    _chickensEgg: {fileID: 5063511960284841680, guid: d46b5c2699d4e83498cdd9db916c2087, type: 3}
-    _spawnerPosition: {fileID: 3631669689392032224}
-  _atkPlayerModel:
-    _atkHitbox: {fileID: 955247016051472032}
-  _damageableModel:
-    _progressBarUI: {fileID: 5203729678275168126}
+  <AtkPlayerModel>k__BackingField:
+    <AtkHitbox>k__BackingField: {fileID: 955247016051472032}
+  <AtkWormModel>k__BackingField:
+    <EggVelocity>k__BackingField: 3
+    <ChickensEgg>k__BackingField: {fileID: 5063511960284841680, guid: d46b5c2699d4e83498cdd9db916c2087, type: 3}
+    <SpawnerPosition>k__BackingField: {fileID: 3631669689392032224}
+  <PatrolModel>k__BackingField:
+    <CdwBetweenWalks>k__BackingField: 2
+    <PatrolDistance>k__BackingField: 4
+    <CollidingWithLayerMask>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 520
+    <InitialRaycastPosition>k__BackingField: {fileID: 376385950615867728}
+    _willColideWithGround: {fileID: 2672805859495751015}
 --- !u!1 &6726879228922419854
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,10 +19,10 @@ public class RaycastUtils : MonoBehaviour
         return Physics2D.GetRayIntersectionAll(ray);
     }
 
-    public static List<T> GetComponentsUnderMouse<T>() where T : MonoBehaviour
+    public static List<T> GetComponentsUnderMouse<T>(List<Excluding> excluding = null) where T : MonoBehaviour
     {
         RaycastHit2D[] hits = ObjectsUnderMouse();
-        return GetComponentsFromRaycastHits<T>(hits);
+        return GetComponentsFromRaycastHits<T>(hits, excluding);
     }
 
     public static List<T> GetComponentsUnderPosition<T>(Vector3 position) where T : MonoBehaviour
@@ -31,17 +31,27 @@ public class RaycastUtils : MonoBehaviour
         return GetComponentsFromRaycastHits<T>(hits);
     }
 
-    private static List<T> GetComponentsFromRaycastHits<T>(RaycastHit2D[] hits) where T : MonoBehaviour
+    private static List<T> GetComponentsFromRaycastHits<T>(RaycastHit2D[] hits, List<Excluding> excluding = null) where T : MonoBehaviour
     {
-        var components = hits.Where(e => e.collider.GetComponent<T>() != null).Select(e => e.collider.GetComponent<T>()).ToList();
+        excluding ??= new List<Excluding>();
+
+        List<T> components = hits.Where(e => e.collider.GetComponent<T>() != null).Select(e => e.collider.GetComponent<T>()).ToList();
         if (components.Any()) return components;
 
-        components = hits.Where(e => e.collider.GetComponentInParent<T>() != null).Select(e => e.collider.GetComponentInParent<T>()).ToList();
-        if (components.Any()) return components;
+        if (!excluding.Contains(Excluding.Parent))
+        {
+            components = hits.Where(e => e.collider.GetComponentInParent<T>() != null).Select(e => e.collider.GetComponentInParent<T>()).ToList();
+            if (components.Any()) return components;
+        }
 
-        components = hits.Where(e => e.collider.GetComponentInChildren<T>() != null).Select(e => e.collider.GetComponentInChildren<T>()).ToList();
+        if (!excluding.Contains(Excluding.Children))
+        {
+            components = hits.Where(e => e.collider.GetComponentInChildren<T>() != null).Select(e => e.collider.GetComponentInChildren<T>()).ToList();
+            return components;
+        }
 
         return components;
+
     }
     #endregion
 

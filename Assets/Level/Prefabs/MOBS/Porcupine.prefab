@@ -778,20 +778,19 @@ MonoBehaviour:
   _hitbox: {fileID: 7667328545285336123}
   _spriteRenderer: {fileID: 7667328544943017496}
   _behaviourDebug: 0
-  _animatorEvents: {fileID: 7667328544943017499}
-  _porcupineAnimator:
+  <AnimatorEvents>k__BackingField: {fileID: 7667328544943017499}
+  <PorculineAnimator>k__BackingField:
     _animator: {fileID: 7667328544943017497}
-  _patrolModel:
-    _cdwBetweenWalks: 6
-    _patrolDistance: 6
-    _collidingWithLayerMask:
+  <PatrolModel>k__BackingField:
+    <CdwBetweenWalks>k__BackingField: 2
+    <PatrolDistance>k__BackingField: 4
+    <CollidingWithLayerMask>k__BackingField:
       serializedVersion: 2
       m_Bits: 520
-    _distanceToStopPatrolling: 0.3
-    _initialRaycastPosition: {fileID: 7667328545300512277}
+    <InitialRaycastPosition>k__BackingField: {fileID: 7667328545300512277}
     _willColideWithGround: {fileID: 7667328544511929336}
     _layerCheckCollider: {fileID: 7667328544349974805}
-  _atkModel:
+  <AtkModel>k__BackingField:
     _projectile: {fileID: 4755490447262108211, guid: c39fcd1897e281b478227768495d5532, type: 3}
     _projectileContainer: {fileID: 7667328545078909996}
     _projectileSpawnPoint: {fileID: 7667328544475392715}
@@ -800,8 +799,6 @@ MonoBehaviour:
     _projectileDuration: 1.5
     _jumpForce: 10
     _cdwBetweenAtks: 2
-  _damageableModel:
-    _progressBarUI: {fileID: 820863692838617430}
 --- !u!114 &1884100624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,6 +813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth:
     _value: 5
+  _knockBackForce: 700
   Health:
     _value: 0
   ImpactDamage:
@@ -840,6 +838,7 @@ MonoBehaviour:
   _hitbox: {fileID: 7667328545285336123}
   _progressBarUI: {fileID: 820863692838617430}
   _spriteRenderer: {fileID: 7667328544943017496}
+  _shouldApplyKnockback: 0
 --- !u!114 &8865638110758628163
 MonoBehaviour:
   m_ObjectHideFlags: 0
