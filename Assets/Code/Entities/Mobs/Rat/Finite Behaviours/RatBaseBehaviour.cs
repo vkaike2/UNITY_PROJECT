@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class RatBaseBehaviour : EnemyBaseBehaviour
 {
-   public abstract Rat.Behaviour Behaviour { get; }
+    public abstract Rat.Behaviour Behaviour { get; }
 
     protected Rat _rat;
 

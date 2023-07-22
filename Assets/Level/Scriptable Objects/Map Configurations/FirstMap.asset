@@ -16,6 +16,6 @@ MonoBehaviour:
   - name: 0 wave
     _waitToSpaw: 5
     _mobs:
-    - name: Rat
-      _enemy: {fileID: 1408707188261469836, guid: 8a923d3b52655af46aefeba1b7e88bca, type: 3}
-      _spawnPosition: 1
+    - name: Bird
+      _enemy: {fileID: 1999456161293642714, guid: 985c6e862998a04449478c376a59306d, type: 3}
+      _spawnPosition: 4

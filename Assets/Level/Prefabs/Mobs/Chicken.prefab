@@ -934,6 +934,7 @@ MonoBehaviour:
     _animator: {fileID: 4107953225510964608}
   <FollowingModel>k__BackingField:
     <CdwBeforeJump>k__BackingField: 0.3
+    <DistanceToStopFollow>k__BackingField: 2
     <GroundLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 520

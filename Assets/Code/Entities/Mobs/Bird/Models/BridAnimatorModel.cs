@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class RatAnimatorModel : EnemyAnimatorModel
+public class BridAnimatorModel : EnemyAnimatorModel
 {
     public void PlayAnimation(AnimationName animationName)
     {
@@ -21,10 +23,9 @@ public class RatAnimatorModel : EnemyAnimatorModel
 
     public enum AnimationName
     {
-        Rat_Born,
-        Rat_Idle,
-        Rat_Moving,
-        Rat_Air,
-        Rat_Die
+        Bird_Born,
+        Bird_Fly,
+        Bird_Atk,
+        Bird_Die
     }
 }

@@ -62,7 +62,8 @@ public class InputManager : MonoBehaviour
 
     public void OnPauseInput(InputAction.CallbackContext context)
     {
-        _gameManager.PlayerInventory.OnOpenInventoryInput(context);
+        _gameManager.OnPauseGameInput(context);
+        //_gameManager.PlayerInventory.OnOpenInventoryInput(context);
     }
 
     private SendMouseTo ValidateMouseInput(MouseButton button)
