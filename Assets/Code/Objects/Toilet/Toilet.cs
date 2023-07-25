@@ -15,10 +15,11 @@ public class Toilet : MouseInteractable
     [SerializeField]
     private PlayerInRangeCheck _playerInRangeCheck;
 
+    public OnToggleToiletEvent OnToggleToiletEvent { get; private set; }
 
     private const float CDW_WAIT_ANIMATION_TRANSITION = 1f;
 
-    public OnToggleToiletEvent OnToggleToiletEvent { get; private set; }
+    private MapManager _mapManager;
 
     private void Awake()
     {
@@ -28,6 +29,17 @@ public class Toilet : MouseInteractable
         {
             _animator.Play(MyAnimations.Disabled.ToString());
         }
+    }
+
+    protected override void AfterStart()
+    {
+        _mapManager = GameObject.FindObjectOfType<MapManager>();
+        _mapManager.Toilet = this;
+    }
+
+    private void OnDestroy()
+    {
+        _mapManager.Toilet = null;
     }
 
     public override void ChangeAnimationOnItemOver(bool isMouseOver)
@@ -132,6 +144,9 @@ public class Toilet : MouseInteractable
         _state = nextState;
         OnToggleToiletEvent.Invoke(nextState);
     }
+
+
+
 
     private enum MyAnimations
     {

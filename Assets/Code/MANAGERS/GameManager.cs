@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         PauseGame(_gameIsPaused);
     }
 
-    private void PauseGame(bool value)
+    public void PauseGame(bool value)
     {
         if (value)
         {

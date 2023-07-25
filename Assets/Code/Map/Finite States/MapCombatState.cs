@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapCombatState : MapFiniteStateBase
@@ -16,7 +17,7 @@ public class MapCombatState : MapFiniteStateBase
 
     public override void Start(Map map)
     {
-        _toilet = map.MapManager.Toilet;
+        _toilet = map.Toilet;
         _map = map;
         _map.OnMapIsReadyEvent.AddListener(OnMapIsReady);
         _configuration = _map.MapConfiguration;
@@ -28,7 +29,15 @@ public class MapCombatState : MapFiniteStateBase
     {
         _map.Animator.Play(Map.MyAnimations.TurningOn.ToString());
 
-        _map.StartCoroutine(SpawnWaves());
+
+        if (_configuration == null)
+        {
+            _canGoToNextStage = true;
+        }
+        else
+        {
+            _map.StartCoroutine(SpawnWaves());
+        }
     }
 
     public override void OnExitState()

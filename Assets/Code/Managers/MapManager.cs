@@ -7,20 +7,19 @@ public class MapManager : MonoBehaviour
 {
     [Header("COMPONENTS")]
     [SerializeField]
-    private Toilet _toilet;
-    [SerializeField]
     private CinemachineConfiner2D _cinemachineConfiner2D;
     [Space]
     [SerializeField]
     private Transform _mapParent;
+    [Space]
+    [SerializeField]
+    private CinemachineVirtualCamera _virutalCamera;
 
     [Header("CONFIGURATIONS")]
     [SerializeField]
-    private Map _initialMap;
-    [SerializeField]
     private Map _test;
 
-    public Toilet Toilet => _toilet;
+    public Toilet Toilet { get; set; }
 
     private GameManager _gameManager;
 
@@ -32,14 +31,12 @@ public class MapManager : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.FindObjectOfType<GameManager>();
-
-        Map initialMap = Instantiate(_initialMap);
-        initialMap.transform.SetParent(_mapParent);
     }
 
-    public void SetMapConfiner(Collider2D confiner)
+    public void SetInitialConfigurations(Collider2D mapConfiner, float cameraSize)
     {
-        _cinemachineConfiner2D.m_BoundingShape2D = confiner;
+        _cinemachineConfiner2D.m_BoundingShape2D = mapConfiner;
+        _virutalCamera.m_Lens.OrthographicSize = cameraSize;
     }
 
     public void StartNextMap(Map previousMap)

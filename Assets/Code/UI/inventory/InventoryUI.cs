@@ -85,12 +85,15 @@ public class InventoryUI : MonoBehaviour
     {
         if (IsOpen)
         {
+            _gameManager.PauseGame(false);
             _animator.Play(MyAnimations.Close.ToString());
         }
         else
         {
+            StartCoroutine(WaitThenSlow());
             _animator.Play(MyAnimations.Open.ToString());
         }
+
 
         IsOpen = !IsOpen;
     }
@@ -198,6 +201,12 @@ public class InventoryUI : MonoBehaviour
 
             slot.RemoveItem(false);
         }
+    }
+
+    private IEnumerator WaitThenSlow()
+    {
+        yield return new WaitForSeconds(0.3f);
+        _gameManager.PauseGame(true);
     }
 
     private enum MyAnimations

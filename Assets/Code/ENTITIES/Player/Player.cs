@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : Entity
 {
+
     [Header("DEBUG")]
     [SerializeField]
     private FiniteState _stateDebug;

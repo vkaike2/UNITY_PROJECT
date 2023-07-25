@@ -10,7 +10,7 @@ public class MapWaitState : MapFiniteStateBase
 
     public override void Start(Map map)
     {
-        _toilet = map.MapManager.Toilet;
+        _toilet = map.Toilet;
         _map = map;
 
         _toilet.OnToggleToiletEvent.AddListener(OnCloseToilet);

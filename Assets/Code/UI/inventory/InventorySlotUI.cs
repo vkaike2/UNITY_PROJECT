@@ -37,11 +37,10 @@ public class InventorySlotUI : MonoBehaviour
         HasItem = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         _coordinate = Coordinate;
         ExecuteSyncronousWithEvent();
-
         ExecuteSyncronous();
     }
 

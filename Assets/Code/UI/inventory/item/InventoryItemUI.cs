@@ -25,7 +25,7 @@ public class InventoryItemUI : MonoBehaviour
         _inventory = GameObject.FindObjectOfType<InventoryUI>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         ManageDrag();
     }

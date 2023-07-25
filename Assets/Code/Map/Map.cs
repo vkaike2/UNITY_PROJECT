@@ -6,37 +6,36 @@ using UnityEngine.Events;
 
 public class Map : MonoBehaviour
 {
-    [Header("COMPONENTS")]
-    [SerializeField]
-    private ScriptableMapConfiguration _mapConfiguration;
-    [Space]
+    [field: Header("- COMPONENTS")]
     [SerializeField]
     private Collider2D _cameraConfiner;
-    [Space]
-    [SerializeField]
-    private Transform _objectsParent;
-    [SerializeField]
-    private Transform _enemiesParent;
-    [Space]
-    [SerializeField]
-    private Animator _animator;
+    [field: SerializeField]
+    public Animator Animator { get; private set; }
+
+    [field: Header("parents")]
+    [field: SerializeField]
+    public Transform ObjectsPartent { get; private set; }
+    [field: SerializeField]
+    public Transform EnemiesParent { get; private set; }
+
+    [Header("pathfinding")]
     [SerializeField]
     private Waypoints _waypoints;
 
-    [Header("CONFIGURATIONS")]
+    [field: Header("- CONFIGURATIONS")]
+    [SerializeField]
+    private float _initialCameraSize;
+    [field: SerializeField]
+    public ScriptableMapConfiguration MapConfiguration { get; private set; }
     [SerializeField]
     protected FiniteState _startWithState = FiniteState.Combat;
 
-    public ScriptableMapConfiguration MapConfiguration => _mapConfiguration;
     public List<Transform> EnemySpawnPositions { get; private set; } = new List<Transform>();
-    public Transform EnemiesParent => _enemiesParent;
-    public Transform ObjectsPartent => _objectsParent;
-    public Animator Animator => _animator;
     public MapManager MapManager => _mapManager;
     public GameManager GameManager => _gameManager;
-
     public UnityEvent OnDestroyEvent { get; private set; } = new UnityEvent();
     public UnityEvent OnMapIsReadyEvent { get; private set; } = new UnityEvent();
+    public Toilet Toilet { get; private set; }
 
     private MapManager _mapManager;
     private GameManager _gameManager;
@@ -50,6 +49,8 @@ public class Map : MonoBehaviour
 
     protected void Awake()
     {
+        Toilet = ObjectsPartent.GetComponentInChildren<Toilet>();
+
         InitializeEnemySpawnPosition();
     }
 
@@ -64,12 +65,15 @@ public class Map : MonoBehaviour
             _gameManager.SetWaypoints(_waypoints);
         }
 
-        _mapManager.SetMapConfiner(_cameraConfiner);
+        _mapManager.SetInitialConfigurations(_cameraConfiner, _initialCameraSize);
 
         foreach (var finiteState in _finiteStates)
         {
             finiteState.Start(this);
         }
+
+        //TODO: check if I need to remove it
+        OnMapIsReadyEvent.Invoke();
 
         this.ChangeState(_startWithState);
     }
@@ -98,17 +102,18 @@ public class Map : MonoBehaviour
     }
 
     #region ANIMATOR EVENTS
+    // TODO: ?!?!?
     public void ANIMATOR_MapIsReady() => OnMapIsReadyEvent.Invoke();
     #endregion
 
     private void InitializeEnemySpawnPosition()
     {
-        if(_enemiesParent == null) return;
+        if(EnemiesParent == null) return;
 
-        int childCount = _enemiesParent.childCount;
+        int childCount = EnemiesParent.childCount;
         for (int i = 0; i < childCount; i++)
         {
-            EnemySpawnPositions.Add(_enemiesParent.GetChild(i));
+            EnemySpawnPositions.Add(EnemiesParent.GetChild(i));
         }
     }
 

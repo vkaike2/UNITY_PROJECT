@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coordinate: {x: 0, y: 0}
   _isFirst: 0
+  _type: 0
 --- !u!95 &9135421306141196513
 Animator:
   serializedVersion: 4
@@ -104,7 +105,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 420bed146fd3e794c9c96c81b1df4768, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

@@ -15,7 +15,4 @@ MonoBehaviour:
   _waves:
   - name: 0 wave
     _waitToSpaw: 5
-    _mobs:
-    - name: Worm
-      _enemy: {fileID: 7775297796345805180, guid: 6136919b3dbc47f468e91b5cc53d6251, type: 3}
-      _spawnPosition: 1
+    _mobs: []
