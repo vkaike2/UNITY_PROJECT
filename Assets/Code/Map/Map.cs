@@ -7,8 +7,10 @@ using UnityEngine.Events;
 public class Map : MonoBehaviour
 {
     [field: Header("- COMPONENTS")]
-    [SerializeField]
-    private Collider2D _cameraConfiner;
+    [field: SerializeField]
+    public Transform CentralPosition { get; private set; }
+    [field: SerializeField]
+    public Collider2D CameraConfiner { get; private set; }
     [field: SerializeField]
     public Animator Animator { get; private set; }
 
@@ -24,7 +26,9 @@ public class Map : MonoBehaviour
 
     [field: Header("- CONFIGURATIONS")]
     [SerializeField]
-    private float _initialCameraSize;
+    private bool _isInitialMap = false;
+    [field: SerializeField]
+    public float InitialCameraSize { get; private set; }
     [field: SerializeField]
     public ScriptableMapConfiguration MapConfiguration { get; private set; }
     [SerializeField]
@@ -39,8 +43,8 @@ public class Map : MonoBehaviour
 
     private MapManager _mapManager;
     private GameManager _gameManager;
-
     private MapFiniteStateBase _currentState;
+
     protected List<MapFiniteStateBase> _finiteStates = new List<MapFiniteStateBase>()
     {
         new MapWaitState(),
@@ -59,21 +63,21 @@ public class Map : MonoBehaviour
         _mapManager = GameObject.FindObjectOfType<MapManager>();
         _gameManager = GameObject.FindObjectOfType<GameManager>();
 
+        if (_isInitialMap)
+        {
+            _mapManager.SetInitialConfigurations(CameraConfiner, InitialCameraSize);
+        }
 
         if (_waypoints != null)
         {
             _gameManager.SetWaypoints(_waypoints);
         }
 
-        _mapManager.SetInitialConfigurations(_cameraConfiner, _initialCameraSize);
-
         foreach (var finiteState in _finiteStates)
         {
             finiteState.Start(this);
         }
 
-        //TODO: check if I need to remove it
-        OnMapIsReadyEvent.Invoke();
 
         this.ChangeState(_startWithState);
     }
@@ -92,19 +96,11 @@ public class Map : MonoBehaviour
 
     public void ChangeState(FiniteState state)
     {
-        if (_currentState != null)
-        {
-            _currentState.OnExitState();
-        }
+        _currentState?.OnExitState();
 
         _currentState = _finiteStates.First(e => e.State == state);
         _currentState.EnterState();
     }
-
-    #region ANIMATOR EVENTS
-    // TODO: ?!?!?
-    public void ANIMATOR_MapIsReady() => OnMapIsReadyEvent.Invoke();
-    #endregion
 
     private void InitializeEnemySpawnPosition()
     {

@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
         switch (ValidateMouseInput(MouseButton.Left))
         {
             case SendMouseTo.Player:
+                if (_gameManager.Player == null) return;
                 _gameManager.Player.OnLeftMouseButton(context);
                 break;
             case SendMouseTo.CustomMouse:
@@ -32,6 +33,7 @@ public class InputManager : MonoBehaviour
         switch (ValidateMouseInput(MouseButton.Left))
         {
             case SendMouseTo.Player:
+                if (_gameManager.Player == null) return;
                 _gameManager.Player.OnRightMouseButton(context);
                 break;
             case SendMouseTo.CustomMouse:
@@ -42,16 +44,22 @@ public class InputManager : MonoBehaviour
 
     public void OnDownInput(InputAction.CallbackContext context)
     {
+        if (_gameManager.Player == null) return;
+
         _gameManager.Player.OnDownInput(context);
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
+        if (_gameManager.Player == null) return;
+
         _gameManager.Player.OnMoveInput(context);
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
+        if (_gameManager.Player == null) return;
+
         _gameManager.Player.OnJumpInput(context);
     }
 
@@ -64,6 +72,14 @@ public class InputManager : MonoBehaviour
     {
         _gameManager.OnPauseGameInput(context);
         //_gameManager.PlayerInventory.OnOpenInventoryInput(context);
+    }
+
+
+    public void OnInteractEInput(InputAction.CallbackContext context)
+    {
+        if (_gameManager.Player == null) return;
+
+        _gameManager.Player.OnInteractWithToilet(context);
     }
 
     private SendMouseTo ValidateMouseInput(MouseButton button)

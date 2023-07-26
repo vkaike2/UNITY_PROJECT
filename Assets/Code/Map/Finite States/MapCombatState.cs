@@ -22,7 +22,7 @@ public class MapCombatState : MapFiniteStateBase
         _map.OnMapIsReadyEvent.AddListener(OnMapIsReady);
         _configuration = _map.MapConfiguration;
 
-        _toilet.DisableIt();
+        //_toilet.DisableIt();
     }
 
     public override void EnterState()

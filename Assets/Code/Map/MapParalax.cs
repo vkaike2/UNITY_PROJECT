@@ -34,9 +34,9 @@ public class MapParalax : MonoBehaviour
         if (!_gotInitialValues)
         {
             _offset = _centerOfTheMap.position - _graphics.position;
-            _initialPosition = (Vector2)_gameManager.Player.transform.position - _offset;
-            _initialYaxis = _initialPosition.y;
+            _initialYaxis = _graphics.position.y;
 
+            _initialPosition = (Vector2)_gameManager.Player.transform.position - _offset;
             _gotInitialValues = true;
         }
 

@@ -13,12 +13,12 @@ public class MapWaitState : MapFiniteStateBase
         _toilet = map.Toilet;
         _map = map;
 
-        _toilet.OnToggleToiletEvent.AddListener(OnCloseToilet);
+        //_toilet.OnToggleToiletEvent.AddListener(OnCloseToilet);
     }
 
     public override void EnterState()
     {
-        _toilet.OpenToilet();
+        //_toilet.OpenToilet();
     }
 
     public override void OnExitState()
@@ -29,23 +29,23 @@ public class MapWaitState : MapFiniteStateBase
     {
     }
 
-    private void OnCloseToilet(Toilet.State toiletState)
-    {
-        if (toiletState != Toilet.State.Closed) return;
+    //private void OnCloseToilet(Toilet.FiniteState toiletState)
+    //{
+    //    if (toiletState != Toilet.FiniteState.Closed) return;
 
-        int childCount = _map.ObjectsPartent.childCount;
+    //    int childCount = _map.ObjectsPartent.childCount;
 
-        for (int i = 0; i < childCount; i++)
-        {
-            GameObject.Destroy(_map.ObjectsPartent.GetChild(i).gameObject);
-        }
+    //    for (int i = 0; i < childCount; i++)
+    //    {
+    //        GameObject.Destroy(_map.ObjectsPartent.GetChild(i).gameObject);
+    //    }
 
-        _map.Animator.Play(Map.MyAnimations.TurningOff.ToString());
-        _toilet.DisableIt();
+    //    _map.Animator.Play(Map.MyAnimations.TurningOff.ToString());
+    //    _toilet.DisableIt();
 
-        _map.GameManager.Player.FreezePlayer(true);
-        _map.MapManager.StartNextMap(_map);
+    //    _map.GameManager.Player.FreezePlayer(true);
+    //    _map.MapManager.StartNextMap(_map);
 
-        GameObject.Destroy(_map.gameObject, 1f);
-    }
+    //    GameObject.Destroy(_map.gameObject, 1f);
+    //}
 }

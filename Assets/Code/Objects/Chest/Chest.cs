@@ -31,11 +31,11 @@ public class Chest : MouseInteractable
     {
         if (_isOpen) return;
 
-        if (!PlayerIsInRange())
-        {
-            _animator.Play(MyAnimations.Idle.ToString());
-            return;
-        }
+        //if (!PlayerIsInRange())
+        //{
+        //    _animator.Play(MyAnimations.Idle.ToString());
+        //    return;
+        //}
 
         if (isMouseOver)
         {
@@ -49,7 +49,7 @@ public class Chest : MouseInteractable
 
     public override void InteractWith(CustomMouse mouse)
     {
-        if (!PlayerIsInRange()) return;
+        //if (!PlayerIsInRange()) return;
         if (_isOpen) return;
 
         _isOpen = true;

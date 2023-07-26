@@ -14777,9 +14777,9 @@ GameObject:
   m_Component:
   - component: {fileID: 235421712006875462}
   - component: {fileID: 4709527885724782974}
-  - component: {fileID: 3291537171400800784}
+  - component: {fileID: 8062835881342569702}
   m_Layer: 0
-  m_Name: Map Initial
+  m_Name: Initial Map _OLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14825,7 +14825,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3291537171400800784
+--- !u!114 &8062835881342569702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14834,7 +14834,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 235421712006875460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c651c88b41b494387ccf0cb8037a35, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f5dac887aa542d43ae4924804af8eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraConfiner: {fileID: 235421712013966753}

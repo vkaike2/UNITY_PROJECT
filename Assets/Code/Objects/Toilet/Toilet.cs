@@ -1,154 +1,108 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Toilet : MouseInteractable
+public partial class Toilet : MonoBehaviour
 {
     [Header("CONFIGURATIONS")]
     [SerializeField]
-    private State _state;
+    private FiniteState _initialState;
+    [field: Space]
+    [field: SerializeField]
+    public float CameraSizeOnFocus { get; private set; } = 3;
 
-    [Header("COMPONENTS")]
-    [SerializeField]
-    private Animator _animator;
-    [SerializeField]
-    private PlayerInRangeCheck _playerInRangeCheck;
 
-    public OnToggleToiletEvent OnToggleToiletEvent { get; private set; }
+    [field: Header("COMPONENTS")]
+    [field: Space]
+    [field: SerializeField]
+    public Map ParentMap { get; private set; }
+    [field: Space]
+    [field: SerializeField]
+    public Animator Animator { get; private set; }
+    [field: SerializeField]
+    public GameObject PlatformCollider { get; private set; }
+    [field: Space]
+    [field: SerializeField]
+    public PlayerInRangeCheck PlayerInRangeCheck { get; private set; }
+    [field: Space]
+    [field: SerializeField]
+    public ToiletEnabledModel EnabledModel { get; private set; }
+    [field: SerializeField]
+    public ToiletSpawnPlayerModel SpawnPlayerModel { get; private set; }
 
-    private const float CDW_WAIT_ANIMATION_TRANSITION = 1f;
+    public bool CanInteractWithPlayer { get; set; } = false;
+    public MapManager MapManager => _mapManager;
 
     private MapManager _mapManager;
 
-    private void Awake()
+    private List<ToiletStateBase> _finiteStates = new List<ToiletStateBase>()
     {
-        OnToggleToiletEvent = new OnToggleToiletEvent();
+        new Enabled(),
+        new Disabled(),
+        new SpawnPlayer()
+    };
 
-        if (_state == State.Disabled)
-        {
-            _animator.Play(MyAnimations.Disabled.ToString());
-        }
-    }
+    private ToiletStateBase _currentState;
 
-    protected override void AfterStart()
+    private void Start()
     {
         _mapManager = GameObject.FindObjectOfType<MapManager>();
         _mapManager.Toilet = this;
+
+        foreach (var state in _finiteStates)
+        {
+            state.Start(this);
+        }
+
+        this.ChangeState(_initialState);
     }
 
-    private void OnDestroy()
+    private void FixedUpdate()
     {
-        _mapManager.Toilet = null;
+        if (_currentState == null) return;
+
+        _currentState.Update();
     }
 
-    public override void ChangeAnimationOnItemOver(bool isMouseOver)
+    #region USED BY ANIMATOR
+    public void ANIMATION_OnPlayerEnteringToilet()
     {
-        if (!_playerInRangeCheck.PlayerIsInRange)
-        {
-            ManageMouseOver(false);
-            return;
-        }
-
-        ManageMouseOver(isMouseOver);
+        EnabledModel.OnPlayerEnteringToiletEvent.Invoke();
     }
 
-    private void ManageMouseOver(bool isMouseOver)
+    public void ANIMATION_OnPlayerLeavingToilet()
     {
-        if (_state == State.Closed)
-        {
-            MouseOveOnToiletClosed(isMouseOver);
-        }
-
-        if (_state == State.Open)
-        {
-            MouseOveOnToiletOpen(isMouseOver);
-        }
+        SpawnPlayerModel.OnPlayerLeavingToiletEvent.Invoke();
     }
 
-    public override void InteractWith(CustomMouse mouse)
+    public void ANIMATION_OnToiletCompletlyOpen()
     {
-        if (!_playerInRangeCheck.PlayerIsInRange) return;
-
-        if (_state == State.Closed)
-        {
-            _animator.Play(MyAnimations.Open.ToString());
-            StartCoroutine(WaitThenChangeState(State.Open));
-            return;
-        }
-
-        if (_state == State.Open)
-        {
-
-            _animator.Play(MyAnimations.Closing.ToString());
-            StartCoroutine(WaitThenChangeState(State.Closed));
-            return;
-        }
-
+        SpawnPlayerModel.OnToiletCompletlyOpen.Invoke();
     }
 
-    public void OpenToilet()
+    public void ANIMATION_OnToiletCompletlyClosed()
     {
-        _state = State.Open;
-        _animator.Play(MyAnimations.Opened.ToString());
-        OnToggleToiletEvent.Invoke(State.Open);
+        EnabledModel.OnToiletCompletlyClosed.Invoke();
+        SpawnPlayerModel.OnToiletCompletlyClosed.Invoke();
     }
+    #endregion
 
-    public void DisableIt()
+    public void ChangeState(FiniteState state)
     {
-        _state = State.Disabled;
-        _animator.Play(MyAnimations.Disabled.ToString());
-        OnToggleToiletEvent.Invoke(State.Disabled);
+        _currentState?.OnExitState();
+
+        _currentState = _finiteStates.First(e => e.State == state);
+        _currentState.EnterState();
     }
 
-    private void MouseOveOnToiletClosed(bool isMouseOver)
+    public void InteractiWithPlayer(Player player)
     {
-        if (!PlayerIsInRange())
-        {
-            _animator.Play(MyAnimations.Closed.ToString());
-            return;
-        }
-
-        if (isMouseOver)
-        {
-            _animator.Play(MyAnimations.ClosedSelected.ToString());
-        }
-        else
-        {
-            _animator.Play(MyAnimations.Closed.ToString());
-        }
+        EnabledModel.OnInteractWithToiletEvent.Invoke(player);
     }
 
-    private void MouseOveOnToiletOpen(bool isMouseOver)
-    {
-        if (!PlayerIsInRange())
-        {
-            _animator.Play(MyAnimations.Opened.ToString());
-            return;
-        }
-
-        if (isMouseOver)
-        {
-            _animator.Play(MyAnimations.OpenedSelected.ToString());
-        }
-        else
-        {
-            _animator.Play(MyAnimations.Opened.ToString());
-        }
-    }
-
-    private IEnumerator WaitThenChangeState(State nextState)
-    {
-        _state = State.Transition;
-        yield return new WaitForSeconds(CDW_WAIT_ANIMATION_TRANSITION);
-        _state = nextState;
-        OnToggleToiletEvent.Invoke(nextState);
-    }
-
-
-
-
-    private enum MyAnimations
+    public enum MyAnimations
     {
         Closed,
         ClosedSelected,
@@ -159,14 +113,10 @@ public class Toilet : MouseInteractable
         Disabled
     }
 
-    public enum State
+    public enum FiniteState
     {
-        Closed,
-        Open,
+        Enabled,
         Disabled,
-        Transition
+        SpawnPlayer
     }
 }
-
-[Serializable]
-public class OnToggleToiletEvent : UnityEvent<Toilet.State> { }

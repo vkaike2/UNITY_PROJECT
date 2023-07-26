@@ -71,8 +71,10 @@ public class Player : Entity
     private Fart _fart;
     private bool _isFrozen;
     private Rigidbody2D _rigidbody2D;
+
     //Game Manager
     private GameManager _gameManager;
+    private MapManager _mapManager;
     private UIEventManager _uiEventManager;
 
     private readonly List<PlayerFiniteBaseState> _finiteStates = new()
@@ -109,7 +111,9 @@ public class Player : Entity
         _boxCollider = GetComponent<BoxCollider2D>();
         PlayerInventory = GetComponent<PlayerInventory>();
         _gameManager = GameObject.FindObjectOfType<GameManager>();
+        _mapManager = GameObject.FindObjectOfType<MapManager>();
         _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
+
         _gameManager.SetPlayer(this);
 
         _fart = GetComponent<Fart>();
@@ -241,6 +245,14 @@ public class Player : Entity
         }
     }
 
+    public void OnInteractWithToilet(InputAction.CallbackContext context)
+    {
+        if (!_mapManager.Toilet.CanInteractWithPlayer) return;
+        if (context.phase != InputActionPhase.Performed) return;
+
+        Toilet toilet = _mapManager.Toilet;
+        toilet.InteractiWithPlayer(this);
+    }
     #endregion
 
     public void ChangeState(FiniteState state)
