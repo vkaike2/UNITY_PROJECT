@@ -5,6 +5,8 @@ public class PlayerDamageReceiver : DamageReceiver
 {
     private Player _player;
 
+    
+
     protected override void AfterAwake()
     {
         _isPlayer = true;
@@ -13,6 +15,7 @@ public class PlayerDamageReceiver : DamageReceiver
 
     protected override void OnDie()
     {
+        _uiEventManager.OnPlayerLifeChange.Invoke(0);
         Debug.Log("IS DED");
     }
 }

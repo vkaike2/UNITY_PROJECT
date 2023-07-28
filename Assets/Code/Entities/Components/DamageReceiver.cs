@@ -13,7 +13,7 @@ public abstract class DamageReceiver : MonoBehaviour
 
     [Header("VISUAL COMPONENTS")]
     [SerializeField]
-    private ProgressBarUI _progressBarUI;
+    protected ProgressBarUI _progressBarUI;
     [SerializeField]
     private SpriteRenderer _spriteRenderer;
 
@@ -27,7 +27,7 @@ public abstract class DamageReceiver : MonoBehaviour
     private const float CDW_TO_RECEIVE_DAMAGE_FOR_EACH_INSTANCE = 0.5f;
     private bool _isReceivingDamage;
     private bool _isDead = false;
-    private UIEventManager _uiEventManager;
+    protected UIEventManager _uiEventManager;
     private Rigidbody2D _rigidbody2D;
 
     private void Awake()

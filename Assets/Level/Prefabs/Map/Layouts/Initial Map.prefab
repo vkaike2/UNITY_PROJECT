@@ -3397,15 +3397,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5dac887aa542d43ae4924804af8eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CameraConfiner>k__BackingField: {fileID: 8227090835899449519}
-  <Animator>k__BackingField: {fileID: 2207352865683046084}
-  <ObjectsPartent>k__BackingField: {fileID: 8227090835932156123}
-  <EnemiesParent>k__BackingField: {fileID: 2206989585476743513}
-  _waypoints: {fileID: 8227090835550530618}
-  _isInitialMap: 1
   <InitialCameraSize>k__BackingField: 8
   <MapConfiguration>k__BackingField: {fileID: 0}
   _startWithState: 1
+  <CentralPosition>k__BackingField: {fileID: 8227090835269282453}
+  <CameraConfiner>k__BackingField:
+    <SmallCollider>k__BackingField: {fileID: 8227090835899449519}
+    <SmallCameraSize>k__BackingField: 8
+    <MediumCollider>k__BackingField: {fileID: 0}
+    <MediumCameraSize>k__BackingField: 0
+    <LargeCollider>k__BackingField: {fileID: 0}
+    <LargeCameraSize>k__BackingField: 0
+  <Conatiners>k__BackingField:
+    <ObjectsContainer>k__BackingField: {fileID: 8227090835932156123}
+    <EnemiesContainer>k__BackingField: {fileID: 2206989585476743513}
+  _waypoints: {fileID: 8227090835550530618}
 --- !u!1 &8227090835281971439
 GameObject:
   m_ObjectHideFlags: 0

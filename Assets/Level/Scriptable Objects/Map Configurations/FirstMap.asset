@@ -12,10 +12,201 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df636ef0e88587499e8d37b9a39c862, type: 3}
   m_Name: FirstMap
   m_EditorClassIdentifier: 
-  _waves:
-  - name: 0 wave
-    _waitToSpaw: 5
-    _mobs:
-    - name: Bird
-      _enemy: {fileID: 1999456161293642714, guid: 985c6e862998a04449478c376a59306d, type: 3}
-      _spawnPosition: 4
+  _fullTime: 60
+  _movementBuffer: 2
+  <EnfOfSmallStage>k__BackingField: 20
+  <EnfOfMediumStage>k__BackingField: 40
+  <Waves>k__BackingField:
+  - name: '[00:00, 00:17] 01 wave -> [worm, worm, worm, worm, worm, porcupine, porcupine,
+      porcupine]'
+    <WaitToStartSpawningWave>k__BackingField: 1
+    <WaitToSpawnNextEnemyFromThisWave>k__BackingField: 2
+    <Mobs>k__BackingField:
+    - name: (0) 00:01 [Small] Worm
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 7775297796345805180, guid: 6136919b3dbc47f468e91b5cc53d6251, type: 3}
+      <UseRandomPosition>k__BackingField: 0
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (1) 00:03 [Small] Worm
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 7775297796345805180, guid: 6136919b3dbc47f468e91b5cc53d6251, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (2) 00:05 [Small] Worm
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 7775297796345805180, guid: 6136919b3dbc47f468e91b5cc53d6251, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (3) 00:07 [Small] Worm
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 7775297796345805180, guid: 6136919b3dbc47f468e91b5cc53d6251, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (4) 00:09 [Small] Worm
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 7775297796345805180, guid: 6136919b3dbc47f468e91b5cc53d6251, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (5) 00:11 [Small] Porcupine
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 7667328545476076463, guid: cb68fe3a3062b71429e891764110b70e, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (6) 00:13 [Small] Porcupine
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 7667328545476076463, guid: cb68fe3a3062b71429e891764110b70e, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (7) 00:15 [Small] Porcupine
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 7667328545476076463, guid: cb68fe3a3062b71429e891764110b70e, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+  - name: 00:13] 02 wave -> [rat, rat, rat, rat]
+    <WaitToStartSpawningWave>k__BackingField: 5
+    <WaitToSpawnNextEnemyFromThisWave>k__BackingField: 2
+    <Mobs>k__BackingField:
+    - name: (0) 00:22 [Small] Rat
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 1408707188261469836, guid: 8a923d3b52655af46aefeba1b7e88bca, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (1) 00:24 [Small] Rat
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 1408707188261469836, guid: 8a923d3b52655af46aefeba1b7e88bca, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (2) 00:26 [Small] Rat
+      mapStage: Small
+      <Enemy>k__BackingField: {fileID: 1408707188261469836, guid: 8a923d3b52655af46aefeba1b7e88bca, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (3) 00:28 [Medium] Rat
+      mapStage: Medium
+      <Enemy>k__BackingField: {fileID: 1408707188261469836, guid: 8a923d3b52655af46aefeba1b7e88bca, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+  - name: 00:17] 03 wave -> [bird, bird, bird, bird, chicken, chicken]
+    <WaitToStartSpawningWave>k__BackingField: 5
+    <WaitToSpawnNextEnemyFromThisWave>k__BackingField: 2
+    <Mobs>k__BackingField:
+    - name: (0) 00:35 [Medium] Bird
+      mapStage: Medium
+      <Enemy>k__BackingField: {fileID: 1999456161293642714, guid: 985c6e862998a04449478c376a59306d, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 1
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (1) 00:37 [Medium] Bird
+      mapStage: Medium
+      <Enemy>k__BackingField: {fileID: 1999456161293642714, guid: 985c6e862998a04449478c376a59306d, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 1
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (2) 00:39 [Medium] Bird
+      mapStage: Medium
+      <Enemy>k__BackingField: {fileID: 1999456161293642714, guid: 985c6e862998a04449478c376a59306d, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 1
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (3) 00:41 [Medium] Bird
+      mapStage: Medium
+      <Enemy>k__BackingField: {fileID: 1999456161293642714, guid: 985c6e862998a04449478c376a59306d, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 1
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (4) 00:43 [Medium] Chicken
+      mapStage: Medium
+      <Enemy>k__BackingField: {fileID: 6393750100075348890, guid: 77d6c24c42b842348933bb12a089a3b8, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 1
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (5) 00:45 [Medium] Chicken
+      mapStage: Medium
+      <Enemy>k__BackingField: {fileID: 6393750100075348890, guid: 77d6c24c42b842348933bb12a089a3b8, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 1
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+  - name: 00:13] 04 wave -> [porcupine, worm, chicken, worm]
+    <WaitToStartSpawningWave>k__BackingField: 5
+    <WaitToSpawnNextEnemyFromThisWave>k__BackingField: 2
+    <Mobs>k__BackingField:
+    - name: (0) 00:52 [Large] Porcupine
+      mapStage: Large
+      <Enemy>k__BackingField: {fileID: 7667328545476076463, guid: cb68fe3a3062b71429e891764110b70e, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (1) 00:54 [Large] Worm
+      mapStage: Large
+      <Enemy>k__BackingField: {fileID: 7775297796345805180, guid: 6136919b3dbc47f468e91b5cc53d6251, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (2) 00:56 [Large] Chicken
+      mapStage: Large
+      <Enemy>k__BackingField: {fileID: 6393750100075348890, guid: 77d6c24c42b842348933bb12a089a3b8, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2
+    - name: (3) 00:58 [Large] Worm
+      mapStage: Large
+      <Enemy>k__BackingField: {fileID: 7775297796345805180, guid: 6136919b3dbc47f468e91b5cc53d6251, type: 3}
+      <UseRandomPosition>k__BackingField: 1
+      <SpawnPositionId>k__BackingField: 0
+      <SpawnType>k__BackingField: 0
+      <UsePartentTimer>k__BackingField: 1
+      <CdwToSpawnNextEnemy>k__BackingField: 2

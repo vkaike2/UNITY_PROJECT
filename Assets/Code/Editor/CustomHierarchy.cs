@@ -27,6 +27,16 @@ public class CustomHierarchy : MonoBehaviour
             });
         }
 
+        if (gameObject != null && gameObject.name.StartsWith("->"))
+        {
+            EditorGUI.DrawRect(selectionRect, ColorRGB(56, 56, 56));
+            EditorGUI.LabelField(selectionRect, gameObject.name, new GUIStyle()
+            {
+                normal = new GUIStyleState() { textColor = Color.white },
+                fontStyle = FontStyle.Bold
+            });
+        }
+
         if (gameObject != null && gameObject.name.StartsWith("-->"))
         {
             EditorGUI.DrawRect(selectionRect, ColorRGB(49, 49,71));

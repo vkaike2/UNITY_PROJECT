@@ -1251,9 +1251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa50e3b93a1db248ba16ccb4c6b306c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cinemachineConfiner2D: {fileID: 227822912}
+  <CinemachineConfiner2D>k__BackingField: {fileID: 227822912}
+  <VirualCamera>k__BackingField: {fileID: 227822910}
   _mapParent: {fileID: 946336145}
-  _virutalCamera: {fileID: 227822910}
   _test: {fileID: 7872639995848763747, guid: 272b9c8d88dc56b4f9f477ae80649a92, type: 3}
 --- !u!1 &1797006544
 GameObject:

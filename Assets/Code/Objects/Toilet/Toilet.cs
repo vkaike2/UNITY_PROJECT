@@ -6,9 +6,7 @@ using UnityEngine.Events;
 
 public partial class Toilet : MonoBehaviour
 {
-    [Header("CONFIGURATIONS")]
-    [SerializeField]
-    private FiniteState _initialState;
+    [field: Header("CONFIGURATIONS")]
     [field: Space]
     [field: SerializeField]
     public float CameraSizeOnFocus { get; private set; } = 3;
@@ -55,8 +53,6 @@ public partial class Toilet : MonoBehaviour
         {
             state.Start(this);
         }
-
-        this.ChangeState(_initialState);
     }
 
     private void FixedUpdate()
@@ -64,6 +60,11 @@ public partial class Toilet : MonoBehaviour
         if (_currentState == null) return;
 
         _currentState.Update();
+    }
+
+    public void SetState(FiniteState initialState)
+    {
+        this.ChangeState(initialState);
     }
 
     #region USED BY ANIMATOR

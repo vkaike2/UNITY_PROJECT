@@ -362,7 +362,7 @@ MonoBehaviour:
   ImpactDamage:
     _value: 2
   MovementSpeed:
-    _value: 5
+    _value: 3
   AtkDamage:
     _value: 0
 --- !u!114 &277120076859234708

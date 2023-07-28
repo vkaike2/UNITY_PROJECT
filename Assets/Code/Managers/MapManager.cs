@@ -6,15 +6,16 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    [Header("COMPONENTS")]
-    [SerializeField]
-    private CinemachineConfiner2D _cinemachineConfiner2D;
+    [field: Header("COMPONENTS")]
+    [field: SerializeField]
+    public CinemachineConfiner2D CinemachineConfiner2D { get; private set; }
+    [field: SerializeField]
+    public CinemachineVirtualCamera VirualCamera { get; private set; }
+    
     [Space]
     [SerializeField]
     private Transform _mapParent;
     [Space]
-    [SerializeField]
-    private CinemachineVirtualCamera _virutalCamera;
     [Header("CONFIGURATIONS")]
     [SerializeField]
     private Map _test;
@@ -36,8 +37,8 @@ public class MapManager : MonoBehaviour
 
     public void SetInitialConfigurations(Collider2D mapConfiner, float cameraSize)
     {
-        _cinemachineConfiner2D.m_BoundingShape2D = mapConfiner;
-        _virutalCamera.m_Lens.OrthographicSize = cameraSize;
+        CinemachineConfiner2D.m_BoundingShape2D = mapConfiner;
+        VirualCamera.m_Lens.OrthographicSize = cameraSize;
     }
 
     public void StartNextMap(Map currentMap)
@@ -54,8 +55,8 @@ public class MapManager : MonoBehaviour
 
     public void FocusCameraOnToiletInstatly()
     {
-        _virutalCamera.Follow = Toilet.transform;
-        _virutalCamera.m_Lens.OrthographicSize = Toilet.CameraSizeOnFocus;
+        VirualCamera.Follow = Toilet.transform;
+        VirualCamera.m_Lens.OrthographicSize = Toilet.CameraSizeOnFocus;
     }
 
     public void ReturnFocusToPlayer()
@@ -65,11 +66,11 @@ public class MapManager : MonoBehaviour
 
     private IEnumerator FocusOnToilet(Action callBack)
     {
-        _virutalCamera.Follow = Toilet.transform;
+        VirualCamera.Follow = Toilet.transform;
 
-        while (_virutalCamera.m_Lens.OrthographicSize >= Toilet.CameraSizeOnFocus)
+        while (VirualCamera.m_Lens.OrthographicSize >= Toilet.CameraSizeOnFocus)
         {
-            _virutalCamera.m_Lens.OrthographicSize -= Time.deltaTime * 10;
+            VirualCamera.m_Lens.OrthographicSize -= Time.deltaTime * 10;
             yield return new WaitForFixedUpdate();
         }
 
@@ -78,22 +79,22 @@ public class MapManager : MonoBehaviour
 
     private IEnumerator FocusOnPlayer()
     {
-        _cinemachineConfiner2D.m_BoundingShape2D = CurrentMap.CameraConfiner;
-        _virutalCamera.Follow = CurrentMap.CentralPosition;
+        CinemachineConfiner2D.m_BoundingShape2D = CurrentMap.CameraConfiner.SmallCollider;
+        VirualCamera.Follow = CurrentMap.CentralPosition;
 
-        _cinemachineConfiner2D.InvalidateCache();
+        CinemachineConfiner2D.InvalidateCache();
         _gameManager.Player.FreezePlayer(true);
 
-        while (_virutalCamera.m_Lens.OrthographicSize <= CurrentMap.InitialCameraSize)
+        while (VirualCamera.m_Lens.OrthographicSize <= CurrentMap.CameraConfiner.SmallCameraSize)
         {
-            _virutalCamera.m_Lens.OrthographicSize += Time.deltaTime * 10;
+            VirualCamera.m_Lens.OrthographicSize += Time.deltaTime * 10;
             yield return new WaitForFixedUpdate();
         }
 
-        _virutalCamera.m_Lens.OrthographicSize = CurrentMap.InitialCameraSize;
-        _virutalCamera.Follow = _gameManager.Player.transform;
+        VirualCamera.m_Lens.OrthographicSize = CurrentMap.CameraConfiner.SmallCameraSize;
+        VirualCamera.Follow = _gameManager.Player.transform;
 
-        _cinemachineConfiner2D.InvalidateCache();
+        CinemachineConfiner2D.InvalidateCache();
         _gameManager.Player.FreezePlayer(false);
     }
 }
