@@ -5,8 +5,6 @@ public class PlayerDamageReceiver : DamageReceiver
 {
     private Player _player;
 
-    
-
     protected override void AfterAwake()
     {
         _isPlayer = true;
