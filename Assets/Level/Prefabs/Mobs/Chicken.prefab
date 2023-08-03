@@ -124,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268043783556829486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.019, y: 0.083, z: 0}
+  m_LocalPosition: {x: 0.019, y: 0.042, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -545,7 +545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5074447944455005791}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.21, y: 0.59, z: 0}
+  m_LocalPosition: {x: 1.21, y: 0.676, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -865,9 +865,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d60935b5408573419abbb7c5b610075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth:
-    _value: 3
-  _knockBackForce: 700
+  <MaxHealth>k__BackingField:
+    _value: 0
+  <KnockBackForce>k__BackingField: 700
   Health:
     _value: 0
   ImpactDamage:
@@ -893,6 +893,10 @@ MonoBehaviour:
   _progressBarUI: {fileID: 5203729678275168126}
   _spriteRenderer: {fileID: 3816588840233173337}
   _shouldApplyKnockback: 0
+  _knockbackDuration: 0.3
+  <OnKnockbackEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3237404317773614461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,11 +949,19 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 512
     <GroundCheck>k__BackingField:
-      _colliderRadius: 0.9
-      _transform: {fileID: 8182132679057442092}
+      _showGizmo: 1
+      _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+      <ColliderRadius>k__BackingField: 0.9
+      <Height>k__BackingField: 0.4
+      <Widith>k__BackingField: 1.42
+      <GroundRaycastTransform>k__BackingField: {fileID: 8182132679057442092}
     <WallCheck>k__BackingField:
-      _colliderRadius: 0.9
-      _transform: {fileID: 314981698953767184}
+      _showGizmo: 1
+      _gizmoColor: {r: 0, g: 0.35510468, b: 1, a: 1}
+      <ColliderRadius>k__BackingField: 0.9
+      <Height>k__BackingField: 1.45
+      <Widith>k__BackingField: 0.9
+      <GroundRaycastTransform>k__BackingField: {fileID: 314981698953767184}
     <MainCollider>k__BackingField: {fileID: 8496846626331290896}
     pointA: {x: 0, y: 0}
     pointB: {x: 0, y: 0}

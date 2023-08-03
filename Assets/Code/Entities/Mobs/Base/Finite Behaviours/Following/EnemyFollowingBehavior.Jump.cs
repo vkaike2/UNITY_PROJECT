@@ -327,7 +327,7 @@ public partial class EnemyFollowingBehaviour
         #region CHECK METHODS
         private bool IsCloseToWall()
         {
-            Collider2D col = _model.WallCheck.DrawPhysics2D(_model.WallLayer, false);
+            Collider2D col = _model.WallCheck.DrawPhysics2D(_model.WallLayer);
             return col != null;
         }
 

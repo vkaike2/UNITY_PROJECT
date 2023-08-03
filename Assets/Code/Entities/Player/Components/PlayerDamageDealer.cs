@@ -14,18 +14,20 @@ public class PlayerDamageDealer : MonoBehaviour
     private ParticleSystem _fartParticleSystem;
 
     private Player _player;
+    private Butt _butt;
     private Hitbox _poopHitbox;
     private ParticleSystem.Particle[] _fartParticles;
     private List<int> _fartParticleInstanceIds;
 
     private void Awake()
     {
+        _butt = GetComponent<Butt>();
         _player = GetComponent<Player>();
     }
 
     private void Start()
     {
-        _player.OnPoopEvent = OnPlayerPoop;
+        _butt.OnPoopEvent.AddListener(OnPlayerPoop);
 
         InitializeParticles();
     }
@@ -43,8 +45,7 @@ public class PlayerDamageDealer : MonoBehaviour
     }
 
     #region POOP
-    //TODO: make it receive a PoopProjectile instead of a Gamebject?
-    private void OnPlayerPoop(GameObject poopProjectile)
+    private void OnPlayerPoop(PoopProjectile poopProjectile)
     {
         _poopHitbox = poopProjectile.GetComponent<Hitbox>();
         _poopHitbox.OnHitboxTriggerEnter.AddListener(OnPoopHitboxEnter);
@@ -58,7 +59,6 @@ public class PlayerDamageDealer : MonoBehaviour
 
         targetHitbox.OnReceivingDamage.Invoke(_status.PoopDamage.Get(), _poopHitbox.GetInstanceID(), _poopHitbox.transform.position);
 
-        //TODO: it should be destroyed here?!
         GameObject.Destroy(_poopHitbox.gameObject);
         _poopHitbox = null;
     }

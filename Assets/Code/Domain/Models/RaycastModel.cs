@@ -5,45 +5,38 @@ using UnityEngine;
 [Serializable]
 public class RaycastModel
 {
+    [Header("GIZMO")]
     [SerializeField]
-    private float _colliderRadius = 0.9f;
+    private bool _showGizmo = true;
     [SerializeField]
-    private Transform _transform;
+    private Color _gizmoColor = Color.red;
+    
+
+    [field: Header("CONFIGURATION")]
+    [field: SerializeField]
+    public float Height { get; private set; } = 0.4f;
+    [field: SerializeField]
+    public float Widith { get; private set; } = 0.9f;
+
+    [field: SerializeField]
+    public Transform GroundRaycastTransform { get; private set; }
 
 
-    public float ColliderRadius => _colliderRadius;
-    public Transform GroundRaycastTransform => _transform;
-
-    public void DrawGizmos(Color color, bool horizontal = true)
+    public void DrawGizmos()
     {
-        Gizmos.color = color;
-        if (horizontal)
-        {
-            Gizmos.DrawWireCube(_transform.position, new Vector3(_colliderRadius, _colliderRadius / 2, 0));
-        }
-        else
-        {
-            Gizmos.DrawWireCube(_transform.position, new Vector3(_colliderRadius / 2, _colliderRadius, 0));
-        }
+        if (!_showGizmo) return;
 
+        _gizmoColor.a = 1;
+        Gizmos.color = _gizmoColor;
+
+        Gizmos.DrawWireCube(GroundRaycastTransform.position, new Vector3(Widith, Height, 0));
     }
 
-    public Collider2D DrawPhysics2D(LayerMask colisionLayer, bool horizontal = true)
+    public Collider2D DrawPhysics2D(LayerMask colisionLayer)
     {
-        if (horizontal)
-        {
-            return Physics2D.OverlapArea(
-                new Vector2(_transform.position.x - _colliderRadius / 4, _transform.position.y - _colliderRadius / 2),
-                new Vector2(_transform.position.x + _colliderRadius / 4, _transform.position.y + _colliderRadius / 2),
-                colisionLayer);
-        }
-        else
-        {
-            return Physics2D.OverlapArea(
-                new Vector2(_transform.position.x - _colliderRadius / 2, _transform.position.y - _colliderRadius / 4),
-                new Vector2(_transform.position.x + _colliderRadius / 2, _transform.position.y + _colliderRadius / 4),
-                colisionLayer);
-        }
-
+        return Physics2D.OverlapArea(
+                  new Vector2(GroundRaycastTransform.position.x - Widith / 2, GroundRaycastTransform.position.y - Height / 2),
+                  new Vector2(GroundRaycastTransform.position.x + Widith / 2, GroundRaycastTransform.position.y + Height / 2),
+                  colisionLayer);
     }
 }

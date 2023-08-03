@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class DamageReceiver : MonoBehaviour
 {
@@ -20,6 +22,12 @@ public abstract class DamageReceiver : MonoBehaviour
     [Header("CONFIGURATION")]
     [SerializeField]
     private bool _shouldApplyKnockback = false;
+    [SerializeField]
+    private float _knockbackDuration = 0.3f;
+
+    [field: Header("EVENTS")]
+    [field: SerializeField]
+    public OnKnockbackEvent OnKnockbackEvent { get; private set; } = new OnKnockbackEvent();
 
     protected bool _isPlayer = false;
 
@@ -102,7 +110,9 @@ public abstract class DamageReceiver : MonoBehaviour
     private void ApplyKnockBackOnDamage(Vector2 damagePosition)
     {
         if (!_shouldApplyKnockback) return;
-        
+
+        OnKnockbackEvent.Invoke(_knockbackDuration);
+
         Vector2 direction = damagePosition.normalized;
         Vector2 knockbackForce = _status.KnockBackForce * -direction;
         _rigidbody2D.AddForce(knockbackForce);
@@ -141,3 +151,9 @@ public abstract class DamageReceiver : MonoBehaviour
         _isReceivingDamage = false;
     }
 }
+
+/// <summary>
+///  float: time that you will be controlled by the knockback
+/// </summary>
+[Serializable]
+public class OnKnockbackEvent : UnityEvent<float> { }

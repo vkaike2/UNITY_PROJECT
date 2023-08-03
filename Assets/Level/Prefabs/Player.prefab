@@ -317,12 +317,13 @@ GameObject:
   - component: {fileID: 1569341936492780417}
   - component: {fileID: 1569341936492780418}
   - component: {fileID: 5333638089992704905}
+  - component: {fileID: 1638561733369071957}
   - component: {fileID: 1569341936492780416}
   - component: {fileID: 7035229750320139327}
   - component: {fileID: 1270919217769633935}
+  - component: {fileID: 3800125060539463934}
   - component: {fileID: 4861577130738542633}
   - component: {fileID: 1569341936492780420}
-  - component: {fileID: 3800125060539463934}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -419,6 +420,36 @@ MonoBehaviour:
   _knockBackForce: 500
   _helpForcePercentage: 1.5
   _fartCdw: 0.5
+  <OnFartEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1638561733369071957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569341936492780421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85bb1728b8b60fa43a09e82b5cf546e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poopProjectilePrefab: {fileID: 1033099448857419931, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+  _spawnPoint: {fileID: 1569341936082538920}
+  _cdwProgressBar: {fileID: 8414120143730420917}
+  _poopTrajectoryPrefab: {fileID: 4896166672386539369, guid: 5304255ed98f32d42b6ef53a934a1d13, type: 3}
+  _numberOfDots: 50
+  _maximumVelocity: 10
+  _velocityTimer: 1
+  _cdwToPoop: 3
+  _gravityWhilePooping: 0.1
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 520
+  <OnPoopEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1569341936492780416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,73 +492,10 @@ MonoBehaviour:
   _progressBarUI: {fileID: 0}
   _spriteRenderer: {fileID: 1569341937639352535}
   _shouldApplyKnockback: 1
---- !u!114 &4861577130738542633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569341936492780421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f109d6f40b19954abd97e97590ed567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth:
-    _value: 10
-  _knockBackForce: 700
-  Health:
-    _value: 0
-  PoopDamage:
-    _value: 2.5
-  FartDamage:
-    _value: 0.2
---- !u!114 &1569341936492780420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569341936492780421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a408a9539b157b34a99af94846b952f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stateDebug: 0
-  _hitbox: {fileID: 1056524188317340118}
-  _rotationalTransform: {fileID: 1569341937118538250}
-  _cdwOneWayPlatform: 0.2
-  _audioController: {fileID: 1569341936288374814}
-  _moveModel:
-    _movementSpeed: 7
-  _jumpModel:
-    _jumpForce: 8.5
-    _cdwJumpAceleration: 0.4
-    _gravityFalling: 4
-    _coyoteTime: 0.1
-    _groundLayer:
-      serializedVersion: 2
-      m_Bits: 520
-    _groundCheck:
-      _colliderRadius: 0.9
-      _transform: {fileID: 1569341937535369426}
-    _bufferCheck:
-      _colliderRadius: 0.66
-      _transform: {fileID: 1569341936835987516}
-  _playerAnimator:
-    _animator: {fileID: 1569341937639352533}
-  _poopModel:
-    _poopProjectilePrefab: {fileID: 7484034754883789878, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
-    _projectileTrajectoryPrefab: {fileID: 4896166672386539369, guid: 5304255ed98f32d42b6ef53a934a1d13, type: 3}
-    _spawnPoint: {fileID: 1569341936082538920}
-    _trajectoryParent: {fileID: 0}
-    _cdwProgressBar: {fileID: 8414120143730420917}
-    _numberOfDots: 50
-    _maximumVelocity: 10
-    _velocityTimer: 1
-    _cdwToPoop: 0.5
-    _gravityWhilePooping: 0.1
+  _knockbackDuration: 0.3
+  <OnKnockbackEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3800125060539463934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +510,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _status: {fileID: 4861577130738542633}
   _fartParticleSystem: {fileID: 1569341937181109250}
+--- !u!114 &4861577130738542633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569341936492780421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f109d6f40b19954abd97e97590ed567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField:
+    _value: 10
+  <KnockBackForce>k__BackingField: 700
+  Health:
+    _value: 0
+  <PoopDamage>k__BackingField:
+    _value: 2.5
+  <FartDamage>k__BackingField:
+    _value: 0.2
+  <MovementSpeed>k__BackingField:
+    _value: 7
+  <JumpForce>k__BackingField:
+    _value: 8.5
+--- !u!114 &1569341936492780420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569341936492780421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a408a9539b157b34a99af94846b952f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateDebug: 0
+  <CanMove>k__BackingField: 1
+  <Hitbox>k__BackingField: {fileID: 1056524188317340118}
+  <RotationalTransform>k__BackingField: {fileID: 1569341937118538250}
+  <AudioController>k__BackingField: {fileID: 1569341936288374814}
+  <PlayerAnimator>k__BackingField:
+    _animator: {fileID: 1569341937639352533}
+  <JumpModel>k__BackingField:
+    <CdwJumpAceleration>k__BackingField: 0.4
+    <CoyoteTime>k__BackingField: 0.1
+    <GroundLayer>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 520
+    <GroundCheck>k__BackingField:
+      _showGizmo: 1
+      _gizmoColor: {r: 0.5943396, g: 0.23773582, b: 0.23773582, a: 1}
+      <ColliderRadius>k__BackingField: 0.9
+      <Height>k__BackingField: 0.06
+      <Widith>k__BackingField: 0.9
+      <GroundRaycastTransform>k__BackingField: {fileID: 1569341937535369426}
+    <BufferCheck>k__BackingField:
+      _showGizmo: 1
+      _gizmoColor: {r: 1, g: 1, b: 1, a: 1}
+      <ColliderRadius>k__BackingField: 0.9
+      <Height>k__BackingField: 0.5
+      <Widith>k__BackingField: 0.9
+      <GroundRaycastTransform>k__BackingField: {fileID: 1569341936835987516}
+  <FallingModel>k__BackingField:
+    <GravityFalling>k__BackingField: 4
+  <DownPlatformModel>k__BackingField:
+    <CdwToDeactivateCollider>k__BackingField: 0.3
+    <PlayerCollider>k__BackingField: {fileID: 1569341936492780418}
 --- !u!1 &1569341936615432260
 GameObject:
   m_ObjectHideFlags: 0
@@ -5379,7 +5416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569341936835987517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.031999946, y: -0.196, z: 0}
+  m_LocalPosition: {x: 0.031999946, y: -0.218, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10447,7 +10484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569341937535369427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.031999946, y: 0.08399999, z: 0}
+  m_LocalPosition: {x: 0.031999946, y: -0.082, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

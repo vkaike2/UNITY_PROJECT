@@ -35,8 +35,8 @@ public partial class Rat : Enemy
 
     private void OnDrawGizmos()
     {
-        FollowingModel.GroundCheck.DrawGizmos(Color.blue);
-        FollowingModel.WallCheck.DrawGizmos(Color.red, false);
+        FollowingModel.GroundCheck.DrawGizmos();
+        FollowingModel.WallCheck.DrawGizmos();
     }
 
     protected override void AfterAwake()

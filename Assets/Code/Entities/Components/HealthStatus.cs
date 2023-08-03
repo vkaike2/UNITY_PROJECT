@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class HealthStatus : MonoBehaviour
 {
-    [Header("HEALTH")]
-    public StatusFloatAttribute MaxHealth;
-    [SerializeField]
-    private float _knockBackForce = 700;
+    [field: Header("HEALTH")]
+    [field: SerializeField]
+    public StatusFloatAttribute MaxHealth { get; private set; }
+    [field: Space] 
+    [field: SerializeField]
+    public float KnockBackForce { get; private set; } = 700;
+
     [HideInInspector]
     public StatusFloatAttribute Health;
 
-    public float KnockBackForce => _knockBackForce;
 
     public void InitializeHealth()
     {

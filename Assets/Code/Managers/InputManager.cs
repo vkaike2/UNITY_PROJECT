@@ -80,7 +80,7 @@ public class InputManager : MonoBehaviour
     {
         if (_gameManager.Player == null) return;
 
-        _gameManager.Player.OnInteractWithToilet(context);
+        _gameManager.Player.OnInteractWithToiletInput(context);
     }
 
     private SendMouseTo ValidateMouseInput(MouseButton button)

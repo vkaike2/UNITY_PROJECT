@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,34 +27,30 @@ public class Fart : MonoBehaviour
     [SerializeField]
     private float _fartCdw = 0.5f;
 
-    [Header("EVENTS")]
-    [Tooltip("Will be called everytime that you fart")]
-    [SerializeField]
-    private OnFartEvent _onFartEvent;
+    [field: Header("EVENTS")]
+    [field: Tooltip("Will be called everytime that you fart")]
+    [field: SerializeField]
+    public OnFartEvent OnFartEvent { get; private set; } = new OnFartEvent();
 
-    public OnFartEvent OnFartEvent { get => _onFartEvent; set => _onFartEvent = value; }
 
-    private Entity _entity;
+    private Player _player;
     private Rigidbody2D _rigidbody2D;
     private UIEventManager _uiEventManager;
     private bool _isFartOnCdw = false;
 
     private void Awake()
     {
-        _onFartEvent = new OnFartEvent();
-
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _entity = GetComponent<Entity>();
+        _player = GetComponent<Player>();
     }
 
     private void Start()
     {
-        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
-
-        _uiEventManager.OnPlayerFartProgressBar.Invoke(1f);
+        InitializeUIManager();
+        _player.FartInput.Performed.AddListener(OnFartInputPerformed);
     }
 
-    public void DoFart()
+    private void OnFartInputPerformed()
     {
         if (_isFartOnCdw) return;
 
@@ -76,6 +73,7 @@ public class Fart : MonoBehaviour
         _rigidbody2D.AddForce(fartForce);
     }
 
+    //TODO: fart shouldn't be a particle?
     private void SpawnParticleSystem((Vector2 position, Vector2 direction, Quaternion rotation) mouse)
     {
         _particleSystem.transform.rotation = mouse.rotation;
@@ -120,7 +118,7 @@ public class Fart : MonoBehaviour
 
     IEnumerator TakeControllOfEntity(Vector2 mouseDirection)
     {
-        _entity.CanMove = false;
+        _player.CanMove = false;
         bool needToFlipPlayer = CheckIfNeedToFlipEntity(mouseDirection);
 
         if (needToFlipPlayer)
@@ -128,7 +126,8 @@ public class Fart : MonoBehaviour
             _rotationalTransform.localScale = new Vector3(-_rotationalTransform.localScale.x, 1, 1);
         }
 
-        _onFartEvent.Invoke(_cdwToManipulateKnockBack);
+        _player.PlayerAnimator.PlayAnimationHightPriority(this, PlayerAnimatorModel.Animation.Fart, _cdwToManipulateKnockBack);
+        OnFartEvent.Invoke(_cdwToManipulateKnockBack);
 
         yield return new WaitForSeconds(_cdwToManipulateKnockBack);
 
@@ -137,7 +136,7 @@ public class Fart : MonoBehaviour
             _rotationalTransform.localScale = new Vector3(-_rotationalTransform.localScale.x, 1, 1);
         }
 
-        _entity.CanMove = true;
+        _player.CanMove = true;
     }
 
     private bool CheckIfNeedToFlipEntity(Vector2 mouseDirection)
@@ -147,10 +146,17 @@ public class Fart : MonoBehaviour
         return (!isFacingRight && mouseDirection.x < 0)
             || (isFacingRight && mouseDirection.x > 0);
     }
+
+    private void InitializeUIManager()
+    {
+        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
+        _uiEventManager.OnPlayerFartProgressBar.Invoke(1f);
+    }
 }
 
 /// <summary>
 ///  This event will be called every time that you fart
 ///  float: the time that he will stay farting
 /// </summary>
+[Serializable]
 public class OnFartEvent : UnityEvent<float> { }
