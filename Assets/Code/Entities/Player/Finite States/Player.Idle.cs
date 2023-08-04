@@ -52,6 +52,8 @@ public partial class Player : MonoBehaviour
 
             _fart.OnFartEvent.AddListener(GivePlayerControll);
             _damageReceiver.OnKnockbackEvent.AddListener(GivePlayerControll);
+
+            ManagePooopPerformedEvent(true);
         }
 
         private void UnassignEvents()
@@ -63,6 +65,8 @@ public partial class Player : MonoBehaviour
 
             _fart.OnFartEvent.RemoveListener(GivePlayerControll);
             _damageReceiver.OnKnockbackEvent.RemoveListener(GivePlayerControll);
+
+            ManagePooopPerformedEvent(false);
         }
 
         private void GivePlayerControll(float seconds)

@@ -18,7 +18,7 @@ public partial class Player : MonoBehaviour
     [field: SerializeField]
     public Hitbox Hitbox { get; private set; }
 
-    [field: SerializeField] 
+    [field: SerializeField]
     public Transform RotationalTransform { get; private set; }
     [field: SerializeField]
     public AudioController AudioController { get; private set; }
@@ -33,6 +33,9 @@ public partial class Player : MonoBehaviour
     public PlayerFallingModel FallingModel { get; private set; }
     [field: SerializeField]
     public PlayerDownPlatformModel DownPlatformModel { get; private set; }
+    [field: SerializeField]
+    public PlayerPoopModel PoopModel { get; private set; }
+
 
     public FiniteState CurrentState => _currentState.State;
     public UIEventManager UIEventManager { get; private set; }
@@ -53,7 +56,8 @@ public partial class Player : MonoBehaviour
         new Idle(),
         new Move(),
         new Jump(),
-        new Falling()
+        new Falling(),
+        new Pooping()
     };
 
     private void OnDrawGizmos()
@@ -69,7 +73,7 @@ public partial class Player : MonoBehaviour
         PlayerInventory = GetComponent<PlayerInventory>();
         _fart = GetComponent<Fart>();
     }
-   
+
     private void Start()
     {
         InitializeManagers();
@@ -84,7 +88,7 @@ public partial class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _currentState.Update();
+        _currentState?.Update();
     }
 
     private void OnDestroy()
@@ -136,7 +140,8 @@ public partial class Player : MonoBehaviour
         Idle,
         Move,
         Jump,
-        Falling
+        Falling,
+        Pooping
     }
 
     #region OLD CODE

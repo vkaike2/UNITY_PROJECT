@@ -47,6 +47,8 @@ public partial class Player : MonoBehaviour
             _player.JumpInput.Performed.AddListener(OnJumpInputPerformed);
 
             _player.DownPlatformInput.Performed.AddListener(DownPlatform);
+
+            ManagePooopPerformedEvent(true);
         }
 
         private void UnassignEvents()
@@ -55,6 +57,8 @@ public partial class Player : MonoBehaviour
             _player.JumpInput.Performed.RemoveListener(OnJumpInputPerformed);
 
             _player.DownPlatformInput.Performed.RemoveListener(DownPlatform);
+
+            ManagePooopPerformedEvent(false);
         }
 
         private void DownPlatform()

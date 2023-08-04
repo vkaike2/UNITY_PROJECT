@@ -43,12 +43,16 @@ public partial class Player : MonoBehaviour
         {
             _player.JumpInput.Canceled.AddListener(OnJumpInputCanceled);
             _player.FartInput.Canceled.AddListener(OnFartInputCanceled);
+
+            ManagePooopPerformedEvent(true);
         }
 
         private void UnassignEvents()
         {
             _player.JumpInput.Canceled.RemoveListener(OnJumpInputCanceled);
             _player.FartInput.Canceled.RemoveListener(OnFartInputCanceled);
+
+            ManagePooopPerformedEvent(false);
         }
 
         private void OnJumpInputCanceled()

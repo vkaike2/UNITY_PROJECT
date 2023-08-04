@@ -14,20 +14,18 @@ public class PlayerDamageDealer : MonoBehaviour
     private ParticleSystem _fartParticleSystem;
 
     private Player _player;
-    private Butt _butt;
     private Hitbox _poopHitbox;
     private ParticleSystem.Particle[] _fartParticles;
     private List<int> _fartParticleInstanceIds;
 
     private void Awake()
     {
-        _butt = GetComponent<Butt>();
         _player = GetComponent<Player>();
     }
 
     private void Start()
     {
-        _butt.OnPoopEvent.AddListener(OnPlayerPoop);
+        _player.PoopModel.OnPoopSpawned.AddListener(OnPlayerPoop);
 
         InitializeParticles();
     }

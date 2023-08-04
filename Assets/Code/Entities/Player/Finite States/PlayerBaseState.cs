@@ -14,6 +14,7 @@ public abstract class PlayerBaseState
     protected PlayerJumpModel _jumpModel;
     protected PlayerFallingModel _fallingModel;
     protected PlayerDownPlatformModel _downPlatformModel;
+    protected PlayerPoopModel _poopModel;
 
     protected float _initialGravity;
 
@@ -31,14 +32,17 @@ public abstract class PlayerBaseState
         _player = player;
         _rigidbody2D = _player.GetComponent<Rigidbody2D>();
         _fart = _player.GetComponent<Fart>();
-        _initialGravity = _rigidbody2D.gravityScale;
         _damageReceiver = _player.GetComponent<PlayerDamageReceiver>();
 
         _jumpModel = _player.JumpModel;
-        _status = _player.Status;
-        _animator = _player.PlayerAnimator;
         _fallingModel = _player.FallingModel;
         _downPlatformModel = _player.DownPlatformModel;
+        _poopModel = _player.PoopModel;
+
+        _status = _player.Status;
+        _animator = _player.PlayerAnimator;
+
+        _initialGravity = _rigidbody2D.gravityScale;
     }
 
     public abstract void OnExitState();
@@ -75,13 +79,16 @@ public abstract class PlayerBaseState
             switch (playerState)
             {
                 case Player.FiniteState.Idle:
-                    if(!PlayerCanIdle()) return false;
+                    if (!PlayerCanIdle()) return false;
                     break;
                 case Player.FiniteState.Move:
                     if (!PlayerCanMove()) return false;
                     break;
                 case Player.FiniteState.Jump:
                     if (!PlayerCanJump()) return false;
+                    break;
+                case Player.FiniteState.Pooping:
+                    if (!CanPoop()) return false;
                     break;
             }
         }
@@ -105,6 +112,18 @@ public abstract class PlayerBaseState
         return col.GetComponent<OneWayPlatform>();
     }
 
+    protected void ManagePooopPerformedEvent(bool assing)
+    {
+        if (assing)
+        {
+            _player.PoopInput.Performed.AddListener(OnPoopPerformed);
+        }
+        else
+        {
+            _player.PoopInput.Performed.RemoveListener(OnPoopPerformed);
+        }
+    }
+
     protected IEnumerator DeactivateColliderFor()
     {
         _downPlatformModel.IsComingDown = true;
@@ -126,7 +145,17 @@ public abstract class PlayerBaseState
     {
         return !_downPlatformModel.IsComingDown;
     }
+
+    private bool CanPoop()
+    {
+        return _poopModel.CanPoop;
+    }
     #endregion
+
+    private void OnPoopPerformed()
+    {
+        ChangeState(Player.FiniteState.Pooping);
+    }
 
     //protected virtual void OnMoveInputStarted() { }
 
