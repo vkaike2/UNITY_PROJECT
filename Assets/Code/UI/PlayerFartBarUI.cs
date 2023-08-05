@@ -14,9 +14,7 @@ public class PlayerFartBarUI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
-
-        _uiEventManager.OnPlayerFartProgressBar.AddListener(OnChangePlayerHp);
+        UIEventManager.instance.OnPlayerFartProgressBar.AddListener(OnChangePlayerHp);
     }
 
     private void OnChangePlayerHp(float percentage)

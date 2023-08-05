@@ -15,5 +15,5 @@ MonoBehaviour:
   _name: test
   _description: Potato master potato
   _prefabUI: {fileID: 4951752414831905747, guid: 7b80dc601c9b1394389981f4fcf36a51, type: 3}
-  _itemLayout: 2
+  _itemLayout: 3
   _itemDrop: {fileID: 3461778971412346544, guid: edb0b0e173061904eabfe5502edfc3bb, type: 3}

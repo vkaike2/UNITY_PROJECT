@@ -35,7 +35,6 @@ public abstract class DamageReceiver : MonoBehaviour
     private const float CDW_TO_RECEIVE_DAMAGE_FOR_EACH_INSTANCE = 0.5f;
     private bool _isReceivingDamage;
     private bool _isDead = false;
-    protected UIEventManager _uiEventManager;
     private Rigidbody2D _rigidbody2D;
 
     private void Awake()
@@ -50,7 +49,6 @@ public abstract class DamageReceiver : MonoBehaviour
     {
         BeforeStart();
         _hitbox.OnReceivingDamage.AddListener(ReceiveDamage);
-        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
         AfterStart();
     }
 
@@ -86,7 +84,7 @@ public abstract class DamageReceiver : MonoBehaviour
         }
         else
         {
-            _uiEventManager.OnPlayerLifeChange.Invoke(_status.Health.Get() / _status.MaxHealth.Get());
+            UIEventManager.instance.OnPlayerLifeChange.Invoke(_status.Health.Get() / _status.MaxHealth.Get());
         }
 
         StartCoroutine(ManageDamageEntry(instance));

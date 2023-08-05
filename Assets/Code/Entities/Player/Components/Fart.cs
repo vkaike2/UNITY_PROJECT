@@ -35,7 +35,6 @@ public class Fart : MonoBehaviour
 
     private Player _player;
     private Rigidbody2D _rigidbody2D;
-    private UIEventManager _uiEventManager;
     private bool _isFartOnCdw = false;
 
     private void Awake()
@@ -109,7 +108,7 @@ public class Fart : MonoBehaviour
         while (cdw <= _fartCdw)
         {
             cdw += Time.deltaTime;
-            _uiEventManager.OnPlayerFartProgressBar.Invoke(cdw / _fartCdw);
+            UIEventManager.instance.OnPlayerFartProgressBar.Invoke(cdw / _fartCdw);
             yield return new WaitForFixedUpdate();
         }
 
@@ -149,8 +148,7 @@ public class Fart : MonoBehaviour
 
     private void InitializeUIManager()
     {
-        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
-        _uiEventManager.OnPlayerFartProgressBar.Invoke(1f);
+        UIEventManager.instance.OnPlayerFartProgressBar.Invoke(1f);
     }
 }
 

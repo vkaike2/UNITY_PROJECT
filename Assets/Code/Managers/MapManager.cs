@@ -59,9 +59,9 @@ public class MapManager : MonoBehaviour
         VirualCamera.m_Lens.OrthographicSize = Toilet.CameraSizeOnFocus;
     }
 
-    public void ReturnFocusToPlayer()
+    public void ReturnFocusToPlayer(Player player = null)
     {
-        StartCoroutine(FocusOnPlayer());
+        StartCoroutine(FocusOnPlayer(player));
     }
 
     private IEnumerator FocusOnToilet(Action callBack)
@@ -77,13 +77,18 @@ public class MapManager : MonoBehaviour
         callBack();
     }
 
-    private IEnumerator FocusOnPlayer()
+    private IEnumerator FocusOnPlayer(Player player = null)
     {
+        if (player == null)
+        {
+            player = _gameManager.Player;
+        }
+
         CinemachineConfiner2D.m_BoundingShape2D = CurrentMap.CameraConfiner.SmallCollider;
         VirualCamera.Follow = CurrentMap.CentralPosition;
 
         CinemachineConfiner2D.InvalidateCache();
-        _gameManager.Player.FreezePlayer(true);
+        player.FreezePlayer(true);
 
         while (VirualCamera.m_Lens.OrthographicSize <= CurrentMap.CameraConfiner.SmallCameraSize)
         {
@@ -92,9 +97,9 @@ public class MapManager : MonoBehaviour
         }
 
         VirualCamera.m_Lens.OrthographicSize = CurrentMap.CameraConfiner.SmallCameraSize;
-        VirualCamera.Follow = _gameManager.Player.transform;
+        VirualCamera.Follow = player.transform;
 
         CinemachineConfiner2D.InvalidateCache();
-        _gameManager.Player.FreezePlayer(false);
+        player.FreezePlayer(false);
     }
 }

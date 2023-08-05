@@ -92,6 +92,55 @@ public partial class Player : MonoBehaviour
             _player.StartCoroutine(CalculatePoopVelocity());
         }
 
+        private void ControlPlayerWhilePooping()
+        {
+            _rigidbody2D.gravityScale = _poopModel.GravityWhilePooping;
+
+            if (_previousVelocity.y > 0)
+            {
+                _rigidbody2D.velocity = Vector2.zero;
+            }
+
+            for (int i = 0; i < _poopModel.NumberOfDots; i++)
+            {
+                _fullTrajectory[i].SetActive(false);
+            }
+
+            for (int i = 0; i < _poopModel.NumberOfDots; i++)
+            {
+                _fullTrajectory[i].transform.position = CalculateDotTrajectory(i * 0.1f);
+                RaycastHit2D[] hit = Physics2D.RaycastAll(_fullTrajectory[i].transform.position, -Vector2.up, 0.1f, _jumpModel.GroundLayer);
+
+                if (hit.Any())
+                {
+                    break;
+                }
+
+                _fullTrajectory[i].SetActive(true);
+            }
+        }
+
+        private void ThrowPoop()
+        {
+            PlayPoopSoundEffect();
+
+            for (int i = 0; i < _poopModel.NumberOfDots; i++)
+            {
+                _fullTrajectory[i].SetActive(false);
+            }
+
+            Vector2 velocityDirection = CalculateVelocityDirection();
+
+            PoopProjectile projectile = Instantiate(_poopModel.ProjectilePrefab, _poopModel.SpawnPoint.position, Quaternion.identity);
+
+            _poopModel.OnPoopSpawned?.Invoke(projectile);
+
+            projectile.SetVelocity(velocityDirection);
+
+            _player.StartCoroutine(CalculateCooldown());
+        }
+
+        #region AUXILIAR METHODS
         private Vector2 GetMouseDirectionRelatedToPlayer()
         {
             Vector2 mousePosition = Input.mousePosition;
@@ -124,48 +173,6 @@ public partial class Player : MonoBehaviour
             }
         }
 
-        private IEnumerator CalculatePoopVelocity()
-        {
-            float timer = 0;
-            _velocityMultiplyer = 0;
-
-            while (timer <= _poopModel.VelocityTimer)
-            {
-                timer += Time.deltaTime;
-                _velocityMultiplyer = timer / _poopModel.VelocityTimer;
-                yield return new WaitForFixedUpdate();
-            }
-            _velocityMultiplyer = 1;
-        }
-
-        private void ControlPlayerWhilePooping()
-        {
-            _rigidbody2D.gravityScale = _poopModel.GravityWhilePooping;
-
-            if (_previousVelocity.y > 0)
-            {
-                _rigidbody2D.velocity = Vector2.zero;
-            }
-
-            for (int i = 0; i < _poopModel.NumberOfDots; i++)
-            {
-                _fullTrajectory[i].SetActive(false);
-            }
-
-            for (int i = 0; i < _poopModel.NumberOfDots; i++)
-            {
-                _fullTrajectory[i].transform.position = CalculateDotTrajectory(i * 0.1f);
-                RaycastHit2D[] hit = Physics2D.RaycastAll(_fullTrajectory[i].transform.position, -Vector2.up, 0.1f, _jumpModel.GroundLayer);
-
-                if (hit.Any())
-                {
-                    break;
-                }
-
-                _fullTrajectory[i].SetActive(true);
-            }
-        }
-
         private Vector2 CalculateDotTrajectory(float time)
         {
             return (Vector2)_poopModel.SpawnPoint.position + (CalculateVelocityDirection() * time) + (time * time) * 0.5f * Physics2D.gravity;
@@ -178,47 +185,10 @@ public partial class Player : MonoBehaviour
             return currentVelocity * mouseDirection;
         }
 
-        private void ThrowPoop()
-        {
-            PlayPoopSoundEffect();
-
-            for (int i = 0; i < _poopModel.NumberOfDots; i++)
-            {
-                _fullTrajectory[i].SetActive(false);
-            }
-
-            Vector2 velocityDirection = CalculateVelocityDirection();
-
-            PoopProjectile projectile = Instantiate(_poopModel.ProjectilePrefab, _poopModel.SpawnPoint.position, Quaternion.identity);
-
-            _poopModel.OnPoopSpawned?.Invoke(projectile);
-
-            projectile.SetVelocity(velocityDirection);
-
-            _player.StartCoroutine(CalculateCooldown());
-        }
-
         private void PlayPoopSoundEffect()
         {
             if (_player.AudioController == null) return;
             _player.AudioController.PlayClip(AudioController.ClipName.Player_Poop);
-        }
-
-        private IEnumerator CalculateCooldown()
-        {
-            _poopModel.CanPoop = false;
-            _poopModel.CdwProgressBar.OnSetBehaviour.Invoke(_poopModel.CdwToPoop, ProgressBarUI.Behaviour.ProgressBar_Hide);
-
-            float cdw = 0;
-            while (cdw <= _poopModel.CdwToPoop)
-            {
-                cdw += Time.deltaTime;
-
-                _player.UIEventManager.OnPlayerPoopProgressBar.Invoke(cdw / _poopModel.CdwToPoop);
-                yield return new WaitForFixedUpdate();
-            }
-
-            _poopModel.CanPoop = true;
         }
 
         private void ChangeBackToPreviousState()
@@ -239,5 +209,38 @@ public partial class Player : MonoBehaviour
                 ChangeState(FiniteState.Falling);
             }
         }
+
+        private IEnumerator CalculatePoopVelocity()
+        {
+            float timer = 0;
+            _velocityMultiplyer = 0;
+
+            while (timer <= _poopModel.VelocityTimer)
+            {
+                timer += Time.deltaTime;
+                _velocityMultiplyer = timer / _poopModel.VelocityTimer;
+                yield return new WaitForFixedUpdate();
+            }
+            _velocityMultiplyer = 1;
+        }
+
+        private IEnumerator CalculateCooldown()
+        {
+            _poopModel.CanPoop = false;
+            _poopModel.CdwProgressBar.OnSetBehaviour.Invoke(_poopModel.CdwToPoop, ProgressBarUI.Behaviour.ProgressBar_Hide);
+
+            float cdw = 0;
+            while (cdw <= _poopModel.CdwToPoop)
+            {
+                cdw += Time.deltaTime;
+
+                UIEventManager.instance.OnPlayerPoopProgressBar.Invoke(cdw / _poopModel.CdwToPoop);
+                yield return new WaitForFixedUpdate();
+            }
+
+            _poopModel.CanPoop = true;
+        }
+
+        #endregion
     }
 }

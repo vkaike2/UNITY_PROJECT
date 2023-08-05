@@ -50,7 +50,7 @@ public partial class Toilet : MonoBehaviour
             Player player = GameObject.Instantiate(_model.PlayerPrefab, _model.PlayerSpawnPosition);
             player.transform.parent = null;
 
-            _toilet.MapManager.ReturnFocusToPlayer();
+            _toilet.MapManager.ReturnFocusToPlayer(player);
 
             _toilet.Animator.Play(Toilet.MyAnimations.Closing.ToString());
         }

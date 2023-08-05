@@ -9,18 +9,15 @@ public class PlayerInventory : MonoBehaviour
     private InventoryData _inventoryData = null;
     private InventoryData _equipData = null;
 
-    private UIEventManager _uiEventManager;
-
     private void Start()
     {
-        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
-        _uiEventManager.OnInventoryChange.AddListener(OnInventoryChange);
+        UIEventManager.instance.OnInventoryChange.AddListener(OnInventoryChange);
     }
 
     public void OnOpenInventoryInput(InputAction.CallbackContext context)
     {
         if (context.phase != InputActionPhase.Performed) return;
-        _uiEventManager.OnToggleInventoryOpen.Invoke();
+        UIEventManager.instance.OnToggleInventoryOpen.Invoke();
     }
 
     public void DropItem(ItemData itemData)
@@ -43,8 +40,10 @@ public class PlayerInventory : MonoBehaviour
         {
             ScriptableItem.ItemLayout.OneByOne => CheckIfCanAddItemOneByOne(),
             ScriptableItem.ItemLayout.OneByTwo => CheckifCanAddItemOneByTwo(),
+            ScriptableItem.ItemLayout.TwoByOne => CheckIfCanAddItemTwoByOne(),
             ScriptableItem.ItemLayout.TwoByTwo => CheckifCanAddItemTwoByTwo(),
             ScriptableItem.ItemLayout.TwoByThree => CheckifCanAddItemTwoByThree(),
+            ScriptableItem.ItemLayout.ThreeByTwo => CheckIfCanAddItemThreeByTwo(),
             _ => null,
         };
     }
@@ -73,6 +72,18 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
+    private List<Vector2> CheckIfCanAddItemTwoByOne()
+    {
+        return CheckIfCanAdditem((Vector2 coordinate) =>
+        {
+            return new List<Vector2>()
+            {
+                coordinate,
+                new Vector2(coordinate.x+1, coordinate.y),
+            };
+        });
+    }
+
     private List<Vector2> CheckifCanAddItemTwoByTwo()
     {
         return CheckIfCanAdditem((Vector2 coordinate) =>
@@ -81,6 +92,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 coordinate,
                 new Vector2(coordinate.x +1, coordinate.y),
+
                 new Vector2(coordinate.x, coordinate.y -1),
                 new Vector2(coordinate.x +1, coordinate.y -1),
             };
@@ -95,14 +107,32 @@ public class PlayerInventory : MonoBehaviour
             {
                 coordinate,
                 new Vector2(coordinate.x +1, coordinate.y),
+
                 new Vector2(coordinate.x, coordinate.y -1),
                 new Vector2(coordinate.x +1, coordinate.y -1),
+
                 new Vector2(coordinate.x, coordinate.y -2),
                 new Vector2(coordinate.x +1, coordinate.y -2),
             };
         });
     }
 
+    private List<Vector2> CheckIfCanAddItemThreeByTwo()
+    {
+        return CheckIfCanAdditem((Vector2 coordinate) =>
+        {
+            return new List<Vector2>()
+            {
+                coordinate,
+                new Vector2(coordinate.x +1, coordinate.y),
+                new Vector2(coordinate.x +2, coordinate.y),
+
+                new Vector2(coordinate.x, coordinate.y -1),
+                new Vector2(coordinate.x +1, coordinate.y -1),
+                new Vector2(coordinate.x +2, coordinate.y -1),
+            };
+        });
+    }
 
     private List<Vector2> CheckIfCanAdditem(Func<Vector2, List<Vector2>> getRequiredCoordinates)
     {
@@ -130,7 +160,7 @@ public class PlayerInventory : MonoBehaviour
         AddItemToSlots(itemSlots, itemData.Id);
         _inventoryData.Itens.Add(itemData);
 
-        _uiEventManager.OnInventoryChange.Invoke(_inventoryData, EventSentBy.Player);
+        UIEventManager.instance.OnInventoryChange.Invoke(_inventoryData, EventSentBy.Player);
     }
 
     private void AddItemToSlots(List<InventoryData.Slot> itemSlots, Guid itemId)

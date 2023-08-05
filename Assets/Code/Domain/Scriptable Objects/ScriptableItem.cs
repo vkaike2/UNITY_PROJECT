@@ -32,7 +32,9 @@ public class ScriptableItem : ScriptableObject
     {
         OneByOne,
         OneByTwo,
+        TwoByOne,
         TwoByTwo,
-        TwoByThree
+        TwoByThree,
+        ThreeByTwo
     }
 }

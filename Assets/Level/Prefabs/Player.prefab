@@ -502,7 +502,7 @@ MonoBehaviour:
   <PoopDamage>k__BackingField:
     _value: 2.5
   <FartDamage>k__BackingField:
-    _value: 0.2
+    _value: 0.01
   <MovementSpeed>k__BackingField:
     _value: 7
   <JumpForce>k__BackingField:

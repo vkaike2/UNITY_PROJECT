@@ -11,14 +11,11 @@ namespace Assets.Code.UI
         [SerializeField]
         private Image _imageBar;
 
-        private UIEventManager _uiEventManager;
-
         // Use this for initialization
         void Start()
         {
-            _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
 
-            _uiEventManager.OnPlayerLifeChange.AddListener(OnChangePlayerHp);
+            UIEventManager.instance.OnPlayerLifeChange.AddListener(OnChangePlayerHp);
         }
 
         private void OnChangePlayerHp(float percentage)

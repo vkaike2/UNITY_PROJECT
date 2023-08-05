@@ -22,7 +22,6 @@ public class InventoryUI : MonoBehaviour
 
     private readonly List<InventoryItemUI> _itens = new List<InventoryItemUI>();
     private Animator _animator;
-    private UIEventManager _uiEventManager;
     private GameManager _gameManager;
 
     private void Awake()
@@ -35,7 +34,6 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
-        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
         _gameManager = GameObject.FindObjectOfType<GameManager>();
 
         _gameManager.SetInventory(this);
@@ -70,14 +68,14 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerInventory() => _uiEventManager.OnInventoryChange.Invoke(GenerateInventoryData(SlotType.Inventory, _inventoyInfo), EventSentBy.UI);
-    public void UpdatePlayerEquipInventory() => _uiEventManager.OnInventoryChange.Invoke(GenerateInventoryData(SlotType.Equip, _equipmentInfo), EventSentBy.UI);
+    public void UpdatePlayerInventory() => UIEventManager.instance.OnInventoryChange.Invoke(GenerateInventoryData(SlotType.Inventory, _inventoyInfo), EventSentBy.UI);
+    public void UpdatePlayerEquipInventory() => UIEventManager.instance.OnInventoryChange.Invoke(GenerateInventoryData(SlotType.Equip, _equipmentInfo), EventSentBy.UI);
     #endregion
 
     private void SetupEvents()
     {
-        _uiEventManager.OnToggleInventoryOpen.AddListener(OnToggleInventoryOpen);
-        _uiEventManager.OnInventoryChange.AddListener(OnInventoryChange);
+        UIEventManager.instance.OnToggleInventoryOpen.AddListener(OnToggleInventoryOpen);
+        UIEventManager.instance.OnInventoryChange.AddListener(OnInventoryChange);
         StartCoroutine(WaitUntilEndOfFrame());
     }
 
@@ -85,12 +83,12 @@ public class InventoryUI : MonoBehaviour
     {
         if (IsOpen)
         {
-            _gameManager.PauseGame(false);
+            //_gameManager.PauseGame(false);
             _animator.Play(MyAnimations.Close.ToString());
         }
         else
         {
-            StartCoroutine(WaitThenSlow());
+            //StartCoroutine(WaitThenPause());
             _animator.Play(MyAnimations.Open.ToString());
         }
 
@@ -203,7 +201,7 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitThenSlow()
+    private IEnumerator WaitThenPause()
     {
         yield return new WaitForSeconds(0.3f);
         _gameManager.PauseGame(true);

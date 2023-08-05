@@ -13,7 +13,7 @@ public class PlayerDamageReceiver : DamageReceiver
 
     protected override void OnDie()
     {
-        _uiEventManager.OnPlayerLifeChange.Invoke(0);
+        UIEventManager.instance.OnPlayerLifeChange.Invoke(0);
         Debug.Log("IS DED");
     }
 }

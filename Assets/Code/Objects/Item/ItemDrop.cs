@@ -43,11 +43,11 @@ public class ItemDrop : MouseInteractable
 
     public override void ChangeAnimationOnItemOver(bool isMouseOver)
     {
-        if (!PlayerIsInRange())
-        {
-            _animator.Play(MyAnimations.Idle.ToString());
-            return;
-        }
+        //if (!PlayerIsInRange())
+        //{
+        //    _animator.Play(MyAnimations.Idle.ToString());
+        //    return;
+        //}
 
         if (isMouseOver)
         {
@@ -61,9 +61,9 @@ public class ItemDrop : MouseInteractable
 
     public override void InteractWith(CustomMouse mouse)
     {
-        if (!PlayerIsInRange()) return;
+        //if (!PlayerIsInRange()) return;
 
-        if (Vector2.Distance(_gameManager.Player.transform.position, this.transform.position) > _playerInteractableRange) return;
+        //if (Vector2.Distance(_gameManager.Player.transform.position, this.transform.position) > _playerInteractableRange) return;
 
         if (_gameManager.InventoryIsOpen)
         {

@@ -288,9 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d60935b5408573419abbb7c5b610075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth:
-    _value: 3
-  _knockBackForce: 700
+  <MaxHealth>k__BackingField:
+    _value: 10
+  <KnockBackForce>k__BackingField: 700
   Health:
     _value: 0
   ImpactDamage:
@@ -344,6 +344,10 @@ MonoBehaviour:
   _progressBarUI: {fileID: 785018022060585414}
   _spriteRenderer: {fileID: 7775297797329079548}
   _shouldApplyKnockback: 0
+  _knockbackDuration: 0.3
+  <OnKnockbackEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7331162644406685534
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f44e2e7245164f9498e1ebe711b98f9d
+guid: bf0be0993d1be8845b3247764ac9742a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,106 +117,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mockup_item_2x2
+      name: mockup_item_selected_2x1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 352d59e091bb24b42ac6ba8e3bf4ae62
-      internalID: 96456279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mockup_item_1x1
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce3b06d030a9d2c49911988eaf501789
-      internalID: -1582960872
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mockup_item_1x2
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c25be079641ff849af4673317ba6739
-      internalID: -1802104067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mockup_item_2x3
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 32
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 962cf2077d7d9cc4a8d3dcc476fbbc8b
-      internalID: 1983159607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mockup_item_drop
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 64
         y: 32
-        width: 14
+        width: 32
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2f84065036d94d41b049b9dda2f554e
-      internalID: 1069207319
+      spriteID: c8120f46fc75c0846aa1c144e9e0b0a1
+      internalID: -1365784509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mockup_item_selected_3x2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46d8f3f32908d8548871bdab2beb217c
+      internalID: -1309176260
       vertices: []
       indices: 
       edges: []
@@ -232,11 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mockup_item_1x1: -1582960872
-      mockup_item_1x2: -1802104067
-      mockup_item_2x3: 1983159607
-      mockup_item_2x2: 96456279
-      mockup_item_drop: 1069207319
+      mockup_item_selected_2x1: -1365784509
+      mockup_item_selected_3x2: -1309176260
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

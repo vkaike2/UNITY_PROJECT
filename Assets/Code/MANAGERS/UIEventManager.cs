@@ -1,20 +1,28 @@
-﻿using UnityEngine;
+﻿using UnityEditorInternal;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class UIEventManager : MonoBehaviour
 {
-    public OnPlayerProgressBar OnPlayerLifeChange { get; set; } = new OnPlayerProgressBar();    
+    public static UIEventManager instance;
+
+    public OnPlayerProgressBar OnPlayerLifeChange { get; set; } = new OnPlayerProgressBar();
     public OnPlayerProgressBar OnPlayerFartProgressBar { get; set; } = new OnPlayerProgressBar();
     public OnPlayerProgressBar OnPlayerPoopProgressBar { get; set; } = new OnPlayerProgressBar();
     public UnityEvent OnToggleInventoryOpen { get; set; } = new UnityEvent();
     public OnInventoryChange OnInventoryChange { get; set; } = new OnInventoryChange();
 
-    //private void Awake()
-    //{
-    //    OnPlayerLifeChange = new OnPlayerProgressBar();
-    //    OnToggleInventoryOpen = new UnityEvent();
-    //    OnInventoryChange = new OnInventoryChange();
-    //}
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 }
 /// <summary>
 ///     float -> hp percentage

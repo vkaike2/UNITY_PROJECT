@@ -8,14 +8,10 @@ public class PlayerPoopBarUI : MonoBehaviour
     [SerializeField]
     private Image _imageBar;
 
-    private UIEventManager _uiEventManager;
-
     // Use this for initialization
     void Start()
     {
-        _uiEventManager = GameObject.FindObjectOfType<UIEventManager>();
-
-        _uiEventManager.OnPlayerPoopProgressBar.AddListener(OnChangePlayerHp);
+        UIEventManager.instance.OnPlayerPoopProgressBar.AddListener(OnChangePlayerHp);
     }
 
     private void OnChangePlayerHp(float percentage)

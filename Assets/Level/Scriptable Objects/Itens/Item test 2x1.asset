@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
-  m_Name: Item test 2x3
+  m_Name: Item test 2x1
   m_EditorClassIdentifier: 
   _name: test
   _description: Potato master potato
-  _prefabUI: {fileID: 8580881440723439087, guid: dc20085349cf0fc4ba40e5775e40bb61, type: 3}
-  _itemLayout: 4
-  _itemDrop: {fileID: 1728791946416549482, guid: f436180ec0263b040955a950a032660c, type: 3}
+  _prefabUI: {fileID: 4327988052114346522, guid: 36f68e7a9ebe99c419db1859d2d913e5, type: 3}
+  _itemLayout: 2
+  _itemDrop: {fileID: 6693273397939731156, guid: bca4e8f8a309ccf4185ce9df8b344cc3, type: 3}

@@ -109,11 +109,17 @@ MonoBehaviour:
     - name: Item test 1x2_4
       _item: {fileID: 11400000, guid: b08b23c58241d22419e3f9df159906ca, type: 2}
       _weight: 4
+    - name: Item test 2x1_4
+      _item: {fileID: 11400000, guid: c80cf1a57a593bd44a74fa74cee9a151, type: 2}
+      _weight: 4
     - name: Item test 2x2_2
       _item: {fileID: 11400000, guid: 8d88b7a9589014c4ebfe48a6fe4175df, type: 2}
       _weight: 2
     - name: Item test 2x3_1
       _item: {fileID: 11400000, guid: 1d4aa4f45c826f0478b5ce54d488899a, type: 2}
+      _weight: 1
+    - name: Item test 3x2_1
+      _item: {fileID: 11400000, guid: fa7bcfec96a9cb74da9758ec62cb1656, type: 2}
       _weight: 1
   _animator: {fileID: 7204842556560536802}
 --- !u!1 &7204842556560536800
