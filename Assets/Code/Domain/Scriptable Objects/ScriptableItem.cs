@@ -3,30 +3,38 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Item")]
 public class ScriptableItem : ScriptableObject
 {
-    [Header("GENERAL")]
-    [SerializeField]
-    private string _name;
-    [TextArea]
-    [SerializeField]
-    private string _description;
+    [field: Header("GENERAL")]
+    [field: SerializeField]
+    public string Name { get; private set; }
+    [field: TextArea]
+    [field: SerializeField]
+    public string Description { get; private set; }    
+    [field: SerializeField]
+    public ScriptableItem RotatedItem { get; private set; }
 
-    public string Name => _name;
-    public string Description => _description;
 
-    [Header("INVENTORY INFO")]
-    [SerializeField]
-    private InventoryItemUI _prefabUI;
-    [SerializeField]
-    private ItemLayout _itemLayout;
+    [field: Header("INVENTORY INFO")]
+    [field:Tooltip("Only applicable for two steps usage like the Rotational Jam")]
+    [field: SerializeField]
+    public Sprite SpriteWhileUsing { get; private set; }
+    [field: SerializeField]
+    public InventoryItemUI PrefabUI { get; private set; }
+    [field: SerializeField]
+    public ItemLayout InventoryItemLayout { get; private set; }
 
-    public InventoryItemUI PrefabUI => _prefabUI;
-    public ItemLayout InventoryItemLayout => _itemLayout;
 
-    [Header("DROP")]
-    [SerializeField]
-    private ItemDrop _itemDrop;
+    [field: Header("EQUIPABLE INFO")]
+    [field: SerializeField]
+    public bool IsEquipable { get; set; }
+    [field: SerializeField]
+    public ItemType Type { get; set; }
+    [field: SerializeField]
+    public ItemAffect Affect { get; set; }
 
-    public ItemDrop ItemDrop => _itemDrop;
+
+    [field: Header("DROP")]
+    [field: SerializeField]
+    public ItemDrop ItemDrop { get; private set; }
 
     public enum ItemLayout
     {
@@ -36,5 +44,17 @@ public class ScriptableItem : ScriptableObject
         TwoByTwo,
         TwoByThree,
         ThreeByTwo
+    }
+
+    public enum ItemType
+    {
+        Major,
+        Minor
+    }
+
+    public enum ItemAffect
+    {
+        Poop,
+        Fart
     }
 }

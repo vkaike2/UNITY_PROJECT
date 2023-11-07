@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static UnityEditor.Progress;
 
 public class InventorySlotUI : MonoBehaviour
@@ -14,59 +16,152 @@ public class InventorySlotUI : MonoBehaviour
 
     [Header("CONFIGURATIONS")]
     [SerializeField]
-    private bool _isFirst;
-    [SerializeField]
     private SlotType _type;
+    [field: SerializeField]
+    public bool IsAvalialbe { get; private set; } = true;
+
+    [Header("COMPONENTS")]
+    [SerializeField]
+    private GameObject _slotOverImage;
 
     public SlotType Type => _type;
     public Vector2 Coordinate => _coordinate;
-    public bool IsFirst => _isFirst;
+
     public bool HasItem { get; private set; }
     public InventoryItemUI ItemUI { get; private set; }
+    public bool HasError { get; private set; } = false;
 
+    private Animator _slotOverAnimator;
     private Animator _animator;
     private InventoryUI _inventoryUI;
 
-    private readonly List<Action> _executeSyncronousWithEvent = new List<Action>();
+    public bool _isUnlockedByDefault = false;
+
     private readonly List<Action> _executeSyncronous = new List<Action>();
+    private readonly List<Guid> _runningActions = new List<Guid>();
 
     private void Awake()
     {
         _inventoryUI = GetComponentInParent<InventoryUI>();
         _animator = GetComponent<Animator>();
+
         HasItem = false;
+
+        _isUnlockedByDefault = IsAvalialbe;
+        ToggleAvailability(IsAvalialbe);
+    }
+
+    private void Start()
+    {
+        _slotOverImage.SetActive(true);
+        _slotOverAnimator = _slotOverImage.GetComponent<Animator>();
     }
 
     private void Update()
     {
         _coordinate = Coordinate;
-        ExecuteSyncronousWithEvent();
         ExecuteSyncronous();
     }
 
-    private void ExecuteSyncronousWithEvent()
+    public bool CanReceiveANewItem() => IsAvalialbe && !HasItem;
+
+    public Guid AddItem(InventoryItemUI item, bool canBeEquiped = true)
     {
-        if (_executeSyncronousWithEvent.Count == 0) return;
+        Guid actionId = GenerateActionId();
+        _executeSyncronous.Add(() => AddItemInternal(actionId, item, canBeEquiped));
 
-        _executeSyncronousWithEvent.FirstOrDefault().Invoke();
-        _executeSyncronousWithEvent.RemoveAt(0);
+        return actionId;
+    }
 
-        if (_executeSyncronousWithEvent.Count == 0)
+    public Guid RemoveItem()
+    {
+        Guid actionId = GenerateActionId();
+        _executeSyncronous.Add(() => RemoveItemInternal(actionId));
+
+        return actionId;
+    }
+
+    public bool SyncronousActionIsDone(Guid actionId)
+    {
+        return !_runningActions.Any(e => e == actionId);
+    }
+
+    public void ChangeAnimationOnItemOver(bool isItemOver)
+    {
+        if (!CanReceiveANewItem()) return;
+
+        if (isItemOver)
         {
-            switch (_type)
-            {
-                case SlotType.Inventory:
-                    _inventoryUI.UpdatePlayerInventory();
-                    break;
-                case SlotType.Equip:
-                    _inventoryUI.UpdatePlayerEquipInventory();
-                    break;
-                default:
-                    break;
-            }
-
-            ;
+            _slotOverAnimator.Play(SlotOverAnimations.ItemOver.ToString());
         }
+        else
+        {
+            _slotOverAnimator.Play(MyAnimations.None.ToString());
+        }
+    }
+
+    public void ToggleAvailability(bool isAvailable)
+    {
+        IsAvalialbe = isAvailable;
+
+        if (isAvailable)
+        {
+            ResetSlotToIdleAnimation();
+        }
+        else
+        {
+            _animator.Play(MyAnimations.Disabled.ToString());
+        }
+    }
+
+    /// <summary>
+    ///     Remove the Error if you can
+    /// </summary>
+    public void FixEquipment()
+    {
+        Debug.Log("fixing");
+
+        HasError = false;
+        ResetSlotToIdleAnimation();
+        EquipItemAnimation();
+    }
+
+    private Guid GenerateActionId()
+    {
+        Guid actionId = Guid.NewGuid();
+        _runningActions.Add(actionId);
+        return actionId;
+    }
+
+    private void AddItemInternal(Guid actionId, InventoryItemUI item, bool canBeEquiped = true)
+    {
+        HasItem = true;
+        ItemUI = item;
+        if (canBeEquiped)
+        {
+            HasError = false;
+            EquipItemAnimation();
+        }
+        else
+        {
+            HasError = true;
+            AddItemWithErrorAnimation();
+        }
+
+        _runningActions.Remove(actionId);
+    }
+
+    private void RemoveItemInternal(Guid actionId)
+    {
+        HasError = false;
+        HasItem = false;
+        ItemUI = null;
+
+        ResetSlotToIdleAnimation();
+
+        _slotOverAnimator.Play(MyAnimations.None.ToString());
+
+        _runningActions.Remove(actionId);
     }
 
     private void ExecuteSyncronous()
@@ -77,77 +172,62 @@ public class InventorySlotUI : MonoBehaviour
         _executeSyncronous.RemoveAt(0);
     }
 
-    public void AddItem(InventoryItemUI item, bool updatePlayer = true)
+    #region UPDATE ANIMATION
+    private void EquipItemAnimation()
     {
-        if (updatePlayer)
+        switch (_type)
         {
-            _executeSyncronousWithEvent.Add(() => AddItemInternal(item));
-        }
-        else
-        {
-            _executeSyncronous.Add(() => AddItemInternal(item));
+            case SlotType.Equip:
+
+                if (ItemUI.ItemData.Item.IsEquipable)
+                {
+                    _slotOverAnimator.Play(SlotOverAnimations.WithItemEquiped.ToString());
+                }
+                else
+                {
+                    _slotOverAnimator.Play(SlotOverAnimations.WithItem.ToString());
+                }
+
+                break;
+            case SlotType.Inventory:
+                _slotOverAnimator.Play(SlotOverAnimations.WithItem.ToString());
+                break;
         }
     }
 
-    public void RemoveItem(bool updatePlayer = true)
+    private void AddItemWithErrorAnimation()
     {
-        if (updatePlayer)
-        {
-            _executeSyncronousWithEvent.Add(RemoveItemInternal);
-        }
-        else
-        {
-            _executeSyncronous.Add(RemoveItemInternal);
-        }
+        _animator.Play(MyAnimations.Error.ToString());
+        _slotOverAnimator.Play(SlotOverAnimations.WithItemError.ToString());
     }
 
-    public void ChangeAnimationOnItemOver(bool isItemOver)
+    private void ResetSlotToIdleAnimation()
     {
-        if (HasItem) return;
-
-        if (isItemOver)
-        {
-            _animator.Play(MyAnimations.ItemOver.ToString());
-        }
-        else
+        if (_isUnlockedByDefault)
         {
             _animator.Play(MyAnimations.Idle.ToString());
         }
+        else
+        {
+            _animator.Play(MyAnimations.Unlocked.ToString());
+        }
     }
-
-    public void ClearAnimations()
-    {
-        if (HasItem) return;
-
-        _animator.Play(MyAnimations.Idle.ToString());
-    }
-
-    public void SetCooordinate(Vector2? newCoordinate = null)
-    {
-        if (_coordinate != Vector2.zero && !_isFirst) return;
-
-        if (newCoordinate == null) _coordinate = Vector2.zero;
-        else _coordinate = newCoordinate.Value;
-    }
-
-    private void AddItemInternal(InventoryItemUI item)
-    {
-        HasItem = true;
-        ItemUI = item;
-        _animator.Play(MyAnimations.WithItem.ToString());
-    }
-
-    private void RemoveItemInternal()
-    {
-        HasItem = false;
-        ItemUI = null;
-        _animator.Play(MyAnimations.Idle.ToString());
-    }
+    #endregion
 
     private enum MyAnimations
     {
+        None,
         Idle,
+        Disabled,
+        Unlocked,
+        Error
+    }
+
+    private enum SlotOverAnimations
+    {
         ItemOver,
-        WithItem
+        WithItem,
+        WithItemEquiped,
+        WithItemError
     }
 }

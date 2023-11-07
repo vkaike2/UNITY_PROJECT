@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
   m_Name: Item test 1x2
   m_EditorClassIdentifier: 
-  _name: test
-  _description: Potato master potato
-  _prefabUI: {fileID: 7035855407668100911, guid: a0db0d70caa315845869d75a75d39f5a, type: 3}
-  _itemLayout: 1
-  _itemDrop: {fileID: 19355182598702705, guid: 1f81c0d96626ace4b824af877784653d, type: 3}
+  <Name>k__BackingField: 1x2 Test
+  <Description>k__BackingField: 
+  <RotatedItem>k__BackingField: {fileID: 11400000, guid: c80cf1a57a593bd44a74fa74cee9a151, type: 2}
+  <SpriteWhileUsing>k__BackingField: {fileID: 0}
+  <PrefabUI>k__BackingField: {fileID: 7035855407668100911, guid: a0db0d70caa315845869d75a75d39f5a, type: 3}
+  <InventoryItemLayout>k__BackingField: 1
+  <IsEquipable>k__BackingField: 0
+  <Type>k__BackingField: 0
+  <Affect>k__BackingField: 0
+  <ItemDrop>k__BackingField: {fileID: 19355182598702705, guid: 1f81c0d96626ace4b824af877784653d, type: 3}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
+  m_Name: '[1x2] Broccoli'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Broccoli
+  <Description>k__BackingField: Add poop projectile speed
+  <RotatedItem>k__BackingField: {fileID: 11400000, guid: bccc9da1d7d3d454492553a0bd153e95, type: 2}
+  <SpriteWhileUsing>k__BackingField: {fileID: 0}
+  <PrefabUI>k__BackingField: {fileID: 3042600401543503107, guid: e854fb0a7b4e2914792818466fad88ba, type: 3}
+  <InventoryItemLayout>k__BackingField: 1
+  <IsEquipable>k__BackingField: 1
+  <Type>k__BackingField: 1
+  <Affect>k__BackingField: 0
+  <ItemDrop>k__BackingField: {fileID: 2262715942456674173, guid: deb5c840237f5a4499e3758f5fee11a4, type: 3}

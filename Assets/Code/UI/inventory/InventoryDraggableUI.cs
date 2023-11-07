@@ -1,10 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using UnityEngine;
 using static CustomMouse;
 
 public class InventoryDraggableUI : MonoBehaviour
 {
+    [Header("COMPONENTS")]
+    [SerializeField]
+    private ItemBeingUsedUI _itemBeingUsedUI;
+
+    private bool _isUsingItem = false;
     private bool _isBeingDragged = false;
     private InventoryItemUI _activePrefab;
     private InventoryUI _inventoryUI;
@@ -14,11 +20,13 @@ public class InventoryDraggableUI : MonoBehaviour
     {
         _inventoryUI = GameObject.FindObjectOfType<InventoryUI>();
         _gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        _itemBeingUsedUI.ActivateImage(_isUsingItem);
     }
 
     private void Update()
     {
-        if (!_isBeingDragged) return;
+        if (!_isBeingDragged && !_isUsingItem) return;
         this.transform.position = Input.mousePosition;
     }
 
@@ -35,7 +43,7 @@ public class InventoryDraggableUI : MonoBehaviour
     public DragAction StopDragItem()
     {
         DragAction dragAction;
-        
+
         bool dropInsideInventory = RaycastUtils.GetComponentsUnderMouseUI<InventoryUI>().Any();
 
         if (dropInsideInventory)
@@ -49,7 +57,7 @@ public class InventoryDraggableUI : MonoBehaviour
             dragAction = CustomMouse.DragAction.Stop;
         }
 
-        if(dragAction == DragAction.Stop)
+        if (dragAction == DragAction.Stop)
         {
             _activePrefab.StopDrag();
             _activePrefab = null;
@@ -59,16 +67,29 @@ public class InventoryDraggableUI : MonoBehaviour
         return dragAction;
     }
 
+    public void StartUsingItem(TwoStepsUsableItemUI itemBeingUsed)
+    {
+        _isUsingItem = true;
+
+        _itemBeingUsedUI.ActivateImage(_isUsingItem, itemBeingUsed.DraggableSprite);
+    }
+
+    public void StopUsingItem()
+    {
+        _isUsingItem = false;
+        _itemBeingUsedUI.ActivateImage(_isUsingItem);
+    }
+
     private DragAction ManagItemDropInsideInventory()
     {
-        bool isHasBeingAddedToInventory = TryToAddItemToInventory();
+        bool itHasBeingAddedToInventory = TryToAddItemToInventory();
 
-        if (isHasBeingAddedToInventory)
+        if (itHasBeingAddedToInventory)
         {
             return DragAction.Stop;
         }
 
-        TryToSwapItensInYourHand();
+        bool itHasBeingAbleToSwap = TryToSwapItensInYourHand();
 
         return DragAction.Continue;
     }
@@ -86,18 +107,22 @@ public class InventoryDraggableUI : MonoBehaviour
         return true;
     }
 
-    private void TryToSwapItensInYourHand()
+    private bool TryToSwapItensInYourHand()
     {
-        if (!_activePrefab.CheckIfCanSwap()) return;
+        if (!_activePrefab.CheckIfCanSwap()) return false;
 
         InventoryItemUI itemToSwap = _activePrefab.GetItemToSwap();
+        if (itemToSwap == null) return false;
+
         ItemData itemDataToSwap = itemToSwap.ItemData;
         itemToSwap.RemoveFromInventory();
 
+        _activePrefab.ItemData.HasBeeingSwaped = true;
         _inventoryUI.AddItem(_activePrefab);
         _activePrefab = null;
 
         StartDragItem(itemDataToSwap);
+        return true;
     }
 
     private void DropItemOnTheGround()

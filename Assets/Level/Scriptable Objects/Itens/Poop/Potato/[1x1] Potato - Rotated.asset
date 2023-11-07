@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
+  m_Name: '[1x1] Potato - Rotated'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Potato
+  <Description>k__BackingField: Add +1 Projectile to poop
+  <RotatedItem>k__BackingField: {fileID: 11400000, guid: b8c24a8d6c2cc80418e860243daac9c0, type: 2}
+  <SpriteWhileUsing>k__BackingField: {fileID: 0}
+  <PrefabUI>k__BackingField: {fileID: 3633510909700244665, guid: 461e19195ec555c44a6e9eb950d3b6bb, type: 3}
+  <InventoryItemLayout>k__BackingField: 0
+  <IsEquipable>k__BackingField: 1
+  <Type>k__BackingField: 1
+  <Affect>k__BackingField: 0
+  <ItemDrop>k__BackingField: {fileID: 3714081726579731095, guid: a5ce1eab48d69fe4a9a605eef79d9dfb, type: 3}

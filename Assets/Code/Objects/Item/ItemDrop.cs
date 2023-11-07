@@ -14,14 +14,18 @@ public class ItemDrop : MouseInteractable
 
     public ItemData ItemData { get; set; }
 
-
     private Rigidbody2D _rigidBody2D;
-
+    private GameManager _gameManager;
 
     private void Awake()
     {
         _priority = 0;
         _rigidBody2D = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     public void DropItem(DropConfiguration dropConfiguration = DropConfiguration.Player)
@@ -61,10 +65,6 @@ public class ItemDrop : MouseInteractable
 
     public override void InteractWith(CustomMouse mouse)
     {
-        //if (!PlayerIsInRange()) return;
-
-        //if (Vector2.Distance(_gameManager.Player.transform.position, this.transform.position) > _playerInteractableRange) return;
-
         if (_gameManager.InventoryIsOpen)
         {
             mouse.StartDragItem(ItemData);

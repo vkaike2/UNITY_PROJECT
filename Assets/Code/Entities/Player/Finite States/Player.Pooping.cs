@@ -131,11 +131,9 @@ public partial class Player : MonoBehaviour
 
             Vector2 velocityDirection = CalculateVelocityDirection();
 
-            PoopProjectile projectile = Instantiate(_poopModel.ProjectilePrefab, _poopModel.SpawnPoint.position, Quaternion.identity);
+            PoopProjectile projectile = Instantiate(_status.Poop.Projectile.Get(), _poopModel.SpawnPoint.position, Quaternion.identity);
 
-            _poopModel.OnPoopSpawned?.Invoke(projectile);
-
-            projectile.SetVelocity(velocityDirection);
+            projectile.SetInitialValues(velocityDirection, _player.Status, _player.DamageDealer);
 
             _player.StartCoroutine(CalculateCooldown());
         }
@@ -181,7 +179,7 @@ public partial class Player : MonoBehaviour
         private Vector2 CalculateVelocityDirection()
         {
             Vector2 mouseDirection = GetMouseDirectionRelatedToPlayer();
-            float currentVelocity = _poopModel.MaximumVelocity * _velocityMultiplyer;
+            float currentVelocity = _status.Poop.MaximumVelocity.Get() * _velocityMultiplyer;
             return currentVelocity * mouseDirection;
         }
 
@@ -195,7 +193,7 @@ public partial class Player : MonoBehaviour
         {
             if (IsPlayerTouchingGround)
             {
-                if(_player.MoveInput.Value != Vector2.zero)
+                if (_player.MoveInput.Value != Vector2.zero)
                 {
                     ChangeState(FiniteState.Move);
                 }
@@ -215,10 +213,10 @@ public partial class Player : MonoBehaviour
             float timer = 0;
             _velocityMultiplyer = 0;
 
-            while (timer <= _poopModel.VelocityTimer)
+            while (timer <= _status.Poop.VelocityTimer.Get())
             {
                 timer += Time.deltaTime;
-                _velocityMultiplyer = timer / _poopModel.VelocityTimer;
+                _velocityMultiplyer = timer / _status.Poop.VelocityTimer.Get();
                 yield return new WaitForFixedUpdate();
             }
             _velocityMultiplyer = 1;
@@ -227,14 +225,14 @@ public partial class Player : MonoBehaviour
         private IEnumerator CalculateCooldown()
         {
             _poopModel.CanPoop = false;
-            _poopModel.CdwProgressBar.OnSetBehaviour.Invoke(_poopModel.CdwToPoop, ProgressBarUI.Behaviour.ProgressBar_Hide);
+            _poopModel.CdwProgressBar.OnSetBehaviour.Invoke(_status.Poop.CdwToPoop.Get(), ProgressBarUI.Behaviour.ProgressBar_Hide);
 
             float cdw = 0;
-            while (cdw <= _poopModel.CdwToPoop)
+            while (cdw <= _status.Poop.CdwToPoop.Get())
             {
                 cdw += Time.deltaTime;
 
-                UIEventManager.instance.OnPlayerPoopProgressBar.Invoke(cdw / _poopModel.CdwToPoop);
+                UIEventManager.instance.OnPlayerPoopProgressBar.Invoke(cdw / _status.Poop.CdwToPoop.Get());
                 yield return new WaitForFixedUpdate();
             }
 

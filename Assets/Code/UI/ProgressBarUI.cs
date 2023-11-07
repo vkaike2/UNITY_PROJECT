@@ -32,6 +32,13 @@ public class ProgressBarUI : MonoBehaviour
 
     private void StartProgressBar(float value, Behaviour behaviour)
     {
+
+        if(this.transform.name == "Target Dummy Progress Bar")
+        {
+            ;
+        }
+
+
         StopAllCoroutines();
 
         switch (behaviour)
@@ -57,7 +64,7 @@ public class ProgressBarUI : MonoBehaviour
         float percentage = 0;
 
         while (cdw <= completionCdw)
-        {   
+        {
             cdw += Time.deltaTime;
             percentage = cdw / completionCdw;
             _imageBar.fillAmount = percentage;

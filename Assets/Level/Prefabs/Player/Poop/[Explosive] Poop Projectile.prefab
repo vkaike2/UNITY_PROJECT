@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &695523472700704470
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5287407643548835496, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f8f0ab979d8bbb84789beae21fd469cc, type: 2}
+    - target: {fileID: 6161475324794161196, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1884862080, guid: 0bec604884d71d3448a45bcff798bc2c, type: 3}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789877, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484034754883789878, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_Name
+      value: '[Explosive] Poop Projectile'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855923119754135850, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855923119754135850, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855923119754135850, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+--- !u!1 &7960779868562727648 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7484034754883789878, guid: cbd4e318c5fea414c9a9c868c09d8346, type: 3}
+  m_PrefabInstance: {fileID: 695523472700704470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2518699327201309521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960779868562727648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b31dbe1d38855f4695a1b94e4c4dc38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <DealDamagaUsingEffect>k__BackingField: 1
+  _poopExplosionVFX: {fileID: 3024970234671698805, guid: 6884fbaf7275a05488cf3fe6d381e4ce, type: 3}

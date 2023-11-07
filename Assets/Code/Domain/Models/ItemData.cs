@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 
 public class ItemData
 {
@@ -9,7 +8,11 @@ public class ItemData
         Item = item;
     }
 
-    public Vector2 CurrentPosition { get; set; }
-    public Guid Id { get; set; }
+    public Guid Id { get; private set; }
     public ScriptableItem Item { get; set; }
+
+    public bool IsEquiped { get; set; } = false;
+
+    // someone tried to swap an item with this one, requiring it to update the UI
+    public bool HasBeeingSwaped { get; set; } = false;
 }

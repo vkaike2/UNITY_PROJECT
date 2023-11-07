@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
+  m_Name: '[2x2] Pepper'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Pepper
+  <Description>k__BackingField: Make your poop explode
+  <RotatedItem>k__BackingField: {fileID: 11400000, guid: 1fad8d1cf7f302145ac8d5e64c921a3d, type: 2}
+  <SpriteWhileUsing>k__BackingField: {fileID: 0}
+  <PrefabUI>k__BackingField: {fileID: 4046679946923917854, guid: c9a7b3c266dd2904c9687e1b754fab1e, type: 3}
+  <InventoryItemLayout>k__BackingField: 3
+  <IsEquipable>k__BackingField: 1
+  <Type>k__BackingField: 0
+  <Affect>k__BackingField: 0
+  <ItemDrop>k__BackingField: {fileID: 1639093505906845293, guid: 1d843fcbd0112ee4d9b359a8ea71e0b5, type: 3}

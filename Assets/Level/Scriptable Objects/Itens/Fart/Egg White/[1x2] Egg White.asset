@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
+  m_Name: '[1x2] Egg White'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Egg White
+  <Description>k__BackingField: + 10% area of effect, - 5% damage
+  <RotatedItem>k__BackingField: {fileID: 11400000, guid: f5e33d52fcff28347a516f36c175655d, type: 2}
+  <SpriteWhileUsing>k__BackingField: {fileID: 0}
+  <PrefabUI>k__BackingField: {fileID: 7675324920657239569, guid: d15cb0a8d8c8f7140abe50f847f4e538, type: 3}
+  <InventoryItemLayout>k__BackingField: 1
+  <IsEquipable>k__BackingField: 1
+  <Type>k__BackingField: 1
+  <Affect>k__BackingField: 1
+  <ItemDrop>k__BackingField: {fileID: 5816933599991359726, guid: c000b30ab6e416d41a86d0b4ef1eec92, type: 3}

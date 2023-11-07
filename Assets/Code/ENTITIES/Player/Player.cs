@@ -41,6 +41,7 @@ public partial class Player : MonoBehaviour
     public UIEventManager UIEventManager { get; private set; }
     public PlayerInventory PlayerInventory { get; private set; }
     public PlayerStatus Status { get; private set; }
+    public PlayerDamageDealer DamageDealer { get; set; }
 
     private Fart _fart;
     private bool _isFrozen;
@@ -71,12 +72,15 @@ public partial class Player : MonoBehaviour
         Status = GetComponent<PlayerStatus>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         PlayerInventory = GetComponent<PlayerInventory>();
+        DamageDealer = GetComponent<PlayerDamageDealer>();
         _fart = GetComponent<Fart>();
     }
 
     private void Start()
     {
         InitializeManagers();
+
+        PlayerInventory.LoadInventoryDataFromMemory();
 
         foreach (var state in _finiteStates)
         {
@@ -130,7 +134,6 @@ public partial class Player : MonoBehaviour
         _mapManager = GameObject.FindObjectOfType<MapManager>();
         _gameManager = GameObject.FindObjectOfType<GameManager>();
         UIEventManager = GameObject.FindObjectOfType<UIEventManager>();
-
 
         _gameManager.SetPlayer(this);
     }

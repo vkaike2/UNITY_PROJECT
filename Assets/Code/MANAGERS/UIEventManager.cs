@@ -11,6 +11,12 @@ public class UIEventManager : MonoBehaviour
     public OnPlayerProgressBar OnPlayerPoopProgressBar { get; set; } = new OnPlayerProgressBar();
     public UnityEvent OnToggleInventoryOpen { get; set; } = new UnityEvent();
     public OnInventoryChange OnInventoryChange { get; set; } = new OnInventoryChange();
+    /// <summary>
+    ///     Is will be called by the PlayerInventory
+    ///     when you remove an equipment
+    /// </summary>
+    public UnityEvent OnInventoryRemoveEquipment { get; set; } = new UnityEvent();
+
 
     private void Awake()
     {

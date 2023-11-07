@@ -3,11 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ExceptionServices;
+using System.Transactions;
 using UnityEngine;
 using static InventoryData;
+using static InventoryUI;
+using static UnityEditor.Progress;
 
 public class InventoryUI : MonoBehaviour
 {
+    [Header("ITEM EVENT")]
+    [SerializeField]
+    private ScriptableItemEvents _itemEvents;
+
     [Header("CONFIGURATIONS")]
     [SerializeField]
     private Transform _itemParent;
@@ -20,6 +27,12 @@ public class InventoryUI : MonoBehaviour
 
     public bool IsOpen { get; private set; }
 
+    /// <summary>
+    ///  Time to wait before sending the update event
+    ///  we need to wait for every slot to be updated
+    /// </summary>
+    private const float BUFFER_WAIT_BEFORE_UPDATE = 0.2f;
+
     private readonly List<InventoryItemUI> _itens = new List<InventoryItemUI>();
     private Animator _animator;
     private GameManager _gameManager;
@@ -31,7 +44,6 @@ public class InventoryUI : MonoBehaviour
         _equipmentInfo.Awake();
         _inventoyInfo.Awake();
     }
-
     private void Start()
     {
         _gameManager = GameObject.FindObjectOfType<GameManager>();
@@ -62,20 +74,31 @@ public class InventoryUI : MonoBehaviour
 
         List<InventorySlotUI> slotsUnderItem = item.GetEveryInventorySlotUnderItem();
 
-        foreach (var slot in slotsUnderItem)
+        List<SlotActionWrapper> slotActions = slotsUnderItem
+            .Select(e => new SlotActionWrapper(e, e.RemoveItem()))
+            .ToList();
+
+        StartCoroutine(WaitForActionsThenDo(slotActions, () =>
         {
-            slot.RemoveItem();
-        }
+            UpdatePlayerEvent(slotsUnderItem);
+        }));
     }
 
     public void UpdatePlayerInventory() => UIEventManager.instance.OnInventoryChange.Invoke(GenerateInventoryData(SlotType.Inventory, _inventoyInfo), EventSentBy.UI);
+
     public void UpdatePlayerEquipInventory() => UIEventManager.instance.OnInventoryChange.Invoke(GenerateInventoryData(SlotType.Equip, _equipmentInfo), EventSentBy.UI);
+
     #endregion
 
     private void SetupEvents()
     {
         UIEventManager.instance.OnToggleInventoryOpen.AddListener(OnToggleInventoryOpen);
         UIEventManager.instance.OnInventoryChange.AddListener(OnInventoryChange);
+
+        UIEventManager.instance.OnInventoryRemoveEquipment.AddListener(OnInventoryRemoveEquipment);
+
+        _itemEvents.OnUseGoldenJam.AddListener(OnUseGoldenJam);
+
         StartCoroutine(WaitUntilEndOfFrame());
     }
 
@@ -101,6 +124,7 @@ public class InventoryUI : MonoBehaviour
         InventoryData data = new InventoryData(type);
 
         data.Slots = slotInformation.Slots
+            .Where(e => e.Type == type)
             .Select(e => new InventoryData.Slot()
             {
                 Coordinate = e.Coordinate,
@@ -108,7 +132,8 @@ public class InventoryUI : MonoBehaviour
                 ItemId = e.ItemUI != null ? e.ItemUI.ItemData.Id : null,
             })
             .ToList();
-        data.Itens = _itens.Select(e => e.ItemData).ToList();
+
+        data.Itens = _itens.Where(e => data.Slots.Select(i => i.ItemId).Contains(e.ItemData.Id)).Select(e => e.ItemData).ToList();
         return data;
     }
 
@@ -173,12 +198,55 @@ public class InventoryUI : MonoBehaviour
 
     private void InternalAddItem(List<InventorySlotUI> slotsUnderItem, InventoryItemUI itemUI, bool updatePlayer = true)
     {
-        foreach (InventorySlotUI slot in slotsUnderItem)
+        bool canEquipItem = true;
+        if (slotsUnderItem.Any(e => e.Type == SlotType.Equip))
         {
-            slot.AddItem(itemUI, updatePlayer);
+            canEquipItem = _gameManager.PlayerInventory.CanEquipItem(itemUI.ItemData);
         }
 
-        _itens.Add(itemUI);
+        List<SlotActionWrapper> slotActions = slotsUnderItem
+            .Select(e => new SlotActionWrapper(e, e.AddItem(itemUI, canEquipItem)))
+            .ToList();
+
+        StartCoroutine(WaitForActionsThenDo(slotActions, () =>
+        {
+            _itens.Add(itemUI);
+
+            if (updatePlayer)
+            {
+                UpdatePlayerEvent(slotsUnderItem);
+            }
+        }));
+    }
+
+    private void UpdatePlayerEvent(List<InventorySlotUI> slotsUnderItem)
+    {
+        if (slotsUnderItem.Any(e => e.Type == SlotType.Equip))
+        {
+            UpdatePlayerEquipInventory();
+        }
+        else
+        {
+            UpdatePlayerInventory();
+        }
+    }
+
+    private void OnInventoryRemoveEquipment()
+    {
+        List<InventorySlotUI> slotsWithError = _equipmentInfo.Slots.Where(e => e.HasError).ToList();
+        if (!slotsWithError.Any()) return;
+
+        foreach (var itemData in slotsWithError.Select(e => e.ItemUI.ItemData).Distinct().ToList())
+        {
+            if (!_gameManager.PlayerInventory.CanEquipItem(itemData)) continue;
+
+            List<InventorySlotUI> slotsUnderItem = slotsWithError.Where(e => e.ItemUI.ItemData.Id == itemData.Id).ToList();
+            foreach (var slot in slotsUnderItem)
+            {
+                slot.FixEquipment();
+            }
+        }
+
     }
 
     private void CleanInventory(SlotType slotType, SlotInformation slotInformation)
@@ -191,20 +259,44 @@ public class InventoryUI : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-        //_itens.Clear();
 
         foreach (InventorySlotUI slot in slotInformation.Slots.Where(e => e.Type == slotType))
         {
             if (!slot.HasItem) continue;
 
-            slot.RemoveItem(false);
+            slot.RemoveItem();
         }
     }
 
-    private IEnumerator WaitThenPause()
+    #region EVENT LISTENERS FOR ITENS
+    private void OnUseGoldenJam(int id)
     {
-        yield return new WaitForSeconds(0.3f);
-        _gameManager.PauseGame(true);
+        List<InventorySlotUI> unavailableSlots = _equipmentInfo.Slots
+            .Where(e => e.IsAvalialbe == false)
+            .OrderBy(e => e.Coordinate.x)
+            .ToList();
+
+        if (!unavailableSlots.Any()) return;
+
+        float columnIdex = unavailableSlots.FirstOrDefault().Coordinate.x;
+
+        List<InventorySlotUI> columnBeingActivatedSlots = unavailableSlots.Where(e => e.Coordinate.x == columnIdex).ToList();
+
+        foreach (var slot in columnBeingActivatedSlots)
+        {
+            slot.ToggleAvailability(true);
+        }
+    }
+    #endregion
+
+    private IEnumerator WaitForActionsThenDo(List<SlotActionWrapper> slotActions, Action doAfter)
+    {
+        while (!slotActions.Any(e => e.InventorySlot.SyncronousActionIsDone(e.ActionId)))
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        doAfter();
     }
 
     private enum MyAnimations
@@ -225,4 +317,19 @@ public class InventoryUI : MonoBehaviour
             Slots = _slotParent.GetComponentsInChildren<InventorySlotUI>().ToList();
         }
     }
+
+    private class SlotActionWrapper
+    {
+        public SlotActionWrapper(
+            InventorySlotUI inventorySlot,
+            Guid actionId)
+        {
+            InventorySlot = inventorySlot;
+            ActionId = actionId;
+        }
+
+        public InventorySlotUI InventorySlot { get; }
+        public Guid ActionId { get; }
+    }
 }
+

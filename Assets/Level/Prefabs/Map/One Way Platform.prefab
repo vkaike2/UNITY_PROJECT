@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8773386021119299441}
   - component: {fileID: 7039472052204377489}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: one way center (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988267472375668849}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7039472052204377489
 SpriteRenderer:
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988267470904719338}
   - component: {fileID: 1988267470904719339}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: one way rigth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988267472375668849}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1988267470904719339
 SpriteRenderer:
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988267471402990438}
   - component: {fileID: 1988267471402990439}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: one way left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988267472375668849}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1988267471402990439
 SpriteRenderer:
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 1988267471482660007}
   - component: {fileID: 1988267471482660006}
   - component: {fileID: 1988267471482660005}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: One Way Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,25 +297,6 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
@@ -373,7 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988267471520558128}
   - component: {fileID: 1988267471520558129}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: one way center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +374,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988267472375668849}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1988267471520558129
 SpriteRenderer:
@@ -456,7 +437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1988267472375668849}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Graphs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5614241750121989696}
   - component: {fileID: 7069022078403739596}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mockup map objects_40 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +495,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988267472375668849}
-  m_RootOrder: -1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7069022078403739596
 SpriteRenderer:
@@ -578,7 +559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9030641305832111530}
   - component: {fileID: 3177397947758638718}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mockup map objects_40
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +579,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988267472375668849}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3177397947758638718
 SpriteRenderer:

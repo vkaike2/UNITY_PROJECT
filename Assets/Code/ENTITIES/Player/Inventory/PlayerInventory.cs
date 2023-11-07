@@ -6,12 +6,33 @@ using UnityEngine.InputSystem;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [Header("EVENTS")]
+    [SerializeField]
+    private ScriptableItemEvents _itemEvents;
+
     private InventoryData _inventoryData = null;
     private InventoryData _equipData = null;
 
     private void Start()
     {
         UIEventManager.instance.OnInventoryChange.AddListener(OnInventoryChange);
+
+    }
+
+    public void LoadInventoryDataFromMemory()
+    {
+        if (!SaveLoadManager.HasInventoryInfo()) return;
+        LoggerUtils.Log("Loaded");
+
+        _inventoryData = SaveLoadManager.InventoryData;
+        _equipData = SaveLoadManager.EquipData;
+
+        foreach (var itemData in _equipData.Itens)
+        {
+            if (!itemData.IsEquiped) continue;
+
+            _itemEvents.OnEquipItem.Invoke(itemData.Item);
+        }
     }
 
     public void OnOpenInventoryInput(InputAction.CallbackContext context)
@@ -26,6 +47,18 @@ public class PlayerInventory : MonoBehaviour
         itemDrop.transform.parent = null;
         itemDrop.ItemData = itemData;
         itemDrop.DropItem();
+    }
+
+    public bool CanEquipItem(ItemData itemData)
+    {
+        List<ScriptableItem> equipedItens = _equipData?.Itens
+            .Where(e => e.IsEquiped && e.Id != itemData.Id)
+            .Select(e => e.Item).ToList();
+
+        equipedItens ??= new List<ScriptableItem>();
+
+        if (itemData.Item.Type == ScriptableItem.ItemType.Minor) return true;
+        return !equipedItens.Any(e => e.Type == ScriptableItem.ItemType.Major && e.Affect == itemData.Item.Affect);
     }
 
     #region CHECK IF CAN ADD ITEM
@@ -194,6 +227,88 @@ public class PlayerInventory : MonoBehaviour
 
     private void UpdateEquipFromEvent(InventoryData equipData)
     {
+        List<Guid> newItemsIds = equipData?.Itens.Select(x => x.Id).ToList();
+
+        bool someEquipmentWasUnequiped = UnequipItem(GetEquipedItensId(), newItemsIds);
+
+        EquipItem(equipData, newItemsIds);
+
         _equipData = equipData;
+
+        if (someEquipmentWasUnequiped)
+        {
+            UIEventManager.instance.OnInventoryRemoveEquipment.Invoke();
+        }
+    }
+
+    private List<Guid> GetEquipedItensId()
+    {
+        List<Guid> equipedItemId = new List<Guid>();
+        if (_equipData != null)
+        {
+            equipedItemId = _equipData?.Itens.Select(x => x.Id).ToList();
+        }
+        return equipedItemId;
+    }
+
+    private void EquipItem(InventoryData equipData, List<Guid> newItemsIds)
+    {
+        foreach (var itemId in newItemsIds)
+        {
+            ItemData itemData = equipData.Itens.Where(e => e.Id == itemId).FirstOrDefault();
+
+            if (itemData == null) continue;
+            if (itemData.IsEquiped) continue;
+            if (!itemData.Item.IsEquipable) continue;
+            if (!CanEquipItem(itemData)) continue;
+
+            _itemEvents.OnEquipItem.Invoke(itemData.Item);
+
+            itemData.IsEquiped = true;
+           
+            if (itemData.HasBeeingSwaped)
+            {
+                UIEventManager.instance.OnInventoryRemoveEquipment.Invoke();
+            }
+
+            itemData.HasBeeingSwaped = false;
+        }
+    }
+
+    private bool UnequipItem(List<Guid> equipedItemId, List<Guid> newItemsIds)
+    {
+        bool someEquipmentWasUnequiped = false;
+
+        List<Guid> itensToUnEquipIds = equipedItemId.Where(id => !newItemsIds.Contains(id)).ToList();
+        foreach (var itemId in itensToUnEquipIds)
+        {
+            ItemData itemData = _equipData.Itens.Where(e => e.Id == itemId).FirstOrDefault();
+            if (itemData == null) continue;
+            if (!itemData.Item.IsEquipable) continue;
+
+            someEquipmentWasUnequiped = true;
+            _itemEvents.OnUnequipItem.Invoke(itemData.Item);
+
+            itemData.IsEquiped = false;
+        }
+
+        if (itensToUnEquipIds.Any())
+        {
+            _equipData.Itens = _equipData.Itens.Where(e => !itensToUnEquipIds.Contains(e.Id)).ToList();
+        }
+
+        return someEquipmentWasUnequiped;
+    }
+
+    private void OnDestroy()
+    {
+        SaveInventoryDataOnMemory();
+    }
+
+    private void SaveInventoryDataOnMemory()
+    {
+        LoggerUtils.Log("Saved");
+        SaveLoadManager.InventoryData = _inventoryData;
+        SaveLoadManager.EquipData = _equipData;
     }
 }

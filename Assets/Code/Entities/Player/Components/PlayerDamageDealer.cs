@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
@@ -10,103 +7,54 @@ public class PlayerDamageDealer : MonoBehaviour
     [Header("COMPONENTS")]
     [SerializeField]
     private PlayerStatus _status;
-    [SerializeField]
-    private ParticleSystem _fartParticleSystem;
 
     private Player _player;
-    private Hitbox _poopHitbox;
-    private ParticleSystem.Particle[] _fartParticles;
-    private List<int> _fartParticleInstanceIds;
+    private Fart _fart;
+
 
     private void Awake()
     {
         _player = GetComponent<Player>();
+        _fart = GetComponent<Fart>();
     }
 
     private void Start()
     {
-        _player.PoopModel.OnPoopSpawned.AddListener(OnPlayerPoop);
-
-        InitializeParticles();
+        _fart.OnFartSpawnedEvent.AddListener(OnPlayerFart);
     }
-
-    private void FixedUpdate()
+    public bool TestIfItShouldCollide(Hitbox targetHitbox, bool friendlyFire = false)
     {
-        if (!_fartParticleSystem.IsAlive()) return;
-
-        int numParticlesAlive = _fartParticleSystem.GetParticles(_fartParticles);
-
-        if (numParticlesAlive > 0)
-        {
-            CheckFartParticleColision();
-        }
+        if (targetHitbox == null) return false;
+        if (!friendlyFire && targetHitbox.Type == Hitbox.HitboxType.Player) return false;
+        return true;
     }
 
     #region POOP
-    private void OnPlayerPoop(PoopProjectile poopProjectile)
+    public void OnApplyPoopDamage(Hitbox targetHitbox, Hitbox myHitbox, Action callback, bool friendlyFire = false)
     {
-        _poopHitbox = poopProjectile.GetComponent<Hitbox>();
-        _poopHitbox.OnHitboxTriggerEnter.AddListener(OnPoopHitboxEnter);
-    }
+        if (!TestIfItShouldCollide(targetHitbox, friendlyFire)) return;
 
-    private void OnPoopHitboxEnter(Hitbox targetHitbox)
-    {
-        if (targetHitbox == null) return;
-        if (targetHitbox.Type == Hitbox.HitboxType.Player) return;
-        if (_poopHitbox == null) return;
+        targetHitbox.OnReceivingDamage.Invoke(_status.Poop.GetDamage(), myHitbox.GetInstanceID(), myHitbox.transform.position);
 
-        targetHitbox.OnReceivingDamage.Invoke(_status.PoopDamage.Get(), _poopHitbox.GetInstanceID(), _poopHitbox.transform.position);
-
-        GameObject.Destroy(_poopHitbox.gameObject);
-        _poopHitbox = null;
+        callback();
     }
     #endregion
 
     #region FART
-    private void InitializeParticles()
+    private void OnPlayerFart(FartProjectile fart)
     {
-        int numberOfParticles = (int)_fartParticleSystem.emission.GetBurst(0).count.constant;
-        if (_fartParticles == null || _fartParticles.Length < numberOfParticles)
+        foreach (var particle in fart.Particles)
         {
-            _fartParticles = new ParticleSystem.Particle[numberOfParticles];
-        }
-
-        _fartParticleInstanceIds = new List<int>();
-
-        for (int i = 0; i < numberOfParticles; i++)
-        {
-            _fartParticleInstanceIds.Add(UnityEngine.Random.Range(int.MinValue, int.MaxValue));
+            Hitbox hitbox = particle.GetComponent<Hitbox>();
+            hitbox.OnHitboxTriggerEnter.AddListener(OnFartParticleHitboxEnter);
         }
     }
-
-    private void CheckFartParticleColision()
+    private void OnFartParticleHitboxEnter(Hitbox targetHitbox, Hitbox myHitbox)
     {
-        for (int i = 0; i < _fartParticles.Count(); i++)
-        {
-            List<RaycastHit2D> hitList = Physics2D.RaycastAll(_fartParticles[i].position, Vector2.zero).ToList();
+        if (targetHitbox == null) return;
+        if (targetHitbox.Type == Hitbox.HitboxType.Player) return;
 
-            List<Hitbox> hitboxes = GetHitboxesOverRaycastHit(hitList);
-
-            hitboxes = hitboxes.Where(e => e.GetInstanceID() != _player.Hitbox.GetInstanceID()).ToList();
-            if (!hitboxes.Any()) continue;
-
-            foreach (var hitbox in hitboxes)
-            {
-                hitbox.OnReceivingDamage.Invoke(_status.FartDamage.Get(), _fartParticleInstanceIds[i], _fartParticles[i].position);
-            }
-        }
-    }
-
-    private List<Hitbox> GetHitboxesOverRaycastHit(List<RaycastHit2D> hitsUI)
-    {
-        List<Hitbox> components = hitsUI.Where(e => e.collider.GetComponent<Hitbox>()).Select(e => e.collider.GetComponent<Hitbox>()).ToList();
-        if (components.Any()) return components;
-
-        components = hitsUI.Where(e => e.collider.GetComponentInChildren<Hitbox>()).Select(e => e.collider.GetComponentInChildren<Hitbox>()).ToList();
-        if (components.Any()) return components;
-
-        components = hitsUI.Where(e => e.collider.GetComponentInParent<Hitbox>()).Select(e => e.collider.GetComponentInParent<Hitbox>()).ToList();
-        return components;
+        targetHitbox.OnReceivingDamage.Invoke(_status.Fart.Damage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
     }
     #endregion
 }

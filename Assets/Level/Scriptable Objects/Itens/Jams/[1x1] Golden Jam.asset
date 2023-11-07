@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
+  m_Name: '[1x1] Golden Jam'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Golden Jam
+  <Description>k__BackingField: Unlocks one column of yout equipable inventory
+  <RotatedItem>k__BackingField: {fileID: 11400000}
+  <SpriteWhileUsing>k__BackingField: {fileID: 0}
+  <PrefabUI>k__BackingField: {fileID: 9048436065901467286, guid: 013d6252cc4fc5a49a36b108a7e18241, type: 3}
+  <InventoryItemLayout>k__BackingField: 0
+  <IsEquipable>k__BackingField: 0
+  <Type>k__BackingField: 0
+  <Affect>k__BackingField: 0
+  <ItemDrop>k__BackingField: {fileID: 6990249869192362008, guid: 36fe00dee88e44a47a47381794d56cc6, type: 3}

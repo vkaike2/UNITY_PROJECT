@@ -9,6 +9,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private ScriptableItemEvents _itemEvents;
+
     [Header("UI SCENE NAME")]
     [SerializeField]
     private string _scenePlayerUI;
@@ -35,6 +38,8 @@ public class GameManager : MonoBehaviour
         Worms = new List<Worm>();
 
         LoadUIScene();
+
+        _itemEvents.InitializeEvent(this);
     }
 
     #region GET & SET
@@ -138,6 +143,4 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
-
-
 }

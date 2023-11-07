@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.Events;
 
 public class PorcupineDamageDealer : ImpactDamageDealer
@@ -29,13 +30,13 @@ public class PorcupineDamageDealer : ImpactDamageDealer
         projectileHitbox.OnHitboxTriggerEnter.AddListener(OnHitboxEnterProjectile);
     }
 
-    private void OnHitboxEnterProjectile(Hitbox targetHitbox)
+    private void OnHitboxEnterProjectile(Hitbox targetHitbox, Hitbox myHitbox)
     {
         if (_porcupine.CurrentBehaviour == Porcupine.Behaviour.Die) return;
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_porcupine.Status.ImpactDamage.Get(), ImpactHitbox.GetInstanceID(), _porcupine.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_porcupine.Status.ImpactDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
     }
 
     public class RegisterProjectile : UnityEvent<PorcupineProjectile> { }

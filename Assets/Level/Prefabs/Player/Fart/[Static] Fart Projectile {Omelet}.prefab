@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4125254961538011930
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4451991498346861840, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_Name
+      value: '[Static] Fart Projectile {Omelet}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861846, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451991498346861847, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407120691693115747, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+      propertyPath: _particlePrefab
+      value: 
+      objectReference: {fileID: 1797935301088498685, guid: 73264bfe343867b4eb917f8fbf9f92a4, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+--- !u!1 &357894513569695242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4451991498346861840, guid: 94051d230c2e4924ab0afb994b02b912, type: 3}
+  m_PrefabInstance: {fileID: 4125254961538011930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1654005846991698680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357894513569695242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991904b5758bab543999962beed66433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

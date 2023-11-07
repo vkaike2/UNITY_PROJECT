@@ -1,12 +1,9 @@
 ﻿using CustomAttributes;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEditor;
 using UnityEngine;
-using static ScriptableMapConfiguration;
 
 
 [CreateAssetMenu(fileName = "MapConfig", menuName = "ScriptableObjects/MapConfiguration")]

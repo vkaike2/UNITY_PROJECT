@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
@@ -30,12 +31,6 @@ public class Chest : MouseInteractable
     public override void ChangeAnimationOnItemOver(bool isMouseOver)
     {
         if (_isOpen) return;
-
-        //if (!PlayerIsInRange())
-        //{
-        //    _animator.Play(MyAnimations.Idle.ToString());
-        //    return;
-        //}
 
         if (isMouseOver)
         {
@@ -108,17 +103,21 @@ public class Chest : MouseInteractable
                     continue;
                 }
 
-                drop.name = $"{drop.Item.name}_{drop.Weight}";
+                string active = drop.IsActive ? "" : "[off]";
+
+                drop.name = $"{active}{drop.Item.name}_{drop.Weight}";
             }
         }
 
         public Drop GetDrop()
         {
-            int totalWeight = _possibleDrops.Sum(e => e.Weight);
+            List<Drop> possibleActiveDrops = _possibleDrops.Where(e => e.IsActive).ToList();
+
+            int totalWeight = possibleActiveDrops.Sum(e => e.Weight);
             int randomWeight = UnityEngine.Random.Range(1, totalWeight + 1);
             int currentWeight = 0;
 
-            foreach (var possibleDrop in _possibleDrops)
+            foreach (var possibleDrop in possibleActiveDrops)
             {
                 currentWeight += possibleDrop.Weight;
 
@@ -144,6 +143,9 @@ public class Chest : MouseInteractable
         [Space]
         [SerializeField]
         private int _weight;
+
+        [field: SerializeField]
+        public bool IsActive { get; private set; } = true;
 
         public ScriptableItem Item => _item;
         public int Weight => _weight;

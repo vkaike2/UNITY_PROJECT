@@ -30,11 +30,11 @@ public class ChickenDamageDealer : ImpactDamageDealer
         return true;
     }
 
-    private void OnHitboxEnterAttack(Hitbox targetHitbox)
+    private void OnHitboxEnterAttack(Hitbox targetHitbox, Hitbox myHitbox)
     {
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_enemyStatus.AtkDamage.Get(), _atkHitbox.GetInstanceID(), transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_enemyStatus.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
     }
 }

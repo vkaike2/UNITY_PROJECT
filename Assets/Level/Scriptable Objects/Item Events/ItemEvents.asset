@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda0786ffd72dda4588d693e5a4acff5, type: 3}
+  m_Name: ItemEvents
+  m_EditorClassIdentifier: 
+  _bean:
+    <Item>k__BackingField: {fileID: 11400000, guid: 1d288493bad74d749a23e401f29e8407, type: 2}
+    <RotatedItem>k__BackingField: {fileID: 11400000, guid: fcfb262385fff0648ab9e6a2dfb209b7, type: 2}
+    _fartProjectile: {fileID: -1258318780661116224, guid: 38ab3c7ce8c130b4b8248bb4138a9c47, type: 3}
+  _omelet:
+    <Item>k__BackingField: {fileID: 11400000, guid: 64e3c61342e0d414cb75c2b0173c760e, type: 2}
+    <RotatedItem>k__BackingField: {fileID: 11400000, guid: 1d12e8b9e72a6c442ac9eb41a16255a1, type: 2}
+    _fartProjectile: {fileID: 1654005846991698680, guid: 7b1cafc802899124abd89b8a5c86e6ff, type: 3}
+    _addDuration: 1
+  _eggWhite:
+    <Item>k__BackingField: {fileID: 11400000, guid: 1ffadc2e4203a7a419fdf8629860a087, type: 2}
+    <RotatedItem>k__BackingField: {fileID: 11400000, guid: f5e33d52fcff28347a516f36c175655d, type: 2}
+    _addAreaPercentage: 0.2
+    _reducedDamagePercentage: 0.05
+  _eggYolk:
+    <Item>k__BackingField: {fileID: 11400000, guid: 325916e5d7791cf4c852509a78fa6309, type: 2}
+    <RotatedItem>k__BackingField: {fileID: 11400000, guid: 64b2c10852dad1c4386d0c8409ff9d7c, type: 2}
+    _addDamagePercentage: 0.1
+    _reducedAreaPercentage: 0.05
+  _pepper:
+    <Item>k__BackingField: {fileID: 11400000, guid: 565db31041290a546a82631f34ecaa17, type: 2}
+    <RotatedItem>k__BackingField: {fileID: 11400000, guid: 1fad8d1cf7f302145ac8d5e64c921a3d, type: 2}
+    _poopProjectile: {fileID: 2518699327201309521, guid: e7f692221f9f21849a93f902ff9bcc5d, type: 3}
+    _damageMultiplier: 1.5
+  _steak:
+    <Item>k__BackingField: {fileID: 11400000, guid: 373013497aa30ba44ac0293f4b188000, type: 2}
+    <RotatedItem>k__BackingField: {fileID: 11400000, guid: c94bdc41476d2eb46b42c45be0c552d2, type: 2}
+    _poopProjectile: {fileID: 4616127925406408002, guid: b90bc4143560204499a1ecd214eb62da, type: 3}
+    _damageMultiplier: 0.5

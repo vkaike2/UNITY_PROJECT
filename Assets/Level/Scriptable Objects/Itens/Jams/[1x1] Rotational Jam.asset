@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
+  m_Name: '[1x1] Rotational Jam'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Rotational Jam
+  <Description>k__BackingField: Rotate your item
+  <RotatedItem>k__BackingField: {fileID: 11400000}
+  <SpriteWhileUsing>k__BackingField: {fileID: 1361850283, guid: 57227b32cbc582546b4d66d107bfa2a9, type: 3}
+  <PrefabUI>k__BackingField: {fileID: 9048436065901467286, guid: a6abd7fde1fc3574b934a5633defd211, type: 3}
+  <InventoryItemLayout>k__BackingField: 0
+  <IsEquipable>k__BackingField: 0
+  <Type>k__BackingField: 0
+  <Affect>k__BackingField: 0
+  <ItemDrop>k__BackingField: {fileID: 6990249869192362008, guid: dacdd192e46fe5146a5396a125a1a96d, type: 3}
