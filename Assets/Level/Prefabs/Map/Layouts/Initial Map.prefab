@@ -3335,6 +3335,7 @@ GameObject:
   - component: {fileID: 8227090835269282453}
   - component: {fileID: 2207352865683046084}
   - component: {fileID: 3598945083332067462}
+  - component: {fileID: 2969242612852377653}
   m_Layer: 0
   m_Name: Initial Map
   m_TagString: Untagged
@@ -3397,7 +3398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5dac887aa542d43ae4924804af8eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InitialCameraSize>k__BackingField: 8
   <MapConfiguration>k__BackingField: {fileID: 0}
   _startWithState: 1
   <CentralPosition>k__BackingField: {fileID: 8227090835269282453}
@@ -3412,6 +3412,19 @@ MonoBehaviour:
     <ObjectsContainer>k__BackingField: {fileID: 8227090835932156123}
     <EnemiesContainer>k__BackingField: {fileID: 2206989585476743513}
   _waypoints: {fileID: 8227090835550530618}
+  <WallsOfSpike>k__BackingField: []
+--- !u!114 &2969242612852377653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227090835269282458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2374480f49b324fa96f19c190e8a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8227090835281971439
 GameObject:
   m_ObjectHideFlags: 0
@@ -4129,6 +4142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: ground (2)
     node: {fileID: 8227090836575874579}
@@ -4351,6 +4365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: ground (1)
     node: {fileID: 8227090835903367011}
@@ -5204,6 +5219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: platform (0)
     node: {fileID: 8227090835409503220}
@@ -5682,6 +5698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: platform (0)
     node: {fileID: 8227090835409503220}
@@ -8190,6 +8207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: platform (1)
     node: {fileID: 8227090835456758445}
@@ -10451,6 +10469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: ground (1)
     node: {fileID: 8227090835903367011}
@@ -10501,6 +10520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: ground (4)
     node: {fileID: 8227090836782805756}
@@ -10948,6 +10968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: ground (0)
     node: {fileID: 8227090835841733529}
@@ -17967,6 +17988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: ground (1)
     node: {fileID: 8227090835903367011}
@@ -19011,6 +19033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: platform (4)
     node: {fileID: 8227090835483360663}
@@ -19772,6 +19795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: ground (3)
     node: {fileID: 8227090835373884065}
@@ -21258,6 +21282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
+  <Stage>k__BackingField: 0
   neighbours:
   - name: platform (2)
     node: {fileID: 8227090835657203697}
@@ -23156,6 +23181,98 @@ PrefabInstance:
     - target: {fileID: 7204842555087660708, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._numberOfItems._max
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._numberOfItems._min
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[0].name
+      value: '[off]Item test 1x1_8'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[1].name
+      value: '[off]Item test 1x2_4'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[2].name
+      value: '[off]Item test 2x1_4'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[3].name
+      value: '[off]Item test 2x2_2'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[4].name
+      value: '[off]Item test 2x3_1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[5].name
+      value: '[off]Item test 3x2_1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[6].name
+      value: '[2x2] Bean_4'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[7].name
+      value: '[2x2] Omelet_4'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[6]._item
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d288493bad74d749a23e401f29e8407, type: 2}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[7]._item
+      value: 
+      objectReference: {fileID: 11400000, guid: 64e3c61342e0d414cb75c2b0173c760e, type: 2}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[6]._weight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[7]._weight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[0].<IsActive>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[1].<IsActive>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[2].<IsActive>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[3].<IsActive>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[4].<IsActive>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[5].<IsActive>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[6].<IsActive>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204842555087660710, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
+      propertyPath: _pool._possibleDrops.Array.data[7].<IsActive>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7204842555087660711, guid: 4e575b20d90e021488b33f363a05635f, type: 3}
       propertyPath: m_RootOrder

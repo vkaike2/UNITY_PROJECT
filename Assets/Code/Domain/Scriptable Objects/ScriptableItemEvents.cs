@@ -25,6 +25,11 @@ public class ScriptableItemEvents : ScriptableObject
     [SerializeField]
     private EquipableSteak _steak;
 
+    [Header("-> POOP - MINOR")]
+    [SerializeField]
+    private EquipableMilk _milk;
+    [SerializeField]
+    private EquipableBroccoli _broccoli;
 
     public OnUseJamEvent OnUseGoldenJam { get; private set; } = new OnUseJamEvent();
 
@@ -40,7 +45,9 @@ public class ScriptableItemEvents : ScriptableObject
             _eggWhite,
             _eggYolk,
             _pepper,
-            _steak
+            _steak,
+            _milk,
+            _broccoli
         };
 
         foreach (var equipment in _equipableItens)

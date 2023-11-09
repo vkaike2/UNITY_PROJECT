@@ -464,6 +464,7 @@ MonoBehaviour:
   _progressBarUI: {fileID: 0}
   _spriteRenderer: {fileID: 1569341937639352535}
   _VfxParent: {fileID: 8563163235916983789}
+  _dpsMeter: {fileID: 0}
   _shouldApplyKnockback: 1
   _knockbackDuration: 0.3
   <OnKnockbackEvent>k__BackingField:
@@ -504,36 +505,88 @@ MonoBehaviour:
   <JumpForce>k__BackingField:
     _value: 8.5
   <Fart>k__BackingField:
-    <Damage>k__BackingField:
-      _value: 0.1
     <Projectile>k__BackingField:
       _initial: {fileID: -7598583932721716940, guid: 80e1abb2936499a4894ff4e459b6b202, type: 3}
+    <Damage>k__BackingField:
+      _minimumValue: 0
+      <Base>k__BackingField:
+        _value: 0.2
+      <Multiplier>k__BackingField:
+        _value: 1
+      <Increased>k__BackingField:
+        _value: 1
+    <AreaOfEffect>k__BackingField:
+      _minimumValue: 0.5
+      <Base>k__BackingField:
+        _value: 2
+      <Multiplier>k__BackingField:
+        _value: 1
+      <Increased>k__BackingField:
+        _value: 1
     <Duration>k__BackingField:
-      _value: 1
+      _minimumValue: 0.5
+      <Base>k__BackingField:
+        _value: 1
+      <Multiplier>k__BackingField:
+        _value: 1
+      <Increased>k__BackingField:
+        _value: 1
     <ImpulseForce>k__BackingField:
-      _value: 50
+      _minimumValue: 1
+      <Base>k__BackingField:
+        _value: 50
+      <Multiplier>k__BackingField:
+        _value: 1
+      <Increased>k__BackingField:
+        _value: 1
     <Cooldown>k__BackingField:
-      _value: 0.5
+      _minimumValue: 0.1
+      <Base>k__BackingField:
+        _value: 3
+      <Multiplier>k__BackingField:
+        _value: 1
+      <Increased>k__BackingField:
+        _value: 1
     <AmountOfParticle>k__BackingField:
       _value: 10
-    <AreaOfEffect>k__BackingField:
-      _value: 1
   <Poop>k__BackingField:
-    <Damage>k__BackingField:
-      _value: 2.5
-    <DamageMultiplier>k__BackingField:
-      _value: 1
     <Projectile>k__BackingField:
       _initial: {fileID: 5493600457619977159, guid: c3498c232ac1f0a46adc6ad9a5201cef, type: 3}
+    <Damage>k__BackingField:
+      _minimumValue: 0
+      <Base>k__BackingField:
+        _value: 2.5
+      <Multiplier>k__BackingField:
+        _value: 1
+      <Increased>k__BackingField:
+        _value: 1
     <AreaOfEffect>k__BackingField:
-      _value: 2
+      _minimumValue: 1
+      <Base>k__BackingField:
+        _value: 2
+      <Multiplier>k__BackingField:
+        _value: 1
+      <Increased>k__BackingField:
+        _value: 1
     <Duration>k__BackingField:
-      _value: 3
+      _minimumValue: 0.1
+      <Base>k__BackingField:
+        _value: 2
+      <Multiplier>k__BackingField:
+        _value: 1
+      <Increased>k__BackingField:
+        _value: 1
+    <CdwToPoop>k__BackingField:
+      _minimumValue: 0.1
+      <Base>k__BackingField:
+        _value: 2
+      <Multiplier>k__BackingField:
+        _value: 1
+      <Increased>k__BackingField:
+        _value: 1
     <MaximumVelocity>k__BackingField:
       _value: 10
     <VelocityTimer>k__BackingField:
-      _value: 1
-    <CdwToPoop>k__BackingField:
       _value: 1
 --- !u!114 &1569341936492780420
 MonoBehaviour:
@@ -10977,15 +11030,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 880563972025925703, guid: d53f1d3786f5fbd46b62e2325aabf9b0, type: 3}
       propertyPath: m_Color.b
-      value: 0.25729796
+      value: 0.13725491
       objectReference: {fileID: 0}
     - target: {fileID: 880563972025925703, guid: d53f1d3786f5fbd46b62e2325aabf9b0, type: 3}
       propertyPath: m_Color.g
-      value: 0.9245283
+      value: 0.5764706
       objectReference: {fileID: 0}
     - target: {fileID: 880563972025925703, guid: d53f1d3786f5fbd46b62e2325aabf9b0, type: 3}
       propertyPath: m_Color.r
-      value: 0.41499567
+      value: 0.56078434
       objectReference: {fileID: 0}
     - target: {fileID: 1115581514132667029, guid: d53f1d3786f5fbd46b62e2325aabf9b0, type: 3}
       propertyPath: m_Layer

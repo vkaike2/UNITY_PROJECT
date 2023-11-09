@@ -20,6 +20,8 @@ public abstract class DamageReceiver : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     [SerializeField]
     private HitNumberVFXParent _VfxParent;
+    [SerializeField]
+    private DpsMeterUI _dpsMeter;
 
     [Header("CONFIGURATION")]
     [SerializeField]
@@ -55,6 +57,13 @@ public abstract class DamageReceiver : MonoBehaviour
     }
 
     protected abstract void OnDie();
+    protected virtual void OnReceiveDamage(float damage)
+    {
+        if (_dpsMeter == null) return;
+
+        _dpsMeter.AddDamage(damage);
+    }
+
     protected virtual void BerofeAwake() { }
     protected virtual void AfterAwake() { }
     protected virtual void BeforeStart() { }
@@ -71,8 +80,8 @@ public abstract class DamageReceiver : MonoBehaviour
         {
             _VfxParent.SpawnNumber(incomingDamage);
         }
-
-        _status.Health.ReduceFlatValue(CalculateDamageEntry(incomingDamage));
+        OnReceiveDamage(incomingDamage);
+        _status.Health.Remove(CalculateDamageEntry(incomingDamage));
 
         if (_status.Health.Get() <= 0)
         {

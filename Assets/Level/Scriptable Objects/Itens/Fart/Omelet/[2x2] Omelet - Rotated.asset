@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
   m_Name: '[2x2] Omelet - Rotated'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Omelet
-  <Description>k__BackingField: Make your fart sit and still
+  <Identity>k__BackingField: {fileID: 11400000, guid: 5b0e8483753c7394a92111ac1077309b, type: 2}
   <RotatedItem>k__BackingField: {fileID: 11400000, guid: 64e3c61342e0d414cb75c2b0173c760e, type: 2}
   <SpriteWhileUsing>k__BackingField: {fileID: 295857224, guid: ed4904b20abd29647b2ae98a70f39fde, type: 3}
   <PrefabUI>k__BackingField: {fileID: 6497989238737931024, guid: 55991f76dee90094195ee9032f226942, type: 3}
   <InventoryItemLayout>k__BackingField: 3
   <IsEquipable>k__BackingField: 1
   <Type>k__BackingField: 0
-  <Affect>k__BackingField: 1
+  <Target>k__BackingField: 1
   <ItemDrop>k__BackingField: {fileID: 1579873918562468060, guid: e76c8d49f92949548be2b41c0521a704, type: 3}

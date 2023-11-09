@@ -46,13 +46,12 @@ public class PoopExplosionVFX : MonoBehaviour
 
     public void HandleExplosionColision(Hitbox targetHitbox, Hitbox myHitbox)
     {
-        Debug.Log($"collide + {targetHitbox.name}");
         _playerDamageDealer.OnApplyPoopDamage(targetHitbox, myHitbox, () => { }, true);
     }
 
     public void CreateParticles(PlayerStatus.PoopStatus poopStatus)
     {
-        int explosionArea = poopStatus.AreaOfEffect.Get();
+        float explosionArea = poopStatus.AreaOfEffect.Get();
         SetColliderRadius(explosionArea);
 
         PoopExplosionVFXParticle centerParticle = Instantiate(_particlePrefab, _center.position, quaternion.identity);

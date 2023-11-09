@@ -99,7 +99,6 @@ public class InventoryItemUI : MouseOver
             if (inventorySlot == null) continue;
             inventorySlots.Add(inventorySlot);
         }
-
         return inventorySlots;
     }
 

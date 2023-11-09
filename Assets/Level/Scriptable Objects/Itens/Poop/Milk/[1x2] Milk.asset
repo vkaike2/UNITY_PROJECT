@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
   m_Name: '[1x2] Milk'
   m_EditorClassIdentifier: 
+  <Identity>k__BackingField: {fileID: 11400000, guid: 924f17e1b419fa04bbc5928f480761a6, type: 2}
   <Name>k__BackingField: Milk
   <Description>k__BackingField: Make your poop chain
   <RotatedItem>k__BackingField: {fileID: 11400000, guid: 12b28c475d1d7704a9b62d3cb6184939, type: 2}
+  <HasLimit>k__BackingField: 0
+  <Limit>k__BackingField: 0
   <SpriteWhileUsing>k__BackingField: {fileID: 0}
   <PrefabUI>k__BackingField: {fileID: 5089687275248101920, guid: 8cee8f604ce18ed4fa2fa41992539210, type: 3}
   <InventoryItemLayout>k__BackingField: 1
   <IsEquipable>k__BackingField: 1
   <Type>k__BackingField: 1
-  <Affect>k__BackingField: 0
+  <Target>k__BackingField: 0
   <ItemDrop>k__BackingField: {fileID: 1320036553001505731, guid: e47d17df902ceac48ac38e612e183ce9, type: 3}

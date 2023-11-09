@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
   m_Name: '[1x1] Potato'
   m_EditorClassIdentifier: 
+  <Identity>k__BackingField: {fileID: 11400000, guid: 89d874ed9f1e50a49bfd3335da713167, type: 2}
   <Name>k__BackingField: Potato
   <Description>k__BackingField: Add +1 Projectile to poop
   <RotatedItem>k__BackingField: {fileID: 11400000, guid: 87346a073f20d5d47813d958d892db5c, type: 2}
+  <HasLimit>k__BackingField: 0
+  <Limit>k__BackingField: 0
   <SpriteWhileUsing>k__BackingField: {fileID: 0}
   <PrefabUI>k__BackingField: {fileID: 6426853898825371711, guid: 150fa65ff217e684f8af65fd7d847f8c, type: 3}
   <InventoryItemLayout>k__BackingField: 0
   <IsEquipable>k__BackingField: 1
   <Type>k__BackingField: 1
-  <Affect>k__BackingField: 0
+  <Target>k__BackingField: 0
   <ItemDrop>k__BackingField: {fileID: 3714081726579731095, guid: a5ce1eab48d69fe4a9a605eef79d9dfb, type: 3}

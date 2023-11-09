@@ -10,17 +10,18 @@ public class EquipablePepper : EquipableItemBase
 
     [Header("CONFIGURATIONS")]
     [SerializeField]
-    private float _damageMultiplier = 1.5f;
+    private float _addDamageMultiplier = 0.5f;
 
     protected override void EquipItem()
     {
         _playerStatus.Poop.Projectile.Set(_poopProjectile);
-        _playerStatus.Poop.DamageMultiplier.Set(_damageMultiplier);
+
+        _playerStatus.Poop.Damage.Multiplier.Add(_addDamageMultiplier);
     }
 
     protected override void UnequipItem()
     {
         _playerStatus.Poop.Projectile.Reset();
-        _playerStatus.Poop.DamageMultiplier.ResetToDefault();
+        _playerStatus.Poop.Damage.Multiplier.Remove(_addDamageMultiplier);
     }
 }

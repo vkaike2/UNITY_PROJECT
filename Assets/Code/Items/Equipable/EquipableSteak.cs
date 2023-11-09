@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 [Serializable]
@@ -11,17 +10,19 @@ public class EquipableSteak : EquipableItemBase
 
     [Header("CONFIGURATIONS")]
     [SerializeField]
-    private float _damageMultiplier = 0.5f;
+    private float _reducedDamageMultiplier = 0.5f;
 
     protected override void EquipItem()
     {
         _playerStatus.Poop.Projectile.Set(_poopProjectile);
-        _playerStatus.Poop.DamageMultiplier.Set(_damageMultiplier);
+
+        _playerStatus.Poop.Damage.Multiplier.Remove(_reducedDamageMultiplier);
     }
 
     protected override void UnequipItem()
     {
         _playerStatus.Poop.Projectile.Reset();
-        _playerStatus.Poop.DamageMultiplier.ResetToDefault();
+
+        _playerStatus.Poop.Damage.Multiplier.Add(_reducedDamageMultiplier);
     }
 }

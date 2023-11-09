@@ -18,12 +18,9 @@ public class HitNumberVFX : MonoBehaviour
 
     private void Awake()
     {
-        //float newSacale = _randomScale.GetRandom();
-        float newSacale = 5;
-        //LoggerUtils.Log(Color.red, newSacale.ToString());
+        float newSacale = _randomScale.GetRandom();
         this.transform.localScale = new Vector3(newSacale, newSacale, newSacale);
     }
-
 
     public void SetNumber(float number)
     {

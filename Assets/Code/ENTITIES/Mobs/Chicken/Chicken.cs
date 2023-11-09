@@ -93,7 +93,7 @@ public partial class Chicken : Enemy
     {
         if (CurrentTier >= _maxTier) return;
 
-        _status.MovementSpeed.IncreasePercentage(0.3f);
+        _status.MovementSpeed.Add(1f);
         CurrentTier += 1;
         _debugCurrentTier = CurrentTier;
         _tierComponent.AddTier();

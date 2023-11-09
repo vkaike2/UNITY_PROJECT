@@ -49,6 +49,7 @@ public class PlayerInventory : MonoBehaviour
         itemDrop.DropItem();
     }
 
+    #region CAN EQUIP ITEM
     public bool CanEquipItem(ItemData itemData)
     {
         List<ScriptableItem> equipedItens = _equipData?.Itens
@@ -57,9 +58,21 @@ public class PlayerInventory : MonoBehaviour
 
         equipedItens ??= new List<ScriptableItem>();
 
+        if (!CheckIfReachedItemLimitation(equipedItens, itemData)) return false;
+
         if (itemData.Item.Type == ScriptableItem.ItemType.Minor) return true;
-        return !equipedItens.Any(e => e.Type == ScriptableItem.ItemType.Major && e.Affect == itemData.Item.Affect);
+
+        return !equipedItens.Any(e => e.Type == ScriptableItem.ItemType.Major && e.Target == itemData.Item.Target);
     }
+
+    private bool CheckIfReachedItemLimitation(List<ScriptableItem> equipedItens, ItemData itemData)
+    {
+        if (!itemData.Item.Identity.HasLimit) return true;
+        int amountOfItem = equipedItens.Count(e => e.Identity.name == itemData.Item.Identity.name);
+        return itemData.Item.Identity.Limit > amountOfItem;
+    }
+
+    #endregion
 
     #region CHECK IF CAN ADD ITEM
     /// <summary>

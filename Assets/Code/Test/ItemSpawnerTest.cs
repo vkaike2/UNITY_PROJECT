@@ -18,7 +18,7 @@ public class ItemSpawnerTest : MouseInteractable
     {
         if (_item == null) return;
 
-        _itemLabel.text = _item.Name.ToUpper();
+        _itemLabel.text = _item.Identity.Name.ToUpper();
     }
 
     public override void ChangeAnimationOnItemOver(bool isMouseOver)

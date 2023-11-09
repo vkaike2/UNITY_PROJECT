@@ -16,6 +16,7 @@ public class FartProjectileBuilder : MonoBehaviour
     public List<FartParticle> CreateParticles(PlayerStatus.FartStatus fartStatus)
     {
         SetColliderRadius(fartStatus.AreaOfEffect.Get());
+
         for (int i = 0; i < fartStatus.AmountOfParticle.Get(); i++)
         {
             Vector2 position = GetRandomPosition();
@@ -30,7 +31,7 @@ public class FartProjectileBuilder : MonoBehaviour
 
     private void SetColliderRadius(float aditionalArea)
     {
-        if (aditionalArea == 0 || aditionalArea == 1) return;
+        LoggerUtils.Log(Color.blue, aditionalArea.ToString());
 
         _circleCollider.radius *= (aditionalArea);
     }

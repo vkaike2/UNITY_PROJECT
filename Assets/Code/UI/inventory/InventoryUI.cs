@@ -27,12 +27,6 @@ public class InventoryUI : MonoBehaviour
 
     public bool IsOpen { get; private set; }
 
-    /// <summary>
-    ///  Time to wait before sending the update event
-    ///  we need to wait for every slot to be updated
-    /// </summary>
-    private const float BUFFER_WAIT_BEFORE_UPDATE = 0.2f;
-
     private readonly List<InventoryItemUI> _itens = new List<InventoryItemUI>();
     private Animator _animator;
     private GameManager _gameManager;
@@ -72,7 +66,11 @@ public class InventoryUI : MonoBehaviour
         InventoryItemUI item = _itens.FirstOrDefault(e => e.ItemData.Id == itemId);
         _itens.Remove(item);
 
-        List<InventorySlotUI> slotsUnderItem = item.GetEveryInventorySlotUnderItem();
+        List<InventorySlotUI> slotsUnderItem = _inventoyInfo.Slots.Where(e => e.HasItem && e.ItemUI.ItemData.Id == item.ItemData.Id).ToList();
+        if (!slotsUnderItem.Any())
+        {
+            slotsUnderItem = _equipmentInfo.Slots.Where(e => e.HasItem && e.ItemUI.ItemData.Id == item.ItemData.Id).ToList();
+        }
 
         List<SlotActionWrapper> slotActions = slotsUnderItem
             .Select(e => new SlotActionWrapper(e, e.RemoveItem()))

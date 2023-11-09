@@ -5,24 +5,21 @@ using UnityEngine;
 public class EquipableEggWhite : EquipableItemBase
 {
 
-    [Header("CONFIGURATIONS ADD")]
+    [Header("CONFIGURATIONS")]
     [SerializeField]
-    private float _addAreaPercentage = 0.1f;
-
-    [Header("CONFIGURATIONS REDUCED")]
-    [SerializeField]
-    private float _reducedDamagePercentage = 0.05f;
-
+    private float _addAreaOfEffect = 1f;
 
     protected override void EquipItem()
     {
-        _playerStatus.Fart.AreaOfEffect.IncreasePercentage(_addAreaPercentage);
-        _playerStatus.Fart.Damage.ReducePercentage(_reducedDamagePercentage);
+        _playerStatus.Fart.AreaOfEffect.Base.Add(_addAreaOfEffect);
+        
+        //_playerStatus.Fart.BaseDamage.ReducePercentage(_reducedDamagePercentage);
     }
 
     protected override void UnequipItem()
     {
-        _playerStatus.Fart.AreaOfEffect.ReducePercentage(_addAreaPercentage);
-        _playerStatus.Fart.Damage.IncreasePercentage(_reducedDamagePercentage);
+        _playerStatus.Fart.AreaOfEffect.Base.Remove(_addAreaOfEffect);
+
+        //_playerStatus.Fart.BaseDamage.IncreasePercentage(_reducedDamagePercentage);
     }
 }

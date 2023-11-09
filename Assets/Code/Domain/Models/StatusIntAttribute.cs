@@ -22,38 +22,18 @@ public class StatusIntAttribute
         _currentValue = value;
     }
 
-    public void IncreaseFlatValue(int value)
+    public void Add(int value)
     {
         SetCurrentValue();
 
         _currentValue += value;
     }
 
-    public void IncreasePercentage(float percentage)
-    {
-        SetCurrentValue();
-
-        percentage += 1;
-
-        var percentageValue = _currentValue * percentage;
-
-        _currentValue += (int)percentageValue;
-    }
-
-    public void ReduceFlatValue(int value)
+    public void Remove(int value)
     {
         SetCurrentValue();
 
         _currentValue -= value;
-    }
-
-    public void ReducePercentage(int percentage)
-    {
-        SetCurrentValue();
-
-        float percentageValue = _currentValue.Value * percentage;
-
-        _currentValue -= (int)percentageValue;
     }
 
     private void SetCurrentValue() => _currentValue ??= _value;

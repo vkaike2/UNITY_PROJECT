@@ -24,20 +24,27 @@ MonoBehaviour:
   _eggWhite:
     <Item>k__BackingField: {fileID: 11400000, guid: 1ffadc2e4203a7a419fdf8629860a087, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: f5e33d52fcff28347a516f36c175655d, type: 2}
-    _addAreaPercentage: 0.2
-    _reducedDamagePercentage: 0.05
+    _addAreaOfEffect: 1
   _eggYolk:
     <Item>k__BackingField: {fileID: 11400000, guid: 325916e5d7791cf4c852509a78fa6309, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: 64b2c10852dad1c4386d0c8409ff9d7c, type: 2}
-    _addDamagePercentage: 0.1
-    _reducedAreaPercentage: 0.05
+    _reducedAreaOfEffect: 0.5
+    _addParticle: 2
   _pepper:
     <Item>k__BackingField: {fileID: 11400000, guid: 565db31041290a546a82631f34ecaa17, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: 1fad8d1cf7f302145ac8d5e64c921a3d, type: 2}
     _poopProjectile: {fileID: 2518699327201309521, guid: e7f692221f9f21849a93f902ff9bcc5d, type: 3}
-    _damageMultiplier: 1.5
+    _addDamageMultiplier: 0.5
   _steak:
     <Item>k__BackingField: {fileID: 11400000, guid: 373013497aa30ba44ac0293f4b188000, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: c94bdc41476d2eb46b42c45be0c552d2, type: 2}
     _poopProjectile: {fileID: 4616127925406408002, guid: b90bc4143560204499a1ecd214eb62da, type: 3}
-    _damageMultiplier: 0.5
+    _reducedDamageMultiplier: 0.5
+  _milk:
+    <Item>k__BackingField: {fileID: 11400000, guid: 6a556854997c53a4d892f349b823623d, type: 2}
+    <RotatedItem>k__BackingField: {fileID: 11400000, guid: 12b28c475d1d7704a9b62d3cb6184939, type: 2}
+    _reudcedCdwToPoop: 0.1
+  _broccoli:
+    <Item>k__BackingField: {fileID: 11400000, guid: 167574da98fcb7445ad50cea0e92ff60, type: 2}
+    <RotatedItem>k__BackingField: {fileID: 11400000, guid: bccc9da1d7d3d454492553a0bd153e95, type: 2}
+    _addFlatDamage: 0.2

@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
   m_Name: '[2x1] Egg White - Rotated'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Egg White
-  <Description>k__BackingField: + 10% area of effect, - 5% damage
+  <Identity>k__BackingField: {fileID: 11400000, guid: 6a7c66f1b9986bb468a654e7b5fe3e93, type: 2}
   <RotatedItem>k__BackingField: {fileID: 11400000, guid: 1ffadc2e4203a7a419fdf8629860a087, type: 2}
   <SpriteWhileUsing>k__BackingField: {fileID: 0}
   <PrefabUI>k__BackingField: {fileID: 1733663391752914484, guid: e52fe229ebe5b3e4c81f5339183d30c7, type: 3}
   <InventoryItemLayout>k__BackingField: 2
   <IsEquipable>k__BackingField: 1
   <Type>k__BackingField: 1
-  <Affect>k__BackingField: 1
+  <Target>k__BackingField: 1
   <ItemDrop>k__BackingField: {fileID: 5816933599991359726, guid: c000b30ab6e416d41a86d0b4ef1eec92, type: 3}

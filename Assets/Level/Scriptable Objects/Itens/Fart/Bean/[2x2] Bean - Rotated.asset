@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
   m_Name: '[2x2] Bean - Rotated'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Bean
-  <Description>k__BackingField: Make your poop follow you
+  <Identity>k__BackingField: {fileID: 11400000, guid: d47d31829de6cef4688732552f3a8fc7, type: 2}
   <RotatedItem>k__BackingField: {fileID: 11400000, guid: 1d288493bad74d749a23e401f29e8407, type: 2}
   <SpriteWhileUsing>k__BackingField: {fileID: -1649625899, guid: c313cbc58658b08449d7d400cd54a7b6, type: 3}
   <PrefabUI>k__BackingField: {fileID: 5404855155100273469, guid: 86280794e47f42245803da9f10f1c975, type: 3}
   <InventoryItemLayout>k__BackingField: 3
   <IsEquipable>k__BackingField: 1
   <Type>k__BackingField: 0
-  <Affect>k__BackingField: 1
+  <Target>k__BackingField: 1
   <ItemDrop>k__BackingField: {fileID: 2759714877950265441, guid: b7ede1a8c2bd39d40b8f19e05e5b508b, type: 3}

@@ -3,14 +3,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Item")]
 public class ScriptableItem : ScriptableObject
 {
+    [field: Header("IDENTITY")]
+    [field: SerializeField]
+    public ScriptableItemIdentity Identity { get; private set; }
+
     [field: Header("GENERAL")]
-    [field: SerializeField]
-    public string Name { get; private set; }
-    [field: TextArea]
-    [field: SerializeField]
-    public string Description { get; private set; }    
+    //[field: SerializeField]
+    //public string Name { get; private set; }
+    //[field: TextArea]
+    //[field: SerializeField]
+    //public string Description { get; private set; }    
     [field: SerializeField]
     public ScriptableItem RotatedItem { get; private set; }
+    //[field: SerializeField]
+    //public bool HasLimit { get; private set; } = false;
+    //[field: SerializeField]
+    //public int Limit { get; private set; }
 
 
     [field: Header("INVENTORY INFO")]
@@ -29,7 +37,7 @@ public class ScriptableItem : ScriptableObject
     [field: SerializeField]
     public ItemType Type { get; set; }
     [field: SerializeField]
-    public ItemAffect Affect { get; set; }
+    public ItemTarget Target { get; set; }
 
 
     [field: Header("DROP")]
@@ -52,7 +60,7 @@ public class ScriptableItem : ScriptableObject
         Minor
     }
 
-    public enum ItemAffect
+    public enum ItemTarget
     {
         Poop,
         Fart

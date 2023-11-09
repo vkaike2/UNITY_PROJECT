@@ -13,63 +13,92 @@ public class PlayerStatus : HealthStatus
 
     [field: Header("ATTACKS")]
     [field: SerializeField]
-    public FartStatus Fart { get; private set; }  
+    public FartStatus Fart { get; private set; }
 
     [field: SerializeField]
     public PoopStatus Poop { get; private set; }
 
-
     [Serializable]
     public class FartStatus
     {
-        [field: SerializeField]
-        public StatusFloatAttribute Damage { get; private set; } // 0.1
-
+        [field: Header("PREFAB")]
         [field: SerializeField]
         public StatusMonobehaviourAttribute<FartProjectile> Projectile { get; private set; }
 
+        [field: Space]
         [field: SerializeField]
-        public StatusFloatAttribute Duration { get; private set; } // 1
+        public EntityAttribute Damage { get; private set; }
         [field: SerializeField]
-        public StatusFloatAttribute ImpulseForce { get; private set; } // 50
+        public EntityAttribute AreaOfEffect { get; set; }
         [field: SerializeField]
-        public StatusFloatAttribute Cooldown { get; private set; } // 0.5
+        public EntityAttribute Duration { get; private set; }
+        [field: SerializeField]
+        public EntityAttribute ImpulseForce { get; private set; }
+        [field: SerializeField]
+        public EntityAttribute Cooldown { get; private set; } // 0.5
+
+        [field: Space]
         [field: SerializeField]
         public StatusIntAttribute AmountOfParticle { get; set; }
-
-        [field: SerializeField]
-        public StatusFloatAttribute AreaOfEffect { get; set; }
 
     }
 
     [Serializable]
     public class PoopStatus
     {
-        [field: SerializeField]
-        public StatusFloatAttribute Damage { get; private set; } // 2.5
-        [field: SerializeField]
-        public StatusFloatAttribute DamageMultiplier { get; private set; } // 1
-
+        [field: Header("PREFAB")]
         [field: SerializeField]
         public StatusMonobehaviourAttribute<PoopProjectile> Projectile { get; private set; }
 
+
+        [field: Space]
         [field: SerializeField]
-        public StatusIntAttribute AreaOfEffect { get; set; }
+        public EntityAttribute Damage { get; private set; }
 
         [field: SerializeField]
-        public StatusFloatAttribute Duration { get; private set; } // 2
+        public EntityAttribute AreaOfEffect { get; set; }
 
+        [field: SerializeField]
+        public EntityAttribute Duration { get; private set; }
+
+        [field: SerializeField]
+        public EntityAttribute CdwToPoop { get; private set; }
+
+
+        [field: Space]
         [field: SerializeField]
         public StatusFloatAttribute MaximumVelocity { get; private set; } // 10;
+
         [field: SerializeField]
         [field: Tooltip("How many secconds it takes to go from 0 to maximum velocity")]
         public StatusFloatAttribute VelocityTimer { get; private set; } // 1;
-        [field: SerializeField]
-        public StatusFloatAttribute CdwToPoop { get; private set; } // 3f;
+    }
 
-        public float GetDamage()
+    [Serializable]
+    public class EntityAttribute
+    {
+        [Header("CONFIGURATION")]
+        [SerializeField]
+        private float _minimumValue = 1;
+
+        [field: Header("ATTRIBUTE")]
+        [field: SerializeField]
+        public StatusFloatAttribute Base { get; private set; }
+        [field: SerializeField]
+        public StatusFloatAttribute Multiplier { get; private set; }
+        [field: SerializeField]
+        public StatusFloatAttribute Increased { get; private set; }
+
+        public float Get()
         {
-            return Damage.Get() * DamageMultiplier.Get();
+            var value = (Base.Get() * Increased.Get()) * Multiplier.Get();
+
+            if(value < _minimumValue)
+            {
+                return _minimumValue;
+            }
+
+            return value;
         }
     }
 }

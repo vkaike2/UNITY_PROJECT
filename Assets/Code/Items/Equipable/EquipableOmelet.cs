@@ -15,12 +15,12 @@ public class EquipableOmelet : EquipableItemBase
     protected override void EquipItem()
     {
         _playerStatus.Fart.Projectile.Set(_fartProjectile);
-        _playerStatus.Fart.Duration.IncreaseFlatValue(_addDuration);
+        _playerStatus.Fart.Duration.Base.Add(_addDuration);
     }
 
     protected override void UnequipItem()
     {
         _playerStatus.Fart.Projectile.Reset();
-        _playerStatus.Fart.Duration.ReduceFlatValue(_addDuration);
+        _playerStatus.Fart.Duration.Base.Remove(_addDuration);
     }
 }

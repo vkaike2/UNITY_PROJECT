@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
   m_Name: '[2x1] Broccoli - Rotated'
   m_EditorClassIdentifier: 
+  <Identity>k__BackingField: {fileID: 11400000, guid: 4e2bd7dd22d9bbd428badcde0d688fe7, type: 2}
   <Name>k__BackingField: Broccoli
   <Description>k__BackingField: Add poop projectile speed
   <RotatedItem>k__BackingField: {fileID: 11400000, guid: 167574da98fcb7445ad50cea0e92ff60, type: 2}
+  <HasLimit>k__BackingField: 0
+  <Limit>k__BackingField: 0
   <SpriteWhileUsing>k__BackingField: {fileID: 0}
   <PrefabUI>k__BackingField: {fileID: 318854829858981444, guid: a078715a4151b924da21a492049db7af, type: 3}
   <InventoryItemLayout>k__BackingField: 2
   <IsEquipable>k__BackingField: 1
   <Type>k__BackingField: 1
-  <Affect>k__BackingField: 0
+  <Target>k__BackingField: 0
   <ItemDrop>k__BackingField: {fileID: 2262715942456674173, guid: deb5c840237f5a4499e3758f5fee11a4, type: 3}

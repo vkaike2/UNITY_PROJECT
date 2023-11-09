@@ -14,21 +14,18 @@ public partial class Map : MonoBehaviour
     private FiniteState _startWithState = FiniteState.Idle;
     
     [field: Space]
-
     [field: Header("COMPONENTS")]
     [field: SerializeField]
     public Transform CentralPosition { get; private set; }
     [field: Space]
     [field: SerializeField]
     public CameraConfinerInformation CameraConfiner { get; private set; }
-
+    
     [field: Space]
-
     [field: SerializeField]
     public MapContainersInformation Conatiners { get; private set; }
 
     [field: Space]
-
     [Header("PATHFINDING")]
     [SerializeField]
     private Waypoints _waypoints;
@@ -37,7 +34,6 @@ public partial class Map : MonoBehaviour
     [field: Header("WALLS")]
     [field: SerializeField]
     public List<WallOfSpike> WallsOfSpike { get; private set; }
-
 
     public List<Node> Nodes { get; set; }
     public GameManager GameManager { get; private set; }
@@ -49,9 +45,9 @@ public partial class Map : MonoBehaviour
 
     protected List<MapFiniteStateBase> _finiteStates = new List<MapFiniteStateBase>()
     {
-        new Combat(),
-        new Wait(),
-        new Idle()
+        new Combat(), // handle monster pawning
+        new Wait(),   // handle what happens after combat
+        new Idle()    // spawn player and move to combat
     };
 
     protected void Awake()

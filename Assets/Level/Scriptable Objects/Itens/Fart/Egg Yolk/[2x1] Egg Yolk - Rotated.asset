@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
   m_Name: '[2x1] Egg Yolk - Rotated'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Egg Yolk
-  <Description>k__BackingField: '- 5% area of effect, + 10% damage'
+  <Identity>k__BackingField: {fileID: 11400000, guid: 3ba13dc70dc347b45899e2a5f5a2d611, type: 2}
   <RotatedItem>k__BackingField: {fileID: 11400000, guid: 325916e5d7791cf4c852509a78fa6309, type: 2}
   <SpriteWhileUsing>k__BackingField: {fileID: 0}
   <PrefabUI>k__BackingField: {fileID: 7902379353257089092, guid: 00440110a7877194dad97a25e4fb6088, type: 3}
   <InventoryItemLayout>k__BackingField: 2
   <IsEquipable>k__BackingField: 1
   <Type>k__BackingField: 1
-  <Affect>k__BackingField: 1
+  <Target>k__BackingField: 1
   <ItemDrop>k__BackingField: {fileID: 7578164630358542305, guid: 0caa403b3c6f0a643b406200eac60bc2, type: 3}

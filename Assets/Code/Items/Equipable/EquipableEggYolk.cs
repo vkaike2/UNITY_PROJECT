@@ -4,25 +4,22 @@ using UnityEngine;
 [Serializable]
 public class EquipableEggYolk : EquipableItemBase
 {
-
     [Header("CONFIGURATIONS ADD")]
     [SerializeField]
-    private float _addDamagePercentage = 0.1f;
-
-    [Header("CONFIGURATIONS REDUCED")]
+    private float _reducedAreaOfEffect = 0.5f;
     [SerializeField]
-    private float _reducedAreaPercentage = 0.05f;
-
+    private int _addParticle = 1;
+   
 
     protected override void EquipItem()
     {
-        _playerStatus.Fart.AreaOfEffect.ReducePercentage(_reducedAreaPercentage);
-        _playerStatus.Fart.Damage.IncreasePercentage(_addDamagePercentage);
+        _playerStatus.Fart.AmountOfParticle.Add(_addParticle);
+        _playerStatus.Fart.AreaOfEffect.Base.Remove(_reducedAreaOfEffect);
     }
 
     protected override void UnequipItem()
     {
-        _playerStatus.Fart.AreaOfEffect.IncreasePercentage(_reducedAreaPercentage);
-        _playerStatus.Fart.Damage.ReducePercentage(_addDamagePercentage);
+        _playerStatus.Fart.AmountOfParticle.Remove(_addParticle);
+        _playerStatus.Fart.AreaOfEffect.Base.Add(_reducedAreaOfEffect);
     }
 }
