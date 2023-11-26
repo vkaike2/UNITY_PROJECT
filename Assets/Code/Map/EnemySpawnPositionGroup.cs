@@ -12,10 +12,10 @@ public class EnemySpawnPositionGroup : MonoBehaviour
 
         int count = 0;
 
-        foreach (EnemySpawnPosition pos in spawnPositions)
+        foreach (EnemySpawnPosition position in spawnPositions)
         {
-            pos.Id = count;
-            pos.RenameObject();
+            position.Id = count;
+            position.RenameObject();
             count++;
         }
     }

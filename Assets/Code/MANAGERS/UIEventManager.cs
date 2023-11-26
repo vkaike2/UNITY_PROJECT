@@ -17,6 +17,9 @@ public class UIEventManager : MonoBehaviour
     /// </summary>
     public UnityEvent OnInventoryRemoveEquipment { get; set; } = new UnityEvent();
 
+    //Map
+    public UnityEvent OnActivateNextWaveButton { get; set; } = new UnityEvent();
+    public UnityEvent OnClickNextWaveButton { get; set; } = new UnityEvent();
 
     private void Awake()
     {

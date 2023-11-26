@@ -76,7 +76,7 @@ public abstract class DamageReceiver : MonoBehaviour
         if (!CanReceiveDamage()) return;
         if (!CanReceiveDamageFrom(instance)) return;
 
-        if(_VfxParent != null)
+        if (_VfxParent != null)
         {
             _VfxParent.SpawnNumber(incomingDamage);
         }
@@ -127,9 +127,10 @@ public abstract class DamageReceiver : MonoBehaviour
 
         OnKnockbackEvent.Invoke(_knockbackDuration);
 
-        Vector2 direction = damagePosition.normalized;
-        Vector2 knockbackForce = _status.KnockBackForce * -direction;
-        _rigidbody2D.AddForce(knockbackForce);
+        Vector2 direction = (Vector2)transform.position - damagePosition;
+        direction = direction.normalized;
+
+        _rigidbody2D.velocity = _status.KnockBackForce * direction;
     }
 
     private IEnumerator ManageDamageEntry(int instance)

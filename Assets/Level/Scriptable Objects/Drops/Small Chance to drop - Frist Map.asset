@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0838f496ed09b114ba29ee2af307ab65, type: 3}
+  m_Name: Small Chance to drop - Frist Map
+  m_EditorClassIdentifier: 
+  <PossibleDrop>k__BackingField:
+    _cdwBetweenEachItem: 0.3
+    <ItemPools>k__BackingField:
+    - name: Minor
+      _numberOfItems:
+        _min: 1
+        _max: 2
+      _drops:
+      - name: '[on] 10.00% chance'
+        <Weight>k__BackingField: 1
+        <IsActive>k__BackingField: 1
+        <DropContents>k__BackingField:
+        - name: '[1x2] Egg Yolk 22.73% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 325916e5d7791cf4c852509a78fa6309, type: 2}
+          <Weight>k__BackingField: 10
+          <IsActive>k__BackingField: 1
+        - name: '[1x2] Egg White 22.73% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 1ffadc2e4203a7a419fdf8629860a087, type: 2}
+          <Weight>k__BackingField: 10
+          <IsActive>k__BackingField: 1
+        - name: '[1x2] Milk 22.73% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 6a556854997c53a4d892f349b823623d, type: 2}
+          <Weight>k__BackingField: 10
+          <IsActive>k__BackingField: 1
+        - name: '[1x2] Broccoli 22.73% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 167574da98fcb7445ad50cea0e92ff60, type: 2}
+          <Weight>k__BackingField: 10
+          <IsActive>k__BackingField: 1
+        - name: '[1x1] Golden Jam 4.55% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 08bf421de3b0e4347a82b72ec7627f32, type: 2}
+          <Weight>k__BackingField: 2
+          <IsActive>k__BackingField: 1
+        - name: '[1x1] Rotational Jam 4.55% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: cca3d29623463ae4290bb038f7aed064, type: 2}
+          <Weight>k__BackingField: 2
+          <IsActive>k__BackingField: 1
+      - name: '[on] 90.00% chance'
+        <Weight>k__BackingField: 9
+        <IsActive>k__BackingField: 1
+        <DropContents>k__BackingField: []

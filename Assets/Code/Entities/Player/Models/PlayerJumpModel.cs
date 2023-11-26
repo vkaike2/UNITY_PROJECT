@@ -26,7 +26,7 @@ public class PlayerJumpModel
     [field: Tooltip("Buffer that checks if you can jump even when you are not touching the ground")]
     public RaycastModel BufferCheck { get; private set; }
 
-
+    public bool IsLandingOnAPlatform { get; set; } = false;
     public bool IsCoyoteTimeActive { get; set; } = false;
     public bool IsBeingControlledByKnockback { get; set; } = false;
 }

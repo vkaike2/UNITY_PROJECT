@@ -21,12 +21,12 @@ public class ToiletAnimationEvents : MonoBehaviour
 
     public void ANIMATION_OnPlayerEnteringToilet()
     {
-        OnPlayerEnteringToiletEvent.Invoke();
+        OnPlayerEnteringToiletEvent?.Invoke();
     }
 
     public void ANIMATION_OnPlayerLeavingToilet()
     {
-        OnPlayerLeavingToiletEvent.Invoke();
+        OnPlayerLeavingToiletEvent?.Invoke();
     }
 
     public void ANIMATION_OnToiletCompletlyOpen() => OnToiletCompletlyOpen.Invoke();

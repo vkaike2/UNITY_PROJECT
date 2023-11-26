@@ -497,7 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField:
     _value: 10
-  <KnockBackForce>k__BackingField: 700
+  <KnockBackForce>k__BackingField: 10
   Health:
     _value: 0
   <MovementSpeed>k__BackingField:
@@ -531,10 +531,10 @@ MonoBehaviour:
         _value: 1
       <Increased>k__BackingField:
         _value: 1
-    <ImpulseForce>k__BackingField:
+    <Velocity>k__BackingField:
       _minimumValue: 1
       <Base>k__BackingField:
-        _value: 50
+        _value: 3
       <Multiplier>k__BackingField:
         _value: 1
       <Increased>k__BackingField:
@@ -542,7 +542,7 @@ MonoBehaviour:
     <Cooldown>k__BackingField:
       _minimumValue: 0.1
       <Base>k__BackingField:
-        _value: 3
+        _value: 1
       <Multiplier>k__BackingField:
         _value: 1
       <Increased>k__BackingField:
@@ -10918,6 +10918,10 @@ PrefabInstance:
     - target: {fileID: 1127553705611786044, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264420518828856221, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.146
       objectReference: {fileID: 0}
     - target: {fileID: 5287024852279322775, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
       propertyPath: m_Pivot.x

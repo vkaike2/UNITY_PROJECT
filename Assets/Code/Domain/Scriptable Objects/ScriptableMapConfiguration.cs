@@ -1,218 +1,129 @@
-﻿using CustomAttributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
-
 
 [CreateAssetMenu(fileName = "MapConfig", menuName = "ScriptableObjects/MapConfiguration")]
 public class ScriptableMapConfiguration : ScriptableObject
 {
-    [Header("TIMER CONFIGURATION")]
-    [SerializeField, ReadOnly]
-    private float _fullTime;
-
-    [Space]
-
-    [SerializeField]
-    private float _movementBuffer = 2f;
-    [field: Space]
+    [field: Header("CONFIGURATION")]
     [field: SerializeField]
-    public float EnfOfSmallStage { get; private set; }
+    public int Id { get; private set; }
+
+    [field: Header("INNER STAGES")]
     [field: SerializeField]
-    public float EnfOfMediumStage { get; private set; }
-
-    [field: Header("WAVES")]
-    [field: SerializeField]
-    public List<Wave> Waves { get; private set; }
-
-    public float GetFullTime()
-    {
-        _fullTime = Waves.Sum(e => e.GetFullTime());
-
-        return _fullTime;
-    }
+    public List<InnerStage> InnerStages { get; private set; }
 
     private void OnValidate()
     {
-        if (Waves == null) return;
-
-        GetFullTime();
-
-        float waitToSpawnCount = 0;
-
-        for (int waveIndex = 0; waveIndex < Waves.Count; waveIndex++)
-        {
-            Waves[waveIndex].name = CreateWaveName(waveIndex);
-
-            waitToSpawnCount += Waves[waveIndex].WaitToStartSpawningWave;
-
-            SetMobsStage(waveIndex);
-
-            var fullTimeUntillLastWave = Waves.Take(waveIndex).Sum(e => e.GetFullTime());
-            Waves[waveIndex].SetMobName(fullTimeUntillLastWave + Waves[waveIndex].WaitToStartSpawningWave);
-        }
+        ValidateActions();
     }
 
-    private string CreateWaveName(int waveIndex)
+    private void ValidateActions()
     {
-        string waveDuration = "";
+        if (InnerStages == null) return;
 
-        //-> duration
-        if (waveIndex == 0)
+        float timerCount = 0;
+        foreach (InnerStage innerStage in InnerStages)
         {
-            waveDuration += $"[{ConvertSecondsToMinutes(0)}, ";
+            if (innerStage.Actions == null) continue;
+            timerCount += innerStage.GetTimerForAllMyActions();
+            innerStage.Validate(timerCount);
         }
-        waveDuration += $"{ConvertSecondsToMinutes((int)Waves[waveIndex].GetFullTime())}]";
-
-        //-> wave number 
-        string waveNumber = (waveIndex + 1).ToString().PadLeft(2, '0');
-
-        //-> mobs inside wave
-        string mobsInWave = $"[{Waves[waveIndex].GetMobNames()}]";
-
-        return $"{waveDuration} {waveNumber} wave -> {mobsInWave}";
-    }
-
-    private void SetMobsStage(int waveIndex)
-    {
-        Wave wave = Waves[waveIndex];
-
-        float currentTime = 0;
-        if (waveIndex > 0)
-        {
-            currentTime = Waves.Take(waveIndex).Sum(e => e.GetFullTime());
-        }
-        else
-        {
-
-        }
-
-        foreach (Mob mob in wave.Mobs)
-        {
-
-            mob.mapStage = SetMobStage(currentTime);
-
-
-            if (mob.UsePartentTimer)
-            {
-                currentTime += wave.WaitToSpawnNextEnemyFromThisWave;
-            }
-            else
-            {
-                currentTime += mob.CdwToSpawnNextEnemy;
-            }
-        }
-    }
-
-    private string SetMobStage(float time)
-    {
-        if (time < (EnfOfSmallStage + _movementBuffer))
-        {
-            return MapStage.Small.ToString();
-        }
-        else if (time < (EnfOfMediumStage + _movementBuffer))
-        {
-            return MapStage.Medium.ToString();
-        }
-        else if (time >= (EnfOfMediumStage + _movementBuffer))
-        {
-            return MapStage.Large.ToString();
-        }
-
-        return "lol, this is an error I guess";
-    }
-
-    public static string ConvertSecondsToMinutes(int seconds)
-    {
-        int minutes = seconds / 60;
-        int remainingSeconds = seconds % 60;
-        return $"{minutes:00}:{remainingSeconds:00}";
     }
 
     [Serializable]
-    public class Wave
+    public class InnerStage
     {
-        [HideInInspector]
         public string name;
 
         [field: SerializeField]
-        public float WaitToStartSpawningWave { get; private set; }
-        [field: SerializeField]
-        public float WaitToSpawnNextEnemyFromThisWave { get; set; }
-        [field: SerializeField]
-        public List<Mob> Mobs { get; private set; }
+        public List<MapAction> Actions { get; private set; }
 
-
-        public float GetFullTime()
+        public float GetTimerForAllMyActions()
         {
-            float countTime = 0;
-
-            foreach (var mob in Mobs)
-            {
-                countTime += GetMobTimeToSpawn(mob);
-            }
-
-            return countTime + WaitToStartSpawningWave;
+            return Actions.Sum(e => e.Timer);
         }
 
-
-        public void SetMobName(float waveTime)
+        public void Validate(float timeToMe)
         {
-            if (Mobs == null) return;
+            name = name.Split("-> ").Last();
+            Debug.Log($"{name}|{timeToMe} - {timeToMe.SecondsToTime()}");
 
+            name = $"{timeToMe.SecondsToTime()} -> {name}";
 
-            foreach (var mob in Mobs)
+            float timerCount = 0;
+            foreach (var action in Actions)
             {
-                if (mob.Enemy == null) continue;
+                if (action == null) continue;
 
-                mob.name = $"({Mobs.IndexOf(mob)}) {ConvertSecondsToMinutes((int)waveTime)} [{mob.mapStage}] {mob.Enemy.name}";
-
-                waveTime += GetMobTimeToSpawn(mob);
-            }
-        }
-
-        private float GetMobTimeToSpawn(Mob mob)
-        {
-            if (mob.UsePartentTimer)
-            {
-                mob.CdwToSpawnNextEnemy = WaitToSpawnNextEnemyFromThisWave;
-                return WaitToSpawnNextEnemyFromThisWave;
-            }
-            else
-            {
-                return mob.CdwToSpawnNextEnemy;
-            }
-        }
-
-        public string GetMobNames()
-        {
-            return string.Join(", ", Mobs.Select(e => e.Enemy?.name.ToLower()));
-        }
-
-        public void SetMapStageInfo(string mapStage)
-        {
-            if (Mobs == null) return;
-
-            foreach (var mob in Mobs)
-            {
-                mob.mapStage = mapStage;
+                timerCount += action.Timer;
+                action.Validate(timerCount);
             }
         }
     }
 
     [Serializable]
-    public class Mob
+    public class MapAction
     {
         [HideInInspector]
         public string name;
-        [HideInInspector]
-        public string mapStage;
 
+        [field: Header("CONFIGURATIONS")]
+        [field: SerializeField]
+        public ActionType Type { get; private set; }
+
+        [field: Header("END/START CRITERIA")]
+        [field: SerializeField]
+        public float Timer { get; private set; }
+        [field: SerializeField]
+        public bool WaitButtonSignal { get; private set; } = false;
+        [field: SerializeField]
+        public bool WaitForAllMonstersToBeKilled { get; private set; } = false;
+
+        [field: Header("MONSTER")]
+        [field: SerializeField]
+        public MapEnemy Enemy { get; private set; }
+
+        [field: Header("CHEST")]
+        [field: SerializeField]
+        public MapChest MapChest { get; private set; }
+
+        [field: Header("MAP")]
+        [field: SerializeField]
+        public MapChange MapChange { get; private set; }
+
+        public void Validate(float timeToMe)
+        {
+            name = $"{(timeToMe.SecondsToTime())} -> {Type.ToString()}";
+
+            switch (Type)
+            {
+                case ActionType.Monster:
+                    name += $" - {Enemy.ScriptableEnemy.name} -> {((timeToMe + Timer).SecondsToTime())}";
+                    break;
+                case ActionType.Chest:
+                    break;
+                case ActionType.ChangeMap:
+                    break;
+            }
+        }
+
+
+        public enum ActionType
+        {
+            Monster,
+            Chest,
+            ChangeMap
+        }
+    }
+
+    [Serializable]
+    public class MapEnemy
+    {
         [field: Header("PREFAB")]
         [field: SerializeField]
-        public Enemy Enemy { get; private set; }
+        public ScriptableEnemy ScriptableEnemy { get; private set; }
 
         [field: Header("POSITION")]
         [field: SerializeField]
@@ -220,21 +131,26 @@ public class ScriptableMapConfiguration : ScriptableObject
         [field: SerializeField]
         public int SpawnPositionId { get; private set; }
 
-        [field: Header("ENEMY TYPE")]
+        [field: Header("DROP")]
         [field: SerializeField]
-        public EnemySpawnPosition.SpawnType SpawnType { get; private set; }
-
-        [field: Header("SPAWN")]
-        [field: SerializeField]
-        public bool UsePartentTimer { get; set; }
-        [field: SerializeField]
-        public float CdwToSpawnNextEnemy { get; set; }
+        public ScriptablePossibleDrop ScriptablePossibleDrop { get; set; }
     }
 
-    public enum MapStage
+    [Serializable]
+    public class MapChest
     {
-        Small,
-        Medium,
-        Large,
+        [field: Header("DROP")]
+        [field: SerializeField]
+        public ScriptablePossibleDrop ScriptablePossibleDrop { get; set; }
+    }
+
+    [Serializable]
+    public class MapChange
+    {
+        [field: SerializeField]
+        public int ChangeId { get; private set; }
+        [SerializeField]
+        [TextArea]
+        private string _description;
     }
 }

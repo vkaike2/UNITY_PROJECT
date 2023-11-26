@@ -33,7 +33,7 @@ public class PlayerStatus : HealthStatus
         [field: SerializeField]
         public EntityAttribute Duration { get; private set; }
         [field: SerializeField]
-        public EntityAttribute ImpulseForce { get; private set; }
+        public EntityAttribute Velocity { get; private set; }
         [field: SerializeField]
         public EntityAttribute Cooldown { get; private set; } // 0.5
 

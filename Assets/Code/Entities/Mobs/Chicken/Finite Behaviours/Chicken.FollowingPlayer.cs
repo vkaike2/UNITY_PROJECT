@@ -1,4 +1,5 @@
 using Calcatz.MeshPathfinding;
+using System.Collections;
 using static EnemyFollowingBehavior;
 
 public partial class Chicken : Enemy
@@ -77,5 +78,6 @@ public partial class Chicken : Enemy
         {
             _chicken.ChangeBehaviour(Behaviour.Patrol);
         }
+
     }
 }

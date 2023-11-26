@@ -70,10 +70,7 @@ namespace Calcatz.MeshPathfinding
 
         [Tooltip("This node will be ignored in calculation if it's not traversable.")]
         public bool traversable = true;
-
-        [field: SerializeField]
-        public ScriptableMapConfiguration.MapStage Stage { get; private set; }
-
+        public bool needToJumpIfFirst = false;
 
         public List<Neighbours> neighbours;
 

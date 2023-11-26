@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0838f496ed09b114ba29ee2af307ab65, type: 3}
+  m_Name: All Majors - One of each
+  m_EditorClassIdentifier: 
+  <PossibleDrop>k__BackingField:
+    _cdwBetweenEachItem: 0.3
+    <ItemPools>k__BackingField:
+    - name: Omelet
+      _numberOfItems:
+        _min: 1
+        _max: 1
+      _drops:
+      - name: '[on] 100.00% chance'
+        <Weight>k__BackingField: 1
+        <IsActive>k__BackingField: 1
+        <DropContents>k__BackingField:
+        - name: '[2x2] Omelet 100.00% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 64e3c61342e0d414cb75c2b0173c760e, type: 2}
+          <IsActive>k__BackingField: 1
+    - name: Bean
+      _numberOfItems:
+        _min: 1
+        _max: 1
+      _drops:
+      - name: '[on] 100.00% chance'
+        <Weight>k__BackingField: 1
+        <IsActive>k__BackingField: 1
+        <DropContents>k__BackingField:
+        - name: '[2x2] Bean 100.00% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 1d288493bad74d749a23e401f29e8407, type: 2}
+          <IsActive>k__BackingField: 1
+    - name: Steak
+      _numberOfItems:
+        _min: 1
+        _max: 1
+      _drops:
+      - name: '[on] 100.00% chance'
+        <Weight>k__BackingField: 1
+        <IsActive>k__BackingField: 1
+        <DropContents>k__BackingField:
+        - name: '[2x2] Steak 100.00% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 373013497aa30ba44ac0293f4b188000, type: 2}
+          <IsActive>k__BackingField: 1
+    - name: Pepper
+      _numberOfItems:
+        _min: 1
+        _max: 1
+      _drops:
+      - name: '[on] 100.00% chance'
+        <Weight>k__BackingField: 1
+        <IsActive>k__BackingField: 1
+        <DropContents>k__BackingField:
+        - name: '[2x2] Pepper 100.00% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 565db31041290a546a82631f34ecaa17, type: 2}
+          <IsActive>k__BackingField: 1

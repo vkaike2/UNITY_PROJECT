@@ -11,9 +11,7 @@ public partial class Toilet : MonoBehaviour
     [field: SerializeField]
     public float CameraSizeOnFocus { get; private set; } = 3;
 
-
     [field: Header("COMPONENTS")]
-    [field: Space]
     [field: SerializeField]
     public Map ParentMap { get; private set; }
     [field: Space]
@@ -35,7 +33,7 @@ public partial class Toilet : MonoBehaviour
 
     private MapManager _mapManager;
 
-    private List<ToiletStateBase> _finiteStates = new List<ToiletStateBase>()
+    private readonly List<ToiletStateBase> _finiteStates = new List<ToiletStateBase>()
     {
         new Enabled(),
         new Disabled(),

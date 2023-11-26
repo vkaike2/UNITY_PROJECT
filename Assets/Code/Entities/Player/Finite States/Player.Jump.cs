@@ -73,7 +73,6 @@ public partial class Player : MonoBehaviour
         private bool CheckIfIsFalling()
         {
             if (_rigidbody2D.velocity.y > 0) return false;
-
             return ChangeState(FiniteState.Falling);
         }
 
@@ -81,9 +80,11 @@ public partial class Player : MonoBehaviour
         {
             if (!_hasLeftTheGround) return false;
             if (!IsPlayerTouchingGround) return false;
+            if (_jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer).gameObject.GetComponent<OneWayPlatform>() != null) return false;
 
-            if (_player.MoveInput.Value == Vector2.zero)
+            if (_player.MoveInput.Value == Vector2.zero && !_jumpModel.IsBeingControlledByKnockback)
             {
+                Debug.Log("foi pro idle");
                 return ChangeState(FiniteState.Idle);
             }
 
@@ -111,6 +112,6 @@ public partial class Player : MonoBehaviour
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, actualJumpForce);
                 yield return new WaitForFixedUpdate();
             }
-        }    
+        }
     }
 }

@@ -11,6 +11,8 @@ public partial class Chicken : Enemy
     private Behaviour _behaviourDebug;
     [SerializeField]
     private int _debugCurrentTier;
+    [SerializeField]
+    private Player _debugPlayer;
 
     [Header("CANVAS")]
     [SerializeField]
@@ -62,6 +64,10 @@ public partial class Chicken : Enemy
     protected override void AfterAwake()
     {
         _behaviourDebug = Behaviour.Born;
+    }
+
+    protected override void AfterStart()
+    {
         InitializePathfinding();
     }
 
@@ -89,11 +95,16 @@ public partial class Chicken : Enemy
     }
     #endregion
 
+    public override void Kill()
+    {
+        ChangeBehaviour(Behaviour.Die);
+    }
+
     public void AddTier()
     {
         if (CurrentTier >= _maxTier) return;
 
-        _status.MovementSpeed.Add(1f);
+        _status.MovementSpeed.Add(_status.MovementSpeed.Get() * 0.1f);
         CurrentTier += 1;
         _debugCurrentTier = CurrentTier;
         _tierComponent.AddTier();
@@ -114,7 +125,8 @@ public partial class Chicken : Enemy
     private void InitializePathfinding()
     {
         PlayerPathfinding.waypoints = GameManager.Waypoints;
-        PlayerPathfinding.SetTarget(GameManager.Player.transform);
+
+        PlayerPathfinding.SetTarget(_debugPlayer == null ?GameManager.Player.transform: _debugPlayer.transform);
 
         WormPathfinding.waypoints = GameManager.Waypoints;
     }

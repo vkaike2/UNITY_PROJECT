@@ -10,12 +10,12 @@ public partial class Rat : Enemy
 
     [field: Header("MY COMPONENTS")]
     [field: SerializeField]
-    public PlayerPathfinding PlayerPathfinding {  get; private set; }
+    public PlayerPathfinding PlayerPathfinding { get; private set; }
 
     [field: Header("MY CONFIGURATIONS")]
     [field: SerializeField]
     public RatAnimatorModel RatAnimator { get; private set; }
-    [field:Space]
+    [field: Space]
     [field: SerializeField]
     public RatIdleModel IdleModel { get; private set; }
     [field: SerializeField]
@@ -51,6 +51,11 @@ public partial class Rat : Enemy
         ChangeBehaviour(Behaviour.Idle);
     }
     #endregion
+
+    public override void Kill()
+    {
+        ChangeBehaviour(Behaviour.Die);
+    }
 
     public void ChangeBehaviour(Behaviour behaviour)
     {

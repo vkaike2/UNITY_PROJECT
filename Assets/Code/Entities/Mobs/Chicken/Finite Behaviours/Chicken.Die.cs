@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public partial class Chicken : Enemy
@@ -14,6 +15,9 @@ public partial class Chicken : Enemy
             _chicken.HitBox.gameObject.SetActive(false);
             _rigidbody2D.velocity = Vector3.zero;
             _rigidbody2D.isKinematic = true;
+
+            DropItemIfPossible();
+
             _chicken.StartCoroutine(FadeOutThenDie());
         }
 
@@ -39,6 +43,16 @@ public partial class Chicken : Enemy
             }
 
             GameObject.Destroy(_chicken.gameObject);
+        }
+
+        private void DropItemIfPossible()
+        {
+            if (_chicken.PossibleDrop == null) return;
+            if (_chicken.PossibleDrop.ItemPools.Count == 0) return;
+
+            Vector2 dropPosition = new Vector2(_chicken.transform.position.x, _chicken.transform.position.y + 0.5f);
+
+            _chicken.StartCoroutine(_chicken.PossibleDrop.SpawnEveryItem(dropPosition, _chicken.ItemContainer));
         }
     }
 }

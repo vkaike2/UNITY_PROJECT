@@ -29,6 +29,11 @@ public partial class Egg : Enemy
         ChangeBehaviour(Behaviour.Idle);
     }
 
+    public override void Kill()
+    {
+        ChangeBehaviour(Behaviour.Die);
+    }
+
     public void ChangeBehaviour(Behaviour behaviour)
     {
         _currentFiniteBehaviour?.OnExitBehaviour();

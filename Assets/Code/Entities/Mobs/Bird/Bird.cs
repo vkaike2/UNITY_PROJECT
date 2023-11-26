@@ -49,6 +49,10 @@ public partial class Bird : Enemy
     }
     #endregion
 
+    public override void Kill()
+    {
+        ChangeBehaviour(Behaviour.Die);
+    }
 
     public void ChangeBehaviour(Behaviour behaviour)
     {

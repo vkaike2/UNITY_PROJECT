@@ -18,9 +18,9 @@ public class FartProjectile : MonoBehaviour
         _projectileBuilder = GetComponent<FartProjectileBuilder>();
     }
 
-    public virtual void SetInitialValues(Vector2 impulseForce, Player player)
+    public virtual void SetInitialValues(Vector2 velocity, Player player)
     {
-        _rigidbody2D.AddForce(impulseForce);
+        _rigidbody2D.velocity = velocity;
         BaseBehavioyrForFart(player);
     }
 

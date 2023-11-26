@@ -95,32 +95,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2066224859061724a9984da581769c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInteractableRange: 5
   _cdwBetweenEachItem: 0.3
   _itemSpawnPoint: {fileID: 7737649638034192816}
-  _pool:
-    _numberOfItems:
-      _min: 4
-      _max: 10
-    _possibleDrops:
-    - name: Item test 1x1_8
-      _item: {fileID: 11400000, guid: 2dca58a24a6202841bb3bacc23f28210, type: 2}
-      _weight: 8
-    - name: Item test 1x2_4
-      _item: {fileID: 11400000, guid: b08b23c58241d22419e3f9df159906ca, type: 2}
-      _weight: 4
-    - name: Item test 2x1_4
-      _item: {fileID: 11400000, guid: c80cf1a57a593bd44a74fa74cee9a151, type: 2}
-      _weight: 4
-    - name: Item test 2x2_2
-      _item: {fileID: 11400000, guid: 8d88b7a9589014c4ebfe48a6fe4175df, type: 2}
-      _weight: 2
-    - name: Item test 2x3_1
-      _item: {fileID: 11400000, guid: 1d4aa4f45c826f0478b5ce54d488899a, type: 2}
-      _weight: 1
-    - name: Item test 3x2_1
-      _item: {fileID: 11400000, guid: fa7bcfec96a9cb74da9758ec62cb1656, type: 2}
-      _weight: 1
+  _possibleDrop:
+    <ItemPools>k__BackingField:
+    - name: Major drops
+      _numberOfItems:
+        _min: 1
+        _max: 1
+      _drops:
+      - name: '[2x2] Bean_4'
+        _item: {fileID: 11400000, guid: 1d288493bad74d749a23e401f29e8407, type: 2}
+        _weight: 4
+        <IsActive>k__BackingField: 1
+      - name: '[2x2] Omelet_4'
+        _item: {fileID: 11400000, guid: 64e3c61342e0d414cb75c2b0173c760e, type: 2}
+        _weight: 4
+        <IsActive>k__BackingField: 1
+      - name: '[2x2] Steak_4'
+        _item: {fileID: 11400000, guid: 373013497aa30ba44ac0293f4b188000, type: 2}
+        _weight: 4
+        <IsActive>k__BackingField: 1
+      - name: '[2x2] Pepper_4'
+        _item: {fileID: 11400000, guid: 565db31041290a546a82631f34ecaa17, type: 2}
+        _weight: 4
+        <IsActive>k__BackingField: 1
+    - name: Minor
+      _numberOfItems:
+        _min: 1
+        _max: 2
+      _drops:
+      - name: '[1x2] Egg White_4'
+        _item: {fileID: 11400000, guid: 1ffadc2e4203a7a419fdf8629860a087, type: 2}
+        _weight: 4
+        <IsActive>k__BackingField: 1
+      - name: '[1x2] Egg Yolk_4'
+        _item: {fileID: 11400000, guid: 325916e5d7791cf4c852509a78fa6309, type: 2}
+        _weight: 4
+        <IsActive>k__BackingField: 1
+      - name: '[1x2] Broccoli_4'
+        _item: {fileID: 11400000, guid: 167574da98fcb7445ad50cea0e92ff60, type: 2}
+        _weight: 4
+        <IsActive>k__BackingField: 1
+      - name: '[1x2] Milk_4'
+        _item: {fileID: 11400000, guid: 6a556854997c53a4d892f349b823623d, type: 2}
+        _weight: 4
+        <IsActive>k__BackingField: 1
+  _parentMap: {fileID: 0}
   _animator: {fileID: 7204842556560536802}
 --- !u!1 &7204842556560536800
 GameObject:

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -16,5 +14,5 @@ public struct MinMax
     public readonly float Range => _max - _min;
 
     public readonly float GetRandom() => UnityEngine.Random.Range(_min, _max);
-    public readonly int GetRandomInt() => UnityEngine.Random.Range((int)_min, (int)_max);
+    public readonly int GetRandomInt() => UnityEngine.Random.Range((int)_min, ((int)_max) +1);
 }

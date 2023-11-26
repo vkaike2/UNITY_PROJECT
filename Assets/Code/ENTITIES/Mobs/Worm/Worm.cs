@@ -57,7 +57,13 @@ public partial class Worm : Enemy
         GameManager.RemoveWorm(this);
     }
 
+
     #region CALLED BY OTHER GAME OBJECTS
+    public override void Kill()
+    {
+        ChangeBehaviour(Behaviour.Die);
+    }
+
     public void InteractWithChicken()
     {
         this.ChangeBehaviour(Behaviour.Reborn);

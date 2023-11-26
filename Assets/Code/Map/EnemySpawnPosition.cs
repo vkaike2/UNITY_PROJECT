@@ -11,8 +11,8 @@ public class EnemySpawnPosition : MonoBehaviour
     public SpawnType Type { get; private set; }
     [field: SerializeField]
     public bool IsAvailable { get; set; } = false;
-    [field: SerializeField]
-    public ScriptableMapConfiguration.MapStage Stage { get; private set; }
+
+    public bool HasBeingUsedRecently { get; private set; } = false;
 
     private void OnValidate()
     {
@@ -31,5 +31,15 @@ public class EnemySpawnPosition : MonoBehaviour
         Air
     }
 
+    public void UseIt(float duringCdw)
+    {
+        StartCoroutine(CalculateUsageCdw(duringCdw));
+    }
 
+    private IEnumerator CalculateUsageCdw(float cdw)
+    {
+        HasBeingUsedRecently = true;
+        yield return new WaitForSeconds(cdw);
+        HasBeingUsedRecently = false;
+    }
 }

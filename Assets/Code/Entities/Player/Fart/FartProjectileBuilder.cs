@@ -31,8 +31,6 @@ public class FartProjectileBuilder : MonoBehaviour
 
     private void SetColliderRadius(float aditionalArea)
     {
-        LoggerUtils.Log(Color.blue, aditionalArea.ToString());
-
         _circleCollider.radius *= (aditionalArea);
     }
 

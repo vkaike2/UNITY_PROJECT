@@ -7,19 +7,9 @@ public class ScriptableItem : ScriptableObject
     [field: SerializeField]
     public ScriptableItemIdentity Identity { get; private set; }
 
-    [field: Header("GENERAL")]
-    //[field: SerializeField]
-    //public string Name { get; private set; }
-    //[field: TextArea]
-    //[field: SerializeField]
-    //public string Description { get; private set; }    
+    [field: Header("GENERAL")]  
     [field: SerializeField]
     public ScriptableItem RotatedItem { get; private set; }
-    //[field: SerializeField]
-    //public bool HasLimit { get; private set; } = false;
-    //[field: SerializeField]
-    //public int Limit { get; private set; }
-
 
     [field: Header("INVENTORY INFO")]
     [field:Tooltip("Only applicable for two steps usage like the Rotational Jam")]

@@ -61,7 +61,6 @@ public abstract class PlayerBaseState
         FlipPlayerToTheCorrectDirection();
 
         if (_jumpModel.IsBeingControlledByKnockback && _player.MoveInput.Value.x == 0) return;
-
         _rigidbody2D.velocity = new Vector2(_status.MovementSpeed.Get() * _player.MoveInput.Value.x, _rigidbody2D.velocity.y);
     }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 
@@ -14,6 +15,9 @@ public partial class Rat : Enemy
             _rat.HitBox.gameObject.SetActive(false);
             _rigidbody2D.velocity = Vector3.zero;
             _rigidbody2D.isKinematic = true;
+
+            DropItemIfPossible();
+
             _rat.StartCoroutine(FadeOutThenDie());
         }
 
@@ -24,6 +28,7 @@ public partial class Rat : Enemy
         public override void Update()
         {
         }
+
         private IEnumerator FadeOutThenDie(float fadeOutTime = 2f)
         {
             float cdw = fadeOutTime;
@@ -38,6 +43,16 @@ public partial class Rat : Enemy
             }
 
             GameObject.Destroy(_rat.gameObject);
+        }
+
+        private void DropItemIfPossible()
+        {
+            if (_rat.PossibleDrop == null) return;
+            if (_rat.PossibleDrop.ItemPools.Count == 0) return;
+
+            Vector2 dropPosition = new Vector2(_rat.transform.position.x, _rat.transform.position.y + 0.5f);
+
+            _rat.StartCoroutine(_rat.PossibleDrop.SpawnEveryItem(dropPosition, _rat.ItemContainer));
         }
     }
 }

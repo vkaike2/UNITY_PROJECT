@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "ItemEvents", menuName = "ScriptableObjects/ItemEvent")]
+[CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Events/Item")]
 public class ScriptableItemEvents : ScriptableObject
 {
     [Header("EQUIPABLE ITENS")]

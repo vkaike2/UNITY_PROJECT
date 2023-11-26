@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebdc1281ee250c43907b9c5a5300af1, type: 3}
+  m_Name: Chicken
+  m_EditorClassIdentifier: 
+  <Spawner>k__BackingField: {fileID: 5488290335995387055, guid: d90a46c6a4347d84ba89b28fb7fb1682, type: 3}
+  <Enemy>k__BackingField: {fileID: 6393750100075348890, guid: 77d6c24c42b842348933bb12a089a3b8, type: 3}
+  <SpawnerSprite>k__BackingField: {fileID: 1277798296, guid: 64c144ffbe69a6b4db8037fff466edbd, type: 3}

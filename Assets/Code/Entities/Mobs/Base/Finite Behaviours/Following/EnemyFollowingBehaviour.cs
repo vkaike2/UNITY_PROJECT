@@ -68,14 +68,16 @@ public partial class EnemyFollowingBehavior
             NeedToJump = false;
         }
 
-        public void CheckIfNeedToJump(Node node)
+        public void CheckIfNeedToJump(bool isFirstIteration, Node node, float minVerticalPosition)
         {
             NeedToJump = ParentNode.neighbours.Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToJump).Any();
         }
 
-        public void CheckIfNeedToGoDownPlatform(Node node)
+        public void CheckIfNeedToGoDownPlatform(bool isFirstIteration, Node node, float minVerticalPosition, bool isOverPlatform)
         {
-            NeedToGoDownPlatform = ParentNode.neighbours.Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToGoDownPlatform).Any();
+            NeedToGoDownPlatform =
+                (node.transform.position.y < minVerticalPosition && isOverPlatform) ||
+                ParentNode.neighbours.Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToGoDownPlatform).Any();
         }
 
         public void Log()

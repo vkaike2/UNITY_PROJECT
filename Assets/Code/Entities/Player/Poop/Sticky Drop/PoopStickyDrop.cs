@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 
@@ -109,15 +110,21 @@ public class PoopStickyDrop : MonoBehaviour
 
     private bool IsOnTheGround()
     {
-        return _auxiliarPositions.All(e => IsHitingLayer(_groundLayer, e.position) || IsHitingLayer(_platformLayer, e.position));
+        bool isOnTheGroundInternal = _auxiliarPositions.All(e => IsHittingLayer(_groundLayer, e.position) || IsHittingLayer(_platformLayer, e.position));
+
+        if(!isOnTheGroundInternal && _auxiliarPositions.Any(e => IsHittingLayer(_groundLayer, e.position) || IsHittingLayer(_platformLayer, e.position))) 
+        {
+            StartCoroutine(UnstuckFromOddPosition());
+        }
+
+        return isOnTheGroundInternal;
     }
 
-    private bool IsHitingLayer(LayerMask layer, Vector2 position)
+    private bool IsHittingLayer(LayerMask layer, Vector2 position)
     {
         RaycastHit2D col = Physics2D.Linecast(position, new Vector2(position.x, position.y + VERTICAL_RAYCAST_LENGHT), layer);
         return col.collider != null;
     }
-
 
     private IEnumerator Vibrate()
     {
@@ -142,4 +149,19 @@ public class PoopStickyDrop : MonoBehaviour
         Dropping,
         Floor
     }
+
+    private IEnumerator UnstuckFromOddPosition()
+    {
+        if (IsNotMoving())
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            if (IsNotMoving())
+            {
+                _isOnTheGround = true;
+                TouchedTheGround();
+            }
+        }
+    }
+    private bool IsNotMoving() => _rigidBody2D.velocity == Vector2.zero;
 }

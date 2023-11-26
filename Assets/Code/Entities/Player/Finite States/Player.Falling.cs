@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public partial class Player : MonoBehaviour
@@ -29,7 +30,7 @@ public partial class Player : MonoBehaviour
 
         public override void Update()
         {
-            if (CheckIfIsStillFalling()) return;
+            if (CheckIfPlayerIsOnTheGround()) return;
 
             MovePlayerInTheAir();
         }
@@ -50,7 +51,7 @@ public partial class Player : MonoBehaviour
 
         //It is called for coyote time
         private void OnJumpInputPerformed()
-        { 
+        {
             if (IsBufferJumpTouchingGround())
             {
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
@@ -66,16 +67,29 @@ public partial class Player : MonoBehaviour
 
         private bool IsBufferJumpTouchingGround() => _jumpModel.BufferCheck.DrawPhysics2D(_jumpModel.GroundLayer) != null;
 
-        private bool CheckIfIsStillFalling()
+        private bool CheckIfPlayerIsOnTheGround()
         {
             if (!IsPlayerTouchingGround) return false;
+            if (_jumpModel.IsBeingControlledByKnockback) return false;
 
             if (_player.MoveInput.Value == Vector2.zero)
             {
-                return ChangeState(FiniteState.Idle);
+                CheckIfPlayerIsLandingOnAPlatform();
+
+                ChangeState(FiniteState.Idle);
+                return true;
             }
 
             return ChangeState(FiniteState.Move);
+        }
+
+        private void CheckIfPlayerIsLandingOnAPlatform()
+        {
+            Collider2D collider = _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer);
+            if (collider.GetComponent<OneWayPlatform>() != null)
+            {
+                _jumpModel.IsLandingOnAPlatform = true;
+            }
         }
     }
 }

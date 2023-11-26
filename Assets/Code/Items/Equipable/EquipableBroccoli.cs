@@ -7,7 +7,7 @@ public class EquipableBroccoli : EquipableItemBase
 {
     [Header("CONFIGURATION")]
     [SerializeField]
-    private float _addFlatDamage = 0.2f;
+    private float _addFlatDamage = 0.5f;
 
     protected override void EquipItem()
     {

@@ -12,7 +12,7 @@ public partial class Player : MonoBehaviour
 
     public void OnDownInput(InputAction.CallbackContext context)
     {
-        if(_isFrozen) return;
+        if (_isFrozen) return;
 
         InitializeBooleanInput(DownPlatformInput, context);
     }

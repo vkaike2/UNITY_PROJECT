@@ -37,19 +37,26 @@ public class Fart : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private bool _isFartOnCdw = false;
     private PlayerStatus.FartStatus _status;
+    private GameManager _gameManager;
 
     private void Awake()
     {
         _status = GetComponent<PlayerStatus>().Fart;
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _player = GetComponent<Player>();
+
+        _gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Start()
     {
         InitializeUIManager();
         _player.FartInput.Performed.AddListener(OnFartInputPerformed);
+
+        _gameManager.OnPlayerDead.AddListener(OnPayerDead);
     }
+
+
 
     private void OnFartInputPerformed()
     {
@@ -79,7 +86,7 @@ public class Fart : MonoBehaviour
         FartProjectile projectile = Instantiate(_status.Projectile.Get(), _fartSpawnTransform);
         projectile.transform.parent = null;
         projectile.transform.rotation = mouse.rotation;
-        projectile.SetInitialValues(mouse.direction * _status.ImpulseForce.Get(), _player);
+        projectile.SetInitialValues(mouse.direction * _status.Velocity.Get(), _player);
     }
 
     public (Vector2 position, Vector2 direction, Quaternion rotation) GetMouseInformationRelatedToGameObject()
@@ -152,6 +159,12 @@ public class Fart : MonoBehaviour
     private void InitializeUIManager()
     {
         UIEventManager.instance.OnPlayerFartProgressBar.Invoke(1f);
+    }
+
+    private void OnPayerDead()
+    {
+        StopAllCoroutines();
+        _isFartOnCdw = true;
     }
 }
 

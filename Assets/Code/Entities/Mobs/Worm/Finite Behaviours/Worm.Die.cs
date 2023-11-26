@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 
@@ -14,6 +15,9 @@ public partial class Worm : Enemy
             _worm.HitBox.gameObject.SetActive(false);
             _rigidbody2D.velocity = Vector3.zero;
             _rigidbody2D.isKinematic = true;
+
+            DropItemIfPossible();
+
             _worm.StartCoroutine(FadeOutThenDie());
         }
 
@@ -39,6 +43,16 @@ public partial class Worm : Enemy
             }
 
             GameObject.Destroy(_worm.gameObject);
+        }
+    
+        private void DropItemIfPossible()
+        {
+            if (_worm.PossibleDrop == null) return;
+            if(_worm.PossibleDrop.ItemPools.Count == 0) return;
+
+            Vector2 dropPosition = new Vector2(_worm.transform.position.x, _worm.transform.position.y + 0.5f);
+
+            _worm.StartCoroutine(_worm.PossibleDrop.SpawnEveryItem(dropPosition, _worm.ItemContainer));
         }
     }
 }

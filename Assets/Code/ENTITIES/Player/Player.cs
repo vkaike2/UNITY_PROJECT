@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -42,13 +44,14 @@ public partial class Player : MonoBehaviour
     public PlayerInventory PlayerInventory { get; private set; }
     public PlayerStatus Status { get; private set; }
     public PlayerDamageDealer DamageDealer { get; set; }
+    protected GameManager GameManager { get; private set; }
+    protected PlayerDamageReceiver DamageReceiver { get; private set; }
 
     private Fart _fart;
     private bool _isFrozen;
 
     private PlayerBaseState _currentState;
     private Rigidbody2D _rigidbody2D;
-    private GameManager _gameManager;
     private MapManager _mapManager;
 
 
@@ -58,7 +61,8 @@ public partial class Player : MonoBehaviour
         new Move(),
         new Jump(),
         new Falling(),
-        new Pooping()
+        new Pooping(),
+        new Dead()
     };
 
     private void OnDrawGizmos()
@@ -74,6 +78,7 @@ public partial class Player : MonoBehaviour
         PlayerInventory = GetComponent<PlayerInventory>();
         DamageDealer = GetComponent<PlayerDamageDealer>();
         _fart = GetComponent<Fart>();
+        DamageReceiver = GetComponent<PlayerDamageReceiver>();
     }
 
     private void Start()
@@ -88,6 +93,8 @@ public partial class Player : MonoBehaviour
         }
 
         ChangeState(GetFirstState());
+
+        DamageReceiver.OnKnockbackEvent.AddListener(HandleKnockBack);
     }
 
     private void FixedUpdate()
@@ -97,7 +104,7 @@ public partial class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        _gameManager.RemovePlayer();
+        GameManager.RemovePlayer();
     }
 
     public void ChangeState(FiniteState state)
@@ -105,7 +112,7 @@ public partial class Player : MonoBehaviour
         _currentState?.OnExitState();
 
         _currentState = _finiteStates.First(e => e.State == state);
-
+        
         _currentState.EnterState();
         _stateDebug = _currentState.State;
     }
@@ -132,10 +139,27 @@ public partial class Player : MonoBehaviour
     private void InitializeManagers()
     {
         _mapManager = GameObject.FindObjectOfType<MapManager>();
-        _gameManager = GameObject.FindObjectOfType<GameManager>();
+        GameManager = GameObject.FindObjectOfType<GameManager>();
         UIEventManager = GameObject.FindObjectOfType<UIEventManager>();
 
-        _gameManager.SetPlayer(this);
+        GameManager.SetPlayer(this);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="seconds"> how many seconds player will be controller by the Knockback action</param>
+    /// <exception cref="NotImplementedException"></exception>
+    private void HandleKnockBack(float seconds)
+    {
+        StartCoroutine(GiveControlToKnockBack(seconds));
+    }
+
+    private IEnumerator GiveControlToKnockBack(float seconds)
+    {
+        JumpModel.IsBeingControlledByKnockback = true;
+        yield return new WaitForSeconds(seconds);
+        JumpModel.IsBeingControlledByKnockback = false;
     }
 
     public enum FiniteState
@@ -144,55 +168,7 @@ public partial class Player : MonoBehaviour
         Move,
         Jump,
         Falling,
-        Pooping
+        Pooping,
+        Dead
     }
-
-    #region OLD CODE
-    //public bool IsOnTheGround()
-    //{
-    //    Collider2D col = _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer);
-    //    return col != null;
-    //}
-
-    //public OneWayPlatform IsOverPlatform()
-    //{
-    //    Collider2D col = _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer);
-    //    if (col == null) return null;
-    //    return col.GetComponent<OneWayPlatform>();
-    //}
-
-    //public void DownPlatform()
-    //{
-    //    if (!_boxCollider.enabled) return;
-    //    StartCoroutine(DeactivateColliderFor(_cdwOneWayPlatform));
-    //}
-
-    //private IEnumerator DeactivateColliderFor(float seconds)
-    //{
-    //    _boxCollider.enabled = false;
-    //    yield return new WaitForSeconds(seconds);
-    //    _boxCollider.enabled = true;
-    //}
-
-    //private bool CheckIfCanPoop()
-    //{
-    //    if (!_poopModel.CanPoop) return false;
-
-    //    return true;
-    //}
-
-    //private void ClearFiniteInputActions()
-    //{
-    //    MoveInput.ClearActions();
-    //    JumpInput.ClearActions();
-    //    DownPlatformInput.ClearActions();
-    //    PoopInput.ClearActions();
-    //}
-
-    //private void ClearAllInputActions()
-    //{
-    //    FartInput.ClearActions();
-    //    ClearFiniteInputActions();
-    //}
-    #endregion
 }

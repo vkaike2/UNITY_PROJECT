@@ -7,7 +7,7 @@ public class HealthStatus : MonoBehaviour
     public StatusFloatAttribute MaxHealth { get; private set; }
     [field: Space] 
     [field: SerializeField]
-    public float KnockBackForce { get; private set; } = 700;
+    public float KnockBackForce { get; private set; } = 10;
 
     [HideInInspector]
     public StatusFloatAttribute Health;
@@ -15,6 +15,7 @@ public class HealthStatus : MonoBehaviour
 
     public void InitializeHealth()
     {
+
         Health.Set(MaxHealth.Get());
     }
 }

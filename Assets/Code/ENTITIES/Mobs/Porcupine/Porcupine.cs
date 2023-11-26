@@ -52,6 +52,11 @@ public partial class Porcupine : Enemy
     }
     #endregion
 
+    public override void Kill()
+    {
+        ChangeBehaviour(Behaviour.Die);
+    }
+
     public void ChangeBehaviour(Behaviour behaviour)
     {
         if (_currentFiniteBehaviour != null)

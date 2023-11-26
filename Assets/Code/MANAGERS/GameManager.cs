@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public List<Worm> Worms { get; private set; }
     public Waypoints Waypoints => _waypoints;
+    public UnityEvent OnPlayerDead { get; private set; } = new UnityEvent();
 
     //UI
     private InventoryUI _inventoryUI;

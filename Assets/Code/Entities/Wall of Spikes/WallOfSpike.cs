@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WallOfSpike : MonoBehaviour
 {
+    [Header("EVENTS")]
+    [SerializeField]
+    private ScriptableMapEvents _mapEvents;
+
     [Header("CONFIGURATIONS")]
     [SerializeField]
     private float _spikeDamage;
@@ -27,45 +30,65 @@ public class WallOfSpike : MonoBehaviour
     private const string ANIMATION_SITTING_DOWN = "Wall of Spikes Sitting Down";
     private bool _hasLegs = false;
 
-    public OnPositionReadyEvent OnPositionReady { get; private set; } = new OnPositionReadyEvent();
-
-    private Rigidbody2D _rigidbody2D;
+    private Rigidbody2D _rigidbody2d;
     private Coroutine _movingCoroutine;
-
-    private void OnValidate()
-    {
-        if (_positions == null || _positions.Count == 0)
-        {
-            _positions = new List<PositionInformation>()
-            {
-                new PositionInformation(PositionType.First),
-                new PositionInformation(PositionType.Second)
-            };
-            return;
-        }
-    }
 
     private void Awake()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody2d = GetComponent<Rigidbody2D>();
 
         AddDamageToSpikes();
-        DetatchTransformPositions();
+        DetachTransformPositions();
     }
 
-    public void GoToPosition(PositionType position)
+    private void Start()
     {
+        _mapEvents.OnChangeMapEvent.AddListener(OnChangeMap);
+
+        FreezeWall(true);
+    }
+
+    #region MAP EVENTS
+    private void OnChangeMap(int mapId, int changeId)
+    {
+        if(mapId == ConstantValues.FIRST_MAP_ID) ChangeEventForFistMap(changeId);
+    }
+
+    private void ChangeEventForFistMap(int changeId)
+    {
+        if(changeId == FirstMapChanges.WALL_OF_SPIKE_MOVE_TO_MEDIUM)
+        {
+            GoToPosition(_positions[0].Position,() => _mapEvents.OnChangeMapEvent.Invoke(ConstantValues.FIRST_MAP_ID, FirstMapChanges.WALL_OF_SPIKE_READY_MEDIUM));
+        }
+
+        if(changeId == FirstMapChanges.WALL_OF_SPIKE_MOVE_TO_LARGE)
+        {
+            GoToPosition(_positions[1].Position,() => _mapEvents.OnChangeMapEvent.Invoke(ConstantValues.FIRST_MAP_ID, FirstMapChanges.WALL_OF_SPIKE_READY_LARGE));
+        }
+    }
+
+    #endregion
+
+    private void GoToPosition(Vector2 position, Action callback)
+    {
+        FreezeWall(false);
         if (_movingCoroutine != null)
         {
             StopCoroutine(_movingCoroutine);
         }
 
         _movingCoroutine = StartCoroutine(MoveToPosition(
-            _positions.FirstOrDefault(e => e.PositionType == position).Position,
-            () => { OnPositionReady.Invoke(position); }
+            position,
+            () =>
+            {
+               
+                FreezeWall(true);
+                callback();
+            }
             ));
     }
 
+    #region INTERNAL METHODS
     private void AddDamageToSpikes()
     {
         List<ImpactDamageStatus> impactDamageFromSpikes = GetComponentsInChildren<ImpactDamageStatus>().ToList();
@@ -76,13 +99,12 @@ public class WallOfSpike : MonoBehaviour
         }
     }
 
-    private void DetatchTransformPositions()
+    private void DetachTransformPositions()
     {
         foreach (var position in _positions)
         {
             position.TransformPosition.SetParent(_objectParent);
         }
-
     }
 
     private IEnumerator MoveToPosition(Vector2 targetPosition, Action callBack)
@@ -124,7 +146,7 @@ public class WallOfSpike : MonoBehaviour
             }
         }
 
-        _rigidbody2D.velocity = Vector2.zero;
+        _rigidbody2d.velocity = Vector2.zero;
         this.transform.position = new Vector3(targetPosition.x, this.transform.position.y, this.transform.position.z);
 
         this.transform.localScale = initialLocalScale;
@@ -136,17 +158,17 @@ public class WallOfSpike : MonoBehaviour
     private Vector2 MoveWallTowardsDirection(Vector2 direction)
     {
         Vector2 myHorizontalPosition = GetHorizontalPosition();
-        _rigidbody2D.velocity = direction * _movementSpeed;
+        _rigidbody2d.velocity = direction * _movementSpeed;
         return myHorizontalPosition;
     }
 
     private Vector2 GetHorizontalPosition() => new Vector2(this.transform.position.x, 0);
 
-    public enum PositionType
+    private void FreezeWall(bool freeze)
     {
-        First,
-        Second
+        _rigidbody2d.isKinematic = freeze;
     }
+    #endregion
 
     [Serializable]
     public class PositionInformation
@@ -155,18 +177,8 @@ public class WallOfSpike : MonoBehaviour
         public string name;
 
         [field: SerializeField]
-        public PositionType PositionType { get; private set; }
-        [field: SerializeField]
         public Transform TransformPosition { get; private set; }
-
-        public PositionInformation(PositionType type)
-        {
-            PositionType = type;
-            name = $"{type} Position";
-        }
 
         public Vector2 Position => TransformPosition.position;
     }
-
-    public class OnPositionReadyEvent : UnityEvent<PositionType> { }
 }

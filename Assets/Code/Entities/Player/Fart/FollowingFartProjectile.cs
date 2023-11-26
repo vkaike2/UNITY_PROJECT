@@ -8,14 +8,18 @@ public class FollowingFartProjectile : FartProjectile
     [SerializeField]
     private float _speedMultiplier = 2f;
 
+    private bool _startFollowingPlayer = false;
+
     public override void SetInitialValues(Vector2 velocity, Player player)
     {
-        BaseBehavioyrForFart(player);
+        base.SetInitialValues(velocity, player);
+        StartCoroutine(WaitToStartFollowingPLayer());
     }
 
     private void FixedUpdate()
     {
         if (_player == null) return;
+        if (!_startFollowingPlayer) return;
 
         Vector2 direction = (_player.transform.position - transform.position).normalized;
 
@@ -27,5 +31,11 @@ public class FollowingFartProjectile : FartProjectile
         {
             _rigidbody2D.velocity = direction * _speedMultiplier;
         }
+    }
+
+    private IEnumerator WaitToStartFollowingPLayer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _startFollowingPlayer = true;
     }
 }

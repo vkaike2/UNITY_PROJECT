@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 
@@ -14,6 +15,8 @@ public partial class Egg : Enemy
             _egg.HitBox.gameObject.SetActive(false);
             _rigidbody2D.velocity = Vector3.zero;
             _rigidbody2D.isKinematic = true;
+
+            DropItemIfPossible();
 
             _egg.StartCoroutine(FadeOutThenDie());
         }
@@ -40,6 +43,16 @@ public partial class Egg : Enemy
             }
 
             GameObject.Destroy(_egg.gameObject);
+        }
+
+        private void DropItemIfPossible()
+        {
+            if (_egg.PossibleDrop == null) return;
+            if (_egg.PossibleDrop.ItemPools.Count == 0) return;
+
+            Vector2 dropPosition = new Vector2(_egg.transform.position.x, _egg.transform.position.y + 0.5f);
+
+            _egg.StartCoroutine(_egg.PossibleDrop.SpawnEveryItem(dropPosition, _egg.ItemContainer));
         }
     }
 }

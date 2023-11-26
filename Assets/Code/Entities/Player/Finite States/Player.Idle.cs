@@ -21,7 +21,14 @@ public partial class Player : MonoBehaviour
 
             _jumpModel.IsBeingControlledByKnockback = false;
 
-            FreezeRigidbodyConstraints(true);
+            if (!_jumpModel.IsLandingOnAPlatform)
+            {
+                FreezeRigidbodyConstraints(true);
+            }
+            else
+            {
+                _jumpModel.IsLandingOnAPlatform = false;
+            }
         }
 
         public override void OnExitState()
@@ -38,6 +45,7 @@ public partial class Player : MonoBehaviour
 
         private bool CheckIfPlayerIsFalling()
         {
+            if (_jumpModel.IsLandingOnAPlatform) return false;
             if (IsPlayerTouchingGround) return false;
 
             return ChangeState(FiniteState.Falling);
@@ -51,6 +59,7 @@ public partial class Player : MonoBehaviour
             _player.DownPlatformInput.Performed.AddListener(DownPlatform);
 
             _fart.OnFartEvent.AddListener(GivePlayerControll);
+            _player.DamageReceiver.OnKnockbackEvent.AddListener(GivePlayerControll);
             _damageReceiver.OnKnockbackEvent.AddListener(GivePlayerControll);
 
             ManagePooopPerformedEvent(true);
@@ -64,6 +73,7 @@ public partial class Player : MonoBehaviour
             _player.DownPlatformInput.Performed.RemoveListener(DownPlatform);
 
             _fart.OnFartEvent.RemoveListener(GivePlayerControll);
+            _player.DamageReceiver.OnKnockbackEvent.RemoveListener(GivePlayerControll);
             _damageReceiver.OnKnockbackEvent.RemoveListener(GivePlayerControll);
 
             ManagePooopPerformedEvent(false);
@@ -105,8 +115,8 @@ public partial class Player : MonoBehaviour
             if (_player.CurrentState == State)
             {
                 FreezeRigidbodyConstraints(true);
-                _jumpModel.IsBeingControlledByKnockback = false;
             }
+            _jumpModel.IsBeingControlledByKnockback = false;
         }
 
         private void DownPlatform()

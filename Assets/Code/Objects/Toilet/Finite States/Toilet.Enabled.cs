@@ -64,7 +64,7 @@ public partial class Toilet : MonoBehaviour
             _playerIsInteractingWith = true;
             player.FreezePlayer(true);
 
-            _toilet.MapManager.FocusCamareOnToilet(() =>
+            _toilet.MapManager.FocusCameraOnToilet(() =>
             {
                 GameObject.Destroy(player.gameObject);
                 _model.ToiletPlayerAnimator.Play(ANIMATION_PLAYER_INSIDE);

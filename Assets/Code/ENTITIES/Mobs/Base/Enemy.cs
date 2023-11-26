@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -21,9 +21,14 @@ public abstract class Enemy : MonoBehaviour
     public bool CanMove { get; set; }
     public EnemyStatus Status => _status;
 
+    public abstract void Kill();
+
     protected abstract List<EnemyBaseBehaviour> FiniteBaseBehaviours { get; }
     protected EnemyBaseBehaviour _currentFiniteBehaviour;
     protected EnemyStatus _status;
+
+    protected PossibleDrop PossibleDrop { get; private set; }
+    protected Transform ItemContainer { get; private set; }
 
     private void Awake()
     {
@@ -47,6 +52,12 @@ public abstract class Enemy : MonoBehaviour
     {
         if (_currentFiniteBehaviour == null) return;
         _currentFiniteBehaviour.Update();
+    }
+
+    public void AddMapConfigurations(Transform itemContainer, PossibleDrop possibleDrop)
+    {
+        PossibleDrop = possibleDrop;
+        ItemContainer = itemContainer;
     }
 
     protected virtual void AfterAwake() { }

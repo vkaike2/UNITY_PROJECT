@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class MapLobby : Map
 {
-  
+    protected override void BeforeStart()
+    {
+        _finiteStates = new List<MapFiniteStateBase>
+        {
+            new Wait()
+        };
+    }
 }

@@ -29,7 +29,7 @@ public class Hitbox : MonoBehaviour
         if (targetHitbox == null) return;
         OnHitboxTriggerEnter.Invoke(targetHitbox, this);
 
-        RestartTriggerCorroutine();
+        RestartTriggerCorroutine("enter");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -40,16 +40,17 @@ public class Hitbox : MonoBehaviour
 
 
         OnHitboxTriggerEnter.Invoke(targetHitbox, this);
-        RestartTriggerCorroutine();
+        RestartTriggerCorroutine("stay");
     }
 
-    private void RestartTriggerCorroutine()
-    {
+    private void RestartTriggerCorroutine(string calledFrom)
+    {        
         if (_resetTriggerCoroutine != null)
         {
             StopCoroutine(_resetTriggerCoroutine);
         }
 
+        if (!gameObject.activeInHierarchy) return;
         _resetTriggerCoroutine = StartCoroutine(ResetTrigger());
     }
 

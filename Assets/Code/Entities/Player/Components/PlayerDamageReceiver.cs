@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerDamageReceiver : DamageReceiver
@@ -14,6 +15,6 @@ public class PlayerDamageReceiver : DamageReceiver
     protected override void OnDie()
     {
         UIEventManager.instance.OnPlayerLifeChange.Invoke(0);
-        Debug.Log("IS DED");
+        _player.ChangeState(Player.FiniteState.Dead);
     }
 }
