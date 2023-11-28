@@ -294,6 +294,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c2b58f17-5c4f-4e77-a9a5-e80feb31b02d
     m_ActionName: Player/Interact E[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 49867075}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnShiftInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cb8d387f-1b07-497b-b5ba-9b1f8024bc16
+    m_ActionName: Player/Shift[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -461,7 +477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227822909}
   m_LocalRotation: {x: -1e-45, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7, y: 3.53, z: -1.046401}
+  m_LocalPosition: {x: 1.69, y: 0.19000006, z: -1.046401}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -787,7 +803,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -1e-45, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7, y: 3.53, z: -1.046401}
+  m_LocalPosition: {x: 1.69, y: 0.19000006, z: -1.046401}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2278,11 +2294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1569341936492780419, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7
+      value: 1.69
       objectReference: {fileID: 0}
     - target: {fileID: 1569341936492780419, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.53
+      value: 0.19
       objectReference: {fileID: 0}
     - target: {fileID: 1569341936492780419, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2319,14 +2335,6 @@ PrefabInstance:
     - target: {fileID: 1569341936492780421, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4861577130738542633, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
-      propertyPath: <Poop>k__BackingField.<AreaOfEffect>k__BackingField._minimumValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4861577130738542633, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
-      propertyPath: <Poop>k__BackingField.<AreaOfEffect>k__BackingField.<Base>k__BackingField._value
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
@@ -2418,6 +2426,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.009
       objectReference: {fileID: 0}
+    - target: {fileID: 6844826127036649879, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174157198139509736, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 8174157198139509736, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8227090835269282453, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
       propertyPath: m_RootOrder
       value: 0

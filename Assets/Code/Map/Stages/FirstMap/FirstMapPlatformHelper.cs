@@ -19,6 +19,8 @@ public class FirstMapPlatformHelper : MonoBehaviour
     private List<Node> _mediumGroundNodes;
     [SerializeField]
     private List<EnemySpawnPosition> _mediumDefaultSpawners;
+    [SerializeField]
+    private List<EnemySpawnPosition> _mediumAirSpawnerToDeactivate;
     [Space]
     [SerializeField]
     private PlatformToUnlock _mediumStageSmallPlatforms;
@@ -30,6 +32,8 @@ public class FirstMapPlatformHelper : MonoBehaviour
     private List<Node> _largeGroundNodes;
     [SerializeField]
     private List<EnemySpawnPosition> _largeDefaultSpawners;
+    [SerializeField]
+    private List<EnemySpawnPosition> _largeAirSpawnerToDeactivate;
     [Space]
     [SerializeField]
     private PlatformToUnlock _largeStageSmallPlatforms;
@@ -60,6 +64,10 @@ public class FirstMapPlatformHelper : MonoBehaviour
             {
                 spawner.IsAvailable = true;
             }
+            foreach(var spawner in _mediumAirSpawnerToDeactivate)
+            {
+                spawner.IsAvailable = false;
+            }
         }
 
         if(changeId == FirstMapChanges.MEDIUM_STAGE_UNLOCK_TWO_SMALL_PLATFORMS) _mediumStageSmallPlatforms.Unlock();
@@ -73,6 +81,10 @@ public class FirstMapPlatformHelper : MonoBehaviour
             foreach (var spawner in _largeDefaultSpawners)
             {
                 spawner.IsAvailable = true;
+            }
+            foreach (var spawner in _largeAirSpawnerToDeactivate)
+            {
+                spawner.IsAvailable = false;
             }
         }
 

@@ -36,7 +36,6 @@ public partial class Bird : Enemy
 
         public override void Update()
         {
-
             BirdGoingTowardsPlayer();
 
             BirdGoingBackUp();
@@ -46,6 +45,8 @@ public partial class Bird : Enemy
         {
             if (_action != Action.GoingTowardsPlayer) return;
             if (_direction == null) return;
+
+
             if (Vector2.Distance(_model.TargetPosition, _bird.transform.position) < 1F)
             {
                 _action = Action.GoingBackUp;

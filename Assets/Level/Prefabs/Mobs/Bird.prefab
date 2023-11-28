@@ -302,7 +302,7 @@ MonoBehaviour:
   Health:
     _value: 0
   ImpactDamage:
-    _value: 5
+    _value: 3
   MovementSpeed:
     _value: 2
   AtkDamage:

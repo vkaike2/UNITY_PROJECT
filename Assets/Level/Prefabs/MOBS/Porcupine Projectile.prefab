@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4755490447262108211}
   - component: {fileID: 4767165751673162174}
   - component: {fileID: 1111559347168485710}
+  - component: {fileID: 1964829994761261234}
   m_Layer: 0
   m_Name: Porcupine Projectile
   m_TagString: Untagged
@@ -137,12 +138,6 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -182,28 +177,29 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.045251302, y: 0}
   serializedVersion: 2
   m_Radius: 0.26330096
+--- !u!114 &1964829994761261234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981292578293062523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271e13dae0e1bd84eacfa8ec18ef2bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionType: 1
+  _collisonLayers:
+  - name: Ground
+    _layerIndex: 3
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _horizontalRaycastSize: 0.5

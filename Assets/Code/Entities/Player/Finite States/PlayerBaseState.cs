@@ -49,7 +49,7 @@ public abstract class PlayerBaseState
     public abstract void EnterState();
     public abstract void Update();
 
-    protected bool IsPlayerTouchingGround => _jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer) != null;
+    protected bool IsPlayerTouchingGround => _player.IsTouchingGround;
 
     /// <summary>
     ///     used on states:
@@ -111,7 +111,7 @@ public abstract class PlayerBaseState
         return col.GetComponent<OneWayPlatform>();
     }
 
-    protected void ManagePooopPerformedEvent(bool assing)
+    protected void ManagePoopPerformedEvent(bool assing)
     {
         if (assing)
         {
@@ -138,7 +138,7 @@ public abstract class PlayerBaseState
         return IsPlayerTouchingGround;
     }
 
-    private bool PlayerCanMove() => _player.CanMove;
+    private bool PlayerCanMove() => true;
 
     private bool PlayerCanIdle()
     {

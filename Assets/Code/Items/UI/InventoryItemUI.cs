@@ -14,7 +14,7 @@ public class InventoryItemUI : MouseOver
     public bool IsBeingDragged { get; set; }
 
     public ItemData ItemData { get; set; }
-    public SlotType SlotType { get; private set; }
+    public SlotType SlotType { get; set; }
 
     private List<InventoryItemSlotUI> _slots;
     private List<InventorySlotUI> _tempInventorySlots = new List<InventorySlotUI>();
@@ -61,11 +61,11 @@ public class InventoryItemUI : MouseOver
     public List<InventorySlotUI> SetPositionInsideInventory(Transform itemParent)
     {
         List<InventorySlotUI> inventorySlotsUnderItem = GetEveryInventorySlotUnderItem();
-        List<Vector2> everySlotUnderItemPostion = inventorySlotsUnderItem.Select(e => (Vector2)e.transform.position).ToList();
+        List<Vector2> everySlotUnderItemPosition = inventorySlotsUnderItem.Select(e => (Vector2)e.transform.position).ToList();
 
         SlotType = inventorySlotsUnderItem.FirstOrDefault().Type;
 
-        this.transform.position = everySlotUnderItemPostion.CalculateMiddlePosition();
+        this.transform.position = everySlotUnderItemPosition.CalculateMiddlePosition();
         this.transform.SetParent(itemParent);
         
         return inventorySlotsUnderItem;

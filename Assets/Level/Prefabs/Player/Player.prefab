@@ -415,10 +415,11 @@ MonoBehaviour:
   _fartSpawnTransform: {fileID: 8418346966087877138}
   _progressBar: {fileID: 1569341936894167719}
   _rotationalTransform: {fileID: 1569341937118538250}
-  _cdwToManipulateKnockBack: 0.3
+  _cdwToManipulateKnockBack: 0.4
+  _cdwToManipulateKnockBackWithShift: 0.1
   _knockBackForce: 500
   _helpForcePercentage: 1.5
-  <OnFartEvent>k__BackingField:
+  <OnKnockBackEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1569341936492780416
@@ -601,7 +602,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateDebug: 0
-  <CanMove>k__BackingField: 1
   <Hitbox>k__BackingField: {fileID: 1056524188317340118}
   <RotationalTransform>k__BackingField: {fileID: 1569341937118538250}
   <AudioController>k__BackingField: {fileID: 1569341936288374814}

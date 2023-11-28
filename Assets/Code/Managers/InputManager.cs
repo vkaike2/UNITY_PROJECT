@@ -28,6 +28,13 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void OnShiftInput(InputAction.CallbackContext context)
+    {
+        if (_gameManager.Player == null) return;
+
+        _gameManager.Player.OnShiftInput(context);
+    }
+
     public void OnRightMouseButton(InputAction.CallbackContext context)
     {
         switch (ValidateMouseInput(MouseButton.Left))
@@ -74,7 +81,6 @@ public class InputManager : MonoBehaviour
         _gameManager.PlayerInventory.OnOpenInventoryInput(context);
         //_gameManager.PlayerInventory.OnOpenInventoryInput(context);
     }
-
 
     public void OnInteractEInput(InputAction.CallbackContext context)
     {

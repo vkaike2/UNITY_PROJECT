@@ -19,11 +19,11 @@ public partial class Player : MonoBehaviour
 
             _animator.PlayAnimation(PlayerAnimatorModel.Animation.Idle);
 
-            _jumpModel.IsBeingControlledByKnockback = false;
+            //_jumpModel.IsBeingControlledByKnockback = false;
 
             if (!_jumpModel.IsLandingOnAPlatform)
             {
-                FreezeRigidbodyConstraints(true);
+                FreezeRigidBodyConstraints(true);
             }
             else
             {
@@ -35,7 +35,7 @@ public partial class Player : MonoBehaviour
         {
             UnassignEvents();
 
-            FreezeRigidbodyConstraints(false);
+            FreezeRigidBodyConstraints(false);
         }
 
         public override void Update()
@@ -57,12 +57,11 @@ public partial class Player : MonoBehaviour
             _player.JumpInput.Performed.AddListener(OnJumpInputPerformed);
 
             _player.DownPlatformInput.Performed.AddListener(DownPlatform);
+            _player.OnKnockbackEvent.AddListener(GivePlayerControl);
+            //_fart.OnKnockBackEvent.AddListener(GivePlayerControl);
+            //_damageReceiver.OnKnockbackEvent.AddListener(GivePlayerControl);
 
-            _fart.OnFartEvent.AddListener(GivePlayerControll);
-            _player.DamageReceiver.OnKnockbackEvent.AddListener(GivePlayerControll);
-            _damageReceiver.OnKnockbackEvent.AddListener(GivePlayerControll);
-
-            ManagePooopPerformedEvent(true);
+            ManagePoopPerformedEvent(true);
         }
 
         private void UnassignEvents()
@@ -72,16 +71,16 @@ public partial class Player : MonoBehaviour
 
             _player.DownPlatformInput.Performed.RemoveListener(DownPlatform);
 
-            _fart.OnFartEvent.RemoveListener(GivePlayerControll);
-            _player.DamageReceiver.OnKnockbackEvent.RemoveListener(GivePlayerControll);
-            _damageReceiver.OnKnockbackEvent.RemoveListener(GivePlayerControll);
+            _player.OnKnockbackEvent.RemoveListener(GivePlayerControl);
+            //_fart.OnKnockBackEvent.RemoveListener(GivePlayerControl);
+            //_damageReceiver.OnKnockbackEvent.RemoveListener(GivePlayerControl);
 
-            ManagePooopPerformedEvent(false);
+            ManagePoopPerformedEvent(false);
         }
 
-        private void GivePlayerControll(float seconds)
+        private void GivePlayerControl(float seconds)
         {
-            _player.StartCoroutine(GiveControll(seconds));
+            _player.StartCoroutine(GiveControl(seconds));
         }
 
         private void OnJumpInputPerformed()
@@ -91,10 +90,11 @@ public partial class Player : MonoBehaviour
 
         private void OnMoveInputPerformed()
         {
+            Debug.Log("PERFORMED");
             ChangeState(FiniteState.Move);
         }
 
-        private void FreezeRigidbodyConstraints(bool freeze)
+        private void FreezeRigidBodyConstraints(bool freeze)
         {
             if (freeze)
             {
@@ -106,16 +106,18 @@ public partial class Player : MonoBehaviour
             }
         }
 
-        private IEnumerator GiveControll(float seconds)
+        private IEnumerator GiveControl(float seconds)
         {
             _jumpModel.IsBeingControlledByKnockback = true;
-            FreezeRigidbodyConstraints(false);
+
+            FreezeRigidBodyConstraints(false);
             yield return new WaitForSeconds(seconds);
 
             if (_player.CurrentState == State)
             {
-                FreezeRigidbodyConstraints(true);
+                FreezeRigidBodyConstraints(true);
             }
+            
             _jumpModel.IsBeingControlledByKnockback = false;
         }
 
@@ -125,7 +127,7 @@ public partial class Player : MonoBehaviour
 
             if (_downPlatformModel.PlayerCollider.enabled)
             {
-                FreezeRigidbodyConstraints(false);
+                FreezeRigidBodyConstraints(false);
                 _player.StartCoroutine(DeactivateColliderFor());
             }
 

@@ -9,6 +9,7 @@ public partial class Player : MonoBehaviour
     public InputModel<bool> FartInput { get; private set; } = new InputModel<bool>();
     public InputModel<bool> DownPlatformInput { get; private set; } = new InputModel<bool>();
     public InputModel<bool> PoopInput { get; private set; } = new InputModel<bool>();
+    public InputModel<bool> ShiftInput { get; private set; } = new InputModel<bool>();
 
     public void OnDownInput(InputAction.CallbackContext context)
     {
@@ -27,6 +28,7 @@ public partial class Player : MonoBehaviour
     public void OnLeftMouseButton(InputAction.CallbackContext context)
     {
         if (_isFrozen) return;
+        if (PoopInput.Value) return;
 
         InitializeBooleanInput(FartInput, context);
     }
@@ -59,6 +61,11 @@ public partial class Player : MonoBehaviour
 
         Toilet toilet = _mapManager.Toilet;
         toilet.InteractiWithPlayer(this);
+    }
+
+    public void OnShiftInput(InputAction.CallbackContext context)
+    {
+        InitializeBooleanInput(ShiftInput, context);
     }
 
     private void InitializeBooleanInput(InputModel<bool> input, InputAction.CallbackContext context)

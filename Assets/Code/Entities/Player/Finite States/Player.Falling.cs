@@ -39,14 +39,14 @@ public partial class Player : MonoBehaviour
         {
             _player.JumpInput.Performed.AddListener(OnJumpInputPerformed);
 
-            ManagePooopPerformedEvent(true);
+            ManagePoopPerformedEvent(true);
         }
 
         private void UnassignEvents()
         {
             _player.JumpInput.Performed.RemoveListener(OnJumpInputPerformed);
 
-            ManagePooopPerformedEvent(false);
+            ManagePoopPerformedEvent(false);
         }
 
         //It is called for coyote time

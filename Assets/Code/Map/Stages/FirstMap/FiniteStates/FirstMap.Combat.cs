@@ -125,7 +125,7 @@ public partial class FirstMap : Map
                 EnemySpawnPosition randomPosition = filteredPositions[UnityEngine.Random.Range(0, filteredPositions.Count)];
                 
                 //This 0.3f is added to give some space between each mob on the same spawn position
-                randomPosition.UseIt(WARNING_COUNT_BEFORE_SPAWN_ENEMY + 0.3f);
+                randomPosition.UseIt(WARNING_COUNT_BEFORE_SPAWN_ENEMY + 1f);
 
                 spawnPosition = randomPosition.transform.position;
             }

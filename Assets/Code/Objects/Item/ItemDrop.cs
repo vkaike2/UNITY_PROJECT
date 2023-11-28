@@ -73,8 +73,19 @@ public class ItemDrop : MouseInteractable
         }
 
         List<Vector2> itemCoordinates = _gameManager.PlayerInventory.CheckIfCanAddItem(ItemData.Item.InventoryItemLayout);
+        List<Vector2> equipCoordinates = null;
 
-        if (itemCoordinates != null)
+        if (ItemData.Item.IsEquipable)
+        {
+            equipCoordinates = _gameManager.PlayerInventory.CheckIfCanAutoEquip(ItemData.Item.InventoryItemLayout, ItemData);
+        }
+
+        if(equipCoordinates != null)
+        {
+            _gameManager.PlayerInventory.EquipItem(ItemData, equipCoordinates);
+            Destroy(this.gameObject);
+        }
+        else if (itemCoordinates != null)
         {
             _gameManager.PlayerInventory.AddItem(ItemData, itemCoordinates);
             Destroy(this.gameObject);

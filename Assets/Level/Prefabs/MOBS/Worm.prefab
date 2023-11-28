@@ -619,7 +619,7 @@ MonoBehaviour:
   _collisonLayers: []
   _layerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 520
   _horizontalRaycastSize: 0.5
 --- !u!1 &7775297798183939866
 GameObject:

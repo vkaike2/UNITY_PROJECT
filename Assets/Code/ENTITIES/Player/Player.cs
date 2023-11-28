@@ -12,8 +12,6 @@ public partial class Player : MonoBehaviour
 
     [field: Space]
     [field: Header("CONFIGURATION")]
-    [field: SerializeField]
-    public bool CanMove { get; set; }
 
     [field: Space]
     [field: Header("COMPONENTS")]
@@ -37,23 +35,24 @@ public partial class Player : MonoBehaviour
     public PlayerDownPlatformModel DownPlatformModel { get; private set; }
     [field: SerializeField]
     public PlayerPoopModel PoopModel { get; private set; }
-
-
+    
     public FiniteState CurrentState => _currentState.State;
     public UIEventManager UIEventManager { get; private set; }
     public PlayerInventory PlayerInventory { get; private set; }
     public PlayerStatus Status { get; private set; }
     public PlayerDamageDealer DamageDealer { get; set; }
+    public bool IsTouchingGround => JumpModel.GroundCheck.DrawPhysics2D(JumpModel.GroundLayer) != null;
+
     protected GameManager GameManager { get; private set; }
     protected PlayerDamageReceiver DamageReceiver { get; private set; }
+    protected OnKnockbackEvent OnKnockbackEvent { get; private set; } = new OnKnockbackEvent();
 
-    private Fart _fart;
     private bool _isFrozen;
 
+    private Fart _fart;
     private PlayerBaseState _currentState;
-    private Rigidbody2D _rigidbody2D;
+    private Rigidbody2D _rigidBody2D;
     private MapManager _mapManager;
-
 
     private readonly List<PlayerBaseState> _finiteStates = new()
     {
@@ -74,11 +73,11 @@ public partial class Player : MonoBehaviour
     private void Awake()
     {
         Status = GetComponent<PlayerStatus>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
         PlayerInventory = GetComponent<PlayerInventory>();
         DamageDealer = GetComponent<PlayerDamageDealer>();
-        _fart = GetComponent<Fart>();
         DamageReceiver = GetComponent<PlayerDamageReceiver>();
+        _fart = GetComponent<Fart>();
     }
 
     private void Start()
@@ -95,6 +94,7 @@ public partial class Player : MonoBehaviour
         ChangeState(GetFirstState());
 
         DamageReceiver.OnKnockbackEvent.AddListener(HandleKnockBack);
+        _fart.OnKnockBackEvent.AddListener(HandleKnockBack);
     }
 
     private void FixedUpdate()
@@ -110,9 +110,7 @@ public partial class Player : MonoBehaviour
     public void ChangeState(FiniteState state)
     {
         _currentState?.OnExitState();
-
         _currentState = _finiteStates.First(e => e.State == state);
-        
         _currentState.EnterState();
         _stateDebug = _currentState.State;
     }
@@ -123,11 +121,11 @@ public partial class Player : MonoBehaviour
 
         if (freeze)
         {
-            _rigidbody2D.bodyType = RigidbodyType2D.Static;
+            _rigidBody2D.bodyType = RigidbodyType2D.Static;
         }
         else
         {
-            _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+            _rigidBody2D.bodyType = RigidbodyType2D.Dynamic;
         }
     }
 
@@ -145,13 +143,12 @@ public partial class Player : MonoBehaviour
         GameManager.SetPlayer(this);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
+
     /// <param name="seconds"> how many seconds player will be controller by the Knockback action</param>
     /// <exception cref="NotImplementedException"></exception>
     private void HandleKnockBack(float seconds)
     {
+        OnKnockbackEvent.Invoke(seconds);
         StartCoroutine(GiveControlToKnockBack(seconds));
     }
 

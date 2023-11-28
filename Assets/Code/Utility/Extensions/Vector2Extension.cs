@@ -15,4 +15,11 @@ public static class Vector2Extension
         Vector2 middlePosition = sum / positions.Count;
         return middlePosition;
     }
+
+    public static int NumericOrder(this Vector2 position)
+    {
+        string number = $"{position.x}{position.y}";
+
+        return int.Parse(number);
+    }
 }

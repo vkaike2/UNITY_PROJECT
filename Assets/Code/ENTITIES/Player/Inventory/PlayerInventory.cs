@@ -16,13 +16,12 @@ public class PlayerInventory : MonoBehaviour
     private void Start()
     {
         UIEventManager.instance.OnInventoryChange.AddListener(OnInventoryChange);
-
     }
 
     public void LoadInventoryDataFromMemory()
     {
         if (!SaveLoadManager.HasInventoryInfo()) return;
-        LoggerUtils.Log("Loaded");
+        Debug.Log("Loaded");
 
         _inventoryData = SaveLoadManager.InventoryData;
         _equipData = SaveLoadManager.EquipData;
@@ -84,55 +83,72 @@ public class PlayerInventory : MonoBehaviour
     {
         return itemLayout switch
         {
-            ScriptableItem.ItemLayout.OneByOne => CheckIfCanAddItemOneByOne(),
-            ScriptableItem.ItemLayout.OneByTwo => CheckifCanAddItemOneByTwo(),
-            ScriptableItem.ItemLayout.TwoByOne => CheckIfCanAddItemTwoByOne(),
-            ScriptableItem.ItemLayout.TwoByTwo => CheckifCanAddItemTwoByTwo(),
-            ScriptableItem.ItemLayout.TwoByThree => CheckifCanAddItemTwoByThree(),
-            ScriptableItem.ItemLayout.ThreeByTwo => CheckIfCanAddItemThreeByTwo(),
+            ScriptableItem.ItemLayout.OneByOne => CheckIfCanAddItemOneByOne(_inventoryData),
+            ScriptableItem.ItemLayout.OneByTwo => CheckIfCanAddItemOneByTwo(_inventoryData),
+            ScriptableItem.ItemLayout.TwoByOne => CheckIfCanAddItemTwoByOne(_inventoryData),
+            ScriptableItem.ItemLayout.TwoByTwo => CheckIfCanAddItemTwoByTwo(_inventoryData),
+            ScriptableItem.ItemLayout.TwoByThree => CheckIfCanAddItemTwoByThree(_inventoryData),
+            ScriptableItem.ItemLayout.ThreeByTwo => CheckIfCanAddItemThreeByTwo(_inventoryData),
+            _ => null,
+        };
+    }
+    //1969 
+
+    public List<Vector2> CheckIfCanAutoEquip(ScriptableItem.ItemLayout itemLayout, ItemData itemData)
+    {
+        if (!this.CanEquipItem(itemData)) return null;
+
+        return itemLayout switch
+        {
+            ScriptableItem.ItemLayout.OneByOne => CheckIfCanAddItemOneByOne(_equipData),
+            ScriptableItem.ItemLayout.OneByTwo => CheckIfCanAddItemOneByTwo(_equipData),
+            ScriptableItem.ItemLayout.TwoByOne => CheckIfCanAddItemTwoByOne(_equipData),
+            ScriptableItem.ItemLayout.TwoByTwo => CheckIfCanAddItemTwoByTwo(_equipData),
+            ScriptableItem.ItemLayout.TwoByThree => CheckIfCanAddItemTwoByThree(_equipData),
+            ScriptableItem.ItemLayout.ThreeByTwo => CheckIfCanAddItemThreeByTwo(_equipData),
             _ => null,
         };
     }
 
-    private List<Vector2> CheckIfCanAddItemOneByOne()
+    private List<Vector2> CheckIfCanAddItemOneByOne(InventoryData inventoryData)
     {
-        return CheckIfCanAdditem((Vector2 coordinate) =>
+        return CheckIfCanAddItem((Vector2 coordinate) =>
         {
             return new List<Vector2>()
             {
                 coordinate
             };
-        });
+        }, inventoryData);
     }
 
-    private List<Vector2> CheckifCanAddItemOneByTwo()
+    private List<Vector2> CheckIfCanAddItemOneByTwo(InventoryData inventoryData)
     {
-        return CheckIfCanAdditem((Vector2 coordinate) =>
+        return CheckIfCanAddItem((Vector2 coordinate) =>
         {
             return new List<Vector2>()
             {
                 coordinate,
                 new Vector2(coordinate.x, coordinate.y -1),
             };
-        });
+        }, inventoryData);
 
     }
 
-    private List<Vector2> CheckIfCanAddItemTwoByOne()
+    private List<Vector2> CheckIfCanAddItemTwoByOne(InventoryData inventoryData)
     {
-        return CheckIfCanAdditem((Vector2 coordinate) =>
+        return CheckIfCanAddItem((Vector2 coordinate) =>
         {
             return new List<Vector2>()
             {
                 coordinate,
                 new Vector2(coordinate.x+1, coordinate.y),
             };
-        });
+        }, inventoryData);
     }
 
-    private List<Vector2> CheckifCanAddItemTwoByTwo()
+    private List<Vector2> CheckIfCanAddItemTwoByTwo(InventoryData inventoryData)
     {
-        return CheckIfCanAdditem((Vector2 coordinate) =>
+        return CheckIfCanAddItem((Vector2 coordinate) =>
         {
             return new List<Vector2>()
             {
@@ -142,12 +158,12 @@ public class PlayerInventory : MonoBehaviour
                 new Vector2(coordinate.x, coordinate.y -1),
                 new Vector2(coordinate.x +1, coordinate.y -1),
             };
-        });
+        }, inventoryData);
     }
 
-    private List<Vector2> CheckifCanAddItemTwoByThree()
+    private List<Vector2> CheckIfCanAddItemTwoByThree(InventoryData inventoryData)
     {
-        return CheckIfCanAdditem((Vector2 coordinate) =>
+        return CheckIfCanAddItem((Vector2 coordinate) =>
         {
             return new List<Vector2>()
             {
@@ -160,12 +176,12 @@ public class PlayerInventory : MonoBehaviour
                 new Vector2(coordinate.x, coordinate.y -2),
                 new Vector2(coordinate.x +1, coordinate.y -2),
             };
-        });
+        }, inventoryData);
     }
 
-    private List<Vector2> CheckIfCanAddItemThreeByTwo()
+    private List<Vector2> CheckIfCanAddItemThreeByTwo(InventoryData inventoryData)
     {
-        return CheckIfCanAdditem((Vector2 coordinate) =>
+        return CheckIfCanAddItem((Vector2 coordinate) =>
         {
             return new List<Vector2>()
             {
@@ -177,12 +193,15 @@ public class PlayerInventory : MonoBehaviour
                 new Vector2(coordinate.x +1, coordinate.y -1),
                 new Vector2(coordinate.x +2, coordinate.y -1),
             };
-        });
+        }, inventoryData);
     }
 
-    private List<Vector2> CheckIfCanAdditem(Func<Vector2, List<Vector2>> getRequiredCoordinates)
+    private List<Vector2> CheckIfCanAddItem(Func<Vector2, List<Vector2>> getRequiredCoordinates, InventoryData inventoryData)
     {
-        List<InventoryData.Slot> emptySlots = _inventoryData.Slots.Where(e => !e.HasItem).ToList();
+        List<InventoryData.Slot> emptySlots = inventoryData.Slots
+            .Where(e => !e.HasItem && e.IsAvailable)
+            .OrderBy(e => e.Coordinate.NumericOrder())
+            .ToList();
 
         foreach (var slot in emptySlots)
         {
@@ -207,6 +226,18 @@ public class PlayerInventory : MonoBehaviour
         _inventoryData.Itens.Add(itemData);
 
         UIEventManager.instance.OnInventoryChange.Invoke(_inventoryData, EventSentBy.Player);
+    }
+
+    public void EquipItem(ItemData itemData, List<Vector2> coordinates)
+    {
+        List<InventoryData.Slot> itemSlots = _equipData.Slots.Where(e => coordinates.Contains(e.Coordinate)).ToList();
+        AddItemToSlots(itemSlots, itemData.Id);
+
+        _equipData.Itens.Add(itemData);
+
+        EquipSingleItem(itemData);
+
+        UIEventManager.instance.OnInventoryChange.Invoke(_equipData, EventSentBy.Player);
     }
 
     private void AddItemToSlots(List<InventoryData.Slot> itemSlots, Guid itemId)
@@ -244,7 +275,7 @@ public class PlayerInventory : MonoBehaviour
 
         bool someEquipmentWasUnequiped = UnequipItem(GetEquipedItensId(), newItemsIds);
 
-        EquipItem(equipData, newItemsIds);
+        EquipItems(equipData, newItemsIds);
 
         _equipData = equipData;
 
@@ -264,28 +295,51 @@ public class PlayerInventory : MonoBehaviour
         return equipedItemId;
     }
 
-    private void EquipItem(InventoryData equipData, List<Guid> newItemsIds)
+    private void EquipItems(InventoryData equipData, List<Guid> newItemsIds)
     {
         foreach (var itemId in newItemsIds)
         {
             ItemData itemData = equipData.Itens.Where(e => e.Id == itemId).FirstOrDefault();
 
-            if (itemData == null) continue;
-            if (itemData.IsEquiped) continue;
-            if (!itemData.Item.IsEquipable) continue;
-            if (!CanEquipItem(itemData)) continue;
+            if (!EquipSingleItem(itemData)) continue;
 
-            _itemEvents.OnEquipItem.Invoke(itemData.Item);
+            //if (itemData == null) continue;
+            //if (itemData.IsEquiped) continue;
+            //if (!itemData.Item.IsEquipable) continue;
+            //if (!CanEquipItem(itemData)) continue;
 
-            itemData.IsEquiped = true;
-           
-            if (itemData.HasBeeingSwaped)
-            {
-                UIEventManager.instance.OnInventoryRemoveEquipment.Invoke();
-            }
+            //_itemEvents.OnEquipItem.Invoke(itemData.Item);
 
-            itemData.HasBeeingSwaped = false;
+            //itemData.IsEquiped = true;
+
+            //if (itemData.HasBeeingSwaped)
+            //{
+            //    UIEventManager.instance.OnInventoryRemoveEquipment.Invoke();
+            //}
+
+            //itemData.HasBeeingSwaped = false;
         }
+    }
+
+    private bool EquipSingleItem(ItemData itemData)
+    {
+        if (itemData == null) return false;
+        if (itemData.IsEquiped) return false;
+        if (!itemData.Item.IsEquipable) return false;
+        if (!CanEquipItem(itemData)) return false;
+
+        _itemEvents.OnEquipItem.Invoke(itemData.Item);
+
+        itemData.IsEquiped = true;
+
+        if (itemData.HasBeeingSwaped)
+        {
+            UIEventManager.instance.OnInventoryRemoveEquipment.Invoke();
+        }
+
+        itemData.HasBeeingSwaped = false;
+
+        return true;
     }
 
     private bool UnequipItem(List<Guid> equipedItemId, List<Guid> newItemsIds)
@@ -320,7 +374,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void SaveInventoryDataOnMemory()
     {
-        LoggerUtils.Log("Saved");
+        Debug.Log("Saved");
         SaveLoadManager.InventoryData = _inventoryData;
         SaveLoadManager.EquipData = _equipData;
     }

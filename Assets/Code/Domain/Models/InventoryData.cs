@@ -18,6 +18,7 @@ public class InventoryData
     {
         public Vector2 Coordinate { get; set; }
         public bool HasItem { get; set; }
+        public bool IsAvailable { get; set; } = true;
         public Guid? ItemId { get; set; }
     
         public void AddItem(Guid itemId)

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 1
   <InnerStages>k__BackingField:
-  - name: 00:00 -> Chest
+  - name: 00:01 -> Chest
     <Actions>k__BackingField:
-    - name: 00:00 -> Chest
+    - name: 00:01 -> Chest
       <Type>k__BackingField: 1
-      <Timer>k__BackingField: 0
+      <Timer>k__BackingField: 1
       <WaitButtonSignal>k__BackingField: 1
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -31,11 +31,11 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-  - name: 00:17 -> 1 Wave
+  - name: 00:20 -> 1 Wave
     <Actions>k__BackingField:
-    - name: 00:05 -> Monster - Worm -> 00:10
+    - name: 00:06 -> Monster - Worm -> 00:12
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -48,9 +48,9 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:10 -> Monster - Worm -> 00:15
+    - name: 00:12 -> Monster - Worm -> 00:18
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -63,9 +63,9 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:12 -> Monster - Worm -> 00:14
+    - name: 00:18 -> Monster - Worm -> 00:24
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 2
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -78,9 +78,9 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:17 -> Monster - Porcupine -> 00:22
+    - name: 00:19 -> Monster - Porcupine -> 00:20
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 1
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -93,11 +93,11 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-  - name: 00:17 ->  [Small Stage] Unlock Platform
+  - name: 00:23 ->  [Small Stage] Unlock Platform
     <Actions>k__BackingField:
-    - name: 00:00 -> ChangeMap
+    - name: 00:03 -> ChangeMap
       <Type>k__BackingField: 2
-      <Timer>k__BackingField: 0
+      <Timer>k__BackingField: 3
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -110,11 +110,11 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 1
         _description: '[small stage] - unlock first platfomr'
-  - name: '00:49 -> 2 Wave '
+  - name: '00:55 -> 2 Wave '
     <Actions>k__BackingField:
-    - name: 00:05 -> Monster - Porcupine -> 00:10
+    - name: 00:06 -> Monster - Porcupine -> 00:12
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -127,9 +127,9 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:10 -> Monster - Worm -> 00:15
+    - name: 00:12 -> Monster - Worm -> 00:18
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -142,9 +142,9 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:15 -> Monster - Bird -> 00:20
+    - name: 00:18 -> Monster - Bird -> 00:24
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -157,9 +157,9 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:20 -> Monster - Bird -> 00:25
+    - name: 00:24 -> Monster - Bird -> 00:30
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -172,7 +172,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:21 -> Monster - Porcupine -> 00:22
+    - name: 00:25 -> Monster - Porcupine -> 00:26
       <Type>k__BackingField: 0
       <Timer>k__BackingField: 1
       <WaitButtonSignal>k__BackingField: 0
@@ -187,9 +187,9 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:22 -> Monster - Porcupine -> 00:23
+    - name: 00:31 -> Monster - Porcupine -> 00:37
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 1
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -202,9 +202,9 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:32 -> Monster - Worm -> 00:42
+    - name: 00:32 -> Monster - Worm -> 00:33
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 10
+      <Timer>k__BackingField: 1
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -217,12 +217,12 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-  - name: 00:51 -> -----------------MEDIUM-----------------
+  - name: 00:56 -> -----------------MEDIUM-----------------
     <Actions>k__BackingField:
-    - name: 00:02 -> ChangeMap
+    - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
-      <Timer>k__BackingField: 2
-      <WaitButtonSignal>k__BackingField: 1
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 0}
@@ -234,54 +234,54 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 2
         _description: '[Wall of Spike] - Move wall of spike to Medium'
-  - name: '1.3:2.861023E-06 -> 3 Wave '
+  - name: '02:32 -> 3 Wave '
     <Actions>k__BackingField:
-    - name: 00:05 -> Monster - Bird -> 00:10
+    - name: 00:06 -> Monster - Bird -> 00:12
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
         <UseRandomPosition>k__BackingField: 1
         <SpawnPositionId>k__BackingField: 1
-        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
       <MapChest>k__BackingField:
         <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:10 -> Monster - Bird -> 00:15
+    - name: 00:12 -> Monster - Bird -> 00:18
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
         <UseRandomPosition>k__BackingField: 1
         <SpawnPositionId>k__BackingField: 1
-        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
       <MapChest>k__BackingField:
         <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:15 -> Monster - Bird -> 00:20
+    - name: 00:18 -> Monster - Bird -> 00:24
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 5
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
         <UseRandomPosition>k__BackingField: 1
         <SpawnPositionId>k__BackingField: 1
-        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
       <MapChest>k__BackingField:
         <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:21 -> Monster - Rat -> 00:27
+    - name: 00:24 -> Monster - Rat -> 00:30
       <Type>k__BackingField: 0
       <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
@@ -290,48 +290,48 @@ MonoBehaviour:
         <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
         <UseRandomPosition>k__BackingField: 1
         <SpawnPositionId>k__BackingField: 1
-        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
       <MapChest>k__BackingField:
         <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:24 -> Monster - Porcupine -> 00:27
+    - name: 00:30 -> Monster - Porcupine -> 00:36
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 3
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
         <UseRandomPosition>k__BackingField: 1
         <SpawnPositionId>k__BackingField: 1
-        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
       <MapChest>k__BackingField:
         <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: 00:27 -> Monster - Porcupine -> 00:30
+    - name: 00:36 -> Monster - Porcupine -> 00:42
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 3
+      <Timer>k__BackingField: 6
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
         <UseRandomPosition>k__BackingField: 1
         <SpawnPositionId>k__BackingField: 1
-        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
       <MapChest>k__BackingField:
         <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-  - name: 1.3:2.861023E-06 -> [Medium Stage] Unlock Two Small Platforms
+  - name: 02:33 -> [Medium Stage] Unlock Two Small Platforms
     <Actions>k__BackingField:
-    - name: 00:00 -> ChangeMap
+    - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
-      <Timer>k__BackingField: 0
-      <WaitButtonSignal>k__BackingField: 1
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 0}
@@ -343,12 +343,59 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 4
         _description: '[Medium Stage] Unlock Two Small Platforms'
-  - name: 1.3:2.861023E-06 -> [Medium Stage] Unlock Birg Platform
+  - name: '02:46 -> 4 Wave '
     <Actions>k__BackingField:
-    - name: 00:00 -> ChangeMap
+    - name: 00:01 -> Monster - Rat -> 00:02
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 1
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:07 -> Monster - Rat -> 00:13
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 6
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 1
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:13 -> Monster - Porcupine -> 00:19
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 6
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
+        <UseRandomPosition>k__BackingField: 0
+        <SpawnPositionId>k__BackingField: 1
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+  - name: 02:47 -> [Medium Stage] Unlock Birg Platform
+    <Actions>k__BackingField:
+    - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
-      <Timer>k__BackingField: 0
-      <WaitButtonSignal>k__BackingField: 1
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 0}
@@ -360,12 +407,104 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 5
         _description: '[Medium Stage] Unlock Birg Platform'
-  - name: 1.3:2.861023E-06 -> -----------------LARGE-----------------
+  - name: '02:05 -> 5 Wave '
     <Actions>k__BackingField:
-    - name: 00:00 -> ChangeMap
+    - name: 00:01 -> Monster - Rat -> 00:02
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 1
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:06 -> Monster - Rat -> 00:11
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 1
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:11 -> Monster - Bird -> 00:16
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 1
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:12 -> Monster - Porcupine -> 00:13
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
+        <UseRandomPosition>k__BackingField: 0
+        <SpawnPositionId>k__BackingField: 10
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:17 -> Monster - Bird -> 00:22
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 1
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:18 -> Monster - Porcupine -> 00:19
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
+        <UseRandomPosition>k__BackingField: 0
+        <SpawnPositionId>k__BackingField: 11
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+  - name: 02:06 -> -----------------LARGE-----------------
+    <Actions>k__BackingField:
+    - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
-      <Timer>k__BackingField: 0
-      <WaitButtonSignal>k__BackingField: 1
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 0}
@@ -377,12 +516,44 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 6
         _description: '[Wall of Spike] - Move wall of spike to Large'
-  - name: 1.3:2.861023E-06 -> [Large Stage] Unlock Two Small Platforms
+  - name: '02:08 -> 6 Wave '
     <Actions>k__BackingField:
-    - name: 00:00 -> ChangeMap
+    - name: 00:01 -> Monster - Egg -> 00:02
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 8245c3c9c0bc21d44abafb70e6fbda82, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 1
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:02 -> Monster - Egg -> 00:03
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 8245c3c9c0bc21d44abafb70e6fbda82, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 1
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+  - name: 02:09 -> [Large Stage] Unlock Two Small Platforms
+    <Actions>k__BackingField:
+    - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
-      <Timer>k__BackingField: 0
-      <WaitButtonSignal>k__BackingField: 1
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 0}
@@ -394,12 +565,12 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 8
         _description: '[Large Stage] Unlock Two Small Platforms'
-  - name: 1.3:2.861023E-06 -> [Large Stage] Unlock Smaller Platform
+  - name: 02:10 -> [Large Stage] Unlock Smaller Platform
     <Actions>k__BackingField:
-    - name: 00:00 -> ChangeMap
+    - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
-      <Timer>k__BackingField: 0
-      <WaitButtonSignal>k__BackingField: 1
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 0}
@@ -411,12 +582,164 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 10
         _description: '[Large Stage] Unlock Smaller Platform'
-  - name: 1.3:2.861023E-06 -> [Large Stage] Unlock Middle Platform
+  - name: '03:44 -> 7 Wave '
     <Actions>k__BackingField:
-    - name: 00:00 -> ChangeMap
+    - name: 00:01 -> Monster - Porcupine -> 00:02
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:06 -> Monster - Porcupine -> 00:11
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:07 -> Monster - Rat -> 00:08
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:08 -> Monster - Rat -> 00:09
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:13 -> Monster - Rat -> 00:18
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:18 -> Monster - Bird -> 00:23
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:23 -> Monster - Bird -> 00:28
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:28 -> Monster - Bird -> 00:33
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:29 -> Monster - Worm -> 00:30
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 4b2101d05f268dd40ac5cc32b8699a81, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:34 -> Monster - Worm -> 00:39
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 4b2101d05f268dd40ac5cc32b8699a81, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+  - name: 03:45 -> [Large Stage] Unlock Middle Platform
+    <Actions>k__BackingField:
+    - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
-      <Timer>k__BackingField: 0
-      <WaitButtonSignal>k__BackingField: 1
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 0}
@@ -428,11 +751,11 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 9
         _description: '[Large Stage] Unlock Middle Platform'
-  - name: 1.3:2.861023E-06 -> [Large Stage] Unlock Big Platforms
+  - name: 03:46 -> [Large Stage] Unlock Big Platforms
     <Actions>k__BackingField:
-    - name: 00:00 -> ChangeMap
+    - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
-      <Timer>k__BackingField: 0
+      <Timer>k__BackingField: 1
       <WaitButtonSignal>k__BackingField: 1
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -445,3 +768,247 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 11
         _description: '[Large Stage] Unlock Big Platforms'
+  - name: '04:48 -> 8 Wave '
+    <Actions>k__BackingField:
+    - name: 00:01 -> Monster - Chicken -> 00:02
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 0c362e1d425e4e1428fcde5a90f3ec0b, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:07 -> Monster - Chicken -> 00:13
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 6
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 0c362e1d425e4e1428fcde5a90f3ec0b, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:08 -> Monster - Porcupine -> 00:09
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:09 -> Monster - Porcupine -> 00:10
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:15 -> Monster - Porcupine -> 00:21
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 6
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 94db3e64b6de62441a38a2e3b96f6f83, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:16 -> Monster - Worm -> 00:17
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 4b2101d05f268dd40ac5cc32b8699a81, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:21 -> Monster - Bird -> 00:26
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:26 -> Monster - Bird -> 00:31
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:31 -> Monster - Bird -> 00:36
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:36 -> Monster - Bird -> 00:41
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:37 -> Monster - Worm -> 00:38
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 4b2101d05f268dd40ac5cc32b8699a81, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:42 -> Monster - Worm -> 00:47
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 4b2101d05f268dd40ac5cc32b8699a81, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:47 -> Monster - Chicken -> 00:52
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 0c362e1d425e4e1428fcde5a90f3ec0b, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:52 -> Monster - Chicken -> 00:57
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 0c362e1d425e4e1428fcde5a90f3ec0b, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 00:57 -> Monster - Chicken -> 01:02
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 0c362e1d425e4e1428fcde5a90f3ec0b, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: 01:02 -> Monster - Chicken -> 01:07
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 5
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 0c362e1d425e4e1428fcde5a90f3ec0b, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+  - name: 04:48 -> BOSS
+    <Actions>k__BackingField: []

@@ -32,13 +32,17 @@ public partial class Player : MonoBehaviour
         {
             if (IsPlayerTouchingGround) return false;
 
-            _player.StartCoroutine(CalculateCoyoteTime());  
+            _player.StartCoroutine(CalculateCoyoteTime());
             return ChangeState(FiniteState.Falling);
         }
 
         private void MovePlayerOnTheGround()
         {
-            if(_jumpModel.IsBeingControlledByKnockback) return;
+            if (_jumpModel.IsBeingControlledByKnockback)
+            {
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _rigidbody2D.velocity.y);
+                return;
+            }
 
             _rigidbody2D.velocity = new Vector2(_player.MoveInput.Value.x * _status.MovementSpeed.Get(), _rigidbody2D.velocity.y);
         }
@@ -50,7 +54,7 @@ public partial class Player : MonoBehaviour
 
             _player.DownPlatformInput.Performed.AddListener(DownPlatform);
 
-            ManagePooopPerformedEvent(true);
+            ManagePoopPerformedEvent(true);
         }
 
         private void UnassignEvents()
@@ -60,7 +64,7 @@ public partial class Player : MonoBehaviour
 
             _player.DownPlatformInput.Performed.RemoveListener(DownPlatform);
 
-            ManagePooopPerformedEvent(false);
+            ManagePoopPerformedEvent(false);
         }
 
         private void DownPlatform()

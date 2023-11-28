@@ -1,31 +1,44 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 
 public class PorcupineProjectile : MonoBehaviour
 {
-    private Rigidbody2D _rigidbody2D;
+    private Rigidbody2D _rigidBody2D;
+    private LayerCheckCollider _layerCheckCollider;
 
     private void Awake()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
+        _layerCheckCollider = GetComponent<LayerCheckCollider>();
+    }
+
+    private void Start()
+    {
+        _layerCheckCollider.OnLayerCheckTriggerEnter.AddListener(DestroyProjectileOnCollision);
+    }
+
+    private void DestroyProjectileOnCollision(GameObject arg0)
+    {
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()
     {
-        float angle = Mathf.Atan2(_rigidbody2D.velocity.y, _rigidbody2D.velocity.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(_rigidBody2D.velocity.y, _rigidBody2D.velocity.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
     }
 
     public void SetInitialInitialValues(Vector2 velocity, float duration)
     {
-        _rigidbody2D.velocity = velocity;
-        StartCoroutine(WaitThenDie(duration));
+        _rigidBody2D.velocity = velocity;
+        //StartCoroutine(WaitThenDie(duration));
     }
 
-    IEnumerator WaitThenDie (float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        Destroy(gameObject);
-    }
+    //IEnumerator WaitThenDie(float duration)
+    //{
+    //    yield return new WaitForSeconds(duration);
+    //    Destroy(gameObject);
+    //}
 }

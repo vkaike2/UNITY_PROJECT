@@ -17,9 +17,11 @@ public class Fart : MonoBehaviour
 
     [Space]
     [Header("CONFIGURATION")]
-    [Tooltip("time where the entity will lose the controll, and only this component will aply the knockback")]
+    [Tooltip("time where the entity will lose the control, and only this component will apply the knockback")]
     [SerializeField]
     private float _cdwToManipulateKnockBack = 0.3f;
+    [SerializeField]
+    private float _cdwToManipulateKnockBackWithShift = 0.1f;
     [SerializeField]
     private float _knockBackForce = 500;
     [SerializeField]
@@ -27,14 +29,14 @@ public class Fart : MonoBehaviour
     private float _helpForcePercentage = 1.5f;
 
     [field: Header("EVENTS")]
-    [field: Tooltip("Will be called everytime that you fart")]
+    [field: Tooltip("Will be called every time that you fart")]
     [field: SerializeField]
-    public OnFartEvent OnFartEvent { get; private set; } = new OnFartEvent();
+    public OnKnockbackEvent OnKnockBackEvent { get; private set; } = new OnKnockbackEvent();
     [field: SerializeField]
     public OnFartSpawnedEvent OnFartSpawnedEvent { get; private set; } = new OnFartSpawnedEvent();
 
     private Player _player;
-    private Rigidbody2D _rigidbody2D;
+    private Rigidbody2D _rigidBody2D;
     private bool _isFartOnCdw = false;
     private PlayerStatus.FartStatus _status;
     private GameManager _gameManager;
@@ -42,7 +44,7 @@ public class Fart : MonoBehaviour
     private void Awake()
     {
         _status = GetComponent<PlayerStatus>().Fart;
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
         _player = GetComponent<Player>();
 
         _gameManager = FindObjectOfType<GameManager>();
@@ -56,8 +58,6 @@ public class Fart : MonoBehaviour
         _gameManager.OnPlayerDead.AddListener(OnPayerDead);
     }
 
-
-
     private void OnFartInputPerformed()
     {
         if (_isFartOnCdw) return;
@@ -66,19 +66,27 @@ public class Fart : MonoBehaviour
 
         Vector2 fartForce = _knockBackForce * -mouse.direction;
 
-        StartCoroutine(CalculateFartCooldow());
-        StartCoroutine(TakeControllOfEntity(mouse.direction));
+        StartCoroutine(CalculateFartCooldown());
+        StartCoroutine(TakeControlOfEntity(mouse.direction));
 
         fartForce = new Vector2(fartForce.x, fartForce.y * _helpForcePercentage);
         SpawnFartProjectile(mouse);
 
+        if (CantApplyKnockBack()) return;
+
+
         // deactivate vertical velocity if you want to go up
         if (fartForce.y > 0)
         {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
+            _rigidBody2D.velocity = new Vector2(_rigidBody2D.velocity.x, 0);
         }
 
-        _rigidbody2D.AddForce(fartForce);
+        _rigidBody2D.AddForce(fartForce);
+    }
+
+    private bool CantApplyKnockBack()
+    {
+        return _player.ShiftInput.Value && _player.IsTouchingGround;
     }
 
     private void SpawnFartProjectile((Vector2 position, Vector2 direction, Quaternion rotation) mouse)
@@ -89,7 +97,7 @@ public class Fart : MonoBehaviour
         projectile.SetInitialValues(mouse.direction * _status.Velocity.Get(), _player);
     }
 
-    public (Vector2 position, Vector2 direction, Quaternion rotation) GetMouseInformationRelatedToGameObject()
+    private (Vector2 position, Vector2 direction, Quaternion rotation) GetMouseInformationRelatedToGameObject()
     {
         Vector2 mousePosition = GetMousePosition();
 
@@ -108,7 +116,7 @@ public class Fart : MonoBehaviour
         return mousePosition;
     }
 
-    IEnumerator CalculateFartCooldow()
+    IEnumerator CalculateFartCooldown()
     {
         _isFartOnCdw = true;
         _progressBar.OnSetBehaviour.Invoke(_status.Cooldown.Get(), ProgressBarUI.Behaviour.ProgressBar_Hide);
@@ -125,9 +133,8 @@ public class Fart : MonoBehaviour
         _isFartOnCdw = false;
     }
 
-    IEnumerator TakeControllOfEntity(Vector2 mouseDirection)
+    IEnumerator TakeControlOfEntity(Vector2 mouseDirection)
     {
-        _player.CanMove = false;
         bool needToFlipPlayer = CheckIfNeedToFlipEntity(mouseDirection);
 
         if (needToFlipPlayer)
@@ -136,16 +143,14 @@ public class Fart : MonoBehaviour
         }
 
         _player.PlayerAnimator.PlayAnimationHightPriority(this, PlayerAnimatorModel.Animation.Fart, _cdwToManipulateKnockBack);
-        OnFartEvent.Invoke(_cdwToManipulateKnockBack);
 
+        OnKnockBackEvent.Invoke(_cdwToManipulateKnockBack);
         yield return new WaitForSeconds(_cdwToManipulateKnockBack);
 
         if (needToFlipPlayer)
         {
             _rotationalTransform.localScale = new Vector3(-_rotationalTransform.localScale.x, 1, 1);
         }
-
-        _player.CanMove = true;
     }
 
     private bool CheckIfNeedToFlipEntity(Vector2 mouseDirection)
@@ -168,11 +173,5 @@ public class Fart : MonoBehaviour
     }
 }
 
-/// <summary>
-///  This event will be called every time that you fart
-///  float: the time that he will stay farting
-/// </summary>
-[Serializable]
-public class OnFartEvent : UnityEvent<float> { }
 [SerializeField]
 public class OnFartSpawnedEvent : UnityEvent<FartProjectile> { }

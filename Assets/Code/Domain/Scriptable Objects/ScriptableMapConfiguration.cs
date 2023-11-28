@@ -48,7 +48,6 @@ public class ScriptableMapConfiguration : ScriptableObject
         public void Validate(float timeToMe)
         {
             name = name.Split("-> ").Last();
-            Debug.Log($"{name}|{timeToMe} - {timeToMe.SecondsToTime()}");
 
             name = $"{timeToMe.SecondsToTime()} -> {name}";
 
@@ -96,6 +95,12 @@ public class ScriptableMapConfiguration : ScriptableObject
         public void Validate(float timeToMe)
         {
             name = $"{(timeToMe.SecondsToTime())} -> {Type.ToString()}";
+
+
+            if(Timer == 0) 
+            {
+                Timer = 1;
+            }
 
             switch (Type)
             {

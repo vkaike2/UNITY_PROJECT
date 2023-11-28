@@ -5,9 +5,6 @@ using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Transactions;
 using UnityEngine;
-using static InventoryData;
-using static InventoryUI;
-using static UnityEditor.Progress;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -128,6 +125,7 @@ public class InventoryUI : MonoBehaviour
                 Coordinate = e.Coordinate,
                 HasItem = e.HasItem,
                 ItemId = e.ItemUI != null ? e.ItemUI.ItemData.Id : null,
+                IsAvailable = e.IsAvalialbe
             })
             .ToList();
 
@@ -152,7 +150,7 @@ public class InventoryUI : MonoBehaviour
 
     private void UpdateInventoryFromEvent(InventoryData inventoryData)
     {
-        CleanInventory(SlotType.Inventory, _equipmentInfo);
+        CleanInventory(SlotType.Inventory, _inventoyInfo);
         UpdateGeneralInventoryEvent(inventoryData, _inventoyInfo);
     }
 
@@ -189,11 +187,12 @@ public class InventoryUI : MonoBehaviour
             InventoryItemUI itemUI = Instantiate(item.Item.PrefabUI, this._itemParent);
             itemUI.ItemData = item;
             itemUI.transform.position = itemPosition;
+            itemUI.SlotType = inventoryData.Type;
 
             this.InternalAddItem(slotsUnderItem, itemUI, false);
         }
     }
-
+    //1608 187348
     private void InternalAddItem(List<InventorySlotUI> slotsUnderItem, InventoryItemUI itemUI, bool updatePlayer = true)
     {
         bool canEquipItem = true;

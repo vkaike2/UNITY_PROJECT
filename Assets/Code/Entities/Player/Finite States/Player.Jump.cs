@@ -44,7 +44,7 @@ public partial class Player : MonoBehaviour
             _player.JumpInput.Canceled.AddListener(OnJumpInputCanceled);
             _player.FartInput.Canceled.AddListener(OnFartInputCanceled);
 
-            ManagePooopPerformedEvent(true);
+            ManagePoopPerformedEvent(true);
         }
 
         private void UnassignEvents()
@@ -52,7 +52,7 @@ public partial class Player : MonoBehaviour
             _player.JumpInput.Canceled.RemoveListener(OnJumpInputCanceled);
             _player.FartInput.Canceled.RemoveListener(OnFartInputCanceled);
 
-            ManagePooopPerformedEvent(false);
+            ManagePoopPerformedEvent(false);
         }
 
         private void OnJumpInputCanceled()

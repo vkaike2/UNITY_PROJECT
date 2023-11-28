@@ -35,16 +35,16 @@ public abstract class DamageReceiver : MonoBehaviour
 
     protected bool _isPlayer = false;
 
-    private readonly List<int> _recivingDamageFrom = new List<int>();
+    private readonly List<int> _receivingDamageFrom = new List<int>();
     private const float CDW_TO_RECEIVE_DAMAGE_FOR_EACH_INSTANCE = 0.5f;
     private bool _isReceivingDamage;
     private bool _isDead = false;
-    private Rigidbody2D _rigidbody2D;
+    private Rigidbody2D _rigidBody2D;
 
     private void Awake()
     {
         BerofeAwake();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
         _status.InitializeHealth();
         AfterAwake();
     }
@@ -118,7 +118,7 @@ public abstract class DamageReceiver : MonoBehaviour
 
     private bool CanReceiveDamageFrom(int instance)
     {
-        return !_recivingDamageFrom.Any(e => e == instance);
+        return !_receivingDamageFrom.Any(e => e == instance);
     }
 
     private void ApplyKnockBackOnDamage(Vector2 damagePosition)
@@ -130,14 +130,14 @@ public abstract class DamageReceiver : MonoBehaviour
         Vector2 direction = (Vector2)transform.position - damagePosition;
         direction = direction.normalized;
 
-        _rigidbody2D.velocity = _status.KnockBackForce * direction;
+        _rigidBody2D.velocity = _status.KnockBackForce * direction;
     }
 
     private IEnumerator ManageDamageEntry(int instance)
     {
-        _recivingDamageFrom.Add(instance);
+        _receivingDamageFrom.Add(instance);
         yield return new WaitForSeconds(CDW_TO_RECEIVE_DAMAGE_FOR_EACH_INSTANCE);
-        _recivingDamageFrom.Remove(instance);
+        _receivingDamageFrom.Remove(instance);
     }
 
     public IEnumerator TakeDamageAnimation()

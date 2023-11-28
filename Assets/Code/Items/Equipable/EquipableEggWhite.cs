@@ -11,15 +11,11 @@ public class EquipableEggWhite : EquipableItemBase
 
     protected override void EquipItem()
     {
-        _playerStatus.Fart.AreaOfEffect.Base.Add(_addAreaOfEffect);
-        
-        //_playerStatus.Fart.BaseDamage.ReducePercentage(_reducedDamagePercentage);
+        _playerStatus.Fart.AreaOfEffect.Base.Add(_addAreaOfEffect);        
     }
 
     protected override void UnequipItem()
     {
         _playerStatus.Fart.AreaOfEffect.Base.Remove(_addAreaOfEffect);
-
-        //_playerStatus.Fart.BaseDamage.IncreasePercentage(_reducedDamagePercentage);
     }
 }
