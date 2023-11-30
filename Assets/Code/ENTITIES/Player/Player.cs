@@ -42,10 +42,13 @@ public partial class Player : MonoBehaviour
     public PlayerStatus Status { get; private set; }
     public PlayerDamageDealer DamageDealer { get; set; }
     public bool IsTouchingGround => JumpModel.GroundCheck.DrawPhysics2D(JumpModel.GroundLayer) != null;
+    public bool IsBeingControlledByKnockBack = false;
 
     protected GameManager GameManager { get; private set; }
     protected PlayerDamageReceiver DamageReceiver { get; private set; }
     protected OnKnockbackEvent OnKnockbackEvent { get; private set; } = new OnKnockbackEvent();
+
+
 
     private bool _isFrozen;
 
@@ -147,17 +150,17 @@ public partial class Player : MonoBehaviour
 
     /// <param name="seconds"> how many seconds player will be controller by the Knockback action</param>
     /// <exception cref="NotImplementedException"></exception>
-    private void HandleKnockBack(float seconds)
+    private void HandleKnockBack(float seconds, KnockBackSource source)
     {
-        OnKnockbackEvent.Invoke(seconds);
-        StartCoroutine(GiveControlToKnockBack(seconds));
+        OnKnockbackEvent.Invoke(seconds, source);
+        StartCoroutine(IsBeingControllerByKnockback(seconds));
     }
 
-    private IEnumerator GiveControlToKnockBack(float seconds)
+    private IEnumerator IsBeingControllerByKnockback(float seconds)
     {
-        JumpModel.IsBeingControlledByKnockback = true;
+        IsBeingControlledByKnockBack = true;
         yield return new WaitForSeconds(seconds);
-        JumpModel.IsBeingControlledByKnockback = false;
+        IsBeingControlledByKnockBack = false;
     }
 
     public enum FiniteState

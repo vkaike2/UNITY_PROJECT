@@ -28,5 +28,4 @@ public class PlayerJumpModel
 
     public bool IsLandingOnAPlatform { get; set; } = false;
     public bool IsCoyoteTimeActive { get; set; } = false;
-    public bool IsBeingControlledByKnockback { get; set; } = false;
 }

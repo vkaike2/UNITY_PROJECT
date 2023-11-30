@@ -83,7 +83,7 @@ public partial class Bird : Enemy
 
         private void OnFlappingWings()
         {
-            _rigidbody2D.velocity = new Vector2(0, (_bird.PatrolModel.HorizontalVelocity) * 2);
+            _rigidbody2D.velocity = new Vector2(0, _bird.AtkModel.MovementSpeedToGoUp);
         }
 
 

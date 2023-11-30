@@ -27,7 +27,7 @@ public class CountDownUI : MonoBehaviour
     {
         int count = number;
 
-        while (count >= 0)
+        while (count > 0)
         {
             UpdateUI(count);
             yield return new WaitForSeconds(1);

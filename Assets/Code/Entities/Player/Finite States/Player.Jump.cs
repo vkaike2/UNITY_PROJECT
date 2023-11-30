@@ -13,7 +13,7 @@ public partial class Player : MonoBehaviour
         private Coroutine _jumpPerformedCoroutine;
 
         /// <summary>
-        ///     wait untill you left the ground with your jump
+        ///     wait until you left the ground with your jump
         /// </summary>
         private bool _hasLeftTheGround = false;
 
@@ -82,7 +82,7 @@ public partial class Player : MonoBehaviour
             if (!IsPlayerTouchingGround) return false;
             if (_jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer).gameObject.GetComponent<OneWayPlatform>() != null) return false;
 
-            if (_player.MoveInput.Value == Vector2.zero && !_jumpModel.IsBeingControlledByKnockback)
+            if (_player.MoveInput.Value == Vector2.zero && !_player.IsBeingControlledByKnockBack)
             {
                 Debug.Log("foi pro idle");
                 return ChangeState(FiniteState.Idle);

@@ -43,7 +43,7 @@ public abstract class DamageReceiver : MonoBehaviour
 
     private void Awake()
     {
-        BerofeAwake();
+        BeforeAwake();
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _status.InitializeHealth();
         AfterAwake();
@@ -64,7 +64,7 @@ public abstract class DamageReceiver : MonoBehaviour
         _dpsMeter.AddDamage(damage);
     }
 
-    protected virtual void BerofeAwake() { }
+    protected virtual void BeforeAwake() { }
     protected virtual void AfterAwake() { }
     protected virtual void BeforeStart() { }
     protected virtual void AfterStart() { }
@@ -125,7 +125,7 @@ public abstract class DamageReceiver : MonoBehaviour
     {
         if (!_shouldApplyKnockback) return;
 
-        OnKnockbackEvent.Invoke(_knockbackDuration);
+        OnKnockbackEvent.Invoke(_knockbackDuration, KnockBackSource.DamageReceiver);
 
         Vector2 direction = (Vector2)transform.position - damagePosition;
         direction = direction.normalized;
@@ -160,6 +160,7 @@ public abstract class DamageReceiver : MonoBehaviour
             yield return new WaitForSeconds(blinkDuration / (howManyTimesItWillBlink * 2));
 
         }
+        
         color.a = 1;
         _spriteRenderer.color = color;
 
@@ -171,4 +172,4 @@ public abstract class DamageReceiver : MonoBehaviour
 ///  float: time that you will be controlled by the knockback
 /// </summary>
 [Serializable]
-public class OnKnockbackEvent : UnityEvent<float> { }
+public class OnKnockbackEvent : UnityEvent<float, KnockBackSource> { }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -29,8 +30,8 @@ public class EnemySpawnPosition : MonoBehaviour
 
     public bool HasMonsterUnderMe()
     {
-        List<Enemy> mob = RaycastUtils.GetComponentsUnderMouse<Enemy>();
-        return mob != null;
+        List<Enemy> mob = RaycastUtils.GetComponentsUnderPosition<Enemy>(this.transform.position);
+        return mob.Any();
     }
 
     public enum SpawnType

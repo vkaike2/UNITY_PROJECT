@@ -38,7 +38,7 @@ MonoBehaviour:
     <Item>k__BackingField: {fileID: 11400000, guid: 565db31041290a546a82631f34ecaa17, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: 1fad8d1cf7f302145ac8d5e64c921a3d, type: 2}
     _poopProjectile: {fileID: 2518699327201309521, guid: e7f692221f9f21849a93f902ff9bcc5d, type: 3}
-    _addDamageMultiplier: 0.5
+    _addDamageMultiplier: 0.4
   _steak:
     <Item>k__BackingField: {fileID: 11400000, guid: 373013497aa30ba44ac0293f4b188000, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: c94bdc41476d2eb46b42c45be0c552d2, type: 2}

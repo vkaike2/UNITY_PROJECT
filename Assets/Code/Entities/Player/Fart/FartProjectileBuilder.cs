@@ -29,9 +29,9 @@ public class FartProjectileBuilder : MonoBehaviour
         return _particles;
     }
 
-    private void SetColliderRadius(float aditionalArea)
+    private void SetColliderRadius(float additionalArea)
     {
-        _circleCollider.radius *= (aditionalArea);
+        _circleCollider.radius *= (additionalArea);
     }
 
     private Vector2 GetRandomPosition()

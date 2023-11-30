@@ -118,29 +118,47 @@ public partial class FirstMap : Map
         {
             ScriptableMapConfiguration.MapEnemy enemy = action.Enemy;
 
-            Vector2 spawnPosition;
-            if (enemy.UseRandomPosition)
+            Vector2? spawnPosition = null;
+            if (!enemy.UseRandomPosition)
+            {
+
+                EnemySpawnPosition enemySpawnPosition = _map.Containers
+                    .EnemySpawnPositions
+                    .FirstOrDefault(e => 
+                        e.Id == enemy.SpawnPositionId
+                        && e.IsAvailable 
+                        && !e.HasBeingUsedRecently
+                        && !e.HasMonsterUnderMe()
+                        );
+
+                if(enemySpawnPosition != null)
+                {
+                    spawnPosition = enemySpawnPosition.transform.position;
+                }
+            }
+
+
+            if (enemy.UseRandomPosition || spawnPosition == null)
             {
                 List<EnemySpawnPosition> filteredPositions = _map.Containers.EnemySpawnPositions
-                    .Where(e => e.Type == enemy.ScriptableEnemy.SpawnType && e.IsAvailable && !e.HasBeingUsedRecently)
+                    .Where(e => e.Type == enemy.ScriptableEnemy.SpawnType 
+                        && e.IsAvailable 
+                        && !e.HasBeingUsedRecently
+                        && !e.HasMonsterUnderMe())
                     .ToList();
 
-                EnemySpawnPosition randomPosition = filteredPositions[UnityEngine.Random.Range(0, filteredPositions.Count)];
+                EnemySpawnPosition randomPosition = filteredPositions[UnityEngine.Random.Range(0, filteredPositions.Count - 1)];
                 
                 //This 0.3f is added to give some space between each mob on the same spawn position
-                randomPosition.UseIt(WARNING_COUNT_BEFORE_SPAWN_ENEMY + 1f);
+                randomPosition.UseIt(WARNING_COUNT_BEFORE_SPAWN_ENEMY + 2f);
 
                 spawnPosition = randomPosition.transform.position;
-            }
-            else
-            {
-                spawnPosition = _map.Containers.EnemySpawnPositions.FirstOrDefault(e => e.Id == enemy.SpawnPositionId).transform.position;
             }
 
             EnemySpawner.SpawnOption spawnOption =
                 new EnemySpawner.SpawnOption(
                 enemy.ScriptableEnemy.Enemy,
-                spawnPosition,
+                spawnPosition.Value,
                 _map.Containers.EnemiesContainer.transform,
                 _map.MapManager,
                 _map.Containers.ItemContainer,

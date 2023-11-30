@@ -6,7 +6,7 @@ public partial class Player : MonoBehaviour
 {
     private class Idle : PlayerBaseState
     {
-        private bool _knockBackBuffer;
+        //private bool _knockBackBuffer;
 
         public override FiniteState State => FiniteState.Idle;
 
@@ -27,8 +27,7 @@ public partial class Player : MonoBehaviour
 
             _animator.PlayAnimation(PlayerAnimatorModel.Animation.Idle);
 
-            //Debug.Log($"{_jumpModel.IsLandingOnAPlatform} - {_knockBackBuffer}");
-            if (!_jumpModel.IsLandingOnAPlatform || !_jumpModel.IsBeingControlledByKnockback)
+            if (!_jumpModel.IsLandingOnAPlatform)
             {
                 FreezeRigidBodyConstraints(true);
             }
@@ -64,7 +63,6 @@ public partial class Player : MonoBehaviour
             _player.JumpInput.Performed.AddListener(OnJumpInputPerformed);
 
             _player.DownPlatformInput.Performed.AddListener(DownPlatform);
-            //_player.OnKnockbackEvent.AddListener(GivePlayerControl);
 
             ManagePoopPerformedEvent(true);
         }
@@ -76,13 +74,17 @@ public partial class Player : MonoBehaviour
 
             _player.DownPlatformInput.Performed.RemoveListener(DownPlatform);
 
-            //_player.OnKnockbackEvent.RemoveListener(GivePlayerControl);
-
             ManagePoopPerformedEvent(false);
         }
 
-        private void GivePlayerControl(float seconds)
+        private void GivePlayerControl(float seconds, KnockBackSource source)
         {
+
+            //if (source == KnockBackSource.Fart)
+            //{
+            //    return;
+            //}
+
             _player.StartCoroutine(GiveControl(seconds));
         }
 
@@ -110,12 +112,10 @@ public partial class Player : MonoBehaviour
 
         private IEnumerator GiveControl(float seconds)
         {
-            _jumpModel.IsBeingControlledByKnockback = true;
-
-            if (_player.CurrentState != State)
-            {
-                _player.StartCoroutine(WaitForKnockbackBuffer(seconds));
-            }
+            //if (_player.CurrentState != State)
+            //{
+            //    _player.StartCoroutine(WaitForKnockbackBuffer(seconds));
+            //}
 
             FreezeRigidBodyConstraints(false);
             yield return new WaitForSeconds(seconds);
@@ -124,16 +124,14 @@ public partial class Player : MonoBehaviour
             {
                 FreezeRigidBodyConstraints(true);
             }
-            
-            _jumpModel.IsBeingControlledByKnockback = false;
         }
 
-        private IEnumerator WaitForKnockbackBuffer(float knockBackSeconds)
-        {
-            _knockBackBuffer = true;
-            yield return new WaitForSeconds(knockBackSeconds);
-            _knockBackBuffer = false;
-        }
+        //private IEnumerator WaitForKnockbackBuffer(float knockBackSeconds)
+        //{
+        //    _knockBackBuffer = true;
+        //    yield return new WaitForSeconds(knockBackSeconds);
+        //    _knockBackBuffer = false;
+        //}
 
         private void DownPlatform()
         {

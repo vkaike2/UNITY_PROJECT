@@ -38,9 +38,9 @@ public partial class Player : MonoBehaviour
 
         private void MovePlayerOnTheGround()
         {
-            if (_jumpModel.IsBeingControlledByKnockback)
+            if (_player.IsBeingControlledByKnockBack)
             {
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _rigidbody2D.velocity.y);
+                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
                 return;
             }
 

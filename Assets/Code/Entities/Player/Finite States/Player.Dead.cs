@@ -33,6 +33,7 @@ public partial class Player : MonoBehaviour
 
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
 
+            _animator.ClearHightPriorityAnimation(_player);
             _animator.PlayAnimation(PlayerAnimatorModel.Animation.Die);
 
             _player.GameManager.OnPlayerDead.Invoke();

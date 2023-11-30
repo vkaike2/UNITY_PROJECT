@@ -368,6 +368,7 @@ MonoBehaviour:
     <CollidingWithWall>k__BackingField: {fileID: 733497056968389448}
   <AtkModel>k__BackingField:
     <AtkFlyingSpeed>k__BackingField: 10
+    <MovementSpeedToGoUp>k__BackingField: 4
 --- !u!1 &3533393714114479934
 GameObject:
   m_ObjectHideFlags: 0

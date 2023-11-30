@@ -13,6 +13,8 @@ public class PlayerAnimatorModel
     private Animation _lowPriorityAnimation;
     private bool _IsPlayingHightPriority = false;
 
+    private Coroutine _hightPriorityCoroutine;
+
     public void PlayAnimation(Animation animation)
     {
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName(animation.ToString())) return;
@@ -26,7 +28,14 @@ public class PlayerAnimatorModel
 
     public void PlayAnimationHightPriority(MonoBehaviour behaviour, Animation animation, float cdw)
     {
-        behaviour.StartCoroutine(SetHightPriorityAnimation(animation, cdw));
+        _hightPriorityCoroutine = behaviour.StartCoroutine(SetHightPriorityAnimation(animation, cdw));
+    }
+
+    public void ClearHightPriorityAnimation(MonoBehaviour behaviour)
+    {
+        if(_hightPriorityCoroutine== null) return;
+
+        behaviour.StopCoroutine(_hightPriorityCoroutine);
     }
 
     IEnumerator SetHightPriorityAnimation(Animation animation, float cdw)

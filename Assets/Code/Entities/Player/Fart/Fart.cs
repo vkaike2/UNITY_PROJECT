@@ -73,8 +73,7 @@ public class Fart : MonoBehaviour
         fartForce = new Vector2(fartForce.x, fartForce.y * _helpForcePercentage);
         SpawnFartProjectile(mouse);
 
-        if (CantApplyKnockBack()) return;
-
+        if (CheckIfCantApplyKnockback(fartForce)) return;
 
         // deactivate vertical velocity if you want to go up
         if (fartForce.y > 0)
@@ -85,9 +84,12 @@ public class Fart : MonoBehaviour
         _rigidBody2D.AddForce(fartForce);
     }
 
-    private bool CantApplyKnockBack()
+    private bool CheckIfCantApplyKnockback(Vector2 fartForce)
     {
-        return _player.IsTouchingGround;
+        Vector2 normalizedForce = fartForce.normalized;
+        bool knockBackUp = normalizedForce.y > 0.85;
+
+        return _player.IsTouchingGround && !knockBackUp;
     }
 
     private void SpawnFartProjectile((Vector2 position, Vector2 direction, Quaternion rotation) mouse)
@@ -145,7 +147,8 @@ public class Fart : MonoBehaviour
 
         _player.PlayerAnimator.PlayAnimationHightPriority(this, PlayerAnimatorModel.Animation.Fart, _cdwToManipulateKnockBack);
 
-        OnKnockBackEvent.Invoke(_cdwToManipulateKnockBack);
+        OnKnockBackEvent.Invoke(_cdwToManipulateKnockBack, KnockBackSource.Fart);
+
         yield return new WaitForSeconds(_cdwToManipulateKnockBack);
 
         if (needToFlipPlayer)
