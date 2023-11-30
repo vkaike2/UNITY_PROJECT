@@ -26,6 +26,7 @@ MonoBehaviour:
         <DropContents>k__BackingField:
         - name: '[2x2] Omelet 100.00% chance'
           <Item>k__BackingField: {fileID: 11400000, guid: 64e3c61342e0d414cb75c2b0173c760e, type: 2}
+          <Weight>k__BackingField: 1
           <IsActive>k__BackingField: 1
     - name: Bean
       _numberOfItems:
@@ -38,6 +39,7 @@ MonoBehaviour:
         <DropContents>k__BackingField:
         - name: '[2x2] Bean 100.00% chance'
           <Item>k__BackingField: {fileID: 11400000, guid: 1d288493bad74d749a23e401f29e8407, type: 2}
+          <Weight>k__BackingField: 1
           <IsActive>k__BackingField: 1
     - name: Steak
       _numberOfItems:
@@ -50,6 +52,7 @@ MonoBehaviour:
         <DropContents>k__BackingField:
         - name: '[2x2] Steak 100.00% chance'
           <Item>k__BackingField: {fileID: 11400000, guid: 373013497aa30ba44ac0293f4b188000, type: 2}
+          <Weight>k__BackingField: 1
           <IsActive>k__BackingField: 1
     - name: Pepper
       _numberOfItems:
@@ -62,4 +65,18 @@ MonoBehaviour:
         <DropContents>k__BackingField:
         - name: '[2x2] Pepper 100.00% chance'
           <Item>k__BackingField: {fileID: 11400000, guid: 565db31041290a546a82631f34ecaa17, type: 2}
+          <Weight>k__BackingField: 1
+          <IsActive>k__BackingField: 1
+    - name: Pepper
+      _numberOfItems:
+        _min: 1
+        _max: 1
+      _drops:
+      - name: '[on] 100.00% chance'
+        <Weight>k__BackingField: 1
+        <IsActive>k__BackingField: 1
+        <DropContents>k__BackingField:
+        - name: '[1x2] Egg White 100.00% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 1ffadc2e4203a7a419fdf8629860a087, type: 2}
+          <Weight>k__BackingField: 1
           <IsActive>k__BackingField: 1

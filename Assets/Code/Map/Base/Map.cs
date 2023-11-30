@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public partial class Map : MonoBehaviour
@@ -16,7 +17,7 @@ public partial class Map : MonoBehaviour
     [SerializeField]
     [Tooltip("Idle: spawn player and move to combat\nCombat: spawn monsters\nWait: wait player go to next stage")]
     private FiniteState _startWithState = FiniteState.Idle;
-    
+
     [field: Space]
     [field: Header("COMPONENTS")]
     [field: SerializeField]
@@ -25,7 +26,7 @@ public partial class Map : MonoBehaviour
     [field: Space]
     [field: SerializeField]
     public CameraConfiner CameraConfiner { get; private set; }
-    
+
     [field: Space]
     [field: SerializeField]
     public MapContainersInformation Containers { get; private set; }
@@ -34,6 +35,10 @@ public partial class Map : MonoBehaviour
     [Header("PATHFINDING")]
     [SerializeField]
     private Waypoints _waypoints;
+
+    [Header("DEBUGGING")]
+    [SerializeField]
+    private TMP_Text _feedBackText;
 
     public List<Node> Nodes { get; set; }
     public GameManager GameManager { get; private set; }
@@ -79,6 +84,12 @@ public partial class Map : MonoBehaviour
     protected virtual void BeforeStart()
     {
 
+    }
+
+    public void DisplayFeedBack(string message)
+    {
+        if (_feedBackText == null) return;
+        _feedBackText.text = message;
     }
 
     private void FixedUpdate()

@@ -783,7 +783,7 @@ MonoBehaviour:
   <PorculineAnimator>k__BackingField:
     _animator: {fileID: 7667328544943017497}
   <PatrolModel>k__BackingField:
-    <CdwBetweenWalks>k__BackingField: 1.2
+    <CdwBetweenWalks>k__BackingField: 2
     <PatrolDistance>k__BackingField: 4
     <CollidingWithLayerMask>k__BackingField:
       serializedVersion: 2

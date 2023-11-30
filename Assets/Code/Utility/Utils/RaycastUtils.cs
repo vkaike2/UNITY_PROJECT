@@ -56,9 +56,14 @@ public class RaycastUtils : MonoBehaviour
     #endregion
 
     #region UI
-    public static bool HitSomethingUnderMouseUI()
+    public static bool HitSomethingUnderMouseUI(bool validateOnlyTagUI = false)
     {
         List<RaycastResult> hits = GetRaycastUnderPositionUI(Input.mousePosition);
+
+        if (validateOnlyTagUI)
+        {
+            return hits.Any(e => e.gameObject.CompareTag("UI"));
+        }
         return hits.Any();
     }
 
@@ -71,6 +76,7 @@ public class RaycastUtils : MonoBehaviour
     public static List<T> GetComponentsUnderMouseUI<T>(List<Excluding> excluding = null) where T : MonoBehaviour
     {
         List<RaycastResult> hits = GetRaycastUnderPositionUI(Input.mousePosition);
+
         return GetComponenstsUnderRaycastUI<T>(hits, excluding);
     }
 
@@ -111,6 +117,7 @@ public class RaycastUtils : MonoBehaviour
     }
 
     #endregion
+
 
 
     public enum Excluding

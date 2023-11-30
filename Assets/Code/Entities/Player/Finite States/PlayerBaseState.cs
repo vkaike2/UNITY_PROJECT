@@ -111,9 +111,9 @@ public abstract class PlayerBaseState
         return col.GetComponent<OneWayPlatform>();
     }
 
-    protected void ManagePoopPerformedEvent(bool assing)
+    protected void ManagePoopPerformedEvent(bool assign)
     {
-        if (assing)
+        if (assign)
         {
             _player.PoopInput.Performed.AddListener(OnPoopPerformed);
         }
@@ -155,57 +155,4 @@ public abstract class PlayerBaseState
     {
         ChangeState(Player.FiniteState.Pooping);
     }
-
-    //protected virtual void OnMoveInputStarted() { }
-
-    //protected virtual void OnMoveInputPerformed()
-    //{
-    //    //FlipPlayer();
-    //}
-
-    //protected virtual void OnMoveInputCanceled()
-    //{
-    //    _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-    //}
-
-    //protected virtual void OnJumpInputStarted() { }
-
-    //protected virtual void OnJumpInputPerformed() { }
-
-    //protected virtual void OnJumpInputCanceled() { }
-
-    //protected virtual void OnPoopInputStarted() 
-    //{
-    //    //_player.ChangeState(Player.FiniteState.Pooping);
-    //}
-
-    //protected void MovePlayerHorizontally()
-    //{
-    //    if (!_player.CanMove) return;
-
-    //    if (_player.MoveInput.Value.x != 0)
-    //    {
-    //        _rigidbody2D.drag = 0;
-    //        _rigidbody2D.velocity = new Vector2(_player.MoveInput.Value.x * _moveModel.MovementSpeed, _rigidbody2D.velocity.y);
-    //    }
-    //    else
-    //    {
-    //        if (_rigidbody2D.velocity.x != 0 && _player.IsOnTheGround() && _rigidbody2D.velocity.y == 0)
-    //        {
-    //            _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-
-    //            _rigidbody2D.drag = 10;
-    //        }
-    //        else
-    //        {
-    //            _rigidbody2D.drag = 0;
-    //        }
-    //    }
-    //}
-
-    //private void FlipPlayer()
-    //{
-    //    _player.RotationalTransform.localScale = new Vector3(_player.MoveInput.Value.x > 0 ? 1 : -1, 1, 1);
-    //}
-
 }

@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
     private CustomMouse _customMouse;
     private GameManager _gameManager;
+
+    public UnityEvent OnEscPerformed { get; set; }=  new UnityEvent();
 
     private void Start()
     {
@@ -37,7 +40,9 @@ public class InputManager : MonoBehaviour
 
     public void OnRightMouseButton(InputAction.CallbackContext context)
     {
-        switch (ValidateMouseInput(MouseButton.Left))
+        SendMouseTo validation = ValidateMouseInput(MouseButton.Left);
+
+        switch (validation)
         {
             case SendMouseTo.Player:
                 if (_gameManager.Player == null) return;
@@ -77,9 +82,9 @@ public class InputManager : MonoBehaviour
 
     public void OnPauseInput(InputAction.CallbackContext context)
     {
-        //_gameManager.OnPauseGameInput(context);
         _gameManager.PlayerInventory.OnOpenInventoryInput(context);
-        //_gameManager.PlayerInventory.OnOpenInventoryInput(context);
+
+        if (context.performed) OnEscPerformed.Invoke();
     }
 
     public void OnInteractEInput(InputAction.CallbackContext context)
@@ -91,10 +96,9 @@ public class InputManager : MonoBehaviour
 
     private SendMouseTo ValidateMouseInput(MouseButton button)
     {
-        bool mouseIsNotOverUI = RaycastUtils.HitSomethingUnderMouseUI();
+        bool mouseIsOverUI = RaycastUtils.HitSomethingUnderMouseUI(true);
 
-        if (mouseIsNotOverUI) return SendMouseTo.CustomMouse;
-        if (_customMouse.IsDragging) return SendMouseTo.CustomMouse;
+        if (mouseIsOverUI || _customMouse.IsDragging) return SendMouseTo.CustomMouse;
 
         if (button == MouseButton.Left)
         {

@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField:
-    _value: 10
+    _value: 8
   <KnockBackForce>k__BackingField: 700
   Health:
     _value: 0

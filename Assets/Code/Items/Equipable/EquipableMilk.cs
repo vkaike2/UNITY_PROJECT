@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 [Serializable]
@@ -7,7 +6,7 @@ public class EquipableMilk : EquipableItemBase
 {
     [Header("CONFIGURATION")]
     [SerializeField]
-    private float _reducedFlatCdw = 0.3f;
+    private float _reducedFlatCdw = 0.5f;
 
     protected override void EquipItem()
     {

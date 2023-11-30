@@ -61,6 +61,7 @@ public class Fart : MonoBehaviour
     private void OnFartInputPerformed()
     {
         if (_isFartOnCdw) return;
+        if (_player.CurrentState == Player.FiniteState.Dead) return;
 
         (Vector2 position, Vector2 direction, Quaternion rotation) mouse = GetMouseInformationRelatedToGameObject();
 
@@ -86,7 +87,7 @@ public class Fart : MonoBehaviour
 
     private bool CantApplyKnockBack()
     {
-        return _player.ShiftInput.Value && _player.IsTouchingGround;
+        return _player.IsTouchingGround;
     }
 
     private void SpawnFartProjectile((Vector2 position, Vector2 direction, Quaternion rotation) mouse)

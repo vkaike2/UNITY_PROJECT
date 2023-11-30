@@ -35,7 +35,6 @@ public partial class Player : MonoBehaviour
 
             _gravityWhenStarted = _rigidbody2D.gravityScale;
             _previousVelocity = _rigidbody2D.velocity;
-
             _rigidbody2D.velocity = Vector2.zero;
 
             Vector2 mouseDirection = GetMouseDirectionRelatedToPlayer();

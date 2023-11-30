@@ -21,7 +21,7 @@ public partial class EnemyFollowingBehaviour
         private bool _firstIteration = false;
 
         //Constants
-        private readonly float DEACTIVATE_COLLIDER_DOWN_PLATFORM = 0.2F;
+        private readonly float DEACTIVATE_COLLIDER_DOWN_PLATFORM = 0.15F;
         private readonly Vector2 DEFAULT_JUMP_VELOCITY = new Vector2(5, 15);
         private readonly float MAXIMUM_DISTANCE_FROM_TARGET_WHEN_JUMP = 0.5f;
         private readonly float MAX_TIME_TO_FORGTET_ABOUT_TARGET_WHEN_JUMP = 0.5f;
@@ -293,12 +293,10 @@ public partial class EnemyFollowingBehaviour
 
         private IEnumerator WaitHitGround()
         {
-            Debug.Log("WaitHitGround");
             while (!IsOnTheGround())
             {
                 yield return new WaitForFixedUpdate();
             }
-            Debug.Log("WaitHitGround - done");
             _isJumping = false;
         }
 

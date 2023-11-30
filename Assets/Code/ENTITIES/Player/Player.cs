@@ -110,6 +110,7 @@ public partial class Player : MonoBehaviour
     public void ChangeState(FiniteState state)
     {
         _currentState?.OnExitState();
+
         _currentState = _finiteStates.First(e => e.State == state);
         _currentState.EnterState();
         _stateDebug = _currentState.State;

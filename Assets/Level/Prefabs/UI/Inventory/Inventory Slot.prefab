@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9135421306141196513}
   m_Layer: 5
   m_Name: Inventory Slot
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   _type: 0
   <IsAvalialbe>k__BackingField: 1
   _slotOverImage: {fileID: 5076273133519648212}
+  _isUnlockedByDefault: 0
 --- !u!95 &9135421306141196513
 Animator:
   serializedVersion: 4
@@ -129,7 +130,7 @@ GameObject:
   - component: {fileID: 212897961438289317}
   m_Layer: 5
   m_Name: Slot Over
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

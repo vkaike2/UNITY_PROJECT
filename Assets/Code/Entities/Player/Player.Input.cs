@@ -28,7 +28,7 @@ public partial class Player : MonoBehaviour
     public void OnLeftMouseButton(InputAction.CallbackContext context)
     {
         if (_isFrozen) return;
-        if (PoopInput.Value) return;
+        if (CurrentState == FiniteState.Pooping) return;
 
         InitializeBooleanInput(FartInput, context);
     }
@@ -70,7 +70,7 @@ public partial class Player : MonoBehaviour
 
     private void InitializeBooleanInput(InputModel<bool> input, InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase != InputActionPhase.Canceled)
         {
             input.Value = true;
             input.Performed.Invoke();

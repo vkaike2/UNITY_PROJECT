@@ -543,7 +543,7 @@ MonoBehaviour:
     <Cooldown>k__BackingField:
       _minimumValue: 0.1
       <Base>k__BackingField:
-        _value: 1
+        _value: 1.5
       <Multiplier>k__BackingField:
         _value: 1
       <Increased>k__BackingField:
@@ -556,7 +556,7 @@ MonoBehaviour:
     <Damage>k__BackingField:
       _minimumValue: 0
       <Base>k__BackingField:
-        _value: 2.5
+        _value: 3
       <Multiplier>k__BackingField:
         _value: 1
       <Increased>k__BackingField:
@@ -580,7 +580,7 @@ MonoBehaviour:
     <CdwToPoop>k__BackingField:
       _minimumValue: 0.1
       <Base>k__BackingField:
-        _value: 2
+        _value: 1.5
       <Multiplier>k__BackingField:
         _value: 1
       <Increased>k__BackingField:

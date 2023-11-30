@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -9,6 +10,7 @@ public class EnemySpawnPosition : MonoBehaviour
     public int Id { get; set; } = 0;
     [field: SerializeField]
     public SpawnType Type { get; private set; }
+
     [field: SerializeField]
     public bool IsAvailable { get; set; } = false;
 
@@ -23,6 +25,12 @@ public class EnemySpawnPosition : MonoBehaviour
     {
         string availabilityName = IsAvailable ? "x" : " ";
         gameObject.name = $"[{availabilityName}][{Type}]Position {Id}";
+    }
+
+    public bool HasMonsterUnderMe()
+    {
+        List<Enemy> mob = RaycastUtils.GetComponentsUnderMouse<Enemy>();
+        return mob != null;
     }
 
     public enum SpawnType

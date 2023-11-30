@@ -23,6 +23,4 @@ public class PlayerPoopModel
     public float GravityWhilePooping { get; private set; } = 0.1f;
 
     public bool CanPoop { get; set; }
-
-    public class OnPoopSpawnedEvent : UnityEvent<PoopProjectile> { }
 }

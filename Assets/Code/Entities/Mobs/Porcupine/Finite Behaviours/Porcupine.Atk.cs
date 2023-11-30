@@ -11,6 +11,8 @@ public partial class Porcupine : Enemy
         private PorcupineAtkModel _atkModel;
         private PorcupineDamageDealer _damageDealer;
 
+        private Coroutine _cdwCoroutine;
+
         public override void Start(Enemy enemy)
         {
             base.Start(enemy);
@@ -36,7 +38,11 @@ public partial class Porcupine : Enemy
             _porcupine.PorculineAnimator.PlayAnimation(PorcupineAnimatorModel.AnimationName.Atk);
         }
 
-        public override void OnExitBehaviour() { }
+        public override void OnExitBehaviour() 
+        {
+            if (_cdwCoroutine == null) return;
+            _porcupine.StopCoroutine(_cdwCoroutine);
+        }
 
         public override void Update() { }
 
@@ -65,7 +71,7 @@ public partial class Porcupine : Enemy
 
         private void OnEndAnimation()
         {
-            _porcupine.StartCoroutine(CountCdwBetweenAtks());
+            _cdwCoroutine = _porcupine.StartCoroutine(CountCdwBetweenAtks());
             _porcupine.StartCoroutine(WaitTouchGroundThenChangeToPatrol());
         }
 

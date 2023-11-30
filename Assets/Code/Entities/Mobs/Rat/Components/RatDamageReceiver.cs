@@ -11,4 +11,12 @@ public class RatDamageReceiver : DamageReceiver
     {
         _rat.ChangeBehaviour(Rat.Behaviour.Die);
     }
+
+    protected override void OnReceiveDamage(float damage)
+    {
+        if (_rat.CurrentBehaviour == Rat.Behaviour.Idle)
+        {
+            _rat.ChangeBehaviour(Rat.Behaviour.FollowingPlayer);
+        }
+    }
 }

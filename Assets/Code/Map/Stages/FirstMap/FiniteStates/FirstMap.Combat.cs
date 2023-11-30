@@ -50,7 +50,10 @@ public partial class FirstMap : Map
         {
             for (int i = 0; i < _mapConfiguration.InnerStages.Count; i++)
             {
-                var innerStage = _mapConfiguration.InnerStages[i];
+                ScriptableMapConfiguration.InnerStage innerStage = _mapConfiguration.InnerStages[i];
+                
+                _map.DisplayFeedBack(innerStage.name);
+
                 yield return HandleActions(innerStage);
             }
         }

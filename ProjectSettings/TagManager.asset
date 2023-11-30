@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Platform
   - Item
   - GroundPlatform
-  - 
+  - CollideOnlyPlatform
   - 
   - 
   - 
@@ -58,4 +59,7 @@ TagManager:
     locked: 0
   - name: Item
     uniqueID: 1487569649
+    locked: 0
+  - name: Canvas
+    uniqueID: 2889179639
     locked: 0

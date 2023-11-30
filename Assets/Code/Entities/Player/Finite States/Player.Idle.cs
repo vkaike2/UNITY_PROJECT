@@ -6,7 +6,15 @@ public partial class Player : MonoBehaviour
 {
     private class Idle : PlayerBaseState
     {
+        private bool _knockBackBuffer;
+
         public override FiniteState State => FiniteState.Idle;
+
+        public override void Start(Player player)
+        {
+            base.Start(player);
+            _player.OnKnockbackEvent.AddListener(GivePlayerControl);
+        }
 
         public override bool ImFistState()
         {
@@ -19,9 +27,8 @@ public partial class Player : MonoBehaviour
 
             _animator.PlayAnimation(PlayerAnimatorModel.Animation.Idle);
 
-            //_jumpModel.IsBeingControlledByKnockback = false;
-
-            if (!_jumpModel.IsLandingOnAPlatform)
+            //Debug.Log($"{_jumpModel.IsLandingOnAPlatform} - {_knockBackBuffer}");
+            if (!_jumpModel.IsLandingOnAPlatform || !_jumpModel.IsBeingControlledByKnockback)
             {
                 FreezeRigidBodyConstraints(true);
             }
@@ -57,9 +64,7 @@ public partial class Player : MonoBehaviour
             _player.JumpInput.Performed.AddListener(OnJumpInputPerformed);
 
             _player.DownPlatformInput.Performed.AddListener(DownPlatform);
-            _player.OnKnockbackEvent.AddListener(GivePlayerControl);
-            //_fart.OnKnockBackEvent.AddListener(GivePlayerControl);
-            //_damageReceiver.OnKnockbackEvent.AddListener(GivePlayerControl);
+            //_player.OnKnockbackEvent.AddListener(GivePlayerControl);
 
             ManagePoopPerformedEvent(true);
         }
@@ -71,9 +76,7 @@ public partial class Player : MonoBehaviour
 
             _player.DownPlatformInput.Performed.RemoveListener(DownPlatform);
 
-            _player.OnKnockbackEvent.RemoveListener(GivePlayerControl);
-            //_fart.OnKnockBackEvent.RemoveListener(GivePlayerControl);
-            //_damageReceiver.OnKnockbackEvent.RemoveListener(GivePlayerControl);
+            //_player.OnKnockbackEvent.RemoveListener(GivePlayerControl);
 
             ManagePoopPerformedEvent(false);
         }
@@ -90,7 +93,6 @@ public partial class Player : MonoBehaviour
 
         private void OnMoveInputPerformed()
         {
-            Debug.Log("PERFORMED");
             ChangeState(FiniteState.Move);
         }
 
@@ -110,6 +112,11 @@ public partial class Player : MonoBehaviour
         {
             _jumpModel.IsBeingControlledByKnockback = true;
 
+            if (_player.CurrentState != State)
+            {
+                _player.StartCoroutine(WaitForKnockbackBuffer(seconds));
+            }
+
             FreezeRigidBodyConstraints(false);
             yield return new WaitForSeconds(seconds);
 
@@ -119,6 +126,13 @@ public partial class Player : MonoBehaviour
             }
             
             _jumpModel.IsBeingControlledByKnockback = false;
+        }
+
+        private IEnumerator WaitForKnockbackBuffer(float knockBackSeconds)
+        {
+            _knockBackBuffer = true;
+            yield return new WaitForSeconds(knockBackSeconds);
+            _knockBackBuffer = false;
         }
 
         private void DownPlatform()

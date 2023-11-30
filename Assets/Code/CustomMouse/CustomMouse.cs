@@ -103,7 +103,7 @@ public class CustomMouse : MonoBehaviour
             return;
         }
 
-        if(ItemBeingUsed != null)
+        if (ItemBeingUsed != null)
         {
             StopInteractionWithTwoStepsUsableItem();
             return;
@@ -239,7 +239,7 @@ public class CustomMouse : MonoBehaviour
             .GetComponentsUnderMouseUI<InventoryItemUI>(new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Children })
             .FirstOrDefault();
 
-        if(itemUnderMouse != null)
+        if (itemUnderMouse != null)
         {
             ItemData itemData = itemUnderMouse.ItemData;
             itemUnderMouse.RemoveFromInventory();
@@ -247,7 +247,7 @@ public class CustomMouse : MonoBehaviour
             ItemBeingUsed.UseOnItem(itemData);
 
             StartDragItem(itemData);
-            
+
             ItemBeingUsed = null;
             return;
         }

@@ -37,7 +37,7 @@ public class MapManager : MonoBehaviour
     {
         _gameManager = GameObject.FindObjectOfType<GameManager>();
 
-        _gameManager.OnPlayerDead.AddListener(OnPlayerDead);
+        //_gameManager.OnPlayerDead.AddListener(OnPlayerDead);
     }
 
     public void SetCameraConfigurations(Collider2D mapConfiner, float cameraSize)
