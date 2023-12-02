@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FullScreenDetector : MonoBehaviour
 {
-
+    ///TODO: fix it
     //private Canvas _canvas;
 
     //private InputManager _inputManager;

@@ -469,6 +469,7 @@ MonoBehaviour:
   _dpsMeter: {fileID: 0}
   _shouldApplyKnockback: 1
   _knockbackDuration: 0.3
+  _cdwInvincibility: 1
   <OnKnockbackEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []

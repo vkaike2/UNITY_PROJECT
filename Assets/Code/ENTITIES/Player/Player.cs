@@ -42,11 +42,12 @@ public partial class Player : MonoBehaviour
     public PlayerStatus Status { get; private set; }
     public PlayerDamageDealer DamageDealer { get; set; }
     public bool IsTouchingGround => JumpModel.GroundCheck.DrawPhysics2D(JumpModel.GroundLayer) != null;
-    public bool IsBeingControlledByKnockBack = false;
 
     protected GameManager GameManager { get; private set; }
     protected PlayerDamageReceiver DamageReceiver { get; private set; }
+
     protected OnKnockbackEvent OnKnockbackEvent { get; private set; } = new OnKnockbackEvent();
+    public KnockBackInformation KnockBackInfo { get; private set; } = new KnockBackInformation();
 
 
 
@@ -113,7 +114,6 @@ public partial class Player : MonoBehaviour
     public void ChangeState(FiniteState state)
     {
         _currentState?.OnExitState();
-
         _currentState = _finiteStates.First(e => e.State == state);
         _currentState.EnterState();
         _stateDebug = _currentState.State;
@@ -153,14 +153,21 @@ public partial class Player : MonoBehaviour
     private void HandleKnockBack(float seconds, KnockBackSource source)
     {
         OnKnockbackEvent.Invoke(seconds, source);
-        StartCoroutine(IsBeingControllerByKnockback(seconds));
+        StartCoroutine(IsBeingControllerByKnockback(seconds, source));
     }
 
-    private IEnumerator IsBeingControllerByKnockback(float seconds)
+    private IEnumerator IsBeingControllerByKnockback(float seconds, KnockBackSource source)
     {
-        IsBeingControlledByKnockBack = true;
+        KnockBackInfo.Source = source;
+        KnockBackInfo.IsBeingControlledByKnockBack = true;
         yield return new WaitForSeconds(seconds);
-        IsBeingControlledByKnockBack = false;
+        KnockBackInfo.IsBeingControlledByKnockBack = false;
+    }
+
+    public class KnockBackInformation
+    {
+        public bool IsBeingControlledByKnockBack { get; set; }
+        public KnockBackSource Source { get; set; }
     }
 
     public enum FiniteState

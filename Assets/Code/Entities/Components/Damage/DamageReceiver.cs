@@ -28,12 +28,16 @@ public abstract class DamageReceiver : MonoBehaviour
     private bool _shouldApplyKnockback = false;
     [SerializeField]
     private float _knockbackDuration = 0.3f;
+    [Header("CONFIGURATION")]
+    [SerializeField]
+    protected float _cdwInvincibility = 0.5f;
 
     [field: Header("EVENTS")]
     [field: SerializeField]
     public OnKnockbackEvent OnKnockbackEvent { get; private set; } = new OnKnockbackEvent();
 
     protected bool _isPlayer = false;
+
 
     private readonly List<int> _receivingDamageFrom = new List<int>();
     private const float CDW_TO_RECEIVE_DAMAGE_FOR_EACH_INSTANCE = 0.5f;
@@ -148,6 +152,11 @@ public abstract class DamageReceiver : MonoBehaviour
 
         int howManyTimesItWillBlink = 4;
         float blinkDuration = 0.5f;
+
+        int multiplier = (int) (_cdwInvincibility / 0.5f);
+
+        howManyTimesItWillBlink *= multiplier;
+        blinkDuration *= multiplier;
 
         for (int i = 0; i < howManyTimesItWillBlink; i++)
         {

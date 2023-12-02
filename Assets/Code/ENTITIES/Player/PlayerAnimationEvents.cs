@@ -11,7 +11,10 @@ namespace Assets.Code.LOGIC.Player
 
 
         public void PlayStepSound() => _audioController.PlayWithPitchVariation(AudioController.ClipName.Player_Step);
-        public void PlayJumpSound() => _audioController.PlayClip(AudioController.ClipName.Player_Jump);
+        public void PlayJumpSound()
+        {
+            _audioController.PlayClip(AudioController.ClipName.Player_Jump);
+        }
         public void PlayFartSound() => _audioController.PlayWithPitchVariation(AudioController.ClipName.Player_Fart);
         public void PlayPoopSound() => _audioController.PlayClip(AudioController.ClipName.Player_Poop);
 

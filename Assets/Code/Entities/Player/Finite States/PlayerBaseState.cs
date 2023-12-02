@@ -60,7 +60,7 @@ public abstract class PlayerBaseState
     {
         FlipPlayerToTheCorrectDirection();
 
-        if (_player.IsBeingControlledByKnockBack && _player.MoveInput.Value.x == 0) return;
+        if (_player.KnockBackInfo.IsBeingControlledByKnockBack) return;
 
         _rigidbody2D.velocity = new Vector2(_status.MovementSpeed.Get() * _player.MoveInput.Value.x, _rigidbody2D.velocity.y);
     }

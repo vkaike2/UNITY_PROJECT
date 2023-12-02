@@ -71,6 +71,7 @@ public class Fart : MonoBehaviour
         StartCoroutine(TakeControlOfEntity(mouse.direction));
 
         fartForce = new Vector2(fartForce.x, fartForce.y * _helpForcePercentage);
+
         SpawnFartProjectile(mouse);
 
         if (CheckIfCantApplyKnockback(fartForce)) return;

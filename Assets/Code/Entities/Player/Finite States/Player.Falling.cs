@@ -70,7 +70,6 @@ public partial class Player : MonoBehaviour
         private bool CheckIfPlayerIsOnTheGround()
         {
             if (!IsPlayerTouchingGround) return false;
-            if (_player.IsBeingControlledByKnockBack) return false;            
 
             if (_player.MoveInput.Value == Vector2.zero)
             {

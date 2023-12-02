@@ -6,10 +6,6 @@ public class PlayerDamageReceiver : DamageReceiver
 {
     private Player _player;
 
-    [Header("CONFIGURATION")]
-    [SerializeField]
-    private float _cdwInvincibility = 1f;
-
 
     private bool _canReceiveDamage = true;
 

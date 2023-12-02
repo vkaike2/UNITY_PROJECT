@@ -23,7 +23,7 @@ public partial class Player : MonoBehaviour
             _animator.PlayAnimation(PlayerAnimatorModel.Animation.Jump);
 
             _player.StartCoroutine(MakeSurePlayerLeftTheGround());
-            _jumpPerformedCoroutine = _player.StartCoroutine(PeformJump());
+            _jumpPerformedCoroutine = _player.StartCoroutine(PerformJump());
         }
 
         public override void OnExitState()
@@ -82,9 +82,8 @@ public partial class Player : MonoBehaviour
             if (!IsPlayerTouchingGround) return false;
             if (_jumpModel.GroundCheck.DrawPhysics2D(_jumpModel.GroundLayer).gameObject.GetComponent<OneWayPlatform>() != null) return false;
 
-            if (_player.MoveInput.Value == Vector2.zero && !_player.IsBeingControlledByKnockBack)
+            if (_player.MoveInput.Value == Vector2.zero && !_player.KnockBackInfo.IsBeingControlledByKnockBack)
             {
-                Debug.Log("foi pro idle");
                 return ChangeState(FiniteState.Idle);
             }
 
@@ -101,12 +100,18 @@ public partial class Player : MonoBehaviour
             _hasLeftTheGround = true;
         }
 
-        private IEnumerator PeformJump()
+        private IEnumerator PerformJump()
         {
             float cdw = 0;
             float actualJumpForce = _status.JumpForce.Get();
             while (cdw <= _jumpModel.CdwJumpAceleration)
             {
+
+                if (_player.KnockBackInfo.IsBeingControlledByKnockBack)
+                {
+                    break;
+                }
+
                 cdw += Time.deltaTime;
                 actualJumpForce -= _jumpModel.CdwJumpAceleration * (cdw / _jumpModel.CdwJumpAceleration);
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, actualJumpForce);

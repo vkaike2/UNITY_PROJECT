@@ -2548,34 +2548,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 946336145}
     m_Modifications:
-    - target: {fileID: 186529444, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
-      propertyPath: m_fontSize
-      value: 15.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 186529444, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 15.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 926515432, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.571
-      objectReference: {fileID: 0}
-    - target: {fileID: 926515432, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.009
-      objectReference: {fileID: 0}
-    - target: {fileID: 6844826127036649879, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8174157198139509736, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 8174157198139509736, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8227090835269282453, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2624,10 +2596,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Initial Map
       objectReference: {fileID: 0}
-    - target: {fileID: 8400939120877595481, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
-      propertyPath: _scriptablePossibleDrops
-      value: 
-      objectReference: {fileID: 11400000, guid: 48dbf936b5fff6748adeb84edd986aa1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f529ceb1a71a1e42b0cc54466b854a2, type: 3}
 --- !u!4 &8389596852569272651 stripped

@@ -38,9 +38,13 @@ public partial class Player : MonoBehaviour
 
         private void MovePlayerOnTheGround()
         {
-            if (_player.IsBeingControlledByKnockBack)
+            if (_player.KnockBackInfo.IsBeingControlledByKnockBack)
             {
-                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+                if (_player.KnockBackInfo.Source == KnockBackSource.Fart)
+                {
+                    _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+                }
+                // Will do nothing if its a damage source knockback
                 return;
             }
 

@@ -33,6 +33,7 @@ public partial class Player : MonoBehaviour
             }
             else
             {
+                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
                 _jumpModel.IsLandingOnAPlatform = false;
             }
         }
@@ -112,13 +113,13 @@ public partial class Player : MonoBehaviour
 
         private IEnumerator GiveControl(float seconds)
         {
-            //if (_player.CurrentState != State)
-            //{
-            //    _player.StartCoroutine(WaitForKnockbackBuffer(seconds));
-            //}
-
             FreezeRigidBodyConstraints(false);
             yield return new WaitForSeconds(seconds);
+
+            if (_player.CurrentState != State && !_player.IsTouchingGround)
+            {
+                _player.StartCoroutine(WaitForPlayerToTouchGroundAfterKnockback());
+            }
 
             if (_player.CurrentState == State)
             {
@@ -126,12 +127,17 @@ public partial class Player : MonoBehaviour
             }
         }
 
-        //private IEnumerator WaitForKnockbackBuffer(float knockBackSeconds)
-        //{
-        //    _knockBackBuffer = true;
-        //    yield return new WaitForSeconds(knockBackSeconds);
-        //    _knockBackBuffer = false;
-        //}
+        private IEnumerator WaitForPlayerToTouchGroundAfterKnockback()
+        {
+            while (!_player.IsTouchingGround)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+
+            FreezeRigidBodyConstraints(true);
+            yield return new WaitForFixedUpdate();
+            FreezeRigidBodyConstraints(false);
+        }
 
         private void DownPlatform()
         {
