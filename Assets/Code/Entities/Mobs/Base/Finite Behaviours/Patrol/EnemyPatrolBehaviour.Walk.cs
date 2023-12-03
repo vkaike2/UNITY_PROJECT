@@ -38,12 +38,12 @@ public partial class EnemyPatrolBehaviour
             _rigidbody2D.isKinematic = false;
             _model.OnChangeAnimation.RemoveAllListeners();
             ResetCoroutines();
-            DisabelGizmo();
+            DisableGizmo();
         }
 
         public override void Update() { }
 
-        private void DisabelGizmo() => _model.DisablePatrolGizmos();
+        private void DisableGizmo() => _model.DisablePatrolGizmos();
 
         private void ResetCoroutines()
         {
@@ -104,6 +104,7 @@ public partial class EnemyPatrolBehaviour
                     new Vector2(
                         direction == PatrolDirection.Right ? _enemy.transform.position.x + _model.PatrolDistance : _enemy.transform.transform.position.x - _model.PatrolDistance,
                         _enemy.transform.position.y);
+
                 nextMoveDirection = new Vector2(direction == PatrolDirection.Right ? 1 : -1, 0);
 
                 _enemy.RotationalTransform.localScale = new Vector3(direction == PatrolDirection.Right ? 1 : -1, 1, 1);

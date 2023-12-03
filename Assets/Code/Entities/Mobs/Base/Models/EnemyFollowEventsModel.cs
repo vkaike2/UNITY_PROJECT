@@ -7,7 +7,6 @@ public class EnemyFollowEventsModel
     public OnChangeAnimationEvent OnChangeAnimation { get; private set; } = new OnChangeAnimationEvent();
     public UnityEvent OnTargetUnreachable { get; private set; } = new UnityEvent();
 
-
     public void ResetEvents()
     {
         OnInteractWithTarget.RemoveAllListeners();

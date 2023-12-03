@@ -24,19 +24,19 @@ MonoBehaviour:
         <Weight>k__BackingField: 1
         <IsActive>k__BackingField: 1
         <DropContents>k__BackingField:
-        - name: '[off][2x2] Bean'
+        - name: '[2x2] Bean 25.00% chance'
           <Item>k__BackingField: {fileID: 11400000, guid: 1d288493bad74d749a23e401f29e8407, type: 2}
           <Weight>k__BackingField: 1
-          <IsActive>k__BackingField: 0
-        - name: '[off][2x2] Omelet'
+          <IsActive>k__BackingField: 1
+        - name: '[2x2] Omelet 25.00% chance'
           <Item>k__BackingField: {fileID: 11400000, guid: 64e3c61342e0d414cb75c2b0173c760e, type: 2}
           <Weight>k__BackingField: 1
-          <IsActive>k__BackingField: 0
-        - name: '[2x2] Pepper 100.00% chance'
+          <IsActive>k__BackingField: 1
+        - name: '[2x2] Pepper 25.00% chance'
           <Item>k__BackingField: {fileID: 11400000, guid: 565db31041290a546a82631f34ecaa17, type: 2}
           <Weight>k__BackingField: 1
           <IsActive>k__BackingField: 1
-        - name: '[off][2x2] Steak'
+        - name: '[2x2] Steak 25.00% chance'
           <Item>k__BackingField: {fileID: 11400000, guid: 373013497aa30ba44ac0293f4b188000, type: 2}
           <Weight>k__BackingField: 1
-          <IsActive>k__BackingField: 0
+          <IsActive>k__BackingField: 1

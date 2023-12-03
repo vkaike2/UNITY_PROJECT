@@ -105,7 +105,7 @@ public class ScriptableMapConfiguration : ScriptableObject
             switch (Type)
             {
                 case ActionType.Monster:
-                    name += $" - {Enemy.ScriptableEnemy.name} -> {((timeToMe + Timer).SecondsToTime())}";
+                    name += $" - {Enemy?.ScriptableEnemy?.name}";
                     break;
                 case ActionType.Chest:
                     break;

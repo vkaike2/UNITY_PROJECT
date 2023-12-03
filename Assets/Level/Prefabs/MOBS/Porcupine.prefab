@@ -168,13 +168,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.091572, y: 2.013321}
+    - - {x: 1.9581683, y: 1.9836757}
       - {x: 0.09, y: 2.2882915}
       - {x: -2.01, y: 1.9544766}
       - {x: -2.49, y: 1.3539315}
-      - {x: -2.1367922, y: 0.937094}
-      - {x: 2.1590488, y: 0.93787813}
-      - {x: 2.656642, y: 1.3657013}
+      - {x: -1.8588955, y: -0.0041686296}
+      - {x: -1.2041953, y: 0.0049579144}
+      - {x: -0.8356874, y: 1.0162407}
+      - {x: 0.8563738, y: 1.0102191}
+      - {x: 1.2900033, y: 0.041198254}
+      - {x: 1.9326766, y: 0.049693346}
+      - {x: 2.634408, y: 1.3286448}
 --- !u!114 &7667328544349974805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,7 +641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7667328545285336121}
   - component: {fileID: 7667328545285336123}
-  - component: {fileID: 7667328545285336120}
+  - component: {fileID: 7402675920694653800}
   m_Layer: 8
   m_Name: Enemy Hitbox
   m_TagString: Untagged
@@ -673,8 +677,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitboxType: 0
---- !u!61 &7667328545285336120
-BoxCollider2D:
+--- !u!60 &7402675920694653800
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -686,7 +690,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006966114, y: 0.35178518}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -696,9 +700,16 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.3691988, y: 0.7770872}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.30863762, y: 0.72473335}
+      - {x: -0.30109644, y: 0.7246065}
+      - {x: -0.6866303, y: 0.3440939}
+      - {x: -0.6819935, y: 0.034395695}
+      - {x: -0.6252646, y: -0.024796128}
+      - {x: 0.6208297, y: -0.023835063}
+      - {x: 0.68528605, y: 0.052265644}
+      - {x: 0.68663025, y: 0.34139585}
 --- !u!1 &7667328545300512274
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField:
-    _value: 4
+    _value: 4.5
   <KnockBackForce>k__BackingField: 700
   Health:
     _value: 0

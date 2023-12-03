@@ -8,7 +8,6 @@ public partial class EnemyFollowingBehavior
 
     public Pathfinding Pathfinding { get; set; }
 
-
     //used for Jump
     public EnemyFollowModel EnemyFollowingModel { get; private set; }
     //used for Walk only

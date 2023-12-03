@@ -67,6 +67,7 @@ public partial class Player : MonoBehaviour
 
         private void StopJumping()
         {
+            if (_jumpPerformedCoroutine == null) return;
             _player.StopCoroutine(_jumpPerformedCoroutine);
         }
 

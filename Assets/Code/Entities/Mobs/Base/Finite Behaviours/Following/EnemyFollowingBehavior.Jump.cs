@@ -1,5 +1,6 @@
 ﻿using Calcatz.MeshPathfinding;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static EnemyFollowingBehavior;
@@ -21,7 +22,7 @@ public partial class EnemyFollowingBehaviour
         private bool _firstIteration = false;
 
         //Constants
-        private readonly float DEACTIVATE_COLLIDER_DOWN_PLATFORM = 0.3F;
+        private readonly float DEACTIVATE_COLLIDER_DOWN_PLATFORM = 0.2F;
         private readonly Vector2 DEFAULT_JUMP_VELOCITY = new Vector2(5, 15);
         private readonly float MAXIMUM_DISTANCE_FROM_TARGET_WHEN_JUMP = 0.5f;
         private readonly float MAX_TIME_TO_FORGTET_ABOUT_TARGET_WHEN_JUMP = 0.5f;
@@ -117,7 +118,8 @@ public partial class EnemyFollowingBehaviour
 
             Node node = paths.FirstOrDefault();
 
-            if (node == null)
+
+            if (node == null /*|| PlayerIsCloserThanNextPath(node.transform.position)*/)
             {
                 _target.TargeTransform = _parent.Pathfinding.Target.transform;
                 _target.ParentNode = null;
@@ -139,6 +141,15 @@ public partial class EnemyFollowingBehaviour
 
             _target.ParentNode = node;
             _target.TargeTransform = node.transform;
+        }
+
+        private bool PlayerIsCloserThanNextPath(Vector2 nodePosition)
+        {
+            float targetDistance = Vector2.Distance(_enemy.transform.position, _parent.Pathfinding.Target.transform.position);
+
+            float nodeDistance = Vector2.Distance(_enemy.transform.position, nodePosition);
+
+            return targetDistance < nodeDistance;
         }
 
         private void CalculateDirection()
@@ -336,96 +347,57 @@ public partial class EnemyFollowingBehaviour
 
         private Vector3 CalculateJumpVelocity(Transform target)
         {
-            float initialAngle = 70f;
+            List<float> anglesToBeTested = new List<float>()
+            {
+                70f,
+                60f,
+                45f
+            };
 
-            Vector3 p = target.position;
-            p = new Vector3(p.x, p.y + 0.1f, p.z);
+            List<JumpAngleDto> jumpAngles = new List<JumpAngleDto>();
 
-            float gravity = Physics.gravity.magnitude * 3;
-            float angle = initialAngle * Mathf.Deg2Rad;
+            foreach (var testingAngle in anglesToBeTested)
+            {
+                Vector3 p = target.position;
+                p = new Vector3(p.x, p.y + 0.1f, p.z);
 
-            // Positions of this object and the target on the same plane
-            Vector3 planarTarget = new Vector3(p.x, 0, p.z);
-            Vector3 planarPostion = new Vector3(_enemy.transform.position.x, 0, _enemy.transform.position.z);
+                float gravity = Physics.gravity.magnitude * 3;
+                float angle = testingAngle * Mathf.Deg2Rad;
 
-            // Planar distance between objects
-            float distance = Vector3.Distance(planarTarget, planarPostion);
-            // Distance along the y axis between objects
-            float yOffset = _enemy.transform.position.y - p.y;
-            //Debug.Log($"offset: {yOffset}");
+                // Positions of this object and the target on the same plane
+                Vector3 planarTarget = new Vector3(p.x, 0, p.z);
+                Vector3 planarPosition = new Vector3(_enemy.transform.position.x, 0, _enemy.transform.position.z);
 
-            float initialVelocity = (1 / Mathf.Cos(angle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset));
-            Vector3 velocity = new Vector3(0, initialVelocity * Mathf.Sin(angle), initialVelocity * Mathf.Cos(angle));
-            // Rotate our velocity to match the direction between the two objects
-            float angleBetweenObjects = Vector3.Angle(Vector3.forward, planarTarget - planarPostion);
-            Vector3 finalVelocity = Quaternion.AngleAxis(angleBetweenObjects, Vector3.up) * velocity;
+                // Planar distance between objects
+                float distance = Vector3.Distance(planarTarget, planarPosition);
+                // Distance along the y axis between objects
+                float yOffset = _enemy.transform.position.y - p.y;
 
-            return new Vector3(HasIntentionToGoRight(target.position) ? finalVelocity.x : -finalVelocity.x, finalVelocity.y, 0);
+                float initialVelocity = (1 / Mathf.Cos(angle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset));
+                Vector3 velocity = new Vector3(0, initialVelocity * Mathf.Sin(angle), initialVelocity * Mathf.Cos(angle));
+                // Rotate our velocity to match the direction between the two objects
+                float angleBetweenObjects = Vector3.Angle(Vector3.forward, planarTarget - planarPosition);
+                Vector3 finalVelocity = Quaternion.AngleAxis(angleBetweenObjects, Vector3.up) * velocity;
+
+                jumpAngles.Add(new JumpAngleDto()
+                {
+                    Angle = testingAngle,
+                    JumpForce = finalVelocity,
+                    Power = finalVelocity.x + finalVelocity.y
+                });
+            }
+
+            JumpAngleDto mostEfficientAngle = jumpAngles.OrderBy(e => e.Power).FirstOrDefault();
+
+            return new Vector3(HasIntentionToGoRight(target.position) ? mostEfficientAngle.JumpForce.x : -mostEfficientAngle.JumpForce.x, mostEfficientAngle.JumpForce.y, 0);
         }
 
-        //private Vector2 CalculateOptimalJumpVelocity(Transform target)
-        //{
-        //    float minAngle = 0f;
-        //    float maxAngle = 90f;
-        //    float angleThreshold = 5f; // Adjust this threshold based on your precision requirements
-
-        //    Vector3 targetPosition = new Vector3(target.position.x, target.position.y + 0.1f, target.position.z);
-        //    Vector3 startPosition = _enemy.transform.position;
-        //    Debug.Log($"target {targetPosition} - {startPosition}");
-        //    float gravity = Physics.gravity.magnitude * 3;
-
-        //    while (maxAngle - minAngle > angleThreshold)
-        //    {
-        //        float testAngle = (maxAngle + minAngle) / 2f;
-
-        //        // Calculate the trajectory with the test angle
-        //        Vector2 testVelocity = CalculateVelocity(testAngle, startPosition, targetPosition, gravity);
-        //        Debug.Log($"Test Velocity: {testVelocity}");
-
-        //        // Adjust the search range based on the result
-        //        if (IsLandingLate(testVelocity, targetPosition, startPosition))
-        //        {
-        //            maxAngle = testAngle;
-        //        }
-        //        else
-        //        {
-        //            minAngle = testAngle;
-        //        }
-        //    }
-
-        //    // Use the average of the final range as the optimal angle
-        //    float optimalAngle = (maxAngle + minAngle) / 2f;
-        //    Debug.Log($"Optimal Angle: {optimalAngle}");
-
-        //    // Calculate and return the optimal velocity
-        //    return CalculateVelocity(optimalAngle, startPosition, targetPosition, gravity);
-        //}
-
-        //private Vector2 CalculateVelocity(float angle, Vector3 start, Vector3 target, float gravity)
-        //{
-        //    float horizontalDistance = Vector2.Distance(new Vector2(start.x, start.z), new Vector2(target.x, target.z));
-        //    float verticalDistance = target.y - start.y;
-
-        //    // Calculate the velocity using the projectile motion formula
-        //    float velocity = Mathf.Sqrt((horizontalDistance * gravity) / Mathf.Sin(2 * angle * Mathf.Deg2Rad));
-
-        //    // Calculate the x and y components of the velocity
-        //    float vx = velocity * Mathf.Cos(angle * Mathf.Deg2Rad);
-        //    float vy = velocity * Mathf.Sin(angle * Mathf.Deg2Rad);
-
-        //    return new Vector2(vx, vy);
-        //}
-
-        //private bool IsLandingLate(Vector2 velocity, Vector3 target, Vector3 start)
-        //{
-        //    float gravity = Physics.gravity.magnitude * 3;
-
-        //    float timeOfFlight = (2f * velocity.y) / gravity;
-
-        //    float calculatedY = start.y + velocity.y * timeOfFlight - 0.5f * gravity * Mathf.Pow(timeOfFlight, 2);
-
-        //    return calculatedY > target.y;
-        //}
+        public struct JumpAngleDto
+        {
+            public float Angle { get; set; }
+            public float Power { get; set; }
+            public Vector2 JumpForce { get; set; }
+        }
 
         #endregion
 

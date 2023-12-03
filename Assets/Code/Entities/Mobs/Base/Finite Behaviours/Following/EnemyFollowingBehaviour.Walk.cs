@@ -58,7 +58,6 @@ public partial class EnemyFollowingBehaviour : MonoBehaviour
             }
 
             CalculateDirection(targetTransform);
-
             
             _enemy.RotationalTransform.localScale = new Vector3(_direction.x, 1, 1);
             _rigidbody2D.velocity = new Vector2(_direction.x * _enemy.Status.MovementSpeed.Get(), 0);

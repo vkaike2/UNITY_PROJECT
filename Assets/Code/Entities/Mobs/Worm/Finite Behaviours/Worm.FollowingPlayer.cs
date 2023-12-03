@@ -16,7 +16,9 @@ public partial class Worm : Enemy
         {
             base.Start(enemy);
 
-            _followingBehaviour = new EnemyFollowingBehavior(EnemyFollowingBehavior.MovementType.Walk, _followingEvents);
+            _followingBehaviour = new EnemyFollowingBehavior(
+                EnemyFollowingBehavior.MovementType.Walk,
+                _followingEvents);
             _followingBehaviour.Start(enemy);
 
             _followingBehaviour.Pathfinding = _worm.Pathfinding;
