@@ -22,7 +22,7 @@ public partial class Chicken : Enemy
         public override void OnEnterBehaviour()
         {
              AssignEvents();
-            _chicken.PlayerPathfinding.StartFindPath(Pathfinding.PossibleActions.Vertical);
+            _chicken.PlayerPathfinding.StartFindPath(Pathfinding.PossibleActions.Jump);
             _followingBehavior.Pathfinding = _chicken.PlayerPathfinding;
 
             _followingBehavior.OnEnterBehaviour();

@@ -23,7 +23,7 @@ public partial class Rat : Enemy
         public override void OnEnterBehaviour()
         {
             AssignEvents();
-            _rat.PlayerPathfinding.StartFindPath(Pathfinding.PossibleActions.Vertical);
+            _rat.PlayerPathfinding.StartFindPath(Pathfinding.PossibleActions.Jump);
             _followingBehavior.Pathfinding = _rat.PlayerPathfinding;
 
             _followingBehavior.OnEnterBehaviour();

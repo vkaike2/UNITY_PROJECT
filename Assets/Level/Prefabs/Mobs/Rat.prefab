@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField:
-    _value: 6
+    _value: 7
   <KnockBackForce>k__BackingField: 700
   Health:
     _value: 0
@@ -386,6 +386,7 @@ MonoBehaviour:
   _dpsMeter: {fileID: 0}
   _shouldApplyKnockback: 0
   _knockbackDuration: 0.3
+  _cdwInvincibility: 0.5
   <OnKnockbackEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []

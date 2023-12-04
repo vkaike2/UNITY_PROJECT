@@ -10,30 +10,15 @@ public static class FloatExtension
         return value > min && value < max; 
     }
 
-    public static string SecondsToTime(this float seconds, bool useHour = false)
+    public static string SecondsToTime(this float seconds)
     {
-        float hour = 0;
-        float minute = 0;
-        float second = 0;
+        // Calculate minutes and seconds
+        int minutes = (int)seconds / 60;
+        int remainingSeconds = (int)seconds % 60;
 
-        //has hours
-        if (second >= 3600 && useHour)
-        {
-            hour = seconds / 3600;
-            seconds -= 3600 * (int)Math.Floor(hour);
-        }
+        // Format the time as "MM:SS"
+        string formattedTime = $"{minutes:D2}:{remainingSeconds:D2}";
 
-        // has minutes
-        if (seconds >= 60)
-        {
-            minute = seconds / 60;
-            seconds -= 60 * (int)Math.Floor(minute);
-        }
-
-        second = seconds;
-
-        if (useHour) return $"{hour.ToString("F0").PadLeft(2, '0')}:{minute.ToString("F0").PadLeft(2, '0')}:{second.ToString("F0").PadLeft(2, '0')}";
-
-        return $"{minute.ToString("F0").PadLeft(2, '0')}:{second.ToString("F0").PadLeft(2, '0')}";
+        return formattedTime;
     }
 }

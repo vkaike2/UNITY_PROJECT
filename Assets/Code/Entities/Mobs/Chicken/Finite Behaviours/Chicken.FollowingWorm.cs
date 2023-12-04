@@ -23,7 +23,7 @@ public partial class Chicken : Enemy
         {
             AssignEvents();
             _chicken.WormPathfinding.SetTarget(_chicken.AtkWormModel.WormTarget.transform);
-            _chicken.WormPathfinding.StartFindPath(Pathfinding.PossibleActions.Vertical);
+            _chicken.WormPathfinding.StartFindPath(Pathfinding.PossibleActions.Jump);
             _followingBehavior.Pathfinding = _chicken.WormPathfinding;
 
             _followingBehavior.OnEnterBehaviour();

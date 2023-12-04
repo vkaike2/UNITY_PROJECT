@@ -17,7 +17,6 @@ public partial class Bird : Enemy
     [field: SerializeField]
     public BirdAtkModel AtkModel { get; private set; }
 
-
     public Behaviour? CurrentBehaviour => ((BirdBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
 
     protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();
@@ -28,12 +27,13 @@ public partial class Bird : Enemy
         new Atk(),
         new Die()
     };
-    private Rigidbody2D _rigidbody2D;
+
+    private Rigidbody2D _rigidBody2D;
 
     protected override void AfterAwake()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _rigidbody2D.bodyType = RigidbodyType2D.Static;
+        _rigidBody2D = GetComponent<Rigidbody2D>();
+        _rigidBody2D.bodyType = RigidbodyType2D.Static;
     }
 
     #region ANIMATOR EVENTS

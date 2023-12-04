@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7df636ef0e88587499e8d37b9a39c862, type: 3}
-  m_Name: FirstMap
+  m_Name: FirstMap - First Try
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 1
   <InnerStages>k__BackingField:

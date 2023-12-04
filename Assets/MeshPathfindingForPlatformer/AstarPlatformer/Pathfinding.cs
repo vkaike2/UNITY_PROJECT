@@ -55,7 +55,7 @@ namespace Calcatz.MeshPathfinding
             StartFindPath(1, true, _possibleActions);
         }
 
-        public void StartFindPath(float _unitHeight, bool _looping = true, PossibleActions _possibleActions = PossibleActions.Horizontal)
+        public void StartFindPath(float _unitHeight, bool _looping = true, PossibleActions _possibleActions = PossibleActions.Walk)
         {
             InitNodeDataDictionary();
             StartCoroutine(FindPath(_unitHeight, _looping, _possibleActions));
@@ -96,6 +96,13 @@ namespace Calcatz.MeshPathfinding
                 bool success = false;
 
                 startNodeData = nodeDataDictionary[waypoints.FindNodeLessThanHeight(transform.position, _unitHeight)];
+                
+                if(m_target == null)
+                {
+                    pathResult = null;
+                    yield break;
+                }
+
                 Node.Data targetNodeData = nodeDataDictionary[waypoints.FindNode(m_target.position)];
 
                 if (startNodeData.nodeObject.traversable && targetNodeData.nodeObject.traversable)
@@ -229,17 +236,17 @@ namespace Calcatz.MeshPathfinding
 
                 switch (_possibleActions)
                 {
-                    case PossibleActions.Horizontal:
+                    case PossibleActions.Walk:
 
                         Node.Neighbours parentNode = currentNode.parent.nodeObject.neighbours.FirstOrDefault(e => e.node == currentNode.nodeObject);
-                        if (parentNode.needToJump || parentNode.needToGoDownPlatform)
+                        if (parentNode.needToJump || parentNode.needToGoDownPlatform || parentNode.needToFallDown)
                         {
                             path = null;
                             break;
                         }
 
                         break;
-                    case PossibleActions.Vertical:
+                    case PossibleActions.Jump:
                         break;
                     default:
                         break;
@@ -287,8 +294,8 @@ namespace Calcatz.MeshPathfinding
 
         public enum PossibleActions
         {
-            Horizontal,
-            Vertical
+            Walk,
+            Jump
         }
     }
 }

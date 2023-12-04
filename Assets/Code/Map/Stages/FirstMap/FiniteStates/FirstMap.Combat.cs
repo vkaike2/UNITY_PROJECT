@@ -146,8 +146,17 @@ public partial class FirstMap : Map
                         && !e.HasBeingUsedRecently
                         && !e.HasMonsterUnderMe())
                     .ToList();
+                EnemySpawnPosition randomPosition;
+                
+                if (filteredPositions.Count == 1)
+                {
+                    randomPosition = filteredPositions.FirstOrDefault();
+                }
+                else
+                {
+                    randomPosition = filteredPositions[UnityEngine.Random.Range(0, filteredPositions.Count)];
+                }
 
-                EnemySpawnPosition randomPosition = filteredPositions[UnityEngine.Random.Range(0, filteredPositions.Count - 1)];
                 
                 //This 0.3f is added to give some space between each mob on the same spawn position
                 randomPosition.UseIt(WARNING_COUNT_BEFORE_SPAWN_ENEMY + 2f);

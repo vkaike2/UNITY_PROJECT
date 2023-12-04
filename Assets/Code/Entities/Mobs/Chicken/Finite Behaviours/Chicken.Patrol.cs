@@ -62,7 +62,7 @@ public partial class Chicken : Enemy
             if (worm == null) return false;
 
             _chicken.AtkWormModel.WormTarget = worm;
-            _chicken.WormPathfinding.FindPath(Pathfinding.PossibleActions.Vertical, target: worm.transform);
+            _chicken.WormPathfinding.FindPath(Pathfinding.PossibleActions.Jump, target: worm.transform);
 
             Node[] pathResult = _chicken.WormPathfinding.GetPathResult();
             return pathResult != null;
@@ -70,7 +70,7 @@ public partial class Chicken : Enemy
 
         private bool CheckIfPlayerIsReachable()
         {
-            Node[] pathResult = _chicken.PlayerPathfinding.FindPath(Pathfinding.PossibleActions.Vertical);
+            Node[] pathResult = _chicken.PlayerPathfinding.FindPath(Pathfinding.PossibleActions.Jump);
 
             return pathResult != null;
         }

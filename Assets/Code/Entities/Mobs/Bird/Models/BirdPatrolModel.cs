@@ -11,7 +11,7 @@ public class BirdPatrolModel
     [field: SerializeField]
     public float HorizontalVelocity { get; private set; } = 5f;
     [field: SerializeField]
-    public float AtkCdw { get; private set; } = 5f;
+    public MinMax AtkCdw { get; private set; }
 
     [field: Space]
     [field: Header("COMPONENTS")]

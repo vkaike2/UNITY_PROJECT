@@ -341,6 +341,7 @@ MonoBehaviour:
   _dpsMeter: {fileID: 0}
   _shouldApplyKnockback: 0
   _knockbackDuration: 0.3
+  _cdwInvincibility: 0.5
   <OnKnockbackEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
@@ -364,7 +365,9 @@ MonoBehaviour:
     _animator: {fileID: 1057404873427541563}
   <PatrolModel>k__BackingField:
     <HorizontalVelocity>k__BackingField: 2.5
-    <AtkCdw>k__BackingField: 5
+    <AtkCdw>k__BackingField:
+      _min: 3
+      _max: 6
     <CollidingWithWall>k__BackingField: {fileID: 733497056968389448}
   <AtkModel>k__BackingField:
     <AtkFlyingSpeed>k__BackingField: 10

@@ -27,8 +27,9 @@ public class ScriptableMapConfiguration : ScriptableObject
         foreach (InnerStage innerStage in InnerStages)
         {
             if (innerStage.Actions == null) continue;
-            timerCount += innerStage.GetTimerForAllMyActions();
+
             innerStage.Validate(timerCount);
+            timerCount += innerStage.GetTimerForAllMyActions();
         }
     }
 
@@ -96,8 +97,7 @@ public class ScriptableMapConfiguration : ScriptableObject
         {
             name = $"{(timeToMe.SecondsToTime())} -> {Type.ToString()}";
 
-
-            if(Timer == 0) 
+            if (Timer == 0)
             {
                 Timer = 1;
             }
@@ -105,7 +105,11 @@ public class ScriptableMapConfiguration : ScriptableObject
             switch (Type)
             {
                 case ActionType.Monster:
-                    name += $" - {Enemy?.ScriptableEnemy?.name}";
+
+                    string position = Enemy.UseRandomPosition ? "pos:XX" : $"pos:{Enemy.SpawnPositionId.ToString().PadLeft(2, '0')}";
+                    string hasItem = Enemy.ScriptablePossibleDrop == null ? "drop:none" : $"drop:{Enemy.ScriptablePossibleDrop.name}";
+                    
+                    name += $" {Enemy?.ScriptableEnemy?.name.PadRight(10, ' ')} \t t:{Timer.ToString().PadLeft(2, '0')} - {position} - {hasItem}";
                     break;
                 case ActionType.Chest:
                     break;

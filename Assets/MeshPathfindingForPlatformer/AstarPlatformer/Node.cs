@@ -70,7 +70,6 @@ namespace Calcatz.MeshPathfinding
 
         [Tooltip("This node will be ignored in calculation if it's not traversable.")]
         public bool traversable = true;
-        public bool needToJumpIfFirst = false;
 
         public List<Neighbours> neighbours;
 
@@ -175,6 +174,8 @@ namespace Calcatz.MeshPathfinding
 
             public bool needToJump;
             public bool needToGoDownPlatform;
+            [Tooltip("When you are falling from one platform to other")]
+            public bool needToFallDown;
 
             public Neighbours() { }
 

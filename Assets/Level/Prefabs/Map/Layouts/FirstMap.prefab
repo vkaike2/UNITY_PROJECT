@@ -246,20 +246,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (10)
     node: {fileID: 4362666548177006665}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (8)
     node: {fileID: 779080727541715487}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (21)
     node: {fileID: 8886593657549281196}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &253453732708405967
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,32 +458,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (21)
     node: {fileID: 8886593657549281196}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (17)
     node: {fileID: 378478924355665587}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (20)
     node: {fileID: 7216869348457466275}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (19)
     node: {fileID: 1585182330651829385}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (15)
     node: {fileID: 6925313100696230793}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (13)
     node: {fileID: 3031051568787051242}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &431270564941437518
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,20 +706,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (12)
     node: {fileID: 9060763516803154109}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (6)
     node: {fileID: 6711706291224614308}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (17)
     node: {fileID: 378478924355665587}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &570064128549793447
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +745,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570064128549793447}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1630,24 +1639,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (17)
     node: {fileID: 4119786786787352992}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (14)
     node: {fileID: 5024811614672319604}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (22)
     node: {fileID: 1958953575177685196}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (23)
     node: {fileID: 1842783196618207421}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &1072765189239117224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,24 +1840,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: ground (3)
     node: {fileID: 2486860073417573045}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (2)
     node: {fileID: 6924177633164905143}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (4)
     node: {fileID: 4109240754067734070}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (0)
     node: {fileID: 8227090835841733529}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &1118758687819390968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,28 +2236,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (7)
     node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
   - name: Node (4)
     node: {fileID: 4420804255868088061}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (5)
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (10)
     node: {fileID: 7212187734054710469}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (13)
     node: {fileID: 3269258450651046598}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &1255033700711648080
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,12 +2729,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (5)
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &1606135965331720929
 GameObject:
   m_ObjectHideFlags: 0
@@ -3035,32 +3054,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (21)
     node: {fileID: 8886593657549281196}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (18)
     node: {fileID: 2396946413070837710}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (17)
     node: {fileID: 378478924355665587}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (19)
     node: {fileID: 1585182330651829385}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (16)
     node: {fileID: 2773285432060974340}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (14)
     node: {fileID: 7283556787020930289}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &1778058818553878233
 GameObject:
   m_ObjectHideFlags: 0
@@ -4169,16 +4193,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node
     node: {fileID: 8355616597004858563}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (2)
     node: {fileID: 1912871387864876588}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &2407575969608569371
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,28 +4435,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (7)
     node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
   - name: Node (2)
     node: {fileID: 1912871387864876588}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (1)
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (12)
     node: {fileID: 837880454840560788}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (11)
     node: {fileID: 6901890659978907494}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &2554800885084191936
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,36 +4506,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (6)
     node: {fileID: 6711706291224614308}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (8)
     node: {fileID: 779080727541715487}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (0)
     node: {fileID: 3787960736594589311}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (13)
     node: {fileID: 3031051568787051242}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (14)
     node: {fileID: 7283556787020930289}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (16)
     node: {fileID: 2773285432060974340}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (15)
     node: {fileID: 6925313100696230793}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &2584127298705107506
 GameObject:
   m_ObjectHideFlags: 0
@@ -4552,32 +4587,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (21)
     node: {fileID: 8886593657549281196}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (18)
     node: {fileID: 2396946413070837710}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (20)
     node: {fileID: 7216869348457466275}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (19)
     node: {fileID: 1585182330651829385}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (12)
     node: {fileID: 9060763516803154109}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (11)
     node: {fileID: 9037150531455561897}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &2609394124106105834
 GameObject:
   m_ObjectHideFlags: 0
@@ -4758,28 +4798,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (11)
     node: {fileID: 9037150531455561897}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (6)
     node: {fileID: 1261513635721808389}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: ground (5)
     node: {fileID: 4580754393151724004}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: ground (0)
     node: {fileID: 8227090835841733529}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (17)
     node: {fileID: 378478924355665587}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &2783410193251973422
 GameObject:
   m_ObjectHideFlags: 0
@@ -5137,12 +5181,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (1)
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &2993609080373748818
 GameObject:
   m_ObjectHideFlags: 0
@@ -5283,28 +5327,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (3)
     node: {fileID: 7755382140752019050}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (2)
     node: {fileID: 1912871387864876588}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (4)
     node: {fileID: 4420804255868088061}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (8)
     node: {fileID: 9219319686943771534}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (9)
     node: {fileID: 4331265058700272098}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &3229704116131038277
 GameObject:
   m_ObjectHideFlags: 0
@@ -5350,16 +5398,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (2)
     node: {fileID: 1912871387864876588}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (4)
     node: {fileID: 4420804255868088061}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &3231545287650980446
 GameObject:
   m_ObjectHideFlags: 0
@@ -5877,28 +5926,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (10)
     node: {fileID: 7212187734054710469}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (12)
     node: {fileID: 837880454840560788}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (8)
     node: {fileID: 9219319686943771534}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (7)
     node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (17)
     node: {fileID: 4119786786787352992}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &3411002560769044169
 GameObject:
   m_ObjectHideFlags: 0
@@ -6189,12 +6242,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: ground (4)
     node: {fileID: 4600035959523973782}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &3469449103520819421
 GameObject:
   m_ObjectHideFlags: 0
@@ -6434,16 +6487,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (22)
     node: {fileID: 1958953575177685196}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (15)
     node: {fileID: 6764881735950194885}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &3545972085436259114
 GameObject:
   m_ObjectHideFlags: 0
@@ -6489,20 +6543,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (13)
     node: {fileID: 3269258450651046598}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
   - name: Node (6)
     node: {fileID: 4370502154176230177}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (22)
     node: {fileID: 1958953575177685196}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &3572881530976816770
 GameObject:
   m_ObjectHideFlags: 0
@@ -6580,32 +6636,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (10)
     node: {fileID: 7212187734054710469}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (9)
     node: {fileID: 4331265058700272098}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (5)
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (6)
     node: {fileID: 4370502154176230177}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (14)
     node: {fileID: 5024811614672319604}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (15)
     node: {fileID: 6764881735950194885}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &3629227107248880168
 GameObject:
   m_ObjectHideFlags: 0
@@ -6735,20 +6796,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (12)
     node: {fileID: 837880454840560788}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
   - name: Node
     node: {fileID: 8355616597004858563}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (23)
     node: {fileID: 1842783196618207421}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &3666910423736719466
 GameObject:
   m_ObjectHideFlags: 0
@@ -7519,28 +7582,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (4)
     node: {fileID: 4109240754067734070}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (3)
     node: {fileID: 2486860073417573045}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: ground (4)
     node: {fileID: 4600035959523973782}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: ground (7)
     node: {fileID: 1541633621049114981}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (8)
     node: {fileID: 779080727541715487}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &4038300614611275022
 GameObject:
   m_ObjectHideFlags: 0
@@ -7620,20 +7687,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (0)
     node: {fileID: 3787960736594589311}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (3)
     node: {fileID: 2362584986351784697}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (7)
     node: {fileID: 5036394215461721178}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &4120751095848128971
 GameObject:
   m_ObjectHideFlags: 0
@@ -7679,12 +7748,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: ground (5)
     node: {fileID: 4580754393151724004}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &4121691375789769575
 GameObject:
   m_ObjectHideFlags: 0
@@ -7853,32 +7922,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (21)
     node: {fileID: 8886593657549281196}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (18)
     node: {fileID: 2396946413070837710}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (17)
     node: {fileID: 378478924355665587}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (20)
     node: {fileID: 7216869348457466275}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (13)
     node: {fileID: 3031051568787051242}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (14)
     node: {fileID: 7283556787020930289}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &4264970412545990949
 GameObject:
   m_ObjectHideFlags: 0
@@ -8153,32 +8227,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (14)
     node: {fileID: 7283556787020930289}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (8)
     node: {fileID: 779080727541715487}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (7)
     node: {fileID: 5036394215461721178}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (9)
     node: {fileID: 5348973839081788224}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (21)
     node: {fileID: 8886593657549281196}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (20)
     node: {fileID: 7216869348457466275}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &4485826869477907837
 GameObject:
   m_ObjectHideFlags: 0
@@ -8261,32 +8340,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (13)
     node: {fileID: 3031051568787051242}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (7)
     node: {fileID: 5036394215461721178}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (8)
     node: {fileID: 779080727541715487}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (16)
     node: {fileID: 2773285432060974340}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (19)
     node: {fileID: 1585182330651829385}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (20)
     node: {fileID: 7216869348457466275}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &4555028303795763789
 GameObject:
   m_ObjectHideFlags: 0
@@ -11555,32 +11639,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (18)
     node: {fileID: 2396946413070837710}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (17)
     node: {fileID: 378478924355665587}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (20)
     node: {fileID: 7216869348457466275}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (19)
     node: {fileID: 1585182330651829385}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (10)
     node: {fileID: 4362666548177006665}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (9)
     node: {fileID: 5348973839081788224}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &5190558356477052588
 GameObject:
   m_ObjectHideFlags: 0
@@ -11659,28 +11748,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (2)
     node: {fileID: 6924177633164905143}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (0)
     node: {fileID: 8227090835841733529}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: ground (5)
     node: {fileID: 4580754393151724004}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (6)
     node: {fileID: 1261513635721808389}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (6)
     node: {fileID: 6711706291224614308}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &5315102059578388957
 GameObject:
   m_ObjectHideFlags: 0
@@ -11726,24 +11819,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (11)
     node: {fileID: 6901890659978907494}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
   - name: Node (12)
     node: {fileID: 837880454840560788}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
   - name: Node (16)
     node: {fileID: 5394054640308025284}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (21)
     node: {fileID: 3108605033801090382}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &5363032267798357775
 GameObject:
   m_ObjectHideFlags: 0
@@ -12352,32 +12448,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (14)
     node: {fileID: 7283556787020930289}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (7)
     node: {fileID: 5036394215461721178}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (6)
     node: {fileID: 6711706291224614308}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (15)
     node: {fileID: 6925313100696230793}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (19)
     node: {fileID: 1585182330651829385}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (18)
     node: {fileID: 2396946413070837710}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &5798165996181004608
 GameObject:
   m_ObjectHideFlags: 0
@@ -12533,24 +12634,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (0)
     node: {fileID: 3787960736594589311}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (3)
     node: {fileID: 2486860073417573045}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (5)
     node: {fileID: 7144655388363082485}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (7)
     node: {fileID: 5036394215461721178}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &5815246214417417510
 GameObject:
   m_ObjectHideFlags: 0
@@ -12712,20 +12816,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (21)
     node: {fileID: 3108605033801090382}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (24)
     node: {fileID: 8341509977260270726}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (14)
     node: {fileID: 5024811614672319604}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &5900042233829435311
 GameObject:
   m_ObjectHideFlags: 0
@@ -12997,20 +13103,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (20)
     node: {fileID: 2344295959194906353}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (21)
     node: {fileID: 3108605033801090382}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (17)
     node: {fileID: 4119786786787352992}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &6120785248158217180
 GameObject:
   m_ObjectHideFlags: 0
@@ -13056,28 +13164,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (11)
     node: {fileID: 6901890659978907494}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (13)
     node: {fileID: 3269258450651046598}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (7)
     node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (9)
     node: {fileID: 4331265058700272098}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (14)
     node: {fileID: 5024811614672319604}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6125001739195051878
 GameObject:
   m_ObjectHideFlags: 0
@@ -13375,32 +13487,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (7)
     node: {fileID: 5036394215461721178}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (3)
     node: {fileID: 2362584986351784697}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: ground (6)
     node: {fileID: 1261513635721808389}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (11)
     node: {fileID: 9037150531455561897}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (13)
     node: {fileID: 3031051568787051242}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (15)
     node: {fileID: 6925313100696230793}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6220797271071266446
 GameObject:
   m_ObjectHideFlags: 0
@@ -13753,20 +13870,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
-  needToJumpIfFirst: 0
   neighbours:
   - name: ground (0)
     node: {fileID: 8227090835841733529}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (4)
     node: {fileID: 4600035959523973782}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (0)
     node: {fileID: 3787960736594589311}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6481253863960601417
 GameObject:
   m_ObjectHideFlags: 0
@@ -14285,32 +14404,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (13)
     node: {fileID: 3031051568787051242}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (6)
     node: {fileID: 6711706291224614308}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (7)
     node: {fileID: 5036394215461721178}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (11)
     node: {fileID: 9037150531455561897}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (18)
     node: {fileID: 2396946413070837710}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (17)
     node: {fileID: 378478924355665587}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6637083879603851788
 GameObject:
   m_ObjectHideFlags: 0
@@ -14550,32 +14674,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (11)
     node: {fileID: 6901890659978907494}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (8)
     node: {fileID: 9219319686943771534}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node (1)
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: Node
     node: {fileID: 8355616597004858563}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (17)
     node: {fileID: 4119786786787352992}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (18)
     node: {fileID: 5140819287769142625}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6677472771130806062
 GameObject:
   m_ObjectHideFlags: 0
@@ -14731,20 +14860,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (23)
     node: {fileID: 1842783196618207421}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (22)
     node: {fileID: 1958953575177685196}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (16)
     node: {fileID: 5394054640308025284}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &6755531010616579918
 GameObject:
   m_ObjectHideFlags: 0
@@ -14976,32 +15107,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (7)
     node: {fileID: 5036394215461721178}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (5)
     node: {fileID: 7144655388363082485}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: ground (7)
     node: {fileID: 1541633621049114981}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (9)
     node: {fileID: 5348973839081788224}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (14)
     node: {fileID: 7283556787020930289}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (16)
     node: {fileID: 2773285432060974340}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6880845305932155499
 GameObject:
   m_ObjectHideFlags: 0
@@ -15047,16 +15183,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: ground (3)
     node: {fileID: 2486860073417573045}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (7)
     node: {fileID: 1541633621049114981}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6937169269329329263
 GameObject:
   m_ObjectHideFlags: 0
@@ -15252,28 +15389,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 1
   neighbours:
   - name: air (9)
     node: {fileID: 5348973839081788224}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (7)
     node: {fileID: 1541633621049114981}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: ground (4)
     node: {fileID: 4600035959523973782}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: ground (3)
     node: {fileID: 2486860073417573045}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
   - name: air (21)
     node: {fileID: 8886593657549281196}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &7015377155734193953
 GameObject:
   m_ObjectHideFlags: 0
@@ -15643,20 +15784,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (5)
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (3)
     node: {fileID: 7755382140752019050}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (7)
     node: {fileID: 1244324953322843278}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &7341193733310633091
 GameObject:
   m_ObjectHideFlags: 0
@@ -16784,20 +16927,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (1)
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (3)
     node: {fileID: 7755382140752019050}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (7)
     node: {fileID: 1244324953322843278}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &8138990979551310284
 GameObject:
   m_ObjectHideFlags: 0
@@ -17332,20 +17477,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 1
-  needToJumpIfFirst: 0
   neighbours:
   - name: ground (5)
     node: {fileID: 4580754393151724004}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (3)
     node: {fileID: 2486860073417573045}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: air (0)
     node: {fileID: 3787960736594589311}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &8227090835899449516
 GameObject:
   m_ObjectHideFlags: 0
@@ -17913,24 +18060,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (10)
     node: {fileID: 7212187734054710469}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
   - name: Node (13)
     node: {fileID: 3269258450651046598}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
   - name: Node (16)
     node: {fileID: 5394054640308025284}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (21)
     node: {fileID: 3108605033801090382}
     needToJump: 1
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &8547901533429248555
 GameObject:
   m_ObjectHideFlags: 0
@@ -18086,16 +18236,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (23)
     node: {fileID: 1842783196618207421}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (18)
     node: {fileID: 5140819287769142625}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &8656548063351348940
 GameObject:
   m_ObjectHideFlags: 0
@@ -18362,16 +18513,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: ground (0)
     node: {fileID: 8227090835841733529}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: ground (6)
     node: {fileID: 1261513635721808389}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &8814676035554607509
 GameObject:
   m_ObjectHideFlags: 0
@@ -18452,16 +18604,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traversable: 0
-  needToJumpIfFirst: 0
   neighbours:
   - name: Node (4)
     node: {fileID: 4420804255868088061}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
   - name: Node (6)
     node: {fileID: 4370502154176230177}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &9020186610858960551
 GameObject:
   m_ObjectHideFlags: 0

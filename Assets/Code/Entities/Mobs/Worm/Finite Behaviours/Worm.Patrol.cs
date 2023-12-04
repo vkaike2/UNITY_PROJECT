@@ -24,7 +24,7 @@ public partial class Worm : Enemy
         public override void OnEnterBehaviour()
         {
             _patrolBehaviour.OnEnterBehaviour();
-            _worm.Pathfinding.StartFindPath(Pathfinding.PossibleActions.Horizontal);
+            _worm.Pathfinding.StartFindPath(Pathfinding.PossibleActions.Walk);
         }
 
         public override void OnExitBehaviour()

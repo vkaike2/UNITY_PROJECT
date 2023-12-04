@@ -44,13 +44,13 @@ public partial class EnemyFollowingBehaviour : MonoBehaviour
             Transform targetTransform;
             if (paths == null)
             {
-                targetTransform = CheckIfCanFollowTarget();
+                //targetTransform = CheckIfCanFollowTarget();
 
-                if (targetTransform == null)
-                {
+                //if (targetTransform == null)
+                //{
                     _followEventsModel.OnTargetUnreachable.Invoke();
                     return;
-                }
+                //}
             }
             else
             {

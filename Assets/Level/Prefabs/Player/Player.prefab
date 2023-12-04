@@ -418,8 +418,8 @@ MonoBehaviour:
   _rotationalTransform: {fileID: 1569341937118538250}
   _cdwToManipulateKnockBack: 0.4
   _cdwToManipulateKnockBackWithShift: 0.1
-  _knockBackForce: 500
-  _helpForcePercentage: 1.5
+  _knockBackForce: 300
+  _helpForcePercentage: 2
   <OnKnockBackEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
