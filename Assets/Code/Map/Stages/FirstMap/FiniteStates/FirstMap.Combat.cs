@@ -51,8 +51,8 @@ public partial class FirstMap : Map
             for (int i = 0; i < _mapConfiguration.InnerStages.Count; i++)
             {
                 ScriptableMapConfiguration.InnerStage innerStage = _mapConfiguration.InnerStages[i];
-                
-                _map.DisplayFeedBack(innerStage.name);
+
+                _map.DisplayFeedBack(innerStage.name.Split("->")[1]);
 
                 yield return HandleActions(innerStage);
             }

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class ProgressBarUI : MonoBehaviour
 {
 
-    [Header("components")]
+    [Header("COMPONENTS")]
     [SerializeField]
     private Image _imageBar;
     [SerializeField]
     private GameObject _backgroundBar;
 
-    [Header("configuration")]
+    [Header("CONFIGURATION")]
     [SerializeField]
     private bool _startActive = false;
     [SerializeField]
@@ -32,13 +32,6 @@ public class ProgressBarUI : MonoBehaviour
 
     private void StartProgressBar(float value, Behaviour behaviour)
     {
-
-        if(this.transform.name == "Target Dummy Progress Bar")
-        {
-            ;
-        }
-
-
         StopAllCoroutines();
 
         switch (behaviour)
@@ -71,7 +64,7 @@ public class ProgressBarUI : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        StartCoroutine(HideBarAfertCdw(_cdwToHide));
+        StartCoroutine(HideBarAfterCdw(_cdwToHide));
     }
 
     private void ManageLifeBar(float percentage)
@@ -80,10 +73,10 @@ public class ProgressBarUI : MonoBehaviour
 
         _backgroundBar.SetActive(true);
 
-        StartCoroutine(HideBarAfertCdw(_cdwToHide));
+        StartCoroutine(HideBarAfterCdw(_cdwToHide));
     }
 
-    IEnumerator HideBarAfertCdw(float cdwToHide)
+    IEnumerator HideBarAfterCdw(float cdwToHide)
     {
         yield return new WaitForSeconds(cdwToHide);
         _backgroundBar.SetActive(false);

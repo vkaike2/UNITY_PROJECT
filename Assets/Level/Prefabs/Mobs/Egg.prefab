@@ -335,7 +335,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6393137235993649340}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.93728316}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -346,8 +346,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.003, y: 0.135}
-  m_SizeDelta: {x: 0.8826, y: 0.9639}
+  m_AnchoredPosition: {x: -0.003, y: 0.0232}
+  m_SizeDelta: {x: 0.8826, y: 1.1875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1915301500644562549
 Canvas:
@@ -524,7 +524,7 @@ MonoBehaviour:
   <SpawningModel>k__BackingField:
     <SpawnedEnemy>k__BackingField: {fileID: 6393750100075348890, guid: 77d6c24c42b842348933bb12a089a3b8, type: 3}
   <IdleModel>k__BackingField:
-    <CdwToSpawn>k__BackingField: 5
+    <CdwToSpawn>k__BackingField: 7
 --- !u!114 &2432335518610453165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,6 +568,7 @@ MonoBehaviour:
   _dpsMeter: {fileID: 0}
   _shouldApplyKnockback: 0
   _knockbackDuration: 0.3
+  _cdwInvincibility: 0.5
   <OnKnockbackEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
@@ -668,7 +669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6990599949825187812, guid: d53f1d3786f5fbd46b62e2325aabf9b0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.321
+      value: -0.496
       objectReference: {fileID: 0}
     - target: {fileID: 6990599949825187812, guid: d53f1d3786f5fbd46b62e2325aabf9b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

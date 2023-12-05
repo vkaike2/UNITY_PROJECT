@@ -507,10 +507,10 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: "00:25 -> Monster Bird       \t t:10 - pos:XX - drop:Small Chance to
+    - name: "00:30 -> Monster Bird       \t t:15 - pos:XX - drop:Small Chance to
         drop - Frist Map"
       <Type>k__BackingField: 0
-      <Timer>k__BackingField: 10
+      <Timer>k__BackingField: 15
       <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -523,7 +523,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: "00:35 -> Monster Chicken    \t t:10 - pos:XX - drop:Small Chance to
+    - name: "00:40 -> Monster Chicken    \t t:10 - pos:XX - drop:Small Chance to
         drop - Frist Map"
       <Type>k__BackingField: 0
       <Timer>k__BackingField: 10
@@ -539,7 +539,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: "00:36 -> Monster Porcupine  \t t:01 - pos:01 - drop:Small Chance to
+    - name: "00:41 -> Monster Porcupine  \t t:01 - pos:01 - drop:Small Chance to
         drop - Frist Map"
       <Type>k__BackingField: 0
       <Timer>k__BackingField: 1
@@ -555,7 +555,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: "00:37 -> Monster Porcupine  \t t:01 - pos:10 - drop:Small Chance to
+    - name: "00:42 -> Monster Porcupine  \t t:01 - pos:10 - drop:Small Chance to
         drop - Frist Map"
       <Type>k__BackingField: 0
       <Timer>k__BackingField: 1
@@ -571,7 +571,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-    - name: "00:38 -> Monster Porcupine  \t t:01 - pos:11 - drop:Small Chance to
+    - name: "00:43 -> Monster Porcupine  \t t:01 - pos:11 - drop:Small Chance to
         drop - Frist Map"
       <Type>k__BackingField: 0
       <Timer>k__BackingField: 1
@@ -587,7 +587,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-  - name: 01:44 -> -----------------LARGE-----------------
+  - name: 01:49 -> -----------------LARGE-----------------
     <Actions>k__BackingField:
     - name: 00:04 -> ChangeMap
       <Type>k__BackingField: 2
@@ -604,7 +604,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 6
         _description: '[Wall of Spike] - Move wall of spike to Large'
-  - name: 01:48 -> [Large Stage] Unlock Two Small Platforms
+  - name: 01:53 -> [Large Stage] Unlock Two Small Platforms
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -621,7 +621,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 8
         _description: '[Large Stage] Unlock Two Small Platforms'
-  - name: 01:49 -> [Large Stage] Unlock Smaller Platform
+  - name: 01:54 -> [Large Stage] Unlock Smaller Platform
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -638,7 +638,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 10
         _description: '[Large Stage] Unlock Smaller Platform'
-  - name: 01:50 -> [Large Stage] Unlock Middle Platform
+  - name: 01:55 -> [Large Stage] Unlock Middle Platform
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -655,7 +655,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 9
         _description: '[Large Stage] Unlock Middle Platform'
-  - name: 01:51 -> Wave 05
+  - name: 01:56 -> Wave 05
     <Actions>k__BackingField:
     - name: "00:01 -> Monster Rat        \t t:01 - pos:23 - drop:Small Chance to
         drop - Frist Map"
@@ -865,7 +865,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-  - name: 02:28 -> [Large Stage] Unlock Big Platforms
+  - name: 02:33 -> [Large Stage] Unlock Big Platforms
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -882,7 +882,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 11
         _description: '[Large Stage] Unlock Big Platforms'
-  - name: 02:29 -> Wave 06
+  - name: 02:34 -> Wave 06
     <Actions>k__BackingField:
     - name: "00:01 -> Monster Worm       \t t:01 - pos:26 - drop:Small Chance to
         drop - Frist Map"
@@ -1124,7 +1124,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-  - name: 03:28 -> BOSS
+  - name: 03:33 -> BOSS
     <Actions>k__BackingField:
     - name: "00:01 -> Monster Rat        \t t:01 - pos:XX - drop:none"
       <Type>k__BackingField: 0

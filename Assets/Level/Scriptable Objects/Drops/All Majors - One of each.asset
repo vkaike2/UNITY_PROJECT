@@ -76,7 +76,7 @@ MonoBehaviour:
         <Weight>k__BackingField: 1
         <IsActive>k__BackingField: 1
         <DropContents>k__BackingField:
-        - name: '[1x2] Egg White 100.00% chance'
-          <Item>k__BackingField: {fileID: 11400000, guid: 1ffadc2e4203a7a419fdf8629860a087, type: 2}
+        - name: '[1x2] Broccoli 100.00% chance'
+          <Item>k__BackingField: {fileID: 11400000, guid: 167574da98fcb7445ad50cea0e92ff60, type: 2}
           <Weight>k__BackingField: 1
           <IsActive>k__BackingField: 1

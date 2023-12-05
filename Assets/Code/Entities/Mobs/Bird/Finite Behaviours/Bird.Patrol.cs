@@ -65,7 +65,10 @@ public partial class Bird : Enemy
 
         private IEnumerator WaitForAtkCdw()
         {
-            yield return new WaitForSeconds(_model.AtkCdw.GetRandom());
+            float cdw = _model.AtkCdw.GetRandom();
+            _bird.PatrolModel.CdwIndicatorUI.StartCdw(cdw);
+
+            yield return new WaitForSeconds(cdw);
 
             _bird.AtkModel.TargetPosition = _bird.GameManager.Player.transform.position;
             _bird.ChangeBehaviour(Behaviour.Atk);

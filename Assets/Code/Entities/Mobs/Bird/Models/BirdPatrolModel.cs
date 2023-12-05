@@ -1,6 +1,4 @@
-﻿using Assets.Code.LOGIC;
-using System;
-using System.Collections;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,6 +15,10 @@ public class BirdPatrolModel
     [field: Header("COMPONENTS")]
     [field: SerializeField]
     public LayerCheckCollider CollidingWithWall { get; private set; }
+
+    [field: Header("UI COMPONENTS")]
+    [field:SerializeField]
+    public CdwIndicationUI CdwIndicatorUI { get; private set; }
 
     public float InitialHorizontalPosition { get; set; }
 
