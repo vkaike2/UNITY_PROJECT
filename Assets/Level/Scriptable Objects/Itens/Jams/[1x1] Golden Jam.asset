@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: '[1x1] Golden Jam'
   m_EditorClassIdentifier: 
   <Identity>k__BackingField: {fileID: 11400000, guid: 21cb0c22008e05c40abfb8e39651d887, type: 2}
-  <RotatedItem>k__BackingField: {fileID: 11400000}
+  <RotatedItem>k__BackingField: {fileID: 0}
   <SpriteWhileUsing>k__BackingField: {fileID: 0}
   <PrefabUI>k__BackingField: {fileID: 9048436065901467286, guid: 013d6252cc4fc5a49a36b108a7e18241, type: 3}
   <InventoryItemLayout>k__BackingField: 0
+  <IsUsable>k__BackingField: 0
+  <Effect>k__BackingField: 0
   <IsEquipable>k__BackingField: 0
   <Type>k__BackingField: 0
   <Target>k__BackingField: 0

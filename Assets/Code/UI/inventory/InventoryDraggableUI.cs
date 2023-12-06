@@ -27,7 +27,8 @@ public class InventoryDraggableUI : MonoBehaviour
     private void Update()
     {
         if (!_isBeingDragged && !_isUsingItem) return;
-        this.transform.position = Input.mousePosition;
+
+        this.transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     public void StartDragItem(ItemData itemData)
@@ -45,7 +46,7 @@ public class InventoryDraggableUI : MonoBehaviour
         DragAction dragAction;
 
         bool dropInsideInventory = RaycastUtils.GetComponentsUnderMouseUI<InventoryUI>().Any();
-
+        Debug.Log(dropInsideInventory);
         if (dropInsideInventory)
         {
             dragAction = ManagItemDropInsideInventory();

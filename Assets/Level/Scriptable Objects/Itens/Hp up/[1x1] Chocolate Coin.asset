@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: '[1x1] Chocolate Coin'
   m_EditorClassIdentifier: 
   <Identity>k__BackingField: {fileID: 11400000, guid: 59634f7e1bff12840878a081f58baea1, type: 2}
-  <RotatedItem>k__BackingField: {fileID: 11400000}
+  <RotatedItem>k__BackingField: {fileID: 0}
   <SpriteWhileUsing>k__BackingField: {fileID: 0}
   <PrefabUI>k__BackingField: {fileID: 1657513525330797492, guid: d2750246df0f571469cdb2c1189b5dce, type: 3}
   <InventoryItemLayout>k__BackingField: 0

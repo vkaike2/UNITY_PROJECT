@@ -22,16 +22,16 @@ public class RaycastUtils : MonoBehaviour
     public static List<T> GetComponentsUnderMouse<T>(List<Excluding> excluding = null) where T : MonoBehaviour
     {
         RaycastHit2D[] hits = ObjectsUnderMouse();
-        return GetComponentsFromRaycastHits<T>(hits, excluding);
+        return GetComponentsFromRayCastHits<T>(hits, excluding);
     }
 
     public static List<T> GetComponentsUnderPosition<T>(Vector3 position) where T : MonoBehaviour
     {
         RaycastHit2D[] hits = ObjectsUnderPosition(position);
-        return GetComponentsFromRaycastHits<T>(hits);
+        return GetComponentsFromRayCastHits<T>(hits);
     }
 
-    private static List<T> GetComponentsFromRaycastHits<T>(RaycastHit2D[] hits, List<Excluding> excluding = null) where T : MonoBehaviour
+    private static List<T> GetComponentsFromRayCastHits<T>(RaycastHit2D[] hits, List<Excluding> excluding = null) where T : MonoBehaviour
     {
         excluding ??= new List<Excluding>();
 
@@ -58,7 +58,7 @@ public class RaycastUtils : MonoBehaviour
     #region UI
     public static bool HitSomethingUnderMouseUI(bool validateOnlyTagUI = false)
     {
-        List<RaycastResult> hits = GetRaycastUnderPositionUI(Input.mousePosition);
+        List<RaycastResult> hits = GetRayCastUnderPositionUI(Input.mousePosition);
 
         if (validateOnlyTagUI)
         {
@@ -69,18 +69,25 @@ public class RaycastUtils : MonoBehaviour
 
     public static List<T> GetComponentsUnderPositionUI<T>(Vector2 position, List<Excluding> excluding = null) where T : MonoBehaviour
     {
-        List<RaycastResult> hits = GetRaycastUnderPositionUI(position);
-        return GetComponenstsUnderRaycastUI<T>(hits, excluding);
+        List<RaycastResult> hits = GetRayCastUnderPositionUI(Camera.main.WorldToScreenPoint(position));
+
+        if (hits != null)
+        {
+            Debug.Log(string.Join(", ", hits.Select(e => e.gameObject.name)));
+        }
+
+
+        return GetComponentsUnderRayCastUI<T>(hits, excluding);
     }
 
     public static List<T> GetComponentsUnderMouseUI<T>(List<Excluding> excluding = null) where T : MonoBehaviour
     {
-        List<RaycastResult> hits = GetRaycastUnderPositionUI(Input.mousePosition);
+        List<RaycastResult> hits = GetRayCastUnderPositionUI(Input.mousePosition);
 
-        return GetComponenstsUnderRaycastUI<T>(hits, excluding);
+        return GetComponentsUnderRayCastUI<T>(hits, excluding);
     }
 
-    private static List<RaycastResult> GetRaycastUnderPositionUI(Vector2 position)
+    private static List<RaycastResult> GetRayCastUnderPositionUI(Vector2 position)
     {
         PointerEventData pointerData = new PointerEventData(EventSystem.current)
         {
@@ -94,7 +101,7 @@ public class RaycastUtils : MonoBehaviour
         return results;
     }
 
-    private static List<T> GetComponenstsUnderRaycastUI<T>(List<RaycastResult> hits, List<Excluding> excluding = null) where T : MonoBehaviour
+    private static List<T> GetComponentsUnderRayCastUI<T>(List<RaycastResult> hits, List<Excluding> excluding = null) where T : MonoBehaviour
     {
         excluding ??= new List<Excluding>();
 

@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: '[1x1] Rotational Jam'
   m_EditorClassIdentifier: 
   <Identity>k__BackingField: {fileID: 11400000, guid: 1c6d712cc1825c14eb3b81a06f3a81c7, type: 2}
-  <RotatedItem>k__BackingField: {fileID: 11400000}
+  <RotatedItem>k__BackingField: {fileID: 0}
   <SpriteWhileUsing>k__BackingField: {fileID: 1361850283, guid: 57227b32cbc582546b4d66d107bfa2a9, type: 3}
   <PrefabUI>k__BackingField: {fileID: 9048436065901467286, guid: a6abd7fde1fc3574b934a5633defd211, type: 3}
   <InventoryItemLayout>k__BackingField: 0
+  <IsUsable>k__BackingField: 0
+  <Effect>k__BackingField: 0
   <IsEquipable>k__BackingField: 0
   <Type>k__BackingField: 0
   <Target>k__BackingField: 0

@@ -24,7 +24,7 @@ public class PlayerDamageReceiver : DamageReceiver
            _VfxParent.AddHealth(health);
         }
 
-        _player.Status.Health.Set(health);
+        _player.Status.Health.Set(amountOfHealth);
 
         this.UpdateUI();
     }

@@ -114,6 +114,7 @@ public class InventoryItemUI : MouseOver
         if (!IsBeingDragged) return;
 
         List<InventorySlotUI> inventorySlotsUnderItem = GetEveryInventorySlotUnderItem();
+        Debug.Log(inventorySlotsUnderItem?.Count);
 
         foreach (InventorySlotUI slot in _tempInventorySlots.Where(e => inventorySlotsUnderItem.FirstOrDefault(s => s.GetInstanceID() == e.GetInstanceID()) == null))
         {

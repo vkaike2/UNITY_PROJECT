@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,19 +11,16 @@ public class CustomMouse : MonoBehaviour
     public ScriptableItem thirdTest;
     public ScriptableItem fourthTest;
 
-    private InventoryDraggableUI _inventoryDraggableUI;
     public bool IsDragging { get; private set; } = false;
-
-    private MouseOver _mouseOverItem = null;
-
     public TwoStepsUsableItemUI ItemBeingUsed { get; set; }
 
-    private GameManager _gameManager;
+
+    private MouseOver _mouseOverItem = null;
+    private InventoryDraggableUI _inventoryDraggableUI;
 
     private void Start()
     {
         _inventoryDraggableUI = GameObject.FindObjectOfType<InventoryDraggableUI>();
-        _gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -159,7 +155,6 @@ public class CustomMouse : MonoBehaviour
         if (IsDragging) return;
 
         MouseOver mouseOverItem = GetMouseOverObjectUnderMouse();
-
         if (mouseOverItem == null)
         {
             if (_mouseOverItem != null)
@@ -191,7 +186,6 @@ public class CustomMouse : MonoBehaviour
             .OrderBy(e => e.Priority)
             .FirstOrDefault();
         }
-
         return RaycastUtils.GetComponentsUnderMouse<MouseOver>(new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Parent })
             .OrderBy(e => e.Priority)
             .FirstOrDefault();
