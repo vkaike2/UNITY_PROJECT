@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,6 +7,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [Header("CONFIGURATIONS")]
+    [SerializeField]
+    private bool _loadInitialItems = false;
+    [SerializeField]
+    private List<ScriptableItem> _initialItems;
+
     [Header("EVENTS")]
     [SerializeField]
     private ScriptableItemEvents _itemEvents;
@@ -16,6 +23,8 @@ public class PlayerInventory : MonoBehaviour
     private void Start()
     {
         UIEventManager.instance.OnInventoryChange.AddListener(OnInventoryChange);
+
+        StartCoroutine(WaitUntilHaveItemTo(LoadInitialItems));
     }
 
     public void LoadInventoryDataFromMemory()
@@ -34,6 +43,22 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void LoadInitialItems()
+    {
+        if (!_loadInitialItems) return;
+
+        foreach (var item in _initialItems)
+        {
+            ItemData itemData = new ItemData(Guid.NewGuid(), item);
+            List<Vector2> coordinates = CheckIfCanAddItem(item.InventoryItemLayout);
+            if (coordinates == null) continue;
+
+            AddItem(itemData, coordinates, false);
+        }
+
+        UIEventManager.instance.OnInventoryChange.Invoke(_inventoryData, EventSentBy.Player);
+    }
+
     public void OnOpenInventoryInput(InputAction.CallbackContext context)
     {
         if (context.phase != InputActionPhase.Performed) return;
@@ -47,6 +72,26 @@ public class PlayerInventory : MonoBehaviour
         itemDrop.ItemData = itemData;
         itemDrop.DropItem();
     }
+
+    #region CAN USE ITEM
+    public bool CanEatItem()
+    {
+        return _inventoryData.Itens.Any(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp)
+            || _equipData.Itens.Any(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
+    }
+
+    public void EatItem()
+    {
+        ItemData eatable = _inventoryData.Itens.FirstOrDefault(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
+        eatable ??= _equipData.Itens.FirstOrDefault(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
+
+        _itemEvents.OnUseItem.Invoke(eatable.Item);
+
+        //Try to remove either from the Equip or Inventory
+        RemoveSingleItem(_inventoryData, eatable);
+        RemoveSingleItem(_equipData, eatable);
+    }
+    #endregion
 
     #region CAN EQUIP ITEM
     public bool CanEquipItem(ItemData itemData)
@@ -92,7 +137,6 @@ public class PlayerInventory : MonoBehaviour
             _ => null,
         };
     }
-    //1969 
 
     public List<Vector2> CheckIfCanAutoEquip(ScriptableItem.ItemLayout itemLayout, ItemData itemData)
     {
@@ -218,14 +262,17 @@ public class PlayerInventory : MonoBehaviour
     #endregion
 
     #region ADD ITEM
-    public void AddItem(ItemData itemData, List<Vector2> coordinates)
+    public void AddItem(ItemData itemData, List<Vector2> coordinates, bool updateEvent = true)
     {
         List<InventoryData.Slot> itemSlots = _inventoryData.Slots.Where(e => coordinates.Contains(e.Coordinate)).ToList();
 
         AddItemToSlots(itemSlots, itemData.Id);
         _inventoryData.Itens.Add(itemData);
 
-        UIEventManager.instance.OnInventoryChange.Invoke(_inventoryData, EventSentBy.Player);
+        if (updateEvent)
+        {
+            UIEventManager.instance.OnInventoryChange.Invoke(_inventoryData, EventSentBy.Player);
+        }
     }
 
     public void EquipItem(ItemData itemData, List<Vector2> coordinates)
@@ -248,6 +295,23 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region REMOVE ITEM
+    private void RemoveSingleItem(InventoryData inventoryData, ItemData itemToBeRemoved)
+    {
+        if (!inventoryData.Itens.Any(e => e.Id == itemToBeRemoved.Id)) return;
+
+        foreach (var slot in inventoryData.Slots)
+        {
+            if (slot.ItemId != itemToBeRemoved.Id) continue;
+
+            slot.RemoveItem();
+        }
+        inventoryData.Itens.Remove(itemToBeRemoved);
+
+        UIEventManager.instance.OnInventoryChange.Invoke(inventoryData, EventSentBy.Player);
+    }
     #endregion
 
     private void OnInventoryChange(InventoryData inventoryData, EventSentBy sentBy)
@@ -302,22 +366,6 @@ public class PlayerInventory : MonoBehaviour
             ItemData itemData = equipData.Itens.Where(e => e.Id == itemId).FirstOrDefault();
 
             if (!EquipSingleItem(itemData)) continue;
-
-            //if (itemData == null) continue;
-            //if (itemData.IsEquiped) continue;
-            //if (!itemData.Item.IsEquipable) continue;
-            //if (!CanEquipItem(itemData)) continue;
-
-            //_itemEvents.OnEquipItem.Invoke(itemData.Item);
-
-            //itemData.IsEquiped = true;
-
-            //if (itemData.HasBeeingSwaped)
-            //{
-            //    UIEventManager.instance.OnInventoryRemoveEquipment.Invoke();
-            //}
-
-            //itemData.HasBeeingSwaped = false;
         }
     }
 
@@ -377,5 +425,12 @@ public class PlayerInventory : MonoBehaviour
         Debug.Log("Saved");
         SaveLoadManager.InventoryData = _inventoryData;
         SaveLoadManager.EquipData = _equipData;
+    }
+
+    private IEnumerator WaitUntilHaveItemTo(Action callback)
+    {
+        yield return new WaitUntil(() => _inventoryData != null && _equipData != null);
+
+        callback();
     }
 }

@@ -14,7 +14,6 @@ public class ChickenDamageDealer : ImpactDamageDealer
     {
         _chicken = GetComponent<Chicken>();
         _enemyStatus = GetComponent<EnemyStatus>();
-
     }
 
     protected override void AfterStart()

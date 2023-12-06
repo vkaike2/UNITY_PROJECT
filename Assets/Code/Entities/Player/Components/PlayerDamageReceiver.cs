@@ -9,10 +9,32 @@ public class PlayerDamageReceiver : DamageReceiver
 
     private bool _canReceiveDamage = true;
 
+    public void AddHealth(float amountOfHealth)
+    {
+        float health = _player.Status.Health.Get();
+
+        health += amountOfHealth;
+        if(health > _player.Status.MaxHealth.Get())
+        {
+            health = _player.Status.MaxHealth.Get();
+        }
+
+        _player.Status.Health.Set(health);
+
+        this.UpdateUI();
+    }
+
     protected override void AfterAwake()
     {
         _isPlayer = true;
         _player = GetComponent<Player>();
+    }
+
+    protected override void AfterStart()
+    {
+        base.AfterStart();
+
+        this.UpdateUI();
     }
 
     protected override void OnReceiveDamage(float damage)
@@ -39,5 +61,4 @@ public class PlayerDamageReceiver : DamageReceiver
         yield return new WaitForSeconds(_cdwInvincibility);
         _canReceiveDamage = true;
     }
-
 }

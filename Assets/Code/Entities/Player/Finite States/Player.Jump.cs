@@ -73,7 +73,7 @@ public partial class Player : MonoBehaviour
 
         private bool CheckIfIsFalling()
         {
-            if (_rigidbody2D.velocity.y > 0) return false;
+            if (_rigidBody2D.velocity.y > 0) return false;
             return ChangeState(FiniteState.Falling);
         }
 
@@ -115,7 +115,7 @@ public partial class Player : MonoBehaviour
 
                 cdw += Time.deltaTime;
                 actualJumpForce -= _jumpModel.CdwJumpAceleration * (cdw / _jumpModel.CdwJumpAceleration);
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, actualJumpForce);
+                _rigidBody2D.velocity = new Vector2(_rigidBody2D.velocity.x, actualJumpForce);
                 yield return new WaitForFixedUpdate();
             }
         }

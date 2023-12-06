@@ -18,17 +18,24 @@ public class HitNumberVFX : MonoBehaviour
 
     private void Awake()
     {
-        float newSacale = _randomScale.GetRandom();
-        this.transform.localScale = new Vector3(newSacale, newSacale, newSacale);
+        float newScale = _randomScale.GetRandom();
+        this.transform.localScale = new Vector3(newScale, newScale, newScale);
     }
 
     public void SetNumber(float number)
     {
-        _label.text = number.ToString();
+        string textNumber = number.ToString();
+
+        //if(number < 0)
+        //{
+        //    textNumber = number.ToString("0.00");
+        //}
+
+        _label.text = textNumber;
 
         foreach (TMP_Text outline in _outlines)
         {
-            outline.text = number.ToString();
+            outline.text = textNumber;
         }
     }
 }

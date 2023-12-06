@@ -310,6 +310,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: cb8d387f-1b07-497b-b5ba-9b1f8024bc16
     m_ActionName: Player/Shift[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 49867075}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnEatInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e68eace5-02a8-4478-893f-7f01827def6b
+    m_ActionName: Player/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1636,7 +1652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52cc6c295454b04d8f6e777f682b834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstTest: {fileID: 11400000, guid: 1ffadc2e4203a7a419fdf8629860a087, type: 2}
+  firstTest: {fileID: 11400000, guid: 936af71d094a6ad4ab82aad7e84a9494, type: 2}
   secondTest: {fileID: 11400000, guid: 325916e5d7791cf4c852509a78fa6309, type: 2}
   thirdTest: {fileID: 11400000, guid: cca3d29623463ae4290bb038f7aed064, type: 2}
   fourthTest: {fileID: 11400000, guid: 08bf421de3b0e4347a82b72ec7627f32, type: 2}
@@ -2473,6 +2489,10 @@ PrefabInstance:
     - target: {fileID: 1569341936492780421, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035229750320139327, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}
+      propertyPath: _loadInitialItems
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aff3886fc0fedf4fadaacd5e123f808, type: 3}

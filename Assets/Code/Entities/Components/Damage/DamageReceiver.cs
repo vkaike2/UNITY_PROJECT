@@ -12,6 +12,9 @@ public abstract class DamageReceiver : MonoBehaviour
     protected HealthStatus _status;
     [SerializeField]
     private Hitbox _hitbox;
+    [SerializeField]
+    [Tooltip("for the case when you have an atk hitbox and want to take damage too")]
+    private List<Hitbox> _auxiliarHitBoxes;
 
     [Header("VISUAL COMPONENTS")]
     [SerializeField]
@@ -57,6 +60,15 @@ public abstract class DamageReceiver : MonoBehaviour
     {
         BeforeStart();
         _hitbox.OnReceivingDamage.AddListener(ReceiveDamage);
+
+        if(_auxiliarHitBoxes != null)
+        {
+            foreach (var hitbox in _auxiliarHitBoxes)
+            {
+                hitbox.OnReceivingDamage.AddListener(ReceiveDamage);
+            }
+        }
+
         AfterStart();
     }
 
@@ -84,6 +96,7 @@ public abstract class DamageReceiver : MonoBehaviour
         {
             _VfxParent.SpawnNumber(incomingDamage);
         }
+
         OnReceiveDamage(incomingDamage);
         _status.Health.Remove(CalculateDamageEntry(incomingDamage));
 
@@ -97,7 +110,18 @@ public abstract class DamageReceiver : MonoBehaviour
 
         ApplyKnockBackOnDamage(entityPosition);
 
+        UpdateUI();
 
+        StartCoroutine(ManageDamageEntry(instance));
+
+        if (!_isReceivingDamage)
+        {
+            StartCoroutine(TakeDamageAnimation());
+        }
+    }
+
+    protected void UpdateUI()
+    {
         if (!_isPlayer)
         {
             _progressBarUI.OnSetBehaviour.Invoke(_status.Health.Get() / _status.MaxHealth.Get(), ProgressBarUI.Behaviour.LifeBar_Hide);
@@ -105,13 +129,6 @@ public abstract class DamageReceiver : MonoBehaviour
         else
         {
             UIEventManager.instance.OnPlayerLifeChange.Invoke(_status.Health.Get() / _status.MaxHealth.Get());
-        }
-
-        StartCoroutine(ManageDamageEntry(instance));
-
-        if (!_isReceivingDamage)
-        {
-            StartCoroutine(TakeDamageAnimation());
         }
     }
 

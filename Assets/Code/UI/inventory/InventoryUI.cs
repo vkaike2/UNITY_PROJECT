@@ -46,6 +46,7 @@ public class InventoryUI : MonoBehaviour
     IEnumerator WaitUntilEndOfFrame()
     {
         yield return new WaitForEndOfFrame();
+
         UpdatePlayerInventory();
         UpdatePlayerEquipInventory();
     }

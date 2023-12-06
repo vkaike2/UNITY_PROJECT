@@ -11,7 +11,7 @@ public partial class Player : MonoBehaviour
         public override void EnterState()
         {
             
-            _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+            _rigidBody2D.velocity = new Vector2(0, _rigidBody2D.velocity.y);
 
             _player.StartCoroutine(WaitItTouchGroundThenMakeItStatic());
         }
@@ -31,7 +31,7 @@ public partial class Player : MonoBehaviour
                 yield return new WaitForFixedUpdate();
             }
 
-            _rigidbody2D.bodyType = RigidbodyType2D.Static;
+            _rigidBody2D.bodyType = RigidbodyType2D.Static;
 
             _animator.ClearHightPriorityAnimation(_player);
             _animator.PlayAnimation(PlayerAnimatorModel.Animation.Die);

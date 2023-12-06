@@ -17216,7 +17216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5146fa3dce8d3439f530e0125ca902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MapConfiguration>k__BackingField: {fileID: 11400000, guid: 6f809e6147b717645a79884d03c44884, type: 2}
+  <MapConfiguration>k__BackingField: {fileID: 11400000, guid: bb90cbef343e9a9459542486c91986da, type: 2}
   <MapEvents>k__BackingField: {fileID: 11400000, guid: 109d223325bc54b4fb98e72fc7db066d, type: 2}
   _startWithState: 2
   <CentralPosition>k__BackingField: {fileID: 6317504891115083524}

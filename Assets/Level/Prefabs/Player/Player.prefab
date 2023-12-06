@@ -416,7 +416,7 @@ MonoBehaviour:
   _fartSpawnTransform: {fileID: 8418346966087877138}
   _progressBar: {fileID: 1569341936894167719}
   _rotationalTransform: {fileID: 1569341937118538250}
-  _cdwToManipulateKnockBack: 0.4
+  _cdwToManipulateKnockBack: 0.2
   _cdwToManipulateKnockBackWithShift: 0.1
   _knockBackForce: 300
   _helpForcePercentage: 2
@@ -448,6 +448,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794657d897e2419cb95fc6cb0f684184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loadInitialItems: 0
+  _initialItems:
+  - {fileID: 11400000, guid: 936af71d094a6ad4ab82aad7e84a9494, type: 2}
+  - {fileID: 11400000, guid: 936af71d094a6ad4ab82aad7e84a9494, type: 2}
+  - {fileID: 11400000, guid: 936af71d094a6ad4ab82aad7e84a9494, type: 2}
   _itemEvents: {fileID: 11400000, guid: 1c8b6ce5da7f27b49bd3a5f90f0a94e3, type: 2}
 --- !u!114 &1270919217769633935
 MonoBehaviour:
@@ -545,7 +550,7 @@ MonoBehaviour:
     <Cooldown>k__BackingField:
       _minimumValue: 0.1
       <Base>k__BackingField:
-        _value: 1.5
+        _value: 2
       <Multiplier>k__BackingField:
         _value: 1
       <Increased>k__BackingField:
@@ -637,6 +642,8 @@ MonoBehaviour:
     <SpawnPoint>k__BackingField: {fileID: 1569341936082538920}
     <CdwProgressBar>k__BackingField: {fileID: 8414120143730420917}
     <NumberOfDots>k__BackingField: 50
+  <EatModel>k__BackingField:
+    <CdwToMoveOutState>k__BackingField: 0.5
 --- !u!1 &1569341936615432260
 GameObject:
   m_ObjectHideFlags: 0
@@ -10824,7 +10831,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8473320319370011097}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.326, y: 0.084, z: 0}
+  m_LocalPosition: {x: -0.686, y: 0.084, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

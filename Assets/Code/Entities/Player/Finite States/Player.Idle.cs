@@ -6,8 +6,6 @@ public partial class Player : MonoBehaviour
 {
     private class Idle : PlayerBaseState
     {
-        //private bool _knockBackBuffer;
-
         public override FiniteState State => FiniteState.Idle;
 
         public override void Start(Player player)
@@ -33,7 +31,7 @@ public partial class Player : MonoBehaviour
             }
             else
             {
-                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+                _rigidBody2D.velocity = new Vector2(0, _rigidBody2D.velocity.y);
                 _jumpModel.IsLandingOnAPlatform = false;
             }
         }
@@ -60,6 +58,7 @@ public partial class Player : MonoBehaviour
 
         private void AssignEvents()
         {
+            _player.EatInput.Performed.AddListener(OnEatInputPerformed);
             _player.MoveInput.Performed.AddListener(OnMoveInputPerformed);
             _player.JumpInput.Performed.AddListener(OnJumpInputPerformed);
 
@@ -70,6 +69,7 @@ public partial class Player : MonoBehaviour
 
         private void UnassignEvents()
         {
+            _player.EatInput.Performed.RemoveListener(OnEatInputPerformed);
             _player.MoveInput.Performed.RemoveListener(OnMoveInputPerformed);
             _player.JumpInput.Performed.RemoveListener(OnJumpInputPerformed);
 
@@ -78,14 +78,9 @@ public partial class Player : MonoBehaviour
             ManagePoopPerformedEvent(false);
         }
 
+      
         private void GivePlayerControl(float seconds, KnockBackSource source)
         {
-
-            //if (source == KnockBackSource.Fart)
-            //{
-            //    return;
-            //}
-
             _player.StartCoroutine(GiveControl(seconds));
         }
 
@@ -103,11 +98,11 @@ public partial class Player : MonoBehaviour
         {
             if (freeze)
             {
-                _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+                _rigidBody2D.constraints = RigidbodyConstraints2D.FreezeAll;
             }
             else
             {
-                _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+                _rigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
         }
 

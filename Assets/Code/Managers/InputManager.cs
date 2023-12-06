@@ -94,6 +94,13 @@ public class InputManager : MonoBehaviour
         _gameManager.Player.OnInteractWithToiletInput(context);
     }
 
+    public void OnEatInput(InputAction.CallbackContext context)
+    {
+        if (_gameManager.Player == null) return;
+
+        _gameManager.Player.OnEatInput(context);
+    }
+
     private SendMouseTo ValidateMouseInput(MouseButton button)
     {
         bool mouseIsOverUI = RaycastUtils.HitSomethingUnderMouseUI(true);

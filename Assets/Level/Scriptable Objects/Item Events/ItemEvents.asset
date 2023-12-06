@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda0786ffd72dda4588d693e5a4acff5, type: 3}
   m_Name: ItemEvents
   m_EditorClassIdentifier: 
+  _chocolateCoin:
+    <Item>k__BackingField: {fileID: 11400000, guid: 936af71d094a6ad4ab82aad7e84a9494, type: 2}
+    <RotatedItem>k__BackingField: {fileID: 11400000, guid: 936af71d094a6ad4ab82aad7e84a9494, type: 2}
+    _amountOfHealth: 5
   _bean:
     <Item>k__BackingField: {fileID: 11400000, guid: 1d288493bad74d749a23e401f29e8407, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: fcfb262385fff0648ab9e6a2dfb209b7, type: 2}
     _fartProjectile: {fileID: -1258318780661116224, guid: 38ab3c7ce8c130b4b8248bb4138a9c47, type: 3}
-    _addDuration: 2
+    _addDuration: 1
     _increaseFartVelocity: 0.3
   _omelet:
     <Item>k__BackingField: {fileID: 11400000, guid: 64e3c61342e0d414cb75c2b0173c760e, type: 2}
@@ -27,13 +31,13 @@ MonoBehaviour:
   _eggWhite:
     <Item>k__BackingField: {fileID: 11400000, guid: 1ffadc2e4203a7a419fdf8629860a087, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: f5e33d52fcff28347a516f36c175655d, type: 2}
-    _addAreaOfEffect: 1
+    _addAreaOfEffect: 0.5
     _increaseAmountOfParticle: 2
   _eggYolk:
     <Item>k__BackingField: {fileID: 11400000, guid: 325916e5d7791cf4c852509a78fa6309, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: 64b2c10852dad1c4386d0c8409ff9d7c, type: 2}
     _reducedAreaOfEffect: 0.5
-    _addBaseDamage: 0.1
+    _addBaseDamage: 0.05
   _pepper:
     <Item>k__BackingField: {fileID: 11400000, guid: 565db31041290a546a82631f34ecaa17, type: 2}
     <RotatedItem>k__BackingField: {fileID: 11400000, guid: 1fad8d1cf7f302145ac8d5e64c921a3d, type: 2}

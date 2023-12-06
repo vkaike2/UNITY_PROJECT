@@ -12,7 +12,8 @@ public class FollowingFartProjectile : FartProjectile
 
     public override void SetInitialValues(Vector2 velocity, Player player)
     {
-        base.SetInitialValues(velocity, player);
+        //base.SetInitialValues(velocity, player);
+        BaseBehavioyrForFart(player);
         StartCoroutine(WaitToStartFollowingPLayer());
     }
 
@@ -35,7 +36,7 @@ public class FollowingFartProjectile : FartProjectile
 
     private IEnumerator WaitToStartFollowingPLayer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         _startFollowingPlayer = true;
     }
 }

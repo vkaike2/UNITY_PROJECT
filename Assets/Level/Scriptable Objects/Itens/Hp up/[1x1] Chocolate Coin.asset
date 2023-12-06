@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6e8799f5c5a334680dd4cc95f152e6, type: 3}
+  m_Name: '[1x1] Chocolate Coin'
+  m_EditorClassIdentifier: 
+  <Identity>k__BackingField: {fileID: 11400000, guid: 59634f7e1bff12840878a081f58baea1, type: 2}
+  <RotatedItem>k__BackingField: {fileID: 11400000}
+  <SpriteWhileUsing>k__BackingField: {fileID: 0}
+  <PrefabUI>k__BackingField: {fileID: 1657513525330797492, guid: d2750246df0f571469cdb2c1189b5dce, type: 3}
+  <InventoryItemLayout>k__BackingField: 0
+  <IsUsable>k__BackingField: 1
+  <Effect>k__BackingField: 0
+  <IsEquipable>k__BackingField: 0
+  <Type>k__BackingField: 1
+  <Target>k__BackingField: 0
+  <ItemDrop>k__BackingField: {fileID: 8429334663540769720, guid: 9a1600858047a5a4e9e7257211e89173, type: 3}

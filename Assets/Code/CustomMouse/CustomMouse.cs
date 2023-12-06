@@ -134,6 +134,16 @@ public class CustomMouse : MonoBehaviour
             return;
         }
 
+        UsableItemUI usableItem = RaycastUtils
+           .GetComponentsUnderMouseUI<UsableItemUI>(new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Children })
+           .FirstOrDefault();
+
+        if(usableItem != null && usableItem.CanUseItem()) 
+        {
+            usableItem.UseItem();
+            return;
+        }
+
         StartInteractionWithTwoStepsUsableItem();
     }
     #endregion
@@ -239,7 +249,7 @@ public class CustomMouse : MonoBehaviour
             .GetComponentsUnderMouseUI<InventoryItemUI>(new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Children })
             .FirstOrDefault();
 
-        if (itemUnderMouse != null)
+        if (itemUnderMouse != null && itemUnderMouse.ItemData.Item.RotatedItem != null)
         {
             ItemData itemData = itemUnderMouse.ItemData;
             itemUnderMouse.RemoveFromInventory();

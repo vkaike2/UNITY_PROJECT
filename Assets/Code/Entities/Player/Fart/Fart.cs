@@ -62,6 +62,7 @@ public class Fart : MonoBehaviour
     {
         if (_isFartOnCdw) return;
         if (_player.CurrentState == Player.FiniteState.Dead) return;
+        if (_player.CurrentState == Player.FiniteState.Eating) return;
 
         (Vector2 position, Vector2 direction, Quaternion rotation) mouse = GetMouseInformationRelatedToGameObject();
 

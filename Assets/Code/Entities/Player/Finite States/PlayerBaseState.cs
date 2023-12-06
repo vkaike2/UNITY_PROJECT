@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class PlayerBaseState
 {
     protected Player _player;
-    protected Rigidbody2D _rigidbody2D;
+    protected Rigidbody2D _rigidBody2D;
     protected Fart _fart;
     protected PlayerDamageReceiver _damageReceiver;
 
@@ -15,6 +15,7 @@ public abstract class PlayerBaseState
     protected PlayerFallingModel _fallingModel;
     protected PlayerDownPlatformModel _downPlatformModel;
     protected PlayerPoopModel _poopModel;
+    protected PlayerInventory _playerInventory;
 
     protected float _initialGravity;
 
@@ -30,9 +31,10 @@ public abstract class PlayerBaseState
     public virtual void Start(Player player)
     {
         _player = player;
-        _rigidbody2D = _player.GetComponent<Rigidbody2D>();
+        _rigidBody2D = _player.GetComponent<Rigidbody2D>();
         _fart = _player.GetComponent<Fart>();
         _damageReceiver = _player.GetComponent<PlayerDamageReceiver>();
+        _playerInventory = _player.GetComponent<PlayerInventory>();
 
         _jumpModel = _player.JumpModel;
         _fallingModel = _player.FallingModel;
@@ -42,7 +44,7 @@ public abstract class PlayerBaseState
         _status = _player.Status;
         _animator = _player.PlayerAnimator;
 
-        _initialGravity = _rigidbody2D.gravityScale;
+        _initialGravity = _rigidBody2D.gravityScale;
     }
 
     public abstract void OnExitState();
@@ -62,7 +64,7 @@ public abstract class PlayerBaseState
 
         if (_player.KnockBackInfo.IsBeingControlledByKnockBack) return;
 
-        _rigidbody2D.velocity = new Vector2(_status.MovementSpeed.Get() * _player.MoveInput.Value.x, _rigidbody2D.velocity.y);
+        _rigidBody2D.velocity = new Vector2(_status.MovementSpeed.Get() * _player.MoveInput.Value.x, _rigidBody2D.velocity.y);
     }
 
     protected void FlipPlayerToTheCorrectDirection()
@@ -89,6 +91,9 @@ public abstract class PlayerBaseState
                     break;
                 case Player.FiniteState.Pooping:
                     if (!CanPoop()) return false;
+                    break;
+                case Player.FiniteState.Eating:
+                    if(!CanEat()) return false;
                     break;
             }
         }
@@ -150,7 +155,17 @@ public abstract class PlayerBaseState
     {
         return _poopModel.CanPoop;
     }
+
+    private bool CanEat()
+    {
+        return _player.CanEat(true);
+    }
     #endregion
+
+    protected void OnEatInputPerformed()
+    {
+        ChangeState(Player.FiniteState.Eating);
+    }
 
     private void OnPoopPerformed()
     {

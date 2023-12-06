@@ -64,6 +64,7 @@ public class PlayerAnimatorModel
         Falling,
         Fart,
         Pooping,
-        Die
+        Die,
+        Eat
     }
 }

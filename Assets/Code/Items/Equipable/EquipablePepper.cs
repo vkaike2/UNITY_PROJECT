@@ -15,7 +15,6 @@ public class EquipablePepper : EquipableItemBase
     protected override void EquipItem()
     {
         _playerStatus.Poop.Projectile.Set(_poopProjectile);
-
         _playerStatus.Poop.Damage.Multiplier.Add(_addDamageMultiplier);
     }
 

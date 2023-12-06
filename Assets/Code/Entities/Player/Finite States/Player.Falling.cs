@@ -18,14 +18,14 @@ public partial class Player : MonoBehaviour
             AssignEvents();
 
             _animator.PlayAnimation(PlayerAnimatorModel.Animation.Falling);
-            _rigidbody2D.gravityScale = _fallingModel.GravityFalling;
+            _rigidBody2D.gravityScale = _fallingModel.GravityFalling;
         }
 
         public override void OnExitState()
         {
             UnassignEvents();
 
-            _rigidbody2D.gravityScale = _initialGravity;
+            _rigidBody2D.gravityScale = _initialGravity;
         }
 
         public override void Update()
@@ -54,7 +54,7 @@ public partial class Player : MonoBehaviour
         {
             if (IsBufferJumpTouchingGround())
             {
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
+                _rigidBody2D.velocity = new Vector2(_rigidBody2D.velocity.x, 0);
                 ChangeState(FiniteState.Jump, ignoreValidations: true);
                 return;
             }

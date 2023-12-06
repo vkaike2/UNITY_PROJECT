@@ -21,6 +21,12 @@ public class ScriptableItem : ScriptableObject
     public ItemLayout InventoryItemLayout { get; private set; }
 
 
+    [field: Header("USABLE INFO")]
+    [field: SerializeField]
+    public bool IsUsable { get; private set; }
+    [field: SerializeField]
+    public UsageEffect Effect { get; private set; }
+
     [field: Header("EQUIPABLE INFO")]
     [field: SerializeField]
     public bool IsEquipable { get; set; }
@@ -42,6 +48,11 @@ public class ScriptableItem : ScriptableObject
         TwoByTwo,
         TwoByThree,
         ThreeByTwo
+    }
+
+    public enum UsageEffect
+    {
+        HpUp
     }
 
     public enum ItemType

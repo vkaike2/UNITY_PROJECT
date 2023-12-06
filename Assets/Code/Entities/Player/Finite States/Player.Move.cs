@@ -42,17 +42,18 @@ public partial class Player : MonoBehaviour
             {
                 if (_player.KnockBackInfo.Source == KnockBackSource.Fart)
                 {
-                    _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+                    _rigidBody2D.velocity = new Vector2(0, _rigidBody2D.velocity.y);
                 }
                 // Will do nothing if its a damage source knockback
                 return;
             }
 
-            _rigidbody2D.velocity = new Vector2(_player.MoveInput.Value.x * _status.MovementSpeed.Get(), _rigidbody2D.velocity.y);
+            _rigidBody2D.velocity = new Vector2(_player.MoveInput.Value.x * _status.MovementSpeed.Get(), _rigidBody2D.velocity.y);
         }
 
         private void AssignEvents()
         {
+            _player.EatInput.Performed.AddListener(OnEatInputPerformed);
             _player.MoveInput.Canceled.AddListener(OnMoveInputCanceled);
             _player.JumpInput.Performed.AddListener(OnJumpInputPerformed);
 
@@ -63,6 +64,7 @@ public partial class Player : MonoBehaviour
 
         private void UnassignEvents()
         {
+            _player.EatInput.Performed.RemoveListener(OnEatInputPerformed);
             _player.MoveInput.Canceled.RemoveListener(OnMoveInputCanceled);
             _player.JumpInput.Performed.RemoveListener(OnJumpInputPerformed);
 

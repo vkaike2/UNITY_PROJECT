@@ -33,9 +33,9 @@ public partial class Player : MonoBehaviour
         {
             AssignEvents();
 
-            _gravityWhenStarted = _rigidbody2D.gravityScale;
-            _previousVelocity = _rigidbody2D.velocity;
-            _rigidbody2D.velocity = Vector2.zero;
+            _gravityWhenStarted = _rigidBody2D.gravityScale;
+            _previousVelocity = _rigidBody2D.velocity;
+            _rigidBody2D.velocity = Vector2.zero;
 
             Vector2 mouseDirection = GetMouseDirectionRelatedToPlayer();
 
@@ -78,8 +78,8 @@ public partial class Player : MonoBehaviour
                 _hasBeingFlipped = false;
             }
 
-            _rigidbody2D.gravityScale = _gravityWhenStarted;
-            _rigidbody2D.velocity = _previousVelocity;
+            _rigidBody2D.gravityScale = _gravityWhenStarted;
+            _rigidBody2D.velocity = _previousVelocity;
 
             ChangeBackToPreviousState();
         }
@@ -93,11 +93,11 @@ public partial class Player : MonoBehaviour
 
         private void ControlPlayerWhilePooping()
         {
-            _rigidbody2D.gravityScale = _poopModel.GravityWhilePooping;
+            _rigidBody2D.gravityScale = _poopModel.GravityWhilePooping;
 
             if (_previousVelocity.y > 0)
             {
-                _rigidbody2D.velocity = Vector2.zero;
+                _rigidBody2D.velocity = Vector2.zero;
             }
 
             for (int i = 0; i < _poopModel.NumberOfDots; i++)

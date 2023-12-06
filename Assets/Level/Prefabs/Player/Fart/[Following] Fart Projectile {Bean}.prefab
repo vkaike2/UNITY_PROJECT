@@ -174,5 +174,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31929474682a8ed40968f67dc9a76c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minimumDistanceToPlayer: 0.5
+  _minimumDistanceToPlayer: 1
   _speedMultiplier: 2

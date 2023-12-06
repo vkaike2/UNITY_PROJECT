@@ -7,11 +7,11 @@ public class GoldenJamItemUI : MonoBehaviour
     [SerializeField]
     private ScriptableItemEvents _itemEvents;
 
-    private InventoryItemUI _iventoryItemUI;
+    private InventoryItemUI _inventoryItemUI;
 
     private void Awake()
     {
-        _iventoryItemUI = GetComponent<InventoryItemUI>();
+        _inventoryItemUI = GetComponent<InventoryItemUI>();
 
         _itemEvents.OnUseGoldenJam.AddListener(OnUseGoldenJam);
     }
@@ -25,6 +25,6 @@ public class GoldenJamItemUI : MonoBehaviour
     {
         if (id != GetInstanceID()) return;
 
-        _iventoryItemUI.RemoveFromInventory();
+        _inventoryItemUI.RemoveFromInventory();
     }
 }

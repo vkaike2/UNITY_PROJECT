@@ -354,7 +354,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.008235872, y: 0.6942946}
+  m_Offset: {x: 0.03058219, y: 0.69482636}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -365,7 +365,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5389081, y: 1.485276}
+  m_Size: {x: 1.4315996, y: 1.478405}
   m_EdgeRadius: 0
 --- !u!1 &3447002916322263005
 GameObject:
@@ -694,7 +694,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.011390686, y: 0.69482636}
+  m_Offset: {x: 0.03058219, y: 0.69482636}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -705,7 +705,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5467491, y: 1.478405}
+  m_Size: {x: 1.4315996, y: 1.478405}
   m_EdgeRadius: 0
 --- !u!114 &4015679732452847455
 MonoBehaviour:
@@ -870,7 +870,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.008235872, y: 0.6942946}
+  m_Offset: {x: 0.03058219, y: 0.69482636}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -881,7 +881,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5389081, y: 1.485276}
+  m_Size: {x: 1.4315996, y: 1.478405}
   m_EdgeRadius: 0
 --- !u!114 &3672487618165663549
 MonoBehaviour:
@@ -950,6 +950,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _status: {fileID: 689989992443093827}
   _hitbox: {fileID: 4015679732452847455}
+  _auxiliarHitBoxes:
+  - {fileID: 955247016051472032}
   _progressBarUI: {fileID: 5203729678275168126}
   _spriteRenderer: {fileID: 3816588840233173337}
   _VfxParent: {fileID: 3823392703912318267}

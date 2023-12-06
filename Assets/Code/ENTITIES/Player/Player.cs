@@ -35,7 +35,9 @@ public partial class Player : MonoBehaviour
     public PlayerDownPlatformModel DownPlatformModel { get; private set; }
     [field: SerializeField]
     public PlayerPoopModel PoopModel { get; private set; }
-    
+    [field: SerializeField]
+    public PlayerEatModel EatModel { get; private set; }
+
     public FiniteState CurrentState => _currentState.State;
     public UIEventManager UIEventManager { get; private set; }
     public PlayerInventory PlayerInventory { get; private set; }
@@ -48,7 +50,6 @@ public partial class Player : MonoBehaviour
 
     protected OnKnockbackEvent OnKnockbackEvent { get; private set; } = new OnKnockbackEvent();
     public KnockBackInformation KnockBackInfo { get; private set; } = new KnockBackInformation();
-
 
 
     private bool _isFrozen;
@@ -65,6 +66,7 @@ public partial class Player : MonoBehaviour
         new Jump(),
         new Falling(),
         new Pooping(),
+        new Eating(),
         new Dead()
     };
 
@@ -109,6 +111,21 @@ public partial class Player : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.RemovePlayer();
+    }
+
+    /// <summary>
+    ///    
+    /// </summary>
+    /// <param name="checkInventory"> Check if there is something to eat on Inventory </param>
+    /// <returns></returns>
+    public bool CanEat(bool checkInventory)
+    {
+        if (checkInventory)
+        {
+            return IsTouchingGround && PlayerInventory.CanEatItem();
+
+        }
+        return IsTouchingGround;
     }
 
     public void ChangeState(FiniteState state)
@@ -177,6 +194,7 @@ public partial class Player : MonoBehaviour
         Jump,
         Falling,
         Pooping,
+        Eating,
         Dead
     }
 }

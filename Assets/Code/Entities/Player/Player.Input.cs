@@ -10,6 +10,7 @@ public partial class Player : MonoBehaviour
     public InputModel<bool> DownPlatformInput { get; private set; } = new InputModel<bool>();
     public InputModel<bool> PoopInput { get; private set; } = new InputModel<bool>();
     public InputModel<bool> ShiftInput { get; private set; } = new InputModel<bool>();
+    public InputModel<bool> EatInput { get; private set; } = new InputModel<bool>();
 
     public void OnDownInput(InputAction.CallbackContext context)
     {
@@ -66,6 +67,11 @@ public partial class Player : MonoBehaviour
     public void OnShiftInput(InputAction.CallbackContext context)
     {
         InitializeBooleanInput(ShiftInput, context);
+    }
+
+    public void OnEatInput(InputAction.CallbackContext context)
+    {
+        InitializeBooleanInput(EatInput, context);
     }
 
     private void InitializeBooleanInput(InputModel<bool> input, InputAction.CallbackContext context)
