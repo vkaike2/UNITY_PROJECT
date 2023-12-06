@@ -14,9 +14,14 @@ public class PlayerDamageReceiver : DamageReceiver
         float health = _player.Status.Health.Get();
 
         health += amountOfHealth;
-        if(health > _player.Status.MaxHealth.Get())
+        if (health > _player.Status.MaxHealth.Get())
         {
             health = _player.Status.MaxHealth.Get();
+        }
+
+        if (_VfxParent != null)
+        {
+           _VfxParent.AddHealth(health);
         }
 
         _player.Status.Health.Set(health);

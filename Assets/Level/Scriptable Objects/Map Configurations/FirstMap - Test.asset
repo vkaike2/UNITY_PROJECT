@@ -186,13 +186,13 @@ MonoBehaviour:
         _description: '[Large Stage] Unlock Big Platforms'
   - name: 00:16 -> BOSS
     <Actions>k__BackingField:
-    - name: "00:01 -> Monster Rat        \t t:01 - pos:14 - drop:none"
+    - name: "00:01 -> Monster Chicken    \t t:01 - pos:14 - drop:none"
       <Type>k__BackingField: 0
       <Timer>k__BackingField: 1
       <WaitButtonSignal>k__BackingField: 1
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
-        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 0c362e1d425e4e1428fcde5a90f3ec0b, type: 2}
         <UseRandomPosition>k__BackingField: 0
         <SpawnPositionId>k__BackingField: 14
         <ScriptablePossibleDrop>k__BackingField: {fileID: 0}

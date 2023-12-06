@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,11 +23,6 @@ public class HitNumberVFX : MonoBehaviour
     public void SetNumber(float number)
     {
         string textNumber = number.ToString();
-
-        //if(number < 0)
-        //{
-        //    textNumber = number.ToString("0.00");
-        //}
 
         _label.text = textNumber;
 

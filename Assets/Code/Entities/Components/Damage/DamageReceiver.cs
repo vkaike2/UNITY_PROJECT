@@ -22,7 +22,7 @@ public abstract class DamageReceiver : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _spriteRenderer;
     [SerializeField]
-    private HitNumberVFXParent _VfxParent;
+    protected PopUpVFXParent _VfxParent;
     [SerializeField]
     private DpsMeterUI _dpsMeter;
 
@@ -94,7 +94,7 @@ public abstract class DamageReceiver : MonoBehaviour
 
         if (_VfxParent != null)
         {
-            _VfxParent.SpawnNumber(incomingDamage);
+            _VfxParent.SetHitNumber(incomingDamage);
         }
 
         OnReceiveDamage(incomingDamage);

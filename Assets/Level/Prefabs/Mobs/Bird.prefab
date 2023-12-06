@@ -335,9 +335,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _status: {fileID: 5856818057734215461}
   _hitbox: {fileID: 6878484955932741775}
+  _auxiliarHitBoxes: []
   _progressBarUI: {fileID: 8882837209541123990}
   _spriteRenderer: {fileID: 8956391772378574684}
-  _VfxParent: {fileID: 1760915940688327046}
+  _VfxParent: {fileID: 2983708419069736235}
   _dpsMeter: {fileID: 0}
   _shouldApplyKnockback: 0
   _knockbackDuration: 0.3
@@ -917,9 +918,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
---- !u!114 &1760915940688327046 stripped
+--- !u!114 &2983708419069736235 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7138517373327363554, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5911360381788571983, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
   m_PrefabInstance: {fileID: 8890417982106057828}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

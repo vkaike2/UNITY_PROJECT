@@ -954,7 +954,7 @@ MonoBehaviour:
   - {fileID: 955247016051472032}
   _progressBarUI: {fileID: 5203729678275168126}
   _spriteRenderer: {fileID: 3816588840233173337}
-  _VfxParent: {fileID: 3823392703912318267}
+  _VfxParent: {fileID: 294755017644118422}
   _dpsMeter: {fileID: 0}
   _shouldApplyKnockback: 0
   _knockbackDuration: 0.3
@@ -1405,14 +1405,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
---- !u!224 &2252144809808965710 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5287024852279322775, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
-  m_PrefabInstance: {fileID: 6205521387929622745}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3823392703912318267 stripped
+--- !u!114 &294755017644118422 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7138517373327363554, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5911360381788571983, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
   m_PrefabInstance: {fileID: 6205521387929622745}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1421,3 +1416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4195a13e3df4e5a4b84b35c4827a6d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2252144809808965710 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5287024852279322775, guid: 8c892acdb994e54488fd2dc1db408118, type: 3}
+  m_PrefabInstance: {fileID: 6205521387929622745}
+  m_PrefabAsset: {fileID: 0}
