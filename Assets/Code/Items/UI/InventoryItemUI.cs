@@ -19,10 +19,12 @@ public class InventoryItemUI : MouseOver
     private List<InventoryItemSlotUI> _slots;
     private List<InventorySlotUI> _tempInventorySlots = new List<InventorySlotUI>();
     private InventoryUI _inventory = null;
+    private RectTransform _rectTransform;
 
     private void Awake()
     {
         _slots = GetComponentsInChildren<InventoryItemSlotUI>().ToList();
+        _rectTransform = GetComponent<RectTransform>();
     }
 
     private void Start()
@@ -65,9 +67,12 @@ public class InventoryItemUI : MouseOver
 
         SlotType = inventorySlotsUnderItem.FirstOrDefault().Type;
 
-        this.transform.position = everySlotUnderItemPosition.CalculateMiddlePosition();
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        this.transform.position = (Vector2)everySlotUnderItemPosition.CalculateMiddlePosition();
+
         this.transform.SetParent(itemParent);
-        
+        _rectTransform.localPosition = new Vector3(_rectTransform.localPosition.x, _rectTransform.localPosition.y, 0f);
+
         return inventorySlotsUnderItem;
     }
 
@@ -114,7 +119,6 @@ public class InventoryItemUI : MouseOver
         if (!IsBeingDragged) return;
 
         List<InventorySlotUI> inventorySlotsUnderItem = GetEveryInventorySlotUnderItem();
-        Debug.Log(inventorySlotsUnderItem?.Count);
 
         foreach (InventorySlotUI slot in _tempInventorySlots.Where(e => inventorySlotsUnderItem.FirstOrDefault(s => s.GetInstanceID() == e.GetInstanceID()) == null))
         {
@@ -132,7 +136,7 @@ public class InventoryItemUI : MouseOver
 
     public override void ChangeAnimationOnItemOver(bool isMouseOver)
     {
-        if(_animator == null) return;
+        if (_animator == null) return;
 
         if (isMouseOver)
         {

@@ -71,11 +71,6 @@ public class RaycastUtils : MonoBehaviour
     {
         List<RaycastResult> hits = GetRayCastUnderPositionUI(Camera.main.WorldToScreenPoint(position));
 
-        if (hits != null)
-        {
-            Debug.Log(string.Join(", ", hits.Select(e => e.gameObject.name)));
-        }
-
 
         return GetComponentsUnderRayCastUI<T>(hits, excluding);
     }

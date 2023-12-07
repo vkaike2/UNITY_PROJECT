@@ -32,7 +32,6 @@ public class PopUpVFXParent : MonoBehaviour
     {
         if (_equipItemVfx != null)
         {
-            Debug.Log("test");
             _itemEvents.OnEquipItem.AddListener(OnEquipItemVFX);
         }
     }

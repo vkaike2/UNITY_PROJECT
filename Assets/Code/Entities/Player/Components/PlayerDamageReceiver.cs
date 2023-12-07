@@ -21,10 +21,10 @@ public class PlayerDamageReceiver : DamageReceiver
 
         if (_VfxParent != null)
         {
-           _VfxParent.AddHealth(health);
+           _VfxParent.AddHealth(amountOfHealth);
         }
 
-        _player.Status.Health.Set(amountOfHealth);
+        _player.Status.Health.Set(health);
 
         this.UpdateUI();
     }

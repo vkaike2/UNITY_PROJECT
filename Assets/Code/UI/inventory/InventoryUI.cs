@@ -188,6 +188,10 @@ public class InventoryUI : MonoBehaviour
             InventoryItemUI itemUI = Instantiate(item.Item.PrefabUI, this._itemParent);
             itemUI.ItemData = item;
             itemUI.transform.position = itemPosition;
+
+            RectTransform rectTransform = itemUI.GetComponent<RectTransform>();
+            rectTransform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, 0f);
+
             itemUI.SlotType = inventoryData.Type;
 
             this.InternalAddItem(slotsUnderItem, itemUI, false);
@@ -284,6 +288,8 @@ public class InventoryUI : MonoBehaviour
         {
             slot.ToggleAvailability(true);
         }
+
+        UpdatePlayerEquipInventory();
     }
     #endregion
 
