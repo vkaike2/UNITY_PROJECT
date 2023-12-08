@@ -120,16 +120,6 @@ public class CustomMouse : MonoBehaviour
     {
         if (context.phase != InputActionPhase.Performed) return;
 
-        GoldenJamItemUI goldenJam = RaycastUtils
-           .GetComponentsUnderMouseUI<GoldenJamItemUI>(new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Children })
-           .FirstOrDefault();
-
-        if (goldenJam != null)
-        {
-            goldenJam.UseItem();
-            return;
-        }
-
         UsableItemUI usableItem = RaycastUtils
            .GetComponentsUnderMouseUI<UsableItemUI>(new List<RaycastUtils.Excluding>() { RaycastUtils.Excluding.Children })
            .FirstOrDefault();

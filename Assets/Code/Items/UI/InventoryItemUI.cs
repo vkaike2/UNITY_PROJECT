@@ -15,10 +15,11 @@ public class InventoryItemUI : MouseOver
 
     public ItemData ItemData { get; set; }
     public SlotType SlotType { get; set; }
+    public InventoryUI Inventory { get; private set; }
+
 
     private List<InventoryItemSlotUI> _slots;
     private List<InventorySlotUI> _tempInventorySlots = new List<InventorySlotUI>();
-    private InventoryUI _inventory = null;
     private RectTransform _rectTransform;
 
     private void Awake()
@@ -29,7 +30,7 @@ public class InventoryItemUI : MouseOver
 
     private void Start()
     {
-        _inventory = GameObject.FindObjectOfType<InventoryUI>();
+        Inventory = GameObject.FindObjectOfType<InventoryUI>();
     }
 
     private void Update()
@@ -78,7 +79,7 @@ public class InventoryItemUI : MouseOver
 
     public void RemoveFromInventory()
     {
-        _inventory.RemoveItem(ItemData.Id);
+        Inventory.RemoveItem(ItemData.Id);
         Destroy(this.gameObject);
     }
 

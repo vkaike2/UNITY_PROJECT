@@ -34,8 +34,6 @@ public class ScriptableItemEvents : ScriptableObject
     [SerializeField]
     private EquipableBroccoli _broccoli;
 
-    public OnUseJamEvent OnUseGoldenJam { get; private set; } = new OnUseJamEvent();
-
     public OnEquipItemEvent OnEquipItem { get; private set; } = new OnEquipItemEvent();
     public OnUnequipItemEvent OnUnequipItem { get; private set; } = new OnUnequipItemEvent();
 

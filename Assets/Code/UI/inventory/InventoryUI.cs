@@ -84,6 +84,37 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdatePlayerEquipInventory() => UIEventManager.instance.OnInventoryChange.Invoke(GenerateInventoryData(SlotType.Equip, _equipmentInfo), EventSentBy.UI);
 
+    public bool CanUseGoldenJam()
+    {
+        List<InventorySlotUI> unavailableSlots = _equipmentInfo.Slots
+            .Where(e => e.IsAvalialbe == false)
+            .OrderBy(e => e.Coordinate.x)
+            .ToList();
+
+        return unavailableSlots.Any();
+    }
+
+    public void UseGoldenJam()
+    {
+        List<InventorySlotUI> unavailableSlots = _equipmentInfo.Slots
+            .Where(e => e.IsAvalialbe == false)
+            .OrderBy(e => e.Coordinate.x)
+            .ToList();
+
+        if (!unavailableSlots.Any()) return;
+
+        float columnIndex = unavailableSlots.FirstOrDefault().Coordinate.x;
+
+        List<InventorySlotUI> columnBeingActivatedSlots = unavailableSlots.Where(e => e.Coordinate.x == columnIndex).ToList();
+
+        foreach (var slot in columnBeingActivatedSlots)
+        {
+            slot.ToggleAvailability(true);
+        }
+
+        UpdatePlayerEquipInventory();
+    }
+
     #endregion
 
     private void SetupEvents()
@@ -92,8 +123,6 @@ public class InventoryUI : MonoBehaviour
         UIEventManager.instance.OnInventoryChange.AddListener(OnInventoryChange);
 
         UIEventManager.instance.OnInventoryRemoveEquipment.AddListener(OnInventoryRemoveEquipment);
-
-        _itemEvents.OnUseGoldenJam.AddListener(OnUseGoldenJam);
 
         StartCoroutine(WaitUntilEndOfFrame());
     }
@@ -197,7 +226,7 @@ public class InventoryUI : MonoBehaviour
             this.InternalAddItem(slotsUnderItem, itemUI, false);
         }
     }
-    //1608 187348
+
     private void InternalAddItem(List<InventorySlotUI> slotsUnderItem, InventoryItemUI itemUI, bool updatePlayer = true)
     {
         bool canEquipItem = true;
@@ -269,29 +298,6 @@ public class InventoryUI : MonoBehaviour
             slot.RemoveItem();
         }
     }
-
-    #region EVENT LISTENERS FOR ITENS
-    private void OnUseGoldenJam(int id)
-    {
-        List<InventorySlotUI> unavailableSlots = _equipmentInfo.Slots
-            .Where(e => e.IsAvalialbe == false)
-            .OrderBy(e => e.Coordinate.x)
-            .ToList();
-
-        if (!unavailableSlots.Any()) return;
-
-        float columnIndex = unavailableSlots.FirstOrDefault().Coordinate.x;
-
-        List<InventorySlotUI> columnBeingActivatedSlots = unavailableSlots.Where(e => e.Coordinate.x == columnIndex).ToList();
-
-        foreach (var slot in columnBeingActivatedSlots)
-        {
-            slot.ToggleAvailability(true);
-        }
-
-        UpdatePlayerEquipInventory();
-    }
-    #endregion
 
     private IEnumerator WaitForActionsThenDo(List<SlotActionWrapper> slotActions, Action doAfter)
     {

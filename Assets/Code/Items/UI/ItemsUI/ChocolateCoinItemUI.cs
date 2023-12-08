@@ -7,8 +7,6 @@ public class ChocolateCoinItemUI : UsableItemUI
 
     public override void UseItem()
     {
-        //_itemEvents.OnUseItem.Invoke(_inventoryItemUI.ItemData.Item);
-
         _gameManager.Player.Eat(_inventoryItemUI.ItemData);
     }
 }
