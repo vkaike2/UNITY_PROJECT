@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
     private CustomMouse _customMouse;
     private GameManager _gameManager;
 
-    public UnityEvent OnEscPerformed { get; set; }=  new UnityEvent();
+    public UnityEvent OnEscPerformed { get; set; } = new UnityEvent();
 
     private void Start()
     {
@@ -107,9 +107,11 @@ public class InputManager : MonoBehaviour
 
         if (mouseIsOverUI || _customMouse.IsDragging) return SendMouseTo.CustomMouse;
 
-        if (button == MouseButton.Left)
+        if (button == MouseButton.Left 
+            && RaycastUtils.GetComponentsUnderMouse<MouseInteractable>().FirstOrDefault() != null
+            && _gameManager.Player.CurrentState != Player.FiniteState.Pooping)
         {
-            if (RaycastUtils.GetComponentsUnderMouse<MouseInteractable>().FirstOrDefault() != null) return SendMouseTo.CustomMouse;
+            return SendMouseTo.CustomMouse;
         }
 
         return SendMouseTo.Player;

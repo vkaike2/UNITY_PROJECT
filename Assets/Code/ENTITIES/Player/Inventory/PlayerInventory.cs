@@ -80,16 +80,20 @@ public class PlayerInventory : MonoBehaviour
             || _equipData.Itens.Any(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
     }
 
-    public void EatItem()
+    public void EatItem(ItemData eatableItem)
     {
-        ItemData eatable = _inventoryData.Itens.FirstOrDefault(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
-        eatable ??= _equipData.Itens.FirstOrDefault(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
+        if (eatableItem == null)
+        {
 
-        _itemEvents.OnUseItem.Invoke(eatable.Item);
+            eatableItem = _inventoryData.Itens.FirstOrDefault(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
+            eatableItem ??= _equipData.Itens.FirstOrDefault(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
+        }
+
+        _itemEvents.OnUseItem.Invoke(eatableItem.Item);
 
         //Try to remove either from the Equip or Inventory
-        RemoveSingleItem(_inventoryData, eatable);
-        RemoveSingleItem(_equipData, eatable);
+        RemoveSingleItem(_inventoryData, eatableItem);
+        RemoveSingleItem(_equipData, eatableItem);
     }
     #endregion
 

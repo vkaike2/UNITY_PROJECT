@@ -128,6 +128,12 @@ public partial class Player : MonoBehaviour
         return IsTouchingGround;
     }
 
+    public void Eat(ItemData item)
+    {
+        EatModel.EatingItemData = item;
+        ChangeState(FiniteState.Eating);
+    }
+
     public void ChangeState(FiniteState state)
     {
         _currentState?.OnExitState();

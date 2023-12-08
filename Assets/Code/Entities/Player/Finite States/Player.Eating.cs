@@ -26,6 +26,7 @@ public partial class Player : MonoBehaviour
 
         public override void OnExitState()
         {
+            _eatModel.EatingItemData = null;
         }
 
         public override void Update()
@@ -37,7 +38,7 @@ public partial class Player : MonoBehaviour
             float halfCdw = _eatModel.CdwToMoveOutState / 2;
 
             yield return new WaitForSeconds(halfCdw);
-            _playerInventory.EatItem();
+            _playerInventory.EatItem(_eatModel.EatingItemData);
 
             yield return new WaitForSeconds(halfCdw);
 

@@ -49,7 +49,7 @@ public class InventoryDraggableUI : MonoBehaviour
         Debug.Log(dropInsideInventory);
         if (dropInsideInventory)
         {
-            dragAction = ManagItemDropInsideInventory();
+            dragAction = ManageItemDropInsideInventory();
         }
         else
         {
@@ -81,7 +81,7 @@ public class InventoryDraggableUI : MonoBehaviour
         _itemBeingUsedUI.ActivateImage(_isUsingItem);
     }
 
-    private DragAction ManagItemDropInsideInventory()
+    private DragAction ManageItemDropInsideInventory()
     {
         bool itHasBeingAddedToInventory = TryToAddItemToInventory();
 
