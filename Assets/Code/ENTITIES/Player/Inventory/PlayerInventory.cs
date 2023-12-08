@@ -84,7 +84,6 @@ public class PlayerInventory : MonoBehaviour
     {
         if (eatableItem == null)
         {
-
             eatableItem = _inventoryData.Itens.FirstOrDefault(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
             eatableItem ??= _equipData.Itens.FirstOrDefault(e => e.Item.IsUsable && e.Item.Effect == ScriptableItem.UsageEffect.HpUp);
         }

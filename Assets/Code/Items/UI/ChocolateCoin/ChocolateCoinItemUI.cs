@@ -1,7 +1,5 @@
 public class ChocolateCoinItemUI : UsableItemUI
 {
-
-
     public override bool CanUseItem()
     {
         return _gameManager.Player.CanEat(false);

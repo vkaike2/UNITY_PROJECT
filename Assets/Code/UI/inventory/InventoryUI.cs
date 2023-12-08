@@ -280,9 +280,9 @@ public class InventoryUI : MonoBehaviour
 
         if (!unavailableSlots.Any()) return;
 
-        float columnIdex = unavailableSlots.FirstOrDefault().Coordinate.x;
+        float columnIndex = unavailableSlots.FirstOrDefault().Coordinate.x;
 
-        List<InventorySlotUI> columnBeingActivatedSlots = unavailableSlots.Where(e => e.Coordinate.x == columnIdex).ToList();
+        List<InventorySlotUI> columnBeingActivatedSlots = unavailableSlots.Where(e => e.Coordinate.x == columnIndex).ToList();
 
         foreach (var slot in columnBeingActivatedSlots)
         {
