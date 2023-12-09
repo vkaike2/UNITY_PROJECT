@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -12,6 +15,10 @@ public abstract class EquipableItemBase
     protected ScriptableItemEvents _events;
     protected GameManager _gameManager;
     protected PlayerStatus _playerStatus;
+
+    private readonly List<Action> _executeSynchronous = new List<Action>();
+
+    private Coroutine _syncExecution;
 
     public void Initialize(ScriptableItemEvents events, GameManager gameManager)
     {
@@ -29,14 +36,18 @@ public abstract class EquipableItemBase
     {
         GetPlayerStatus();
         if (!CheckIfItemNameIsEqual(item.name)) return;
-        EquipItem();
+
+        _executeSynchronous.Add(() => EquipItem());
+        TryToStartSyncExecution();
     }
 
     private void OnUnequipItemInternal(ScriptableItem item)
     {
         GetPlayerStatus();
         if (!CheckIfItemNameIsEqual(item.name)) return;
-        UnequipItem();
+
+        _executeSynchronous.Add(() => UnequipItem());
+        TryToStartSyncExecution();
     }
 
     private bool CheckIfItemNameIsEqual(string itemName)
@@ -47,7 +58,7 @@ public abstract class EquipableItemBase
         return isEqualToItem || isEqualToRotatedItem;
     }
 
-    protected PlayerStatus GetPlayerStatus()
+    private PlayerStatus GetPlayerStatus()
     {
         if (_playerStatus == null)
         {
@@ -55,4 +66,28 @@ public abstract class EquipableItemBase
         }
         return _playerStatus;
     }
+
+    private void TryToStartSyncExecution()
+    {
+        if (_syncExecution != null) return;
+
+        _syncExecution = _gameManager.StartCoroutine(RunSynchronousInternalEvents());
+    }
+
+    private IEnumerator RunSynchronousInternalEvents()
+    {
+        _executeSynchronous.FirstOrDefault().Invoke();
+        _executeSynchronous.RemoveAt(0);
+
+        yield return new WaitForFixedUpdate();
+
+        if(_executeSynchronous.Count > 0)
+        {
+            _syncExecution = _gameManager.StartCoroutine(RunSynchronousInternalEvents());
+        }
+        else
+        {
+            _syncExecution = null;
+        }
+    } 
 }

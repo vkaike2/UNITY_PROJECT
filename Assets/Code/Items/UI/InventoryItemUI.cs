@@ -15,7 +15,7 @@ public class InventoryItemUI : MouseOver
 
     public ItemData ItemData { get; set; }
     public SlotType SlotType { get; set; }
-    public InventoryUI Inventory { get; private set; }
+    public InventoryUI Inventory { get; private set; }  
 
 
     private List<InventoryItemSlotUI> _slots;
@@ -49,9 +49,10 @@ public class InventoryItemUI : MouseOver
     public bool CheckIfCanSwap()
     {
         List<InventorySlotUI> slotsUnderItem = GetEveryInventorySlotUnderItem();
+        slotsUnderItem = slotsUnderItem.Where(e => e.CanReceiveANewItem()).ToList();
 
         if (slotsUnderItem.Count != _slots.Count) return false;
-        if (slotsUnderItem.Where(e => e.HasItem).Select(e => e.ItemUI.ItemData.Id).Distinct().Count() > 1) return false;
+        if (slotsUnderItem.Select(e => e.ItemUI.ItemData.Id).Distinct().Count() > 1) return false;
 
         return true;
     }

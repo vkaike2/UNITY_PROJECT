@@ -46,7 +46,6 @@ public class InventoryDraggableUI : MonoBehaviour
         DragAction dragAction;
 
         bool dropInsideInventory = RaycastUtils.GetComponentsUnderMouseUI<InventoryUI>().Any();
-        Debug.Log(dropInsideInventory);
         if (dropInsideInventory)
         {
             dragAction = ManageItemDropInsideInventory();
