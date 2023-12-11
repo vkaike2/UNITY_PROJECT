@@ -30,12 +30,12 @@ public class WallOfSpike : MonoBehaviour
     private const string ANIMATION_SITTING_DOWN = "Wall of Spikes Sitting Down";
     private bool _hasLegs = false;
 
-    private Rigidbody2D _rigidbody2d;
+    private Rigidbody2D _rigidBody2d;
     private Coroutine _movingCoroutine;
 
     private void Awake()
     {
-        _rigidbody2d = GetComponent<Rigidbody2D>();
+        _rigidBody2d = GetComponent<Rigidbody2D>();
 
         AddDamageToSpikes();
         DetachTransformPositions();
@@ -48,25 +48,38 @@ public class WallOfSpike : MonoBehaviour
         FreezeWall(true);
     }
 
+    private void OnValidate()
+    {
+        foreach (var position in _positions)
+        {
+            position.name = position.TransformPosition.gameObject.name;
+        }
+    }
+
     #region MAP EVENTS
     private void OnChangeMap(int mapId, int changeId)
     {
-        if(mapId == ConstantValues.FIRST_MAP_ID) ChangeEventForFistMap(changeId);
+        if (mapId == ConstantValues.FIRST_MAP_ID) ChangeEventForFistMap(changeId);
     }
 
     private void ChangeEventForFistMap(int changeId)
     {
-        if(changeId == FirstMapChanges.WALL_OF_SPIKE_MOVE_TO_MEDIUM)
+        if (changeId == FirstMapChanges.WALL_OF_SPIKE_MOVE_TO_MEDIUM)
         {
-            GoToPosition(_positions[0].Position,() => _mapEvents.OnChangeMapEvent.Invoke(ConstantValues.FIRST_MAP_ID, FirstMapChanges.WALL_OF_SPIKE_READY_MEDIUM));
+            GoToPosition(_positions[1].Position, () => _mapEvents.OnChangeMapEvent.Invoke(ConstantValues.FIRST_MAP_ID, FirstMapChanges.WALL_OF_SPIKE_READY_MEDIUM));
         }
 
-        if(changeId == FirstMapChanges.WALL_OF_SPIKE_MOVE_TO_LARGE)
+        if (changeId == FirstMapChanges.WALL_OF_SPIKE_MOVE_TO_LARGE)
         {
-            GoToPosition(_positions[1].Position,() => _mapEvents.OnChangeMapEvent.Invoke(ConstantValues.FIRST_MAP_ID, FirstMapChanges.WALL_OF_SPIKE_READY_LARGE));
+            GoToPosition(_positions[2].Position, () => _mapEvents.OnChangeMapEvent.Invoke(ConstantValues.FIRST_MAP_ID, FirstMapChanges.WALL_OF_SPIKE_READY_LARGE));
+        }
+
+        // Go back to Initial position
+        if (changeId == FirstMapChanges.PREPARE_MAP_TO_BOSS)
+        {
+            GoToPosition(_positions[0].Position, () => _mapEvents.OnChangeMapEvent.Invoke(ConstantValues.FIRST_MAP_ID, FirstMapChanges.WALL_OF_SPIKE_READY_BOSS));
         }
     }
-
     #endregion
 
     private void GoToPosition(Vector2 position, Action callback)
@@ -81,7 +94,6 @@ public class WallOfSpike : MonoBehaviour
             position,
             () =>
             {
-               
                 FreezeWall(true);
                 callback();
             }
@@ -125,7 +137,17 @@ public class WallOfSpike : MonoBehaviour
 
         _animator.Play(ANIMATION_RUNNING);
 
-        this.transform.localScale = new Vector3(-initialLocalScale.x, initialLocalScale.y, initialLocalScale.z);
+        bool isInitiallyFacingRight = this.transform.localScale.x == 1;
+
+        if (targetPosition.x > myHorizontalPosition.x && !isInitiallyFacingRight)
+        {
+            this.transform.localScale = new Vector3(-initialLocalScale.x, initialLocalScale.y, initialLocalScale.z);
+        }
+        else if(targetPosition.x < myHorizontalPosition.x && isInitiallyFacingRight)
+        {
+            this.transform.localScale = new Vector3(-initialLocalScale.x, initialLocalScale.y, initialLocalScale.z);
+        }
+
 
         // going to the right
         if (direction.x > 0)
@@ -146,7 +168,7 @@ public class WallOfSpike : MonoBehaviour
             }
         }
 
-        _rigidbody2d.velocity = Vector2.zero;
+        _rigidBody2d.velocity = Vector2.zero;
         this.transform.position = new Vector3(targetPosition.x, this.transform.position.y, this.transform.position.z);
 
         this.transform.localScale = initialLocalScale;
@@ -158,7 +180,7 @@ public class WallOfSpike : MonoBehaviour
     private Vector2 MoveWallTowardsDirection(Vector2 direction)
     {
         Vector2 myHorizontalPosition = GetHorizontalPosition();
-        _rigidbody2d.velocity = direction * _movementSpeed;
+        _rigidBody2d.velocity = direction * _movementSpeed;
         return myHorizontalPosition;
     }
 
@@ -166,7 +188,7 @@ public class WallOfSpike : MonoBehaviour
 
     private void FreezeWall(bool freeze)
     {
-        _rigidbody2d.isKinematic = freeze;
+        _rigidBody2d.isKinematic = freeze;
     }
     #endregion
 

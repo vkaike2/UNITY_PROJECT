@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637571636655086114}
   - component: {fileID: 6065344432743577605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpriteRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4767165751673162174}
   - component: {fileID: 1111559347168485710}
   - component: {fileID: 1964829994761261234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Porcupine Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

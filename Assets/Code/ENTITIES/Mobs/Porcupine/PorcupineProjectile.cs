@@ -33,12 +33,5 @@ public class PorcupineProjectile : MonoBehaviour
     public void SetInitialInitialValues(Vector2 velocity, float duration)
     {
         _rigidBody2D.velocity = velocity;
-        //StartCoroutine(WaitThenDie(duration));
     }
-
-    //IEnumerator WaitThenDie(float duration)
-    //{
-    //    yield return new WaitForSeconds(duration);
-    //    Destroy(gameObject);
-    //}
 }

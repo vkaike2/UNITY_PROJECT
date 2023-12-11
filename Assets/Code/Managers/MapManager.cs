@@ -53,17 +53,15 @@ public class MapManager : MonoBehaviour
         CurrentMap.transform.SetParent(_mapContainer);
     }
 
-    private void OnPlayerDead()
-    {
-        foreach (var enemy in EnemiesInsideMap.Where(e => e != null))
-        {
-            enemy.Kill();
-        }
-
-        StartCoroutine(ChangeCameraSizeSmoothly(3, 1.5f, _gameManager.Player.transform));
-
-        //VirtualCamera.Follow = _gameManager.Player.transform;
-    }
+    //private void OnPlayerDead()
+    //{
+    //    foreach (var enemy in EnemiesInsideMap.Where(e => e != null))
+    //    {
+    //        enemy.Kill();
+    //    }
+    //    StartCoroutine(ChangeCameraSizeSmoothly(3, 1.5f, _gameManager.Player.transform));
+    //    //VirtualCamera.Follow = _gameManager.Player.transform;
+    //}
 
     #region TOILET CAMERA HELPER
     public void FocusCameraOnToilet(Action callBack)

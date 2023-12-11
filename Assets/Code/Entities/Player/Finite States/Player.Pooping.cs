@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public partial class Player : MonoBehaviour
 {

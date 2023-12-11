@@ -16,7 +16,7 @@ public class LayerCheckCollider : MonoBehaviour
     [SerializeField]
     private List<CollisionLayer> _collisonLayers;
 
-    [Header("raycast configuration")]
+    [Header("RayCast configuration")]
     [Space]
     [SerializeField]
     private LayerMask _layerMask;
@@ -24,7 +24,7 @@ public class LayerCheckCollider : MonoBehaviour
     [SerializeField]
     private float _horizontalRaycastSize = 0.5f;
 
-    public bool IsRaycastCollidingWithLayer => CheckRaycastColision();
+    public bool IsRaycastCollidingWithLayer => CheckRayCastColision();
     public OnLayerCheckTriggerEnter OnLayerCheckTriggerEnter { get; private set; }
 
     private void OnValidate()
@@ -75,7 +75,7 @@ public class LayerCheckCollider : MonoBehaviour
         return FindLayerInParent(parent.gameObject, layerIndexs);
     }
 
-    private bool CheckRaycastColision()
+    private bool CheckRayCastColision()
     {
         RaycastHit2D col = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - _horizontalRaycastSize), _layerMask);
         return col.collider != null;
@@ -83,7 +83,7 @@ public class LayerCheckCollider : MonoBehaviour
 
     private enum CollisionType
     {
-        Raycast,
+        RayCast,
         Collider
     }
 

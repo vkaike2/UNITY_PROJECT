@@ -227,7 +227,7 @@ public partial class EnemyFollowingBehaviour
 
             yield return new WaitForSeconds(_model.CdwBeforeJump);
 
-            Vector3 jumpVelocity = CalculateJumpVelocity(_target.TargeTransform);
+            Vector2 jumpVelocity = MovementUtils.CalculateJumpVelocity(_target.TargeTransform.position, _enemy.transform.position);
 
             if (float.IsNaN(jumpVelocity.x))
             {
@@ -345,59 +345,6 @@ public partial class EnemyFollowingBehaviour
         //    return new Vector3(HasIntentionToGoRight(target.position) ? finalVelocity.x : -finalVelocity.x, finalVelocity.y, 0);
         //}
 
-        private Vector3 CalculateJumpVelocity(Transform target)
-        {
-            List<float> anglesToBeTested = new List<float>()
-            {
-                70f,
-                60f,
-                45f
-            };
-
-            List<JumpAngleDto> jumpAngles = new List<JumpAngleDto>();
-
-            foreach (var testingAngle in anglesToBeTested)
-            {
-                Vector3 p = target.position;
-                p = new Vector3(p.x, p.y + 0.1f, p.z);
-
-                float gravity = Physics.gravity.magnitude * 3;
-                float angle = testingAngle * Mathf.Deg2Rad;
-
-                // Positions of this object and the target on the same plane
-                Vector3 planarTarget = new Vector3(p.x, 0, p.z);
-                Vector3 planarPosition = new Vector3(_enemy.transform.position.x, 0, _enemy.transform.position.z);
-
-                // Planar distance between objects
-                float distance = Vector3.Distance(planarTarget, planarPosition);
-                // Distance along the y axis between objects
-                float yOffset = _enemy.transform.position.y - p.y;
-
-                float initialVelocity = (1 / Mathf.Cos(angle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset));
-                Vector3 velocity = new Vector3(0, initialVelocity * Mathf.Sin(angle), initialVelocity * Mathf.Cos(angle));
-                // Rotate our velocity to match the direction between the two objects
-                float angleBetweenObjects = Vector3.Angle(Vector3.forward, planarTarget - planarPosition);
-                Vector3 finalVelocity = Quaternion.AngleAxis(angleBetweenObjects, Vector3.up) * velocity;
-
-                jumpAngles.Add(new JumpAngleDto()
-                {
-                    Angle = testingAngle,
-                    JumpForce = finalVelocity,
-                    Power = finalVelocity.x + finalVelocity.y
-                });
-            }
-
-            JumpAngleDto mostEfficientAngle = jumpAngles.OrderBy(e => e.Power).FirstOrDefault();
-
-            return new Vector3(HasIntentionToGoRight(target.position) ? mostEfficientAngle.JumpForce.x : -mostEfficientAngle.JumpForce.x, mostEfficientAngle.JumpForce.y, 0);
-        }
-
-        public struct JumpAngleDto
-        {
-            public float Angle { get; set; }
-            public float Power { get; set; }
-            public Vector2 JumpForce { get; set; }
-        }
 
         #endregion
 

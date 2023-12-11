@@ -36,7 +36,7 @@ public class PorcupineDamageDealer : ImpactDamageDealer
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_porcupine.Status.ImpactDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_porcupine.Status.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
     }
 
     public class RegisterProjectile : UnityEvent<PorcupineProjectile> { }

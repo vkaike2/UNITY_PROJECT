@@ -19,7 +19,7 @@ MonoBehaviour:
     - name: 00:01 -> Chest
       <Type>k__BackingField: 1
       <Timer>k__BackingField: 1
-      <WaitButtonSignal>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 0}
@@ -186,8 +186,8 @@ MonoBehaviour:
         _description: '[Large Stage] Unlock Big Platforms'
   - name: 00:16 -> BOSS
     <Actions>k__BackingField:
-    - name: "00:01 -> Monster Chicken    \t t:01 - pos:14 - drop:none"
-      <Type>k__BackingField: 0
+    - name: 00:01 -> ChangeMap
+      <Type>k__BackingField: 2
       <Timer>k__BackingField: 1
       <WaitButtonSignal>k__BackingField: 1
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
@@ -199,5 +199,5 @@ MonoBehaviour:
       <MapChest>k__BackingField:
         <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
       <MapChange>k__BackingField:
-        <ChangeId>k__BackingField: 0
+        <ChangeId>k__BackingField: 12
         _description: 

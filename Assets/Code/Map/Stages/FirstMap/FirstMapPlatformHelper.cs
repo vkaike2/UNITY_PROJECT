@@ -2,6 +2,7 @@ using Calcatz.MeshPathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FirstMapPlatformHelper : MonoBehaviour
@@ -9,7 +10,7 @@ public class FirstMapPlatformHelper : MonoBehaviour
     [Header("COMPONENTS")]
     [SerializeField]
     private ScriptableMapEvents _mapEvents;
-    
+
     [Header("SMALL STAGE")]
     [SerializeField]
     private PlatformToUnlock _firstUnlock;
@@ -44,9 +45,27 @@ public class FirstMapPlatformHelper : MonoBehaviour
     [SerializeField]
     private PlatformToUnlock _largeStageBigPlatform;
 
+
+    private List<OneWayPlatform> _everyPlatform;
+    private Node[] _everyNode;
+    private EnemySpawnPosition[] _everySpawnPosition;
+
     private void Start()
     {
         _mapEvents.OnChangeMapEvent.AddListener(UnlockPlatforms);
+
+        _everyPlatform = _firstUnlock.Platforms
+            .Concat(_mediumStageSmallPlatforms.Platforms)
+            .Concat(_mediumStageBigPlatform.Platforms)
+            .Concat(_largeStageSmallPlatforms.Platforms)
+            .Concat(_largeStageMiddlePlatform.Platforms)
+            .Concat(_largeStageSmallerPlatform.Platforms)
+            .Concat(_largeStageBigPlatform.Platforms)
+            .ToList();
+
+
+        _everyNode = GetComponentsInChildren<Node>();
+        _everySpawnPosition = GetComponentsInChildren<EnemySpawnPosition>();
     }
 
     private void UnlockPlatforms(int mapId, int changeId)
@@ -54,7 +73,7 @@ public class FirstMapPlatformHelper : MonoBehaviour
         if (mapId != ConstantValues.FIRST_MAP_ID) return;
 
         if (changeId == FirstMapChanges.SMALL_STAGE_UNLOCK_PLATFORM) _firstUnlock.Unlock();
-        if(changeId == FirstMapChanges.WALL_OF_SPIKE_READY_MEDIUM)
+        if (changeId == FirstMapChanges.WALL_OF_SPIKE_READY_MEDIUM)
         {
             foreach (var node in _mediumGroundNodes)
             {
@@ -64,14 +83,14 @@ public class FirstMapPlatformHelper : MonoBehaviour
             {
                 spawner.IsAvailable = true;
             }
-            foreach(var spawner in _mediumAirSpawnerToDeactivate)
+            foreach (var spawner in _mediumAirSpawnerToDeactivate)
             {
                 spawner.IsAvailable = false;
             }
         }
 
-        if(changeId == FirstMapChanges.MEDIUM_STAGE_UNLOCK_TWO_SMALL_PLATFORMS) _mediumStageSmallPlatforms.Unlock();
-        if(changeId == FirstMapChanges.MEDIUM_STAGE_UNLOCK_BIG_PLATFORM) _mediumStageBigPlatform.Unlock();
+        if (changeId == FirstMapChanges.MEDIUM_STAGE_UNLOCK_TWO_SMALL_PLATFORMS) _mediumStageSmallPlatforms.Unlock();
+        if (changeId == FirstMapChanges.MEDIUM_STAGE_UNLOCK_BIG_PLATFORM) _mediumStageBigPlatform.Unlock();
         if (changeId == FirstMapChanges.WALL_OF_SPIKE_READY_LARGE)
         {
             foreach (var node in _largeGroundNodes)
@@ -89,9 +108,28 @@ public class FirstMapPlatformHelper : MonoBehaviour
         }
 
         if (changeId == FirstMapChanges.LARGE_STAGE_UNLOCK_TWO_SMAL_PLATFORMS) _largeStageSmallPlatforms.Unlock();
-        if(changeId == FirstMapChanges.LARGE_STAGE_UNLOCK_MIDDLE_PLATFORMS) _largeStageMiddlePlatform.Unlock();
-        if(changeId == FirstMapChanges.LARGE_STAGE_UNLOCK_SMALLER_PLATFORMS) _largeStageSmallerPlatform.Unlock();
-        if(changeId == FirstMapChanges.LARGE_STAGE_UNLOCK_BIG_PLATFORMS) _largeStageBigPlatform.Unlock();
+        if (changeId == FirstMapChanges.LARGE_STAGE_UNLOCK_MIDDLE_PLATFORMS) _largeStageMiddlePlatform.Unlock();
+        if (changeId == FirstMapChanges.LARGE_STAGE_UNLOCK_SMALLER_PLATFORMS) _largeStageSmallerPlatform.Unlock();
+        if (changeId == FirstMapChanges.LARGE_STAGE_UNLOCK_BIG_PLATFORMS) _largeStageBigPlatform.Unlock();
+
+
+        if(changeId == FirstMapChanges.PREPARE_MAP_TO_BOSS)
+        {
+            foreach (var platform in _everyPlatform)
+            {
+                platform.gameObject.SetActive(false);
+            }
+
+            foreach(var node in _everyNode)
+            {
+                node.traversable = false;
+            }
+
+            foreach (var spawnPosition in _everySpawnPosition)
+            {
+                spawnPosition.IsAvailable = false;
+            }
+        }
     }
 
     [Serializable]
@@ -114,7 +152,7 @@ public class FirstMapPlatformHelper : MonoBehaviour
 
             foreach (Node node in Nodes)
             {
-                if(node == null) continue;
+                if (node == null) continue;
                 node.traversable = true;
             }
 

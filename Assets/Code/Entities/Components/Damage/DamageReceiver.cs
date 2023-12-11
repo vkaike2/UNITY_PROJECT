@@ -124,7 +124,7 @@ public abstract class DamageReceiver : MonoBehaviour
     {
         if (!_isPlayer)
         {
-            _progressBarUI.OnSetBehaviour.Invoke(_status.Health.Get() / _status.MaxHealth.Get(), ProgressBarUI.Behaviour.LifeBar_Hide);
+            _progressBarUI?.OnSetBehaviour.Invoke(_status.Health.Get() / _status.MaxHealth.Get(), ProgressBarUI.Behaviour.LifeBar_Hide);
         }
         else
         {

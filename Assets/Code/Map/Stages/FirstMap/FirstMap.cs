@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 
 public partial class FirstMap : Map
 {
@@ -49,5 +50,7 @@ public static class FirstMapChanges
     /// <summary>
     ///  Boss Stage
     /// </summary>
-    public const int PREPARE_MAP_TO_BOSS = 10;
+    public const int PREPARE_MAP_TO_BOSS = 12;
+    public const int WALL_OF_SPIKE_READY_BOSS = 13;
+    public const int CAMERA_READY_FOR_BOSS = 14;
 }
