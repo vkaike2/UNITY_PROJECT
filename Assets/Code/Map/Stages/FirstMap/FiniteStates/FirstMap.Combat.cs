@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public partial class FirstMap : Map
@@ -30,7 +31,7 @@ public partial class FirstMap : Map
 
         private void OnPlayerDead()
         {
-           _map.StopAllCoroutines();
+            _map.StopAllCoroutines();
         }
 
         public override void EnterState()
@@ -60,7 +61,9 @@ public partial class FirstMap : Map
 
         private IEnumerator HandleActions(ScriptableMapConfiguration.InnerStage innerStage)
         {
-            for (int i = 0; i < innerStage.Actions.Count; i++)
+            int actionCount = innerStage.Actions.Count;
+
+            for (int i = 0; i < actionCount; i++)
             {
                 ScriptableMapConfiguration.MapAction action = innerStage.Actions[i];
 
@@ -84,11 +87,37 @@ public partial class FirstMap : Map
                     timer = action.Timer + 1;
                 }
 
-                yield return new WaitForSeconds(timer);
+                ScriptableMapConfiguration.MapAction nextAction = actionCount <= i + 1 ? null : innerStage.Actions[i + 1];
+                bool nextStageIsMonster = nextAction != null && nextAction.Type == ScriptableMapConfiguration.MapAction.ActionType.Monster;
+
+                if (nextStageIsMonster && action.Type == ScriptableMapConfiguration.MapAction.ActionType.Monster)
+                {
+                    float internalTimer = 0;
+                    while (internalTimer < timer)
+                    {
+                        Debug.Log($"{internalTimer < timer} - {_map.MapManager.EnemiesInsideMap.Any(e => e != null)}");
+                        internalTimer += Time.deltaTime;
+
+                        if(internalTimer > WARNING_COUNT_BEFORE_SPAWN_ENEMY + 1f && !_map.MapManager.EnemiesInsideMap.Any(e => e != null))
+                        {
+                            break;
+                        }
+
+                        yield return new WaitForFixedUpdate();
+                    }
+                }
+                else
+                {
+                    yield return new WaitForSeconds(timer);
+                }
+
+                if (!(nextStageIsMonster && action.Type == ScriptableMapConfiguration.MapAction.ActionType.Monster && _map.MapManager.EnemiesInsideMap.Any(e => e != null)))
+                {
+                }
 
                 if (action.WaitForAllMonstersToBeKilled)
                 {
-                    while(_map.MapManager.EnemiesInsideMap.Any(e => e != null))
+                    while (_map.MapManager.EnemiesInsideMap.Any(e => e != null))
                     {
                         yield return new WaitForFixedUpdate();
                     }
@@ -124,14 +153,14 @@ public partial class FirstMap : Map
 
                 EnemySpawnPosition enemySpawnPosition = _map.Containers
                     .EnemySpawnPositions
-                    .FirstOrDefault(e => 
+                    .FirstOrDefault(e =>
                         e.Id == enemy.SpawnPositionId
-                        && e.IsAvailable 
+                        && e.IsAvailable
                         && !e.HasBeingUsedRecently
                         && !e.HasMonsterUnderMe()
                         );
 
-                if(enemySpawnPosition != null)
+                if (enemySpawnPosition != null)
                 {
                     spawnPosition = enemySpawnPosition.transform.position;
                 }
@@ -141,13 +170,13 @@ public partial class FirstMap : Map
             if (enemy.UseRandomPosition || spawnPosition == null)
             {
                 List<EnemySpawnPosition> filteredPositions = _map.Containers.EnemySpawnPositions
-                    .Where(e => e.Type == enemy.ScriptableEnemy.SpawnType 
-                        && e.IsAvailable 
+                    .Where(e => e.Type == enemy.ScriptableEnemy.SpawnType
+                        && e.IsAvailable
                         && !e.HasBeingUsedRecently
                         && !e.HasMonsterUnderMe())
                     .ToList();
                 EnemySpawnPosition randomPosition;
-                
+
                 if (filteredPositions.Count == 1)
                 {
                     randomPosition = filteredPositions.FirstOrDefault();
@@ -157,7 +186,7 @@ public partial class FirstMap : Map
                     randomPosition = filteredPositions[UnityEngine.Random.Range(0, filteredPositions.Count)];
                 }
 
-                
+
                 //This 0.3f is added to give some space between each mob on the same spawn position
                 randomPosition.UseIt(WARNING_COUNT_BEFORE_SPAWN_ENEMY + 2f);
 
