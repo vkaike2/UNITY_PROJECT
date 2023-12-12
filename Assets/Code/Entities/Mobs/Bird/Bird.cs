@@ -16,6 +16,8 @@ public partial class Bird : Enemy
     public BirdPatrolModel PatrolModel { get; private set; }
     [field: SerializeField]
     public BirdAtkModel AtkModel { get; private set; }
+    [field: SerializeField]
+    public BirdIdleModel IdleModel { get; private set; }
 
     public Behaviour? CurrentBehaviour => ((BirdBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
 
@@ -25,7 +27,8 @@ public partial class Bird : Enemy
     {
         new Patrol(),
         new Atk(),
-        new Die()
+        new Die(),
+        new Idle()
     };
 
     private Rigidbody2D _rigidBody2D;
@@ -69,6 +72,7 @@ public partial class Bird : Enemy
         Born,
         Patrol,
         Atk,
-        Die
+        Die,
+        Idle
     }
 }

@@ -41,7 +41,6 @@ public partial class GunGaroo : MonoBehaviour
             _gunGaroo.cdwIndicationUI.StartCdw(cdw);
             yield return new WaitForSeconds(cdw);
 
-            Debug.Log($"next - {attack.NextBehaviour}");
 
             _gunGaroo.ChangeBehaviour(attack.NextBehaviour);
         }

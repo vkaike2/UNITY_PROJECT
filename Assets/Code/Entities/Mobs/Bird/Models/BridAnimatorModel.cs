@@ -26,6 +26,7 @@ public class BridAnimatorModel : EnemyAnimatorModel
         Bird_Born,
         Bird_Fly,
         Bird_Atk,
-        Bird_Die
+        Bird_Die,
+        Brid_Ground_Idle
     }
 }

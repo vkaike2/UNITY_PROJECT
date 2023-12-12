@@ -95,7 +95,6 @@ public partial class FirstMap : Map
                     float internalTimer = 0;
                     while (internalTimer < timer)
                     {
-                        Debug.Log($"{internalTimer < timer} - {_map.MapManager.EnemiesInsideMap.Any(e => e != null)}");
                         internalTimer += Time.deltaTime;
 
                         if(internalTimer > WARNING_COUNT_BEFORE_SPAWN_ENEMY + 1f && !_map.MapManager.EnemiesInsideMap.Any(e => e != null))

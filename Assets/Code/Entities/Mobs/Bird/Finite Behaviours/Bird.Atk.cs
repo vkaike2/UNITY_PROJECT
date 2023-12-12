@@ -8,7 +8,7 @@ public partial class Bird : Enemy
     {
         public override Behaviour Behaviour => Behaviour.Atk;
         private Vector2? _direction;
-        private Action _action;
+        //private Action _action;
 
         private BirdAtkModel _model;
 
@@ -20,36 +20,36 @@ public partial class Bird : Enemy
 
         public override void OnEnterBehaviour()
         {
-            _action = Action.GoingTowardsPlayer;
+            //_action = Action.GoingTowardsPlayer;
             _bird.BirdAnimator.PlayAnimation(BridAnimatorModel.AnimationName.Bird_Atk);
             _direction = (_model.TargetPosition - (Vector2)_bird.transform.position).normalized;
 
-            _bird.PatrolModel.OnFlappingWings.AddListener(OnFlappingWings);
+            //_bird.PatrolModel.OnFlappingWings.AddListener(OnFlappingWings);
         }
 
 
         public override void OnExitBehaviour()
         {
             _direction = null;
-            _bird.PatrolModel.OnFlappingWings.RemoveListener(OnFlappingWings);
+            //_bird.PatrolModel.OnFlappingWings.RemoveListener(OnFlappingWings);
         }
 
         public override void Update()
         {
             BirdGoingTowardsPlayer();
-
-            BirdGoingBackUp();
+            //BirdGoingBackUp();
         }
 
         private void BirdGoingTowardsPlayer()
         {
-            if (_action != Action.GoingTowardsPlayer) return;
+            //if (_action != Action.GoingTowardsPlayer) return;
             if (_direction == null) return;
 
 
             if (Vector2.Distance(_model.TargetPosition, _bird.transform.position) < 1F)
             {
-                _action = Action.GoingBackUp;
+                _rigidbody2D.velocity = Vector2.zero;   
+                _bird.ChangeBehaviour(Behaviour.Idle);
                 return;
             }
 
@@ -66,31 +66,31 @@ public partial class Bird : Enemy
             _rigidbody2D.velocity = _direction.GetValueOrDefault() * _model.AtkFlyingSpeed;
         }
 
-        private void BirdGoingBackUp()
-        {
-            if (_action != Action.GoingBackUp) return;
+        //private void BirdGoingBackUp()
+        //{
+        //    if (_action != Action.GoingBackUp) return;
 
-            _bird.BirdAnimator.PlayAnimation(BridAnimatorModel.AnimationName.Bird_Fly);
+        //    _bird.BirdAnimator.PlayAnimation(BridAnimatorModel.AnimationName.Bird_Fly);
 
-            Vector2 myHorizontalPosition = new Vector2(0, _bird.transform.position.y);
-            Vector2 initialPosition = new Vector2(0, _bird.PatrolModel.InitialHorizontalPosition);
+        //    Vector2 myHorizontalPosition = new Vector2(0, _bird.transform.position.y);
+        //    Vector2 initialPosition = new Vector2(0, _bird.PatrolModel.InitialHorizontalPosition);
 
-            if (Vector2.Distance(myHorizontalPosition, initialPosition) <= 0.2f)
-            {
-                _bird.ChangeBehaviour(Behaviour.Patrol);
-            }
-        }
+        //    if (Vector2.Distance(myHorizontalPosition, initialPosition) <= 0.2f)
+        //    {
+        //        _bird.ChangeBehaviour(Behaviour.Patrol);
+        //    }
+        //}
 
-        private void OnFlappingWings()
-        {
-            _rigidbody2D.velocity = new Vector2(0, _bird.AtkModel.MovementSpeedToGoUp);
-        }
+        //private void OnFlappingWings()
+        //{
+        //    _rigidbody2D.velocity = new Vector2(0, _bird.AtkModel.MovementSpeedToGoUp);
+        //}
 
 
-        private enum Action
-        {
-            GoingTowardsPlayer,
-            GoingBackUp
-        }
+        //private enum Action
+        //{
+        //    GoingTowardsPlayer,
+        //    GoingBackUp
+        //}
     }
 }

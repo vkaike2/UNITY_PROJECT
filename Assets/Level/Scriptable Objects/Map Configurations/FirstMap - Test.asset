@@ -31,12 +31,27 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-  - name: 00:01 ->  [Small Stage] Unlock Platform
+    - name: "00:02 -> Monster Bird       \t t:01 - pos:XX - drop:none"
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 2a9fd03b4999e9941b6d738822f78467, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: f0de405899cc8354a8a81b2e79392f0e, type: 2}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+  - name: 00:02 ->  [Small Stage] Unlock Platform
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
       <Timer>k__BackingField: 1
-      <WaitButtonSignal>k__BackingField: 0
+      <WaitButtonSignal>k__BackingField: 1
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 0}
@@ -48,7 +63,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 1
         _description: '[small stage] - unlock first platfomr'
-  - name: 00:02 -> -----------------MEDIUM-----------------
+  - name: 00:03 -> -----------------MEDIUM-----------------
     <Actions>k__BackingField:
     - name: 00:04 -> ChangeMap
       <Type>k__BackingField: 2
@@ -65,7 +80,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 2
         _description: '[Wall of Spike] - Move wall of spike to Medium'
-  - name: 00:06 -> [Medium Stage] Unlock Two Small Platforms
+  - name: 00:07 -> [Medium Stage] Unlock Two Small Platforms
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -82,7 +97,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 4
         _description: '[Medium Stage] Unlock Two Small Platforms'
-  - name: 00:07 -> [Medium Stage] Unlock Birg Platform
+  - name: 00:08 -> [Medium Stage] Unlock Birg Platform
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -99,7 +114,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 5
         _description: '[Medium Stage] Unlock Birg Platform'
-  - name: 00:08 -> -----------------LARGE-----------------
+  - name: 00:09 -> -----------------LARGE-----------------
     <Actions>k__BackingField:
     - name: 00:04 -> ChangeMap
       <Type>k__BackingField: 2
@@ -116,7 +131,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 6
         _description: '[Wall of Spike] - Move wall of spike to Large'
-  - name: 00:12 -> [Large Stage] Unlock Two Small Platforms
+  - name: 00:13 -> [Large Stage] Unlock Two Small Platforms
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -133,7 +148,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 8
         _description: '[Large Stage] Unlock Two Small Platforms'
-  - name: 00:13 -> [Large Stage] Unlock Smaller Platform
+  - name: 00:14 -> [Large Stage] Unlock Smaller Platform
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -150,7 +165,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 10
         _description: '[Large Stage] Unlock Smaller Platform'
-  - name: 00:14 -> [Large Stage] Unlock Middle Platform
+  - name: 00:15 -> [Large Stage] Unlock Middle Platform
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -167,7 +182,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 9
         _description: '[Large Stage] Unlock Middle Platform'
-  - name: 00:15 -> [Large Stage] Unlock Big Platforms
+  - name: 00:16 -> [Large Stage] Unlock Big Platforms
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -184,7 +199,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 11
         _description: '[Large Stage] Unlock Big Platforms'
-  - name: 00:16 -> BOSS
+  - name: 00:17 -> BOSS
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
