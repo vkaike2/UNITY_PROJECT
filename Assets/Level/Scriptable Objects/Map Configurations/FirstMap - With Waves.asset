@@ -1096,8 +1096,8 @@ MonoBehaviour:
         drop - Frist Map"
       <Type>k__BackingField: 0
       <Timer>k__BackingField: 10
-      <WaitButtonSignal>k__BackingField: 1
-      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 1
       <Enemy>k__BackingField:
         <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 8245c3c9c0bc21d44abafb70e6fbda82, type: 2}
         <UseRandomPosition>k__BackingField: 0
