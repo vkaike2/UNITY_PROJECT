@@ -1658,7 +1658,7 @@ GameObject:
   - component: {fileID: 1825409677725154810}
   - component: {fileID: 5394054640308025284}
   m_Layer: 0
-  m_Name: Node (16)
+  m_Name: '[LARGE middle platforms]  Node (16)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1693,22 +1693,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (17)
+  - name: '[LARGE smaller platforms]  Node (17)'
     node: {fileID: 4119786786787352992}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (14)
+  - name: '[LARGE smaller platforms]  Node (14)'
     node: {fileID: 5024811614672319604}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (22)
+  - name: '[LARGE big platforms]  Node (22)'
     node: {fileID: 1958953575177685196}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (23)
+  - name: '[LARGE big platforms]  Node (23)'
     node: {fileID: 1842783196618207421}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -2255,7 +2255,7 @@ GameObject:
   - component: {fileID: 7314775528096469366}
   - component: {fileID: 4331265058700272098}
   m_Layer: 0
-  m_Name: Node (9)
+  m_Name: '[MEDIUM small platforms]  Node (9)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: Node (7)
+  - name: '[FIRST to unlock]    Node (7)'
     node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -2300,17 +2300,17 @@ MonoBehaviour:
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (5)
+  - name: '[MEDIUM ground nodes]  Node (5)'
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (10)
+  - name: '[MEDIUM big platform]  Node (10)'
     node: {fileID: 7212187734054710469}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (13)
+  - name: '[MEDIUM big platform]  Node (13)'
     node: {fileID: 3269258450651046598}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -2748,7 +2748,7 @@ GameObject:
   - component: {fileID: 1124271336949837073}
   - component: {fileID: 4370502154176230177}
   m_Layer: 0
-  m_Name: Node (6)
+  m_Name: '[LARGE ground nodes]  Node (6)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2783,7 +2783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (5)
+  - name: '[MEDIUM ground nodes]  Node (5)'
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -4259,7 +4259,7 @@ GameObject:
   - component: {fileID: 4059293429039652859}
   - component: {fileID: 3727816086340725701}
   m_Layer: 0
-  m_Name: Node (1)
+  m_Name: '[MEDIUM ground nodes]  Node (1)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4294,7 +4294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node
+  - name: '[LARGE ground nodes]  Node'
     node: {fileID: 8355616597004858563}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -4501,7 +4501,7 @@ GameObject:
   - component: {fileID: 5535258799261234155}
   - component: {fileID: 9219319686943771534}
   m_Layer: 0
-  m_Name: Node (8)
+  m_Name: '[MEDIUM small platforms]  Node (8)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4536,7 +4536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: Node (7)
+  - name: '[FIRST to unlock]    Node (7)'
     node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -4546,17 +4546,17 @@ MonoBehaviour:
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (1)
+  - name: '[MEDIUM ground nodes]  Node (1)'
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (12)
+  - name: '[MEDIUM big platform]  Node (12)'
     node: {fileID: 837880454840560788}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (11)
+  - name: '[MEDIUM big platform]  Node (11)'
     node: {fileID: 6901890659978907494}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -5247,7 +5247,7 @@ GameObject:
   - component: {fileID: 1161029969244604341}
   - component: {fileID: 8355616597004858563}
   m_Layer: 0
-  m_Name: Node
+  m_Name: '[LARGE ground nodes]  Node'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5282,7 +5282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (1)
+  - name: '[MEDIUM ground nodes]  Node (1)'
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -5393,7 +5393,7 @@ GameObject:
   - component: {fileID: 5222579494356646833}
   - component: {fileID: 1244324953322843278}
   m_Layer: 0
-  m_Name: Node (7)
+  m_Name: '[FIRST to unlock]    Node (7)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5443,12 +5443,12 @@ MonoBehaviour:
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (8)
+  - name: '[MEDIUM small platforms]  Node (8)'
     node: {fileID: 9219319686943771534}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (9)
+  - name: '[MEDIUM small platforms]  Node (9)'
     node: {fileID: 4331265058700272098}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -5992,7 +5992,7 @@ GameObject:
   - component: {fileID: 2071407363154551234}
   - component: {fileID: 6901890659978907494}
   m_Layer: 0
-  m_Name: Node (11)
+  m_Name: '[MEDIUM big platform]  Node (11)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6027,27 +6027,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (10)
+  - name: '[MEDIUM big platform]  Node (10)'
     node: {fileID: 7212187734054710469}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (12)
+  - name: '[MEDIUM big platform]  Node (12)'
     node: {fileID: 837880454840560788}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (8)
+  - name: '[MEDIUM small platforms]  Node (8)'
     node: {fileID: 9219319686943771534}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (7)
+  - name: '[FIRST to unlock]    Node (7)'
     node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (17)
+  - name: '[LARGE smaller platforms]  Node (17)'
     node: {fileID: 4119786786787352992}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -6553,7 +6553,7 @@ GameObject:
   - component: {fileID: 4992594130441004725}
   - component: {fileID: 8341509977260270726}
   m_Layer: 0
-  m_Name: Node (24)
+  m_Name: '[LARGE big platforms]  Node (24)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6588,12 +6588,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (22)
+  - name: '[LARGE big platforms]  Node (22)'
     node: {fileID: 1958953575177685196}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (15)
+  - name: '[LARGE small platforms]  Node (15)'
     node: {fileID: 6764881735950194885}
     needToJump: 0
     needToGoDownPlatform: 1
@@ -6609,7 +6609,7 @@ GameObject:
   - component: {fileID: 1111298378506781130}
   - component: {fileID: 6764881735950194885}
   m_Layer: 0
-  m_Name: Node (15)
+  m_Name: '[LARGE small platforms]  Node (15)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6644,17 +6644,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (13)
+  - name: '[MEDIUM big platform]  Node (13)'
     node: {fileID: 3269258450651046598}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 1
-  - name: Node (6)
+  - name: '[LARGE ground nodes]  Node (6)'
     node: {fileID: 4370502154176230177}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (22)
+  - name: '[LARGE big platforms]  Node (22)'
     node: {fileID: 1958953575177685196}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -6702,7 +6702,7 @@ GameObject:
   - component: {fileID: 1548396620102208748}
   - component: {fileID: 3269258450651046598}
   m_Layer: 0
-  m_Name: Node (13)
+  m_Name: '[MEDIUM big platform]  Node (13)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6737,32 +6737,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (10)
+  - name: '[MEDIUM big platform]  Node (10)'
     node: {fileID: 7212187734054710469}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (9)
+  - name: '[MEDIUM small platforms]  Node (9)'
     node: {fileID: 4331265058700272098}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (5)
+  - name: '[MEDIUM ground nodes]  Node (5)'
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (6)
+  - name: '[LARGE ground nodes]  Node (6)'
     node: {fileID: 4370502154176230177}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (14)
+  - name: '[LARGE smaller platforms]  Node (14)'
     node: {fileID: 5024811614672319604}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (15)
+  - name: '[LARGE small platforms]  Node (15)'
     node: {fileID: 6764881735950194885}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -6862,7 +6862,7 @@ GameObject:
   - component: {fileID: 1570125480044114319}
   - component: {fileID: 5140819287769142625}
   m_Layer: 0
-  m_Name: Node (18)
+  m_Name: '[LARGE small platforms]  Node (18)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6897,17 +6897,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (12)
+  - name: '[MEDIUM big platform]  Node (12)'
     node: {fileID: 837880454840560788}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 1
-  - name: Node
+  - name: '[LARGE ground nodes]  Node'
     node: {fileID: 8355616597004858563}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (23)
+  - name: '[LARGE big platforms]  Node (23)'
     node: {fileID: 1842783196618207421}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -11947,7 +11947,7 @@ GameObject:
   - component: {fileID: 402992382942362151}
   - component: {fileID: 4119786786787352992}
   m_Layer: 0
-  m_Name: Node (17)
+  m_Name: '[LARGE smaller platforms]  Node (17)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11982,22 +11982,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (11)
+  - name: '[MEDIUM big platform]  Node (11)'
     node: {fileID: 6901890659978907494}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 1
-  - name: Node (12)
+  - name: '[MEDIUM big platform]  Node (12)'
     node: {fileID: 837880454840560788}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 1
-  - name: Node (16)
+  - name: '[LARGE middle platforms]  Node (16)'
     node: {fileID: 5394054640308025284}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (21)
+  - name: '[LARGE big platforms]  Node (21)'
     node: {fileID: 3108605033801090382}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -13008,7 +13008,7 @@ GameObject:
   - component: {fileID: 6062124211285021149}
   - component: {fileID: 1958953575177685196}
   m_Layer: 0
-  m_Name: Node (22)
+  m_Name: '[LARGE big platforms]  Node (22)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13043,17 +13043,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (21)
+  - name: '[LARGE big platforms]  Node (21)'
     node: {fileID: 3108605033801090382}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (24)
+  - name: '[LARGE big platforms]  Node (24)'
     node: {fileID: 8341509977260270726}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (14)
+  - name: '[LARGE smaller platforms]  Node (14)'
     node: {fileID: 5024811614672319604}
     needToJump: 0
     needToGoDownPlatform: 1
@@ -13295,7 +13295,7 @@ GameObject:
   - component: {fileID: 4723562239658195235}
   - component: {fileID: 1842783196618207421}
   m_Layer: 0
-  m_Name: Node (23)
+  m_Name: '[LARGE big platforms]  Node (23)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13330,17 +13330,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (20)
+  - name: '[LARGE big platforms]  Node (20)'
     node: {fileID: 2344295959194906353}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (21)
+  - name: '[LARGE big platforms]  Node (21)'
     node: {fileID: 3108605033801090382}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (17)
+  - name: '[LARGE smaller platforms]  Node (17)'
     node: {fileID: 4119786786787352992}
     needToJump: 0
     needToGoDownPlatform: 1
@@ -13356,7 +13356,7 @@ GameObject:
   - component: {fileID: 1371231242256022367}
   - component: {fileID: 7212187734054710469}
   m_Layer: 0
-  m_Name: Node (10)
+  m_Name: '[MEDIUM big platform]  Node (10)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13391,27 +13391,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (11)
+  - name: '[MEDIUM big platform]  Node (11)'
     node: {fileID: 6901890659978907494}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (13)
+  - name: '[MEDIUM big platform]  Node (13)'
     node: {fileID: 3269258450651046598}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (7)
+  - name: '[FIRST to unlock]    Node (7)'
     node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (9)
+  - name: '[MEDIUM small platforms]  Node (9)'
     node: {fileID: 4331265058700272098}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (14)
+  - name: '[LARGE smaller platforms]  Node (14)'
     node: {fileID: 5024811614672319604}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -14866,7 +14866,7 @@ GameObject:
   - component: {fileID: 2095014378811387495}
   - component: {fileID: 837880454840560788}
   m_Layer: 0
-  m_Name: Node (12)
+  m_Name: '[MEDIUM big platform]  Node (12)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14901,32 +14901,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (11)
+  - name: '[MEDIUM big platform]  Node (11)'
     node: {fileID: 6901890659978907494}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (8)
+  - name: '[MEDIUM small platforms]  Node (8)'
     node: {fileID: 9219319686943771534}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node (1)
+  - name: '[MEDIUM ground nodes]  Node (1)'
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: Node
+  - name: '[LARGE ground nodes]  Node'
     node: {fileID: 8355616597004858563}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (17)
+  - name: '[LARGE smaller platforms]  Node (17)'
     node: {fileID: 4119786786787352992}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (18)
+  - name: '[LARGE small platforms]  Node (18)'
     node: {fileID: 5140819287769142625}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -15052,7 +15052,7 @@ GameObject:
   - component: {fileID: 2890011054734497207}
   - component: {fileID: 3108605033801090382}
   m_Layer: 0
-  m_Name: Node (21)
+  m_Name: '[LARGE big platforms]  Node (21)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15087,17 +15087,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (23)
+  - name: '[LARGE big platforms]  Node (23)'
     node: {fileID: 1842783196618207421}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (22)
+  - name: '[LARGE big platforms]  Node (22)'
     node: {fileID: 1958953575177685196}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (16)
+  - name: '[LARGE middle platforms]  Node (16)'
     node: {fileID: 5394054640308025284}
     needToJump: 0
     needToGoDownPlatform: 1
@@ -16042,7 +16042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: Node (5)
+  - name: '[MEDIUM ground nodes]  Node (5)'
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -16052,7 +16052,7 @@ MonoBehaviour:
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (7)
+  - name: '[FIRST to unlock]    Node (7)'
     node: {fileID: 1244324953322843278}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -17185,7 +17185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: Node (1)
+  - name: '[MEDIUM ground nodes]  Node (1)'
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -17195,7 +17195,7 @@ MonoBehaviour:
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (7)
+  - name: '[FIRST to unlock]    Node (7)'
     node: {fileID: 1244324953322843278}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -17431,7 +17431,7 @@ GameObject:
   - component: {fileID: 2533430718636207580}
   - component: {fileID: 2937090474571810465}
   m_Layer: 0
-  m_Name: FirstMap
+  m_Name: First Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18285,7 +18285,7 @@ GameObject:
   - component: {fileID: 4672531601835395247}
   - component: {fileID: 5024811614672319604}
   m_Layer: 0
-  m_Name: Node (14)
+  m_Name: '[LARGE smaller platforms]  Node (14)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18320,22 +18320,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (10)
+  - name: '[MEDIUM big platform]  Node (10)'
     node: {fileID: 7212187734054710469}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 1
-  - name: Node (13)
+  - name: '[MEDIUM big platform]  Node (13)'
     node: {fileID: 3269258450651046598}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 1
-  - name: Node (16)
+  - name: '[LARGE middle platforms]  Node (16)'
     node: {fileID: 5394054640308025284}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (21)
+  - name: '[LARGE big platforms]  Node (21)'
     node: {fileID: 3108605033801090382}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -18461,7 +18461,7 @@ GameObject:
   - component: {fileID: 7748603307888537514}
   - component: {fileID: 2344295959194906353}
   m_Layer: 0
-  m_Name: Node (20)
+  m_Name: '[LARGE big platforms]  Node (20)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18496,12 +18496,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: Node (23)
+  - name: '[LARGE big platforms]  Node (23)'
     node: {fileID: 1842783196618207421}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (18)
+  - name: '[LARGE small platforms]  Node (18)'
     node: {fileID: 5140819287769142625}
     needToJump: 0
     needToGoDownPlatform: 1
@@ -18829,7 +18829,7 @@ GameObject:
   - component: {fileID: 1061139489714207706}
   - component: {fileID: 7732662911688714376}
   m_Layer: 0
-  m_Name: Node (5)
+  m_Name: '[MEDIUM ground nodes]  Node (5)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18869,7 +18869,7 @@ MonoBehaviour:
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: Node (6)
+  - name: '[LARGE ground nodes]  Node (6)'
     node: {fileID: 4370502154176230177}
     needToJump: 0
     needToGoDownPlatform: 0

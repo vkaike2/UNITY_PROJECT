@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FirstMapPlatformHelper : MonoBehaviour
@@ -68,6 +69,45 @@ public class FirstMapPlatformHelper : MonoBehaviour
         _everySpawnPosition = GetComponentsInChildren<EnemySpawnPosition>();
     }
 
+    private void OnValidate()
+    {
+        // first
+        ValidatePlatformToUnlock(_firstUnlock, "FIRST to unlock");
+
+        // medium
+        ValidateNodes(_mediumGroundNodes, "MEDIUM ground nodes");
+        ValidatePlatformToUnlock(_mediumStageSmallPlatforms, "MEDIUM small platforms");
+        ValidatePlatformToUnlock(_mediumStageBigPlatform, "MEDIUM big platform");
+
+        // large
+        ValidateNodes(_largeGroundNodes, "LARGE ground nodes");
+        ValidatePlatformToUnlock(_largeStageSmallPlatforms, "LARGE small platforms");
+        ValidatePlatformToUnlock(_largeStageMiddlePlatform, "LARGE middle platforms");
+        ValidatePlatformToUnlock(_largeStageSmallerPlatform, "LARGE smaller platforms");
+        ValidatePlatformToUnlock(_largeStageBigPlatform, "LARGE big platforms");
+    }
+
+    private void ValidatePlatformToUnlock(PlatformToUnlock platformToUnlock, string description)
+    {
+        if (platformToUnlock == null) return;
+        ValidateNodes(platformToUnlock.Nodes, description);
+    }
+    private void ValidateNodes(List<Node> nodes, string description)
+    {
+        if (nodes == null) return;
+
+        foreach (var node in nodes)
+        {
+            string[] splitArray = node.gameObject.name.Split(']');
+            if (splitArray.Length > 1)
+            {
+                node.gameObject.name = splitArray[1];
+            }
+
+            node.gameObject.name = $"[{description}] {node.gameObject.name}";
+        }
+    }
+
     private void UnlockPlatforms(int mapId, int changeId)
     {
         if (mapId != ConstantValues.FIRST_MAP_ID) return;
@@ -113,14 +153,14 @@ public class FirstMapPlatformHelper : MonoBehaviour
         if (changeId == FirstMapChanges.LARGE_STAGE_UNLOCK_BIG_PLATFORMS) _largeStageBigPlatform.Unlock();
 
 
-        if(changeId == FirstMapChanges.PREPARE_MAP_TO_BOSS)
+        if (changeId == FirstMapChanges.PREPARE_MAP_TO_BOSS)
         {
             foreach (var platform in _everyPlatform)
             {
                 platform.gameObject.SetActive(false);
             }
 
-            foreach(var node in _everyNode)
+            foreach (var node in _everyNode)
             {
                 node.traversable = false;
             }
