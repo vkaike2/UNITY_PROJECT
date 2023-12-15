@@ -184,13 +184,13 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 11
         _description: '[Large Stage] Unlock Big Platforms'
-    - name: 00:06 -> ChangeMap
-      <Type>k__BackingField: 2
+    - name: "00:06 -> Monster Chicken    \t t:05 - pos:XX - drop:none"
+      <Type>k__BackingField: 0
       <Timer>k__BackingField: 5
       <WaitButtonSignal>k__BackingField: 1
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <Enemy>k__BackingField:
-        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 3b363413fdf905d479b29ced99f37e57, type: 2}
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 0c362e1d425e4e1428fcde5a90f3ec0b, type: 2}
         <UseRandomPosition>k__BackingField: 1
         <SpawnPositionId>k__BackingField: 0
         <ScriptablePossibleDrop>k__BackingField: {fileID: 0}

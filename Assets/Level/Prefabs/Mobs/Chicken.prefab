@@ -897,7 +897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: {fileID: 0}
   m_target: {fileID: 0}
-  m_includeStartingNode: 0
+  m_includeStartingNode: 1
 --- !u!114 &1858083217221617200
 MonoBehaviour:
   m_ObjectHideFlags: 0

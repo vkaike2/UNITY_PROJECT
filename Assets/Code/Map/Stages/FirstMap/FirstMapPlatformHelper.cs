@@ -1,9 +1,7 @@
 using Calcatz.MeshPathfinding;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FirstMapPlatformHelper : MonoBehaviour
@@ -101,7 +99,7 @@ public class FirstMapPlatformHelper : MonoBehaviour
             string[] splitArray = node.gameObject.name.Split(']');
             if (splitArray.Length > 1)
             {
-                node.gameObject.name = splitArray[1];
+                node.gameObject.name = splitArray[1].TrimStart();
             }
 
             node.gameObject.name = $"[{description}] {node.gameObject.name}";

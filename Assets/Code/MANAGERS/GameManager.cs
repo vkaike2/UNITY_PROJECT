@@ -74,6 +74,24 @@ public class GameManager : MonoBehaviour
     public void SetWaypoints(Waypoints waypoints)
     {
         _waypoints = waypoints;
+
+        //List<float> floatList = new List<float>();
+        //foreach (var node in _waypoints.nodes)
+        //{
+        //    var list = node.neighbours.Select(e => Vector2.Distance(node.transform.position, e.node.transform.position)).ToList();
+        //    floatList.AddRange(list);
+        //}
+
+        //Debug.Log(string.Join(", ", floatList.OrderByDescending(e => e)));
+
+        // Node closestNode = _waypoints.nodes
+        //.OrderBy(node =>
+        //    node.neighbours
+        //        .Select(e => Vector2.Distance(node.transform.position, e.node.transform.position)).OrderBy(e => e))
+        //.FirstOrDefault();
+
+        // Debug.Log(string.Join(", ", closestNode.neighbours.Select(e => Vector2.Distance(closestNode.transform.position, e.node.transform.position))));
+
     }
     #endregion
 

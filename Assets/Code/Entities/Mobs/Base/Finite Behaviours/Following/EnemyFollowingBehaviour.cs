@@ -67,17 +67,31 @@ public partial class EnemyFollowingBehavior
             NeedToJump = false;
         }
 
-        public void CheckIfNeedToJump(bool isFirstIteration, Node node, float minVerticalPosition)
+        public void CheckIfNeedToJump(Node node)
         {
-            NeedToJump = ParentNode.neighbours.Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToJump).Any();
+            NeedToJump = ParentNode.neighbours
+                .Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToJump).Any();
         }
 
-        public void CheckIfNeedToGoDownPlatform(bool isFirstIteration, Node node, float minVerticalPosition, bool isOverPlatform)
+        public void CheckIfNeedToGoDownPlatform(Node node)
         {
-            NeedToGoDownPlatform =
-                (node.transform.position.y < minVerticalPosition && isOverPlatform) ||
-                ParentNode.neighbours.Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToGoDownPlatform).Any();
+            NeedToGoDownPlatform = ParentNode.neighbours
+                .Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToGoDownPlatform).Any();
+
+
+                //(node.transform.position.y < minVerticalPosition && isOverPlatform) ||
+                //ParentNode.neighbours.Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToGoDownPlatform).Any();
         }
+
+
+        //public void CheckIfNeedToGoDownPlatform(Node node, float minVerticalPosition, bool isOverPlatform)
+        //{
+        //    NeedToGoDownPlatform =
+        //        (node.transform.position.y < minVerticalPosition && isOverPlatform) ||
+        //        ParentNode.neighbours.Where(e => e.node.GetInstanceID() == node.GetInstanceID() && e.needToGoDownPlatform).Any();
+        //}
+
+
 
         public void Log()
         {

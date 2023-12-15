@@ -1,6 +1,4 @@
 ﻿using Calcatz.MeshPathfinding;
-using System.Collections;
-using UnityEngine;
 using static EnemyFollowingBehavior;
 
 public partial class Rat : Enemy
@@ -23,6 +21,7 @@ public partial class Rat : Enemy
         public override void OnEnterBehaviour()
         {
             AssignEvents();
+
             _rat.PlayerPathfinding.StartFindPath(Pathfinding.PossibleActions.Jump);
             _followingBehavior.Pathfinding = _rat.PlayerPathfinding;
 

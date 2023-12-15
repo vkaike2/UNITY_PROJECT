@@ -19,17 +19,13 @@ public partial class EnemyFollowingBehaviour
         //State helpers
         private bool _isJumping = false;
         private bool _isDownPlatform = false;
-        private bool _firstIteration = false;
 
         //Constants
         private readonly float DEACTIVATE_COLLIDER_DOWN_PLATFORM = 0.2F;
         private readonly Vector2 DEFAULT_JUMP_VELOCITY = new Vector2(5, 15);
         private readonly float MAXIMUM_DISTANCE_FROM_TARGET_WHEN_JUMP = 0.5f;
         private readonly float MAX_TIME_TO_FORGTET_ABOUT_TARGET_WHEN_JUMP = 0.5f;
-        private readonly float MAX_TIME_TO_UNSTUCK = 1f;
-        private readonly float MAX_DISTANCE_TO_UNSTUCK = 1f;
 
-        private Coroutine _stuckCheckCoroutine;
         public Jump(EnemyFollowingBehavior parent)
         {
             _parent = parent;
@@ -43,16 +39,12 @@ public partial class EnemyFollowingBehaviour
 
         public override void OnEnterBehaviour()
         {
-            _firstIteration = true;
-            _stuckCheckCoroutine = _enemy.StartCoroutine(CheckIfImStuck());
         }
 
         public override void OnExitBehaviour()
         {
             _model.ResetEvents();
             _parent.Pathfinding = null;
-
-            _enemy.StopCoroutine(_stuckCheckCoroutine);
         }
 
         public override void Update()
@@ -88,6 +80,7 @@ public partial class EnemyFollowingBehaviour
             return true;
         }
 
+        //Need to be a coroutine
         private bool ManagePathfinding()
         {
             if (_parent.Pathfinding == null) return false;
@@ -116,10 +109,19 @@ public partial class EnemyFollowingBehaviour
         {
             _target.ClearBooleans();
 
-            Node node = paths.FirstOrDefault();
+            _target.ParentNode = paths.FirstOrDefault();
+            Node node = null;
+
+            if (paths?.Count() > 1)
+            {
+                node = paths[1];
+            }
 
 
-            if (node == null /*|| PlayerIsCloserThanNextPath(node.transform.position)*/)
+            //Debug.Log($"{node.gameObject.name} - {Vector2.Distance(node.transform.position, _enemy.transform.position)}");
+            
+            
+            if (node == null)
             {
                 _target.TargeTransform = _parent.Pathfinding.Target.transform;
                 _target.ParentNode = null;
@@ -129,27 +131,17 @@ public partial class EnemyFollowingBehaviour
 
             if (_target.ParentNode != null)
             {
-                _target.CheckIfNeedToGoDownPlatform(
-                    _firstIteration,
-                    node,
-                    _model.MainCollider.bounds.min.y,
-                    IsOnAPlatform()
-                    );
-                _target.CheckIfNeedToJump(_firstIteration, node, _model.MainCollider.bounds.min.y);
-                _firstIteration = false;
+                _target.CheckIfNeedToGoDownPlatform(node);
+                _target.CheckIfNeedToJump(node);
             }
 
-            _target.ParentNode = node;
+            //_target.ParentNode = node;
             _target.TargeTransform = node.transform;
         }
 
-        private bool PlayerIsCloserThanNextPath(Vector2 nodePosition)
+        private bool IgnoreFirstNodeIsTooClose(Node node)
         {
-            float targetDistance = Vector2.Distance(_enemy.transform.position, _parent.Pathfinding.Target.transform.position);
-
-            float nodeDistance = Vector2.Distance(_enemy.transform.position, nodePosition);
-
-            return targetDistance < nodeDistance;
+            return Vector2.Distance(node.transform.position, _enemy.transform.position) > 2f;
         }
 
         private void CalculateDirection()
@@ -368,12 +360,6 @@ public partial class EnemyFollowingBehaviour
         #endregion
 
         #region CHECK METHODS
-        private bool IsCloseToWall()
-        {
-            Collider2D col = _model.WallCheck.DrawPhysics2D(_model.WallLayer);
-            return col != null;
-        }
-
         private bool IsOverPlatform()
         {
             Collider2D col = _model.GroundCheck.DrawPhysics2D(_model.PlatformLayer);
@@ -403,27 +389,12 @@ public partial class EnemyFollowingBehaviour
         {
             return target.x > _enemy.transform.position.x;
         }
-
-        private IEnumerator CheckIfImStuck()
-        {
-            Vector2 initialPosition = _enemy.transform.position;
-
-            yield return new WaitForSeconds(MAX_TIME_TO_UNSTUCK);
-
-            float distance = Vector2.Distance(_enemy.transform.position, initialPosition);
-            if (distance < MAX_DISTANCE_TO_UNSTUCK)
-            {
-                _firstIteration = true;
-            }
-            _stuckCheckCoroutine = _enemy.StartCoroutine(CheckIfImStuck());
-        }
         #endregion
 
         protected class Direction
         {
             public Vector2 CurrentDirection { get; set; }
             public Action Action { get; set; }
-
             public void Log()
             {
                 Debug.Log($"direction: {CurrentDirection} \t action: {Action}");

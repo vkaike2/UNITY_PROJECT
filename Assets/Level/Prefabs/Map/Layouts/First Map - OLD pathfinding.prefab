@@ -201,6 +201,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &196982371041681450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 678370282839201626}
+  - component: {fileID: 5348973839081788224}
+  m_Layer: 0
+  m_Name: air (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &678370282839201626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196982371041681450}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.46, y: 2.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5348973839081788224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196982371041681450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (10)
+    node: {fileID: 4362666548177006665}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (8)
+    node: {fileID: 779080727541715487}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (21)
+    node: {fileID: 8886593657549281196}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &253453732708405967
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +413,7 @@ Transform:
   m_Father: {fileID: 3101124697640682044}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &330656624168514526
+--- !u!1 &379112658163980510
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -360,37 +421,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1265442486572790820}
-  - component: {fileID: 1598724572435128799}
+  - component: {fileID: 8452658107260385734}
+  - component: {fileID: 2396946413070837710}
   m_Layer: 0
-  m_Name: '[LARGE small platforms]       (01) 4th platform'
+  m_Name: air (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1265442486572790820
+--- !u!4 &8452658107260385734
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330656624168514526}
+  m_GameObject: {fileID: 379112658163980510}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.83, y: 2.4999998, z: 0}
+  m_LocalPosition: {x: -6.22, y: 6.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4621151407065548143}
-  m_RootOrder: 0
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1598724572435128799
+--- !u!114 &2396946413070837710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330656624168514526}
+  m_GameObject: {fileID: 379112658163980510}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
@@ -398,18 +459,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE small platforms]            (02) 4th platform'
-    node: {fileID: 5140819287769142625}
+  - name: air (21)
+    node: {fileID: 8886593657549281196}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE big platforms]            (02) 9th platform'
-    node: {fileID: 1842783196618207421}
-    needToJump: 1
+  - name: air (17)
+    node: {fileID: 378478924355665587}
+    needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE ground nodes]            (01) ground large stage'
-    node: {fileID: 8355616597004858563}
+  - name: air (20)
+    node: {fileID: 7216869348457466275}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (19)
+    node: {fileID: 1585182330651829385}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (15)
+    node: {fileID: 6925313100696230793}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (13)
+    node: {fileID: 3031051568787051242}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
@@ -585,6 +661,67 @@ MonoBehaviour:
     - name: 
       <Sprite>k__BackingField: {fileID: 1765495917, guid: 45f59c712f2eefb49a5203eb5f510b66, type: 3}
       <Weight>k__BackingField: 0
+--- !u!1 &504288317229043070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8416006653074461711}
+  - component: {fileID: 9037150531455561897}
+  m_Layer: 0
+  m_Name: air (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8416006653074461711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504288317229043070}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.21, y: 2.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9037150531455561897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504288317229043070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (12)
+    node: {fileID: 9060763516803154109}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (6)
+    node: {fileID: 6711706291224614308}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (17)
+    node: {fileID: 378478924355665587}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &570064128549793447
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,9 +782,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2095014378811387495}
-  - {fileID: 2071407363154551234}
   - {fileID: 1371231242256022367}
+  - {fileID: 2071407363154551234}
+  - {fileID: 2095014378811387495}
   - {fileID: 1548396620102208748}
   m_Father: {fileID: 2947553035419075554}
   m_RootOrder: 0
@@ -1521,7 +1658,7 @@ GameObject:
   - component: {fileID: 1825409677725154810}
   - component: {fileID: 5394054640308025284}
   m_Layer: 0
-  m_Name: '[LARGE middle platforms]            (01) 8th platform'
+  m_Name: '[LARGE middle platforms] Node (16)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1535,7 +1672,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049020278553027104}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.87, y: 4.39, z: 0}
+  m_LocalPosition: {x: 1.5, y: 4.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1556,24 +1693,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE middle platforms]     (02) 8th platform'
-    node: {fileID: 7176944186070193684}
+  - name: '[LARGE smaller platforms] Node (17)'
+    node: {fileID: 4119786786787352992}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE big platforms]            (03) 9th platform'
-    node: {fileID: 3108605033801090382}
+  - name: '[LARGE smaller platforms] Node (14)'
+    node: {fileID: 5024811614672319604}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: '[LARGE big platforms] Node (22)'
+    node: {fileID: 1958953575177685196}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[MEDIUM big platform]            (02) 3rd platform'
-    node: {fileID: 6901890659978907494}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[LARGE smaller platforms]            (01) 5th platform'
-    node: {fileID: 4119786786787352992}
-    needToJump: 0
+  - name: '[LARGE big platforms] Node (23)'
+    node: {fileID: 1842783196618207421}
+    needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &1072765189239117224
@@ -1711,6 +1848,72 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &1117008389429497901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3271904762040454621}
+  - component: {fileID: 3787960736594589311}
+  m_Layer: 0
+  m_Name: air (0)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3271904762040454621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117008389429497901}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.46, y: -4.72, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4485793398503149539}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3787960736594589311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117008389429497901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: ground (3)
+    node: {fileID: 2486860073417573045}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (2)
+    node: {fileID: 6924177633164905143}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (4)
+    node: {fileID: 4109240754067734070}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (0)
+    node: {fileID: 8227090835841733529}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &1118758687819390968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,72 +2244,6 @@ MonoBehaviour:
     - name: 
       <Sprite>k__BackingField: {fileID: 1765495917, guid: 45f59c712f2eefb49a5203eb5f510b66, type: 3}
       <Weight>k__BackingField: 0
---- !u!1 &1232034825148668599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 877656846674504520}
-  - component: {fileID: 6733042811924093944}
-  m_Layer: 0
-  m_Name: '[MEDIUM small platforms]        (02) 3rd platform'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &877656846674504520
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232034825148668599}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.29, y: -2.66, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8239670354473753265}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6733042811924093944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232034825148668599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traversable: 1
-  neighbours:
-  - name: '[MEDIUM small platforms]            (01) 3rd platform'
-    node: {fileID: 4331265058700272098}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM big platform]            (04) 3rd platform'
-    node: {fileID: 3269258450651046598}
-    needToJump: 1
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM ground nodes]            (02) ground medium stage'
-    node: {fileID: 7732662911688714376}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: (03) ground small stage
-    node: {fileID: 4420804255868088061}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
 --- !u!1 &1250275128797206742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,7 +2255,7 @@ GameObject:
   - component: {fileID: 7314775528096469366}
   - component: {fileID: 4331265058700272098}
   m_Layer: 0
-  m_Name: '[MEDIUM small platforms]            (01) 3rd platform'
+  m_Name: '[MEDIUM small platforms] Node (9)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2132,12 +2269,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250275128797206742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.4800005, y: -2.66, z: 0}
+  m_LocalPosition: {x: 9.05, y: -2.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8239670354473753265}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4331265058700272098
 MonoBehaviour:
@@ -2153,19 +2290,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: '[MEDIUM small platforms]        (02) 3rd platform'
-    node: {fileID: 6733042811924093944}
+  - name: '[FIRST to unlock] Node (7)'
+    node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
+  - name: Node (4)
+    node: {fileID: 4420804255868088061}
+    needToJump: 0
+    needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: '[MEDIUM big platform]            (03) 3rd platform'
+  - name: '[MEDIUM ground nodes] Node (5)'
+    node: {fileID: 7732662911688714376}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[MEDIUM big platform] Node (10)'
     node: {fileID: 7212187734054710469}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[FIRST to unlock]          (02) 1st platform'
-    node: {fileID: 7947230142979627499}
-    needToJump: 0
+  - name: '[MEDIUM big platform] Node (13)'
+    node: {fileID: 3269258450651046598}
+    needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &1255033700711648080
@@ -2601,7 +2748,7 @@ GameObject:
   - component: {fileID: 1124271336949837073}
   - component: {fileID: 4370502154176230177}
   m_Layer: 0
-  m_Name: '[LARGE ground nodes]            (02) ground large stage'
+  m_Name: '[LARGE ground nodes] Node (6)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2636,7 +2783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[MEDIUM ground nodes]            (02) ground medium stage'
+  - name: '[MEDIUM ground nodes] Node (5)'
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -2915,6 +3062,82 @@ Transform:
   m_Father: {fileID: 1442519589296183216}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1745637329834098945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2559866370425892665}
+  - component: {fileID: 7216869348457466275}
+  m_Layer: 0
+  m_Name: air (20)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2559866370425892665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745637329834098945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.86, y: 6.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7216869348457466275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745637329834098945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (21)
+    node: {fileID: 8886593657549281196}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (18)
+    node: {fileID: 2396946413070837710}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (17)
+    node: {fileID: 378478924355665587}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (19)
+    node: {fileID: 1585182330651829385}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (16)
+    node: {fileID: 2773285432060974340}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (14)
+    node: {fileID: 7283556787020930289}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &1778058818553878233
 GameObject:
   m_ObjectHideFlags: 0
@@ -3451,7 +3674,7 @@ Transform:
   - {fileID: 4871861698708475239}
   - {fileID: 4470310850102475856}
   m_Father: {fileID: 1654037913240956893}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2064244488005818186
 GameObject:
@@ -4036,7 +4259,7 @@ GameObject:
   - component: {fileID: 4059293429039652859}
   - component: {fileID: 3727816086340725701}
   m_Layer: 0
-  m_Name: '[MEDIUM ground nodes]            (01) ground medium stage'
+  m_Name: '[MEDIUM ground nodes] Node (1)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4071,12 +4294,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE ground nodes]            (01) ground large stage'
+  - name: '[LARGE ground nodes] Node'
     node: {fileID: 8355616597004858563}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: (01) ground small stage
+  - name: Node (2)
     node: {fileID: 1912871387864876588}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -4278,7 +4501,7 @@ GameObject:
   - component: {fileID: 5535258799261234155}
   - component: {fileID: 9219319686943771534}
   m_Layer: 0
-  m_Name: '[MEDIUM small platforms]            (02) 2nd platform'
+  m_Name: '[MEDIUM small platforms] Node (8)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4292,12 +4515,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2529677505229453271}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5799997, y: -2.66, z: 0}
+  m_LocalPosition: {x: -5.74, y: -2.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8239670354473753265}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9219319686943771534
 MonoBehaviour:
@@ -4313,20 +4536,187 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: '[MEDIUM small platforms]         (01) 2nd platform'
-    node: {fileID: 8465040135786544146}
+  - name: '[FIRST to unlock] Node (7)'
+    node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 1
+  - name: Node (2)
+    node: {fileID: 1912871387864876588}
+    needToJump: 0
+    needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: '[MEDIUM big platform]            (02) 3rd platform'
+  - name: '[MEDIUM ground nodes] Node (1)'
+    node: {fileID: 3727816086340725701}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[MEDIUM big platform] Node (12)'
+    node: {fileID: 837880454840560788}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: '[MEDIUM big platform] Node (11)'
     node: {fileID: 6901890659978907494}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[FIRST to unlock]              (01) 1st platform'
-    node: {fileID: 1244324953322843278}
+--- !u!1 &2554800885084191936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5783746553451574822}
+  - component: {fileID: 5036394215461721178}
+  m_Layer: 0
+  m_Name: air (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5783746553451574822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554800885084191936}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4599998, y: -0.22000003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778716545368941132}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5036394215461721178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554800885084191936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (6)
+    node: {fileID: 6711706291224614308}
     needToJump: 0
     needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (8)
+    node: {fileID: 779080727541715487}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (0)
+    node: {fileID: 3787960736594589311}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (13)
+    node: {fileID: 3031051568787051242}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (14)
+    node: {fileID: 7283556787020930289}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (16)
+    node: {fileID: 2773285432060974340}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (15)
+    node: {fileID: 6925313100696230793}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+--- !u!1 &2584127298705107506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3895537810350419710}
+  - component: {fileID: 378478924355665587}
+  m_Layer: 0
+  m_Name: air (17)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3895537810350419710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2584127298705107506}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.67, y: 6.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &378478924355665587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2584127298705107506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (21)
+    node: {fileID: 8886593657549281196}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (18)
+    node: {fileID: 2396946413070837710}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (20)
+    node: {fileID: 7216869348457466275}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (19)
+    node: {fileID: 1585182330651829385}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (12)
+    node: {fileID: 9060763516803154109}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (11)
+    node: {fileID: 9037150531455561897}
+    needToJump: 0
+    needToGoDownPlatform: 1
     needToFallDown: 0
 --- !u!1 &2609394124106105834
 GameObject:
@@ -4463,6 +4853,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonGO: {fileID: 2091561463698377482}
+--- !u!1 &2777749246883775392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 634966207318061798}
+  - component: {fileID: 9060763516803154109}
+  m_Layer: 0
+  m_Name: air (12)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &634966207318061798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777749246883775392}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.67, y: 2.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9060763516803154109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777749246883775392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (11)
+    node: {fileID: 9037150531455561897}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (6)
+    node: {fileID: 1261513635721808389}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: ground (5)
+    node: {fileID: 4580754393151724004}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: ground (0)
+    node: {fileID: 8227090835841733529}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (17)
+    node: {fileID: 378478924355665587}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &2783410193251973422
 GameObject:
   m_ObjectHideFlags: 0
@@ -4786,7 +5247,7 @@ GameObject:
   - component: {fileID: 1161029969244604341}
   - component: {fileID: 8355616597004858563}
   m_Layer: 0
-  m_Name: '[LARGE ground nodes]            (01) ground large stage'
+  m_Name: '[LARGE ground nodes] Node'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4821,7 +5282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[MEDIUM ground nodes]            (01) ground medium stage'
+  - name: '[MEDIUM ground nodes] Node (1)'
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -4932,7 +5393,7 @@ GameObject:
   - component: {fileID: 5222579494356646833}
   - component: {fileID: 1244324953322843278}
   m_Layer: 0
-  m_Name: '[FIRST to unlock]              (01) 1st platform'
+  m_Name: '[FIRST to unlock] Node (7)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4946,7 +5407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3053981174852482281}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.01, y: -4.7599998, z: 0}
+  m_LocalPosition: {x: 1.5, y: -4.7599998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4967,25 +5428,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: '[FIRST to unlock]          (02) 1st platform'
-    node: {fileID: 7947230142979627499}
+  - name: Node (3)
+    node: {fileID: 7755382140752019050}
     needToJump: 0
-    needToGoDownPlatform: 0
+    needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: '[MEDIUM small platforms]            (02) 2nd platform'
+  - name: Node (2)
+    node: {fileID: 1912871387864876588}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: Node (4)
+    node: {fileID: 4420804255868088061}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[MEDIUM small platforms] Node (8)'
     node: {fileID: 9219319686943771534}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: (01) ground small stage
-    node: {fileID: 1912871387864876588}
-    needToJump: 0
+  - name: '[MEDIUM small platforms] Node (9)'
+    node: {fileID: 4331265058700272098}
+    needToJump: 1
     needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: (02) ground small stage
-    node: {fileID: 7755382140752019050}
-    needToJump: 0
-    needToGoDownPlatform: 1
     needToFallDown: 0
 --- !u!1 &3229704116131038277
 GameObject:
@@ -4998,7 +5464,7 @@ GameObject:
   - component: {fileID: 1299529430875090566}
   - component: {fileID: 7755382140752019050}
   m_Layer: 0
-  m_Name: (02) ground small stage
+  m_Name: Node (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5033,24 +5499,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: (01) ground small stage
+  - name: Node (2)
     node: {fileID: 1912871387864876588}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: (03) ground small stage
+  - name: Node (4)
     node: {fileID: 4420804255868088061}
     needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[FIRST to unlock]              (01) 1st platform'
-    node: {fileID: 1244324953322843278}
-    needToJump: 1
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[FIRST to unlock]          (02) 1st platform'
-    node: {fileID: 7947230142979627499}
-    needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &3231545287650980446
@@ -5536,7 +5992,7 @@ GameObject:
   - component: {fileID: 2071407363154551234}
   - component: {fileID: 6901890659978907494}
   m_Layer: 0
-  m_Name: '[MEDIUM big platform]            (02) 3rd platform'
+  m_Name: '[MEDIUM big platform] Node (11)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5550,7 +6006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3403101768995557611}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2400001, y: -0.30000013, z: 0}
+  m_LocalPosition: {x: -1.32, y: -0.30000013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5571,30 +6027,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[MEDIUM big platform]            (01) 3rd platform'
-    node: {fileID: 837880454840560788}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM big platform]            (03) 3rd platform'
+  - name: '[MEDIUM big platform] Node (10)'
     node: {fileID: 7212187734054710469}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE smaller platforms]            (01) 5th platform'
-    node: {fileID: 4119786786787352992}
-    needToJump: 1
+  - name: '[MEDIUM big platform] Node (12)'
+    node: {fileID: 837880454840560788}
+    needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[FIRST to unlock]              (01) 1st platform'
+  - name: '[MEDIUM small platforms] Node (8)'
+    node: {fileID: 9219319686943771534}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[FIRST to unlock] Node (7)'
     node: {fileID: 1244324953322843278}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: '[MEDIUM small platforms]            (02) 2nd platform'
-    node: {fileID: 9219319686943771534}
-    needToJump: 0
-    needToGoDownPlatform: 1
+  - name: '[LARGE smaller platforms] Node (17)'
+    node: {fileID: 4119786786787352992}
+    needToJump: 1
+    needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &3411002560769044169
 GameObject:
@@ -5841,6 +6297,57 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3463745116639101926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4082613513582178385}
+  - component: {fileID: 1541633621049114981}
+  m_Layer: 0
+  m_Name: ground (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4082613513582178385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463745116639101926}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.65, y: -6.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1541633621049114981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463745116639101926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: ground (4)
+    node: {fileID: 4600035959523973782}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &3469449103520819421
 GameObject:
   m_ObjectHideFlags: 0
@@ -6046,7 +6553,7 @@ GameObject:
   - component: {fileID: 4992594130441004725}
   - component: {fileID: 8341509977260270726}
   m_Layer: 0
-  m_Name: '[LARGE big platforms]            (05) 9th platform'
+  m_Name: '[LARGE big platforms] Node (24)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6060,7 +6567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3487160993099706718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.79, y: 6.7099996, z: 0}
+  m_LocalPosition: {x: 17.7, y: 6.7099996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6081,17 +6588,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE big platforms]            (04) 9th platform'
+  - name: '[LARGE big platforms] Node (22)'
     node: {fileID: 1958953575177685196}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE small platforms]      (02) 7th platform'
-    node: {fileID: 4241473696683361698}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[LARGE small platforms]            (01) 7th platform'
+  - name: '[LARGE small platforms] Node (15)'
     node: {fileID: 6764881735950194885}
     needToJump: 0
     needToGoDownPlatform: 1
@@ -6107,7 +6609,7 @@ GameObject:
   - component: {fileID: 1111298378506781130}
   - component: {fileID: 6764881735950194885}
   m_Layer: 0
-  m_Name: '[LARGE small platforms]            (01) 7th platform'
+  m_Name: '[LARGE small platforms] Node (15)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6121,12 +6623,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3545972085436259114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.38, y: 2.4799998, z: 0}
+  m_LocalPosition: {x: 17.75, y: 2.4799998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4621151407065548143}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6764881735950194885
 MonoBehaviour:
@@ -6142,25 +6644,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE small platforms]      (02) 7th platform'
-    node: {fileID: 4241473696683361698}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[LARGE big platforms]            (05) 9th platform'
-    node: {fileID: 8341509977260270726}
-    needToJump: 1
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM ground nodes]            (02) ground medium stage'
-    node: {fileID: 7732662911688714376}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[MEDIUM big platform]            (04) 3rd platform'
+  - name: '[MEDIUM big platform] Node (13)'
     node: {fileID: 3269258450651046598}
     needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 1
+  - name: '[LARGE ground nodes] Node (6)'
+    node: {fileID: 4370502154176230177}
+    needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[LARGE big platforms] Node (22)'
+    node: {fileID: 1958953575177685196}
+    needToJump: 1
+    needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &3572881530976816770
 GameObject:
@@ -6205,7 +6702,7 @@ GameObject:
   - component: {fileID: 1548396620102208748}
   - component: {fileID: 3269258450651046598}
   m_Layer: 0
-  m_Name: '[MEDIUM big platform]            (04) 3rd platform'
+  m_Name: '[MEDIUM big platform] Node (13)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6219,7 +6716,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3595446716604029907}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.3, y: -0.30000013, z: 0}
+  m_LocalPosition: {x: 12.67, y: -0.30000013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6240,30 +6737,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[MEDIUM big platform]            (03) 3rd platform'
+  - name: '[MEDIUM big platform] Node (10)'
     node: {fileID: 7212187734054710469}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE smaller platforms]            (01) 6th platform'
+  - name: '[MEDIUM small platforms] Node (9)'
+    node: {fileID: 4331265058700272098}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[MEDIUM ground nodes] Node (5)'
+    node: {fileID: 7732662911688714376}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[LARGE ground nodes] Node (6)'
+    node: {fileID: 4370502154176230177}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: '[LARGE smaller platforms] Node (14)'
     node: {fileID: 5024811614672319604}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE small platforms]            (01) 7th platform'
+  - name: '[LARGE small platforms] Node (15)'
     node: {fileID: 6764881735950194885}
     needToJump: 1
     needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[LARGE ground nodes]            (02) ground large stage'
-    node: {fileID: 4370502154176230177}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[MEDIUM small platforms]        (02) 3rd platform'
-    node: {fileID: 6733042811924093944}
-    needToJump: 0
-    needToGoDownPlatform: 1
     needToFallDown: 0
 --- !u!1 &3629227107248880168
 GameObject:
@@ -6360,7 +6862,7 @@ GameObject:
   - component: {fileID: 1570125480044114319}
   - component: {fileID: 5140819287769142625}
   m_Layer: 0
-  m_Name: '[LARGE small platforms]            (02) 4th platform'
+  m_Name: '[LARGE small platforms] Node (18)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6374,12 +6876,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3660007301495146419}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.28, y: 2.4999998, z: 0}
+  m_LocalPosition: {x: -14.71, y: 2.4999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4621151407065548143}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5140819287769142625
 MonoBehaviour:
@@ -6395,25 +6897,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE small platforms]       (01) 4th platform'
-    node: {fileID: 1598724572435128799}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[LARGE big platforms]            (01) 9th platform'
-    node: {fileID: 2344295959194906353}
-    needToJump: 1
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM big platform]            (01) 3rd platform'
+  - name: '[MEDIUM big platform] Node (12)'
     node: {fileID: 837880454840560788}
     needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[MEDIUM ground nodes]            (01) ground medium stage'
-    node: {fileID: 3727816086340725701}
+    needToGoDownPlatform: 0
+    needToFallDown: 1
+  - name: '[LARGE ground nodes] Node'
+    node: {fileID: 8355616597004858563}
     needToJump: 0
     needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[LARGE big platforms] Node (23)'
+    node: {fileID: 1842783196618207421}
+    needToJump: 1
+    needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &3666910423736719466
 GameObject:
@@ -7171,6 +7668,77 @@ MonoBehaviour:
     - name: 
       <Sprite>k__BackingField: {fileID: 1765495917, guid: 45f59c712f2eefb49a5203eb5f510b66, type: 3}
       <Weight>k__BackingField: 0
+--- !u!1 &4033242411412055671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8712063370360688871}
+  - component: {fileID: 7144655388363082485}
+  m_Layer: 0
+  m_Name: air (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8712063370360688871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033242411412055671}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.92, y: -2.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778716545368941132}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7144655388363082485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033242411412055671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (4)
+    node: {fileID: 4109240754067734070}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (3)
+    node: {fileID: 2486860073417573045}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: ground (4)
+    node: {fileID: 4600035959523973782}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: ground (7)
+    node: {fileID: 1541633621049114981}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (8)
+    node: {fileID: 779080727541715487}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &4038300614611275022
 GameObject:
   m_ObjectHideFlags: 0
@@ -7205,6 +7773,118 @@ Transform:
   m_Father: {fileID: 4586937257542799292}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4053526724682664480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716493923204094055}
+  - component: {fileID: 6924177633164905143}
+  m_Layer: 0
+  m_Name: air (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &716493923204094055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053526724682664480}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.87, y: -2.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778716545368941132}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6924177633164905143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053526724682664480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (0)
+    node: {fileID: 3787960736594589311}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (3)
+    node: {fileID: 2362584986351784697}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (7)
+    node: {fileID: 5036394215461721178}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+--- !u!1 &4120751095848128971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5783137742118692331}
+  - component: {fileID: 1261513635721808389}
+  m_Layer: 0
+  m_Name: ground (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5783137742118692331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120751095848128971}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.9, y: -6.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1261513635721808389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120751095848128971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: ground (5)
+    node: {fileID: 4580754393151724004}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &4121691375789769575
 GameObject:
   m_ObjectHideFlags: 0
@@ -7328,6 +8008,82 @@ Transform:
   m_Father: {fileID: 602883150385896118}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4224020541976800774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7681094181972611374}
+  - component: {fileID: 1585182330651829385}
+  m_Layer: 0
+  m_Name: air (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7681094181972611374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224020541976800774}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.36, y: 6.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1585182330651829385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224020541976800774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (21)
+    node: {fileID: 8886593657549281196}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (18)
+    node: {fileID: 2396946413070837710}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (17)
+    node: {fileID: 378478924355665587}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (20)
+    node: {fileID: 7216869348457466275}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (13)
+    node: {fileID: 3031051568787051242}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (14)
+    node: {fileID: 7283556787020930289}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &4264970412545990949
 GameObject:
   m_ObjectHideFlags: 0
@@ -7557,6 +8313,82 @@ MonoBehaviour:
     - name: 
       <Sprite>k__BackingField: {fileID: 1765495917, guid: 45f59c712f2eefb49a5203eb5f510b66, type: 3}
       <Weight>k__BackingField: 0
+--- !u!1 &4394971571430303652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1187635517283631794}
+  - component: {fileID: 2773285432060974340}
+  m_Layer: 0
+  m_Name: air (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1187635517283631794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4394971571430303652}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.94, y: 2.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2773285432060974340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4394971571430303652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (14)
+    node: {fileID: 7283556787020930289}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (8)
+    node: {fileID: 779080727541715487}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (7)
+    node: {fileID: 5036394215461721178}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (9)
+    node: {fileID: 5348973839081788224}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (21)
+    node: {fileID: 8886593657549281196}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (20)
+    node: {fileID: 7216869348457466275}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &4485826869477907837
 GameObject:
   m_ObjectHideFlags: 0
@@ -7625,7 +8457,7 @@ Transform:
   m_Father: {fileID: 3062161163514638122}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4536243787602568924
+--- !u!1 &4523462158273353363
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7633,63 +8465,73 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6276581599817924722}
-  - component: {fileID: 8465040135786544146}
+  - component: {fileID: 6687508673693892880}
+  - component: {fileID: 7283556787020930289}
   m_Layer: 0
-  m_Name: '[MEDIUM small platforms]         (01) 2nd platform'
+  m_Name: air (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6276581599817924722
+--- !u!4 &6687508673693892880
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4536243787602568924}
+  m_GameObject: {fileID: 4523462158273353363}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.21, y: -2.66, z: 0}
+  m_LocalPosition: {x: 3.54, y: 4.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8239670354473753265}
-  m_RootOrder: 0
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8465040135786544146
+--- !u!114 &7283556787020930289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4536243787602568924}
+  m_GameObject: {fileID: 4523462158273353363}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traversable: 1
+  traversable: 0
   neighbours:
-  - name: '[MEDIUM small platforms]            (02) 2nd platform'
-    node: {fileID: 9219319686943771534}
+  - name: air (13)
+    node: {fileID: 3031051568787051242}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[MEDIUM big platform]            (01) 3rd platform'
-    node: {fileID: 837880454840560788}
+  - name: air (7)
+    node: {fileID: 5036394215461721178}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (8)
+    node: {fileID: 779080727541715487}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (16)
+    node: {fileID: 2773285432060974340}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (19)
+    node: {fileID: 1585182330651829385}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[MEDIUM ground nodes]            (01) ground medium stage'
-    node: {fileID: 3727816086340725701}
-    needToJump: 0
+  - name: air (20)
+    node: {fileID: 7216869348457466275}
+    needToJump: 1
     needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: (01) ground small stage
-    node: {fileID: 1912871387864876588}
-    needToJump: 0
-    needToGoDownPlatform: 1
     needToFallDown: 0
 --- !u!1 &4555028303795763789
 GameObject:
@@ -7804,71 +8646,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5222579494356646833}
-  - {fileID: 6657166158890362611}
   m_Father: {fileID: 6594673841200196523}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4600366838650461909
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3658165256364019231}
-  - component: {fileID: 4241473696683361698}
-  m_Layer: 0
-  m_Name: '[LARGE small platforms]      (02) 7th platform'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3658165256364019231
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4600366838650461909}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.82, y: 2.4799998, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4621151407065548143}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4241473696683361698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4600366838650461909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traversable: 0
-  neighbours:
-  - name: '[LARGE small platforms]            (01) 7th platform'
-    node: {fileID: 6764881735950194885}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[LARGE big platforms]            (04) 9th platform'
-    node: {fileID: 1958953575177685196}
-    needToJump: 1
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[LARGE ground nodes]            (02) ground large stage'
-    node: {fileID: 4370502154176230177}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
 --- !u!1 &4640976605995312239
 GameObject:
   m_ObjectHideFlags: 0
@@ -8534,6 +9314,46 @@ MonoBehaviour:
     - name: 
       <Sprite>k__BackingField: {fileID: 1765495917, guid: 45f59c712f2eefb49a5203eb5f510b66, type: 3}
       <Weight>k__BackingField: 0
+--- !u!1 &4891817305094288660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1778716545368941132}
+  m_Layer: 0
+  m_Name: Medium
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1778716545368941132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891817305094288660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1341216751592666823}
+  - {fileID: 5396649882978201294}
+  - {fileID: 716493923204094055}
+  - {fileID: 3764127183270723892}
+  - {fileID: 991107210709287812}
+  - {fileID: 5783746553451574822}
+  - {fileID: 4996597253573577149}
+  - {fileID: 5794815811493292474}
+  - {fileID: 8712063370360688871}
+  m_Father: {fileID: 8227090835550530613}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4895272146295274952
 GameObject:
   m_ObjectHideFlags: 0
@@ -10936,6 +11756,82 @@ MonoBehaviour:
     - name: 
       <Sprite>k__BackingField: {fileID: 1765495917, guid: 45f59c712f2eefb49a5203eb5f510b66, type: 3}
       <Weight>k__BackingField: 0
+--- !u!1 &5136202370619192993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5002493221047023675}
+  - component: {fileID: 8886593657549281196}
+  m_Layer: 0
+  m_Name: air (21)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5002493221047023675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136202370619192993}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.99, y: 6.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8886593657549281196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136202370619192993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (18)
+    node: {fileID: 2396946413070837710}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (17)
+    node: {fileID: 378478924355665587}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (20)
+    node: {fileID: 7216869348457466275}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (19)
+    node: {fileID: 1585182330651829385}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (10)
+    node: {fileID: 4362666548177006665}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (9)
+    node: {fileID: 5348973839081788224}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
 --- !u!1 &5190558356477052588
 GameObject:
   m_ObjectHideFlags: 0
@@ -10969,6 +11865,77 @@ Transform:
   m_Father: {fileID: 4383073435995273212}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5283070670746570234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3764127183270723892}
+  - component: {fileID: 2362584986351784697}
+  m_Layer: 0
+  m_Name: air (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3764127183270723892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283070670746570234}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.7799997, y: -2.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778716545368941132}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2362584986351784697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283070670746570234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (2)
+    node: {fileID: 6924177633164905143}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (0)
+    node: {fileID: 8227090835841733529}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: ground (5)
+    node: {fileID: 4580754393151724004}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (6)
+    node: {fileID: 1261513635721808389}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (6)
+    node: {fileID: 6711706291224614308}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &5315102059578388957
 GameObject:
   m_ObjectHideFlags: 0
@@ -10980,7 +11947,7 @@ GameObject:
   - component: {fileID: 402992382942362151}
   - component: {fileID: 4119786786787352992}
   m_Layer: 0
-  m_Name: '[LARGE smaller platforms]            (01) 5th platform'
+  m_Name: '[LARGE smaller platforms] Node (17)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11015,19 +11982,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE middle platforms]            (01) 8th platform'
+  - name: '[MEDIUM big platform] Node (11)'
+    node: {fileID: 6901890659978907494}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 1
+  - name: '[MEDIUM big platform] Node (12)'
+    node: {fileID: 837880454840560788}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 1
+  - name: '[LARGE middle platforms] Node (16)'
     node: {fileID: 5394054640308025284}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[MEDIUM big platform]            (02) 3rd platform'
-    node: {fileID: 6901890659978907494}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM big platform]            (01) 3rd platform'
-    node: {fileID: 837880454840560788}
-    needToJump: 0
+  - name: '[LARGE big platforms] Node (21)'
+    node: {fileID: 3108605033801090382}
+    needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &5363032267798357775
@@ -11201,12 +12173,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1265442486572790820}
-  - {fileID: 1570125480044114319}
-  - {fileID: 402992382942362151}
   - {fileID: 4672531601835395247}
   - {fileID: 1111298378506781130}
-  - {fileID: 3658165256364019231}
+  - {fileID: 402992382942362151}
+  - {fileID: 1570125480044114319}
   m_Father: {fileID: 7812517437045169463}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11327,6 +12297,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5570491757006850376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3920653760440561937}
+  m_Layer: 0
+  m_Name: Large
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3920653760440561937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5570491757006850376}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5783137742118692331}
+  - {fileID: 4082613513582178385}
+  - {fileID: 678370282839201626}
+  - {fileID: 2991864614205401705}
+  - {fileID: 8416006653074461711}
+  - {fileID: 634966207318061798}
+  - {fileID: 9014761403735222951}
+  - {fileID: 6687508673693892880}
+  - {fileID: 5193187035033688137}
+  - {fileID: 1187635517283631794}
+  - {fileID: 3895537810350419710}
+  - {fileID: 8452658107260385734}
+  - {fileID: 7681094181972611374}
+  - {fileID: 2559866370425892665}
+  - {fileID: 5002493221047023675}
+  m_Father: {fileID: 8227090835550530613}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5572814037724302379
 GameObject:
   m_ObjectHideFlags: 0
@@ -11613,6 +12629,82 @@ Transform:
   m_Father: {fileID: 1442519589296183216}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5759042940888143027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9014761403735222951}
+  - component: {fileID: 3031051568787051242}
+  m_Layer: 0
+  m_Name: air (13)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9014761403735222951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5759042940888143027}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.63, y: 4.57, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3031051568787051242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5759042940888143027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (14)
+    node: {fileID: 7283556787020930289}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (7)
+    node: {fileID: 5036394215461721178}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (6)
+    node: {fileID: 6711706291224614308}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (15)
+    node: {fileID: 6925313100696230793}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (19)
+    node: {fileID: 1585182330651829385}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (18)
+    node: {fileID: 2396946413070837710}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &5798165996181004608
 GameObject:
   m_ObjectHideFlags: 0
@@ -11723,6 +12815,72 @@ MonoBehaviour:
     - name: 
       <Sprite>k__BackingField: {fileID: 1765495917, guid: 45f59c712f2eefb49a5203eb5f510b66, type: 3}
       <Weight>k__BackingField: 0
+--- !u!1 &5799198797189182324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5794815811493292474}
+  - component: {fileID: 4109240754067734070}
+  m_Layer: 0
+  m_Name: air (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5794815811493292474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799198797189182324}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.95, y: -2.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778716545368941132}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4109240754067734070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799198797189182324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (0)
+    node: {fileID: 3787960736594589311}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (3)
+    node: {fileID: 2486860073417573045}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (5)
+    node: {fileID: 7144655388363082485}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (7)
+    node: {fileID: 5036394215461721178}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &5815246214417417510
 GameObject:
   m_ObjectHideFlags: 0
@@ -11850,7 +13008,7 @@ GameObject:
   - component: {fileID: 6062124211285021149}
   - component: {fileID: 1958953575177685196}
   m_Layer: 0
-  m_Name: '[LARGE big platforms]            (04) 9th platform'
+  m_Name: '[LARGE big platforms] Node (22)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11864,12 +13022,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5893506637543741379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.68, y: 6.7099996, z: 0}
+  m_LocalPosition: {x: 7.97, y: 6.7099996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8987397132925737321}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1958953575177685196
 MonoBehaviour:
@@ -11885,23 +13043,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE big platforms]            (03) 9th platform'
+  - name: '[LARGE big platforms] Node (21)'
     node: {fileID: 3108605033801090382}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE big platforms]            (05) 9th platform'
+  - name: '[LARGE big platforms] Node (24)'
     node: {fileID: 8341509977260270726}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE smaller platforms]            (01) 6th platform'
+  - name: '[LARGE smaller platforms] Node (14)'
     node: {fileID: 5024811614672319604}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[LARGE small platforms]            (01) 7th platform'
-    node: {fileID: 6764881735950194885}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
@@ -12142,7 +13295,7 @@ GameObject:
   - component: {fileID: 4723562239658195235}
   - component: {fileID: 1842783196618207421}
   m_Layer: 0
-  m_Name: '[LARGE big platforms]            (02) 9th platform'
+  m_Name: '[LARGE big platforms] Node (23)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12156,12 +13309,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6082841208496850431}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.96, y: 6.7099996, z: 0}
+  m_LocalPosition: {x: -5.03, y: 6.7099996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8987397132925737321}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1842783196618207421
 MonoBehaviour:
@@ -12177,23 +13330,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE big platforms]            (01) 9th platform'
+  - name: '[LARGE big platforms] Node (20)'
     node: {fileID: 2344295959194906353}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE big platforms]            (03) 9th platform'
+  - name: '[LARGE big platforms] Node (21)'
     node: {fileID: 3108605033801090382}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE smaller platforms]            (01) 5th platform'
+  - name: '[LARGE smaller platforms] Node (17)'
     node: {fileID: 4119786786787352992}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[LARGE small platforms]            (02) 4th platform'
-    node: {fileID: 5140819287769142625}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
@@ -12208,7 +13356,7 @@ GameObject:
   - component: {fileID: 1371231242256022367}
   - component: {fileID: 7212187734054710469}
   m_Layer: 0
-  m_Name: '[MEDIUM big platform]            (03) 3rd platform'
+  m_Name: '[MEDIUM big platform] Node (10)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12222,12 +13370,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6120785248158217180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.41, y: -0.30000013, z: 0}
+  m_LocalPosition: {x: 4.33, y: -0.30000013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6847967466851131664}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7212187734054710469
 MonoBehaviour:
@@ -12243,95 +13391,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[MEDIUM big platform]            (02) 3rd platform'
+  - name: '[MEDIUM big platform] Node (11)'
     node: {fileID: 6901890659978907494}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[MEDIUM big platform]            (04) 3rd platform'
+  - name: '[MEDIUM big platform] Node (13)'
     node: {fileID: 3269258450651046598}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE smaller platforms]            (01) 6th platform'
-    node: {fileID: 5024811614672319604}
-    needToJump: 1
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[FIRST to unlock]          (02) 1st platform'
-    node: {fileID: 7947230142979627499}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[MEDIUM small platforms]            (01) 3rd platform'
-    node: {fileID: 4331265058700272098}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
---- !u!1 &6121132969490314427
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6657166158890362611}
-  - component: {fileID: 7947230142979627499}
-  m_Layer: 0
-  m_Name: '[FIRST to unlock]          (02) 1st platform'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6657166158890362611
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6121132969490314427}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.988, y: -4.79, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3384341298498618584}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7947230142979627499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6121132969490314427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traversable: 1
-  neighbours:
-  - name: '[FIRST to unlock]              (01) 1st platform'
+  - name: '[FIRST to unlock] Node (7)'
     node: {fileID: 1244324953322843278}
     needToJump: 0
-    needToGoDownPlatform: 0
+    needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: '[MEDIUM small platforms]            (01) 3rd platform'
+  - name: '[MEDIUM small platforms] Node (9)'
     node: {fileID: 4331265058700272098}
-    needToJump: 1
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: (02) ground small stage
-    node: {fileID: 7755382140752019050}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
-  - name: (03) ground small stage
-    node: {fileID: 4420804255868088061}
-    needToJump: 0
+  - name: '[LARGE smaller platforms] Node (14)'
+    node: {fileID: 5024811614672319604}
+    needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &6125001739195051878
@@ -12586,6 +13668,82 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6194874266231131538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 991107210709287812}
+  - component: {fileID: 6711706291224614308}
+  m_Layer: 0
+  m_Name: air (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &991107210709287812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194874266231131538}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.01, y: -0.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778716545368941132}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6711706291224614308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194874266231131538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (7)
+    node: {fileID: 5036394215461721178}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (3)
+    node: {fileID: 2362584986351784697}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: ground (6)
+    node: {fileID: 1261513635721808389}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (11)
+    node: {fileID: 9037150531455561897}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (13)
+    node: {fileID: 3031051568787051242}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (15)
+    node: {fileID: 6925313100696230793}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6220797271071266446
 GameObject:
   m_ObjectHideFlags: 0
@@ -12727,10 +13885,10 @@ Transform:
   - {fileID: 4963462554625251947}
   - {fileID: 5110730388930167773}
   - {fileID: 581530612330928199}
+  - {fileID: 5239915557757175185}
   - {fileID: 4304720169903677130}
   - {fileID: 5249838116757822913}
   - {fileID: 7439360376542304786}
-  - {fileID: 5239915557757175185}
   m_Father: {fileID: 4383073435995273212}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12893,6 +14051,67 @@ MonoBehaviour:
   _movementMultiplier: 0.005
   _centerOfTheMap: {fileID: 1989230579708461365}
   _graphics: {fileID: 1442519589296183216}
+--- !u!1 &6392109699220926445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5349732143367677848}
+  - component: {fileID: 2486860073417573045}
+  m_Layer: 0
+  m_Name: ground (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5349732143367677848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392109699220926445}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.4, y: -6.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4485793398503149539}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2486860073417573045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392109699220926445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 1
+  neighbours:
+  - name: ground (0)
+    node: {fileID: 8227090835841733529}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (4)
+    node: {fileID: 4600035959523973782}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (0)
+    node: {fileID: 3787960736594589311}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6481253863960601417
 GameObject:
   m_ObjectHideFlags: 0
@@ -13172,72 +14391,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &6541503890346318746
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6551841828183921062}
-  - component: {fileID: 7176944186070193684}
-  m_Layer: 0
-  m_Name: '[LARGE middle platforms]     (02) 8th platform'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6551841828183921062
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6541503890346318746}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.9, y: 4.39, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 10999731304241787}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7176944186070193684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6541503890346318746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traversable: 0
-  neighbours:
-  - name: '[LARGE middle platforms]            (01) 8th platform'
-    node: {fileID: 5394054640308025284}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[LARGE big platforms]            (03) 9th platform'
-    node: {fileID: 3108605033801090382}
-    needToJump: 1
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM big platform]            (03) 3rd platform'
-    node: {fileID: 7212187734054710469}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[LARGE smaller platforms]            (01) 6th platform'
-    node: {fileID: 5024811614672319604}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
 --- !u!1 &6571623364378864168
 GameObject:
   m_ObjectHideFlags: 0
@@ -13432,6 +14585,82 @@ MonoBehaviour:
     - name: 
       <Sprite>k__BackingField: {fileID: 1765495917, guid: 45f59c712f2eefb49a5203eb5f510b66, type: 3}
       <Weight>k__BackingField: 0
+--- !u!1 &6636326765745669557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5193187035033688137}
+  - component: {fileID: 6925313100696230793}
+  m_Layer: 0
+  m_Name: air (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5193187035033688137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636326765745669557}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.82, y: 2.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6925313100696230793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636326765745669557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (13)
+    node: {fileID: 3031051568787051242}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (6)
+    node: {fileID: 6711706291224614308}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (7)
+    node: {fileID: 5036394215461721178}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (11)
+    node: {fileID: 9037150531455561897}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (18)
+    node: {fileID: 2396946413070837710}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (17)
+    node: {fileID: 378478924355665587}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6637083879603851788
 GameObject:
   m_ObjectHideFlags: 0
@@ -13637,7 +14866,7 @@ GameObject:
   - component: {fileID: 2095014378811387495}
   - component: {fileID: 837880454840560788}
   m_Layer: 0
-  m_Name: '[MEDIUM big platform]            (01) 3rd platform'
+  m_Name: '[MEDIUM big platform] Node (12)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13651,12 +14880,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6648413003676881284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.06, y: -0.30000013, z: 0}
+  m_LocalPosition: {x: -9.93, y: -0.30000013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6847967466851131664}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &837880454840560788
 MonoBehaviour:
@@ -13672,30 +14901,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[MEDIUM big platform]            (02) 3rd platform'
+  - name: '[MEDIUM big platform] Node (11)'
     node: {fileID: 6901890659978907494}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE small platforms]            (02) 4th platform'
-    node: {fileID: 5140819287769142625}
-    needToJump: 1
+  - name: '[MEDIUM small platforms] Node (8)'
+    node: {fileID: 9219319686943771534}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[MEDIUM ground nodes] Node (1)'
+    node: {fileID: 3727816086340725701}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: '[LARGE ground nodes] Node'
+    node: {fileID: 8355616597004858563}
+    needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE smaller platforms]            (01) 5th platform'
+  - name: '[LARGE smaller platforms] Node (17)'
     node: {fileID: 4119786786787352992}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE ground nodes]            (01) ground large stage'
-    node: {fileID: 8355616597004858563}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[MEDIUM small platforms]         (01) 2nd platform'
-    node: {fileID: 8465040135786544146}
-    needToJump: 0
-    needToGoDownPlatform: 1
+  - name: '[LARGE small platforms] Node (18)'
+    node: {fileID: 5140819287769142625}
+    needToJump: 1
+    needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &6677472771130806062
 GameObject:
@@ -13818,7 +15052,7 @@ GameObject:
   - component: {fileID: 2890011054734497207}
   - component: {fileID: 3108605033801090382}
   m_Layer: 0
-  m_Name: '[LARGE big platforms]            (03) 9th platform'
+  m_Name: '[LARGE big platforms] Node (21)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13832,12 +15066,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6683266523092495809}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.44, y: 6.7099996, z: 0}
+  m_LocalPosition: {x: 1.48, y: 6.7099996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8987397132925737321}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3108605033801090382
 MonoBehaviour:
@@ -13853,23 +15087,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE big platforms]            (02) 9th platform'
+  - name: '[LARGE big platforms] Node (23)'
     node: {fileID: 1842783196618207421}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE big platforms]            (04) 9th platform'
+  - name: '[LARGE big platforms] Node (22)'
     node: {fileID: 1958953575177685196}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE middle platforms]            (01) 8th platform'
+  - name: '[LARGE middle platforms] Node (16)'
     node: {fileID: 5394054640308025284}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[LARGE middle platforms]     (02) 8th platform'
-    node: {fileID: 7176944186070193684}
     needToJump: 0
     needToGoDownPlatform: 1
     needToFallDown: 0
@@ -14090,6 +15319,138 @@ Transform:
   m_Father: {fileID: 2206989585476743513}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6831550774000154040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4996597253573577149}
+  - component: {fileID: 779080727541715487}
+  m_Layer: 0
+  m_Name: air (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4996597253573577149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6831550774000154040}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13.29, y: -0.22000003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778716545368941132}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &779080727541715487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6831550774000154040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (7)
+    node: {fileID: 5036394215461721178}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (5)
+    node: {fileID: 7144655388363082485}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: ground (7)
+    node: {fileID: 1541633621049114981}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (9)
+    node: {fileID: 5348973839081788224}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (14)
+    node: {fileID: 7283556787020930289}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (16)
+    node: {fileID: 2773285432060974340}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+--- !u!1 &6880845305932155499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1341216751592666823}
+  - component: {fileID: 4600035959523973782}
+  m_Layer: 0
+  m_Name: ground (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1341216751592666823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880845305932155499}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.01, y: -6.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778716545368941132}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4600035959523973782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880845305932155499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: ground (3)
+    node: {fileID: 2486860073417573045}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (7)
+    node: {fileID: 1541633621049114981}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &6937169269329329263
 GameObject:
   m_ObjectHideFlags: 0
@@ -14240,6 +15601,77 @@ Transform:
   m_Father: {fileID: 196035897366798083}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6994238771298732734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2991864614205401705}
+  - component: {fileID: 4362666548177006665}
+  m_Layer: 0
+  m_Name: air (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2991864614205401705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6994238771298732734}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.77, y: 2.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3920653760440561937}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4362666548177006665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6994238771298732734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: air (9)
+    node: {fileID: 5348973839081788224}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (7)
+    node: {fileID: 1541633621049114981}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: ground (4)
+    node: {fileID: 4600035959523973782}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: ground (3)
+    node: {fileID: 2486860073417573045}
+    needToJump: 0
+    needToGoDownPlatform: 1
+    needToFallDown: 0
+  - name: air (21)
+    node: {fileID: 8886593657549281196}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &7015377155734193953
 GameObject:
   m_ObjectHideFlags: 0
@@ -14526,10 +15958,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6276581599817924722}
   - {fileID: 5535258799261234155}
   - {fileID: 7314775528096469366}
-  - {fileID: 877656846674504520}
   m_Father: {fileID: 3242541385819360341}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14577,7 +16007,7 @@ GameObject:
   - component: {fileID: 4971916560129523684}
   - component: {fileID: 4420804255868088061}
   m_Layer: 0
-  m_Name: (03) ground small stage
+  m_Name: Node (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14612,21 +16042,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: (02) ground small stage
-    node: {fileID: 7755382140752019050}
-    needToJump: 0
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM ground nodes]            (02) ground medium stage'
+  - name: '[MEDIUM ground nodes] Node (5)'
     node: {fileID: 7732662911688714376}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[FIRST to unlock]          (02) 1st platform'
-    node: {fileID: 7947230142979627499}
+  - name: Node (3)
+    node: {fileID: 7755382140752019050}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: '[FIRST to unlock] Node (7)'
+    node: {fileID: 1244324953322843278}
     needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
+--- !u!1 &7341193733310633091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4485793398503149539}
+  m_Layer: 0
+  m_Name: Small
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4485793398503149539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7341193733310633091}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8227090835841733528}
+  - {fileID: 5349732143367677848}
+  - {fileID: 3271904762040454621}
+  m_Father: {fileID: 8227090835550530613}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7538854205696639129
 GameObject:
   m_ObjectHideFlags: 0
@@ -15341,9 +16805,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7748603307888537514}
-  - {fileID: 4723562239658195235}
   - {fileID: 2890011054734497207}
   - {fileID: 6062124211285021149}
+  - {fileID: 4723562239658195235}
   - {fileID: 4992594130441004725}
   m_Father: {fileID: 7086599894730646446}
   m_RootOrder: 0
@@ -15686,7 +17150,7 @@ GameObject:
   - component: {fileID: 8521086541397943947}
   - component: {fileID: 1912871387864876588}
   m_Layer: 0
-  m_Name: (01) ground small stage
+  m_Name: Node (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15721,17 +17185,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 1
   neighbours:
-  - name: '[MEDIUM ground nodes]            (01) ground medium stage'
+  - name: '[MEDIUM ground nodes] Node (1)'
     node: {fileID: 3727816086340725701}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: (02) ground small stage
+  - name: Node (3)
     node: {fileID: 7755382140752019050}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[FIRST to unlock]              (01) 1st platform'
+  - name: '[FIRST to unlock] Node (7)'
     node: {fileID: 1244324953322843278}
     needToJump: 1
     needToGoDownPlatform: 0
@@ -15773,7 +17237,7 @@ Transform:
   - {fileID: 1366406633951251320}
   - {fileID: 7086599894730646446}
   m_Father: {fileID: 8227090836628840163}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4183795119629757199
 MonoBehaviour:
@@ -15796,27 +17260,21 @@ MonoBehaviour:
   - {fileID: 8355616597004858563}
   - {fileID: 4370502154176230177}
   - {fileID: 1244324953322843278}
-  - {fileID: 7947230142979627499}
-  - {fileID: 8465040135786544146}
   - {fileID: 9219319686943771534}
   - {fileID: 4331265058700272098}
-  - {fileID: 6733042811924093944}
-  - {fileID: 837880454840560788}
-  - {fileID: 6901890659978907494}
   - {fileID: 7212187734054710469}
+  - {fileID: 6901890659978907494}
+  - {fileID: 837880454840560788}
   - {fileID: 3269258450651046598}
-  - {fileID: 1598724572435128799}
-  - {fileID: 5140819287769142625}
-  - {fileID: 4119786786787352992}
   - {fileID: 5024811614672319604}
   - {fileID: 6764881735950194885}
-  - {fileID: 4241473696683361698}
+  - {fileID: 4119786786787352992}
+  - {fileID: 5140819287769142625}
   - {fileID: 5394054640308025284}
-  - {fileID: 7176944186070193684}
   - {fileID: 2344295959194906353}
-  - {fileID: 1842783196618207421}
   - {fileID: 3108605033801090382}
   - {fileID: 1958953575177685196}
+  - {fileID: 1842783196618207421}
   - {fileID: 8341509977260270726}
 --- !u!1 &8156352951362170836
 GameObject:
@@ -15957,7 +17415,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1825409677725154810}
-  - {fileID: 6551841828183921062}
   m_Father: {fileID: 1366406633951251320}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15974,7 +17431,7 @@ GameObject:
   - component: {fileID: 2533430718636207580}
   - component: {fileID: 2937090474571810465}
   m_Layer: 0
-  m_Name: First Map - Test Path Finding
+  m_Name: First Map - OLD pathfinding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16017,7 +17474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5146fa3dce8d3439f530e0125ca902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MapConfiguration>k__BackingField: {fileID: 11400000, guid: bb90cbef343e9a9459542486c91986da, type: 2}
+  <MapConfiguration>k__BackingField: {fileID: 11400000, guid: 6f809e6147b717645a79884d03c44884, type: 2}
   <MapEvents>k__BackingField: {fileID: 11400000, guid: 109d223325bc54b4fb98e72fc7db066d, type: 2}
   _startWithState: 2
   <CentralPosition>k__BackingField: {fileID: 6317504891115083524}
@@ -16063,7 +17520,6 @@ MonoBehaviour:
     - {fileID: 181284491456120773}
     <Nodes>k__BackingField:
     - {fileID: 1244324953322843278}
-    - {fileID: 7947230142979627499}
     <EnemySpawnPositions>k__BackingField:
     - {fileID: 157070215032048048}
     - {fileID: 9092134284340087199}
@@ -16089,8 +17545,6 @@ MonoBehaviour:
     <Nodes>k__BackingField:
     - {fileID: 9219319686943771534}
     - {fileID: 4331265058700272098}
-    - {fileID: 8465040135786544146}
-    - {fileID: 6733042811924093944}
     <EnemySpawnPositions>k__BackingField:
     - {fileID: 3147324782456301277}
     - {fileID: 5495785400991717268}
@@ -16130,8 +17584,6 @@ MonoBehaviour:
     <Nodes>k__BackingField:
     - {fileID: 6764881735950194885}
     - {fileID: 5140819287769142625}
-    - {fileID: 1598724572435128799}
-    - {fileID: 4241473696683361698}
     <EnemySpawnPositions>k__BackingField:
     - {fileID: 5547870835797116077}
     - {fileID: 3315608859694923210}
@@ -16140,7 +17592,6 @@ MonoBehaviour:
     - {fileID: 581530612330928198}
     <Nodes>k__BackingField:
     - {fileID: 5394054640308025284}
-    - {fileID: 7176944186070193684}
     <EnemySpawnPositions>k__BackingField: []
   _largeStageSmallerPlatform:
     <Platforms>k__BackingField:
@@ -16165,6 +17616,142 @@ MonoBehaviour:
     - {fileID: 7945291676069774638}
     - {fileID: 8053092480728276352}
     - {fileID: 8359202387463074292}
+--- !u!1 &8227090835550530619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8227090835550530613}
+  - component: {fileID: 8227090835550530618}
+  m_Layer: 0
+  m_Name: Waypoints_old
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8227090835550530613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227090835550530619}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4485793398503149539}
+  - {fileID: 1778716545368941132}
+  - {fileID: 3920653760440561937}
+  m_Father: {fileID: 8227090836628840163}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8227090835550530618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227090835550530619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f4316d510142c45afbb714990ae139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 8227090835841733529}
+  - {fileID: 2486860073417573045}
+  - {fileID: 3787960736594589311}
+  - {fileID: 4600035959523973782}
+  - {fileID: 4580754393151724004}
+  - {fileID: 6924177633164905143}
+  - {fileID: 2362584986351784697}
+  - {fileID: 6711706291224614308}
+  - {fileID: 5036394215461721178}
+  - {fileID: 779080727541715487}
+  - {fileID: 4109240754067734070}
+  - {fileID: 7144655388363082485}
+  - {fileID: 1261513635721808389}
+  - {fileID: 1541633621049114981}
+  - {fileID: 5348973839081788224}
+  - {fileID: 4362666548177006665}
+  - {fileID: 9037150531455561897}
+  - {fileID: 9060763516803154109}
+  - {fileID: 3031051568787051242}
+  - {fileID: 7283556787020930289}
+  - {fileID: 6925313100696230793}
+  - {fileID: 2773285432060974340}
+  - {fileID: 378478924355665587}
+  - {fileID: 2396946413070837710}
+  - {fileID: 1585182330651829385}
+  - {fileID: 7216869348457466275}
+  - {fileID: 8886593657549281196}
+--- !u!1 &8227090835841733534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8227090835841733528}
+  - component: {fileID: 8227090835841733529}
+  m_Layer: 0
+  m_Name: ground (0)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8227090835841733528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227090835841733534}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.96, y: -6.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4485793398503149539}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8227090835841733529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227090835841733534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 1
+  neighbours:
+  - name: ground (5)
+    node: {fileID: 4580754393151724004}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (3)
+    node: {fileID: 2486860073417573045}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: air (0)
+    node: {fileID: 3787960736594589311}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &8227090835899449516
 GameObject:
   m_ObjectHideFlags: 0
@@ -16306,6 +17893,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8227090835550530613}
   - {fileID: 3101124697640682044}
   m_Father: {fileID: 8227090835269282453}
   m_RootOrder: 4
@@ -16697,7 +18285,7 @@ GameObject:
   - component: {fileID: 4672531601835395247}
   - component: {fileID: 5024811614672319604}
   m_Layer: 0
-  m_Name: '[LARGE smaller platforms]            (01) 6th platform'
+  m_Name: '[LARGE smaller platforms] Node (14)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16716,7 +18304,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4621151407065548143}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5024811614672319604
 MonoBehaviour:
@@ -16732,19 +18320,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE middle platforms]     (02) 8th platform'
-    node: {fileID: 7176944186070193684}
-    needToJump: 1
-    needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM big platform]            (03) 3rd platform'
+  - name: '[MEDIUM big platform] Node (10)'
     node: {fileID: 7212187734054710469}
     needToJump: 0
     needToGoDownPlatform: 0
-    needToFallDown: 0
-  - name: '[MEDIUM big platform]            (04) 3rd platform'
+    needToFallDown: 1
+  - name: '[MEDIUM big platform] Node (13)'
     node: {fileID: 3269258450651046598}
     needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 1
+  - name: '[LARGE middle platforms] Node (16)'
+    node: {fileID: 5394054640308025284}
+    needToJump: 1
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: '[LARGE big platforms] Node (21)'
+    node: {fileID: 3108605033801090382}
+    needToJump: 1
     needToGoDownPlatform: 0
     needToFallDown: 0
 --- !u!1 &8547901533429248555
@@ -16868,7 +18461,7 @@ GameObject:
   - component: {fileID: 7748603307888537514}
   - component: {fileID: 2344295959194906353}
   m_Layer: 0
-  m_Name: '[LARGE big platforms]            (01) 9th platform'
+  m_Name: '[LARGE big platforms] Node (20)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16882,7 +18475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8631690352306588805}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.74, y: 6.7099996, z: 0}
+  m_LocalPosition: {x: -14.76, y: 6.7099996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16903,17 +18496,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: '[LARGE big platforms]            (02) 9th platform'
+  - name: '[LARGE big platforms] Node (23)'
     node: {fileID: 1842783196618207421}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE small platforms]       (01) 4th platform'
-    node: {fileID: 1598724572435128799}
-    needToJump: 0
-    needToGoDownPlatform: 1
-    needToFallDown: 0
-  - name: '[LARGE small platforms]            (02) 4th platform'
+  - name: '[LARGE small platforms] Node (18)'
     node: {fileID: 5140819287769142625}
     needToJump: 0
     needToGoDownPlatform: 1
@@ -17139,6 +18727,62 @@ Transform:
   m_Father: {fileID: 1442519589296183216}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8778174634043097598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5396649882978201294}
+  - component: {fileID: 4580754393151724004}
+  m_Layer: 0
+  m_Name: ground (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5396649882978201294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8778174634043097598}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.18, y: -6.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778716545368941132}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4580754393151724004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8778174634043097598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e62cd8f931274e87d852d0150c3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traversable: 0
+  neighbours:
+  - name: ground (0)
+    node: {fileID: 8227090835841733529}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
+  - name: ground (6)
+    node: {fileID: 1261513635721808389}
+    needToJump: 0
+    needToGoDownPlatform: 0
+    needToFallDown: 0
 --- !u!1 &8814676035554607509
 GameObject:
   m_ObjectHideFlags: 0
@@ -17185,7 +18829,7 @@ GameObject:
   - component: {fileID: 1061139489714207706}
   - component: {fileID: 7732662911688714376}
   m_Layer: 0
-  m_Name: '[MEDIUM ground nodes]            (02) ground medium stage'
+  m_Name: '[MEDIUM ground nodes] Node (5)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17220,12 +18864,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traversable: 0
   neighbours:
-  - name: (03) ground small stage
+  - name: Node (4)
     node: {fileID: 4420804255868088061}
     needToJump: 0
     needToGoDownPlatform: 0
     needToFallDown: 0
-  - name: '[LARGE ground nodes]            (02) ground large stage'
+  - name: '[LARGE ground nodes] Node (6)'
     node: {fileID: 4370502154176230177}
     needToJump: 0
     needToGoDownPlatform: 0
@@ -30315,7 +31959,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6038249575765551892, guid: 27de230f85b8bbd439c9973c9f99df8a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6038249575765551892, guid: 27de230f85b8bbd439c9973c9f99df8a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31882,7 +33526,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 682396289246380680, guid: 5380f8589c2dc8b4980f289dda19221a, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 682396289246380680, guid: 5380f8589c2dc8b4980f289dda19221a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33159,7 +34803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4480090846763845022, guid: 1baf36876aef47a4196b54269958d6af, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4480090846763845022, guid: 1baf36876aef47a4196b54269958d6af, type: 3}
       propertyPath: m_LocalPosition.x
