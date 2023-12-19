@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bcd2c61b811b13b4ebdc0fa0461423fe
+guid: ae57c7ef6e181aa4399d773af6b73137
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -20,12 +20,11 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -64,7 +63,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -77,7 +75,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -90,7 +87,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -103,7 +99,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -116,218 +111,259 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mockup worm_reborn_0
+      name: tile
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 27
-        height: 17
-      alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24de314a66409d942a2637504266e118
-      internalID: 1653900786
+      spriteID: dec571916d58d8c4aab0755dfcd26ecf
+      internalID: -871251478
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mockup worm_reborn_1
+      name: stalactite_small
       rect:
         serializedVersion: 2
-        x: 27
-        y: 0
-        width: 27
+        x: 0
+        y: 47
+        width: 16
         height: 17
       alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64a8e608f4079b540ba5747cfe4573c5
-      internalID: -314596426
+      spriteID: de6436e62141bef4fbbde2dd7f11377b
+      internalID: 1792962711
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mockup worm_reborn_2
+      name: stalactite_small_broken
       rect:
         serializedVersion: 2
-        x: 54
-        y: 0
-        width: 27
-        height: 17
+        x: 48
+        y: 48
+        width: 16
+        height: 16
       alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c961380d90214e94badff11a8d16a7db
-      internalID: -1834753318
+      spriteID: e456f15171336464ab365c73c90e6192
+      internalID: -2080858249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mockup worm_reborn_3
+      name: stalactite_big
       rect:
         serializedVersion: 2
-        x: 81
-        y: 0
-        width: 27
-        height: 17
+        x: 32
+        y: 31
+        width: 16
+        height: 33
       alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb130d80967bdda4c8e21d0f363306d9
-      internalID: 1024130789
+      spriteID: 8a2f4b40a506d20488ef19d13b800e2b
+      internalID: -1426006775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mockup worm_reborn_4
+      name: stalactite_big_broken
       rect:
         serializedVersion: 2
-        x: 108
-        y: 0
-        width: 27
-        height: 17
+        x: 64
+        y: 48
+        width: 16
+        height: 16
       alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08849f6502044e34a951586d5f07793a
-      internalID: -2095493241
+      spriteID: 160c24a1ce50a064fb706a6cb7c06bef
+      internalID: 1856905329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mockup worm_reborn_5
+      name: stalactite_big_projectile
       rect:
         serializedVersion: 2
-        x: 135
-        y: 0
-        width: 27
-        height: 17
+        x: 64
+        y: 18
+        width: 16
+        height: 30
       alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+      pivot: {x: 0.5, y: 0.86666673}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3667299ab5556e6469510570d2e5dbd7
-      internalID: 1679641695
+      spriteID: 0a868b4081565fc419843299fc35d3ed
+      internalID: -672942086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mockup worm_reborn_6
+      name: stalactite_projectile
       rect:
         serializedVersion: 2
-        x: 162
-        y: 0
-        width: 27
+        x: 48
+        y: 31
+        width: 16
         height: 17
       alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+      pivot: {x: 0.5, y: 0.7647059}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3a2753f33d50624bbf047439cb53c8f
-      internalID: 697784043
+      spriteID: fb4e6163da5a7344d99eed2f813a1e66
+      internalID: -1671691193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mockup worm_reborn_7
+      name: spike
       rect:
         serializedVersion: 2
-        x: 189
-        y: 0
-        width: 27
-        height: 17
-      alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+        x: 36
+        y: 1
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7b344f39c22f21489a1d1e2f9e13ea5
-      internalID: 1385305882
+      spriteID: 3979175b93be9df45bf43af1cf6fe428
+      internalID: -240457829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mockup worm_reborn_8
+      name: platform_center
       rect:
         serializedVersion: 2
-        x: 216
-        y: 0
-        width: 27
-        height: 17
-      alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+        x: 56
+        y: 8
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e034429e29e99942b3ed40c85ebd031
-      internalID: -2015938516
+      spriteID: 034aeb50c78632c4da5aff15c397a36f
+      internalID: 838272449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mockup worm_reborn_9
+      name: platform_right
       rect:
         serializedVersion: 2
-        x: 243
-        y: 0
-        width: 27
-        height: 17
-      alignment: 9
-      pivot: {x: 0.42, y: 0.1176471}
+        x: 72
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5889145ca88b2ff44a2915d0b753c89f
-      internalID: -337061228
+      spriteID: 29be883aa930cfa46a283e3f5dfd0800
+      internalID: 1202359115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platform_left
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73133565d1b04cc47b0006db77aacc69
+      internalID: -569065182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone_ball
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ab4805d6c0a0bb44b2fb28e3b7a51c8
+      internalID: -1836857680
       vertices: []
       indices: 
       edges: []
@@ -343,18 +379,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mockup worm_reborn_0: 1653900786
-      mockup worm_reborn_1: -314596426
-      mockup worm_reborn_2: -1834753318
-      mockup worm_reborn_3: 1024130789
-      mockup worm_reborn_4: -2095493241
-      mockup worm_reborn_5: 1679641695
-      mockup worm_reborn_6: 697784043
-      mockup worm_reborn_7: 1385305882
-      mockup worm_reborn_8: -2015938516
-      mockup worm_reborn_9: -337061228
-  mipmapLimitGroupName: 
+      Stone_ball: -1836857680
+      stalactite_projectile: -1671691193
+      spike: -240457829
+      stalactite_big_projectile: -672942086
+      stalactite_big: -1426006775
+      tile: -871251478
+      stalactite_big_broken: 1856905329
+      platform_center: 838272449
+      platform_right: 1202359115
+      platform_left: -569065182
+      stalactite_small: 1792962711
+      stalactite_small_broken: -2080858249
+  spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

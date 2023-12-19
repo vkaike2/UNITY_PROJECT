@@ -3,14 +3,6 @@ using System.Threading;
 
 public partial class FirstMap : Map
 {
-    /// <summary>
-    ///     OnChangeMapEvent
-    ///     Map           -> 1 - Unlock First Platform
-    ///     Map           -> 2 - Wall of spike move
-    ///     Map           -> 2 - Camera Move to Auxiliar 01
-    ///     Wall of Spike -> 3 - Called when Wall of Spike reached the Medium position
-    /// </summary>
-
     protected override void BeforeStart()
     {
         _finiteStates = new List<MapFiniteStateBase>()

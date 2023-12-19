@@ -22,6 +22,28 @@ public class RaycastModel
     public Transform GroundRaycastTransform { get; private set; }
 
 
+    private float _initialHeight;
+    private float _initialWidht;
+
+    public void GetInitialValues()
+    {
+        _initialHeight = Height;
+        _initialWidht = Widith;
+    }
+
+    public void InvertValues(bool vertical)
+    {
+        if (vertical)
+        {
+            Height = _initialWidht;
+            Widith = _initialHeight;
+            return;
+        }
+
+        Height = _initialHeight;
+        Widith = _initialWidht;
+    }
+
     public void DrawGizmos()
     {
         if (!_showGizmo) return;

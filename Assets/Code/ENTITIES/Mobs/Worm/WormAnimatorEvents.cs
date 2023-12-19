@@ -14,6 +14,7 @@ public class WormAnimatorEvents : MonoBehaviour
     public void CanMove() => _onCanMove.Invoke(true);
     public void CanNotMove() => _onCanMove.Invoke(false);
 
-    [Serializable]
-    public class OnToggleMovement : UnityEvent<bool> { }
 }
+
+[Serializable]
+public class OnToggleMovement : UnityEvent<bool> { }
