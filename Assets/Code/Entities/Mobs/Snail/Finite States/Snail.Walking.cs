@@ -49,7 +49,6 @@ public partial class Snail : Enemy
             _movementSpeed = new Vector2(_snail.Status.MovementSpeed.Get(), 0);
         }
 
-
         private IEnumerator ManageMovement()
         {
             _canMove = true;
