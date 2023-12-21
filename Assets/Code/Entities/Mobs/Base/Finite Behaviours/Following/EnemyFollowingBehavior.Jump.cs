@@ -24,7 +24,7 @@ public partial class EnemyFollowingBehaviour
         private readonly float DEACTIVATE_COLLIDER_DOWN_PLATFORM = 0.2F;
         private readonly Vector2 DEFAULT_JUMP_VELOCITY = new Vector2(5, 15);
         private readonly float MAXIMUM_DISTANCE_FROM_TARGET_WHEN_JUMP = 0.5f;
-        private readonly float MAX_TIME_TO_FORGTET_ABOUT_TARGET_WHEN_JUMP = 0.5f;
+        private readonly float MAX_TIME_TO_FORGTET_ABOUT_TARGET_WHEN_JUMP = 1f;
 
         public Jump(EnemyFollowingBehavior parent)
         {
@@ -119,8 +119,8 @@ public partial class EnemyFollowingBehaviour
 
 
             //Debug.Log($"{node.gameObject.name} - {Vector2.Distance(node.transform.position, _enemy.transform.position)}");
-            
-            
+
+
             if (node == null)
             {
                 _target.TargeTransform = _parent.Pathfinding.Target.transform;
@@ -241,14 +241,14 @@ public partial class EnemyFollowingBehaviour
             _enemy.StartCoroutine(WaitLeaveGround());
         }
 
-        private IEnumerator OvercomeWall(float direction)
-        {
-            while (_rigidbody2D.velocity.y > 0)
-            {
-                _rigidbody2D.velocity = new Vector2(direction * _enemy.Status.MovementSpeed.Get(), _rigidbody2D.velocity.y);
-                yield return new WaitForFixedUpdate();
-            }
-        }
+        // private IEnumerator OvercomeWall(float direction)
+        // {
+        //     while (_rigidbody2D.velocity.y > 0)
+        //     {
+        //         _rigidbody2D.velocity = new Vector2(direction * _enemy.Status.MovementSpeed.Get(), _rigidbody2D.velocity.y);
+        //         yield return new WaitForFixedUpdate();
+        //     }
+        // }
 
         private IEnumerator WaitLeaveGround()
         {
@@ -284,6 +284,7 @@ public partial class EnemyFollowingBehaviour
                     new Vector2(
                         _model.MainCollider.transform.position.x, _model.MainCollider.bounds.min.y)
                      , _target.JumpTarget.Position);
+
             }
 
 

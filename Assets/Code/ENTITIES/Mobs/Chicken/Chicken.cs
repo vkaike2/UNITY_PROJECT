@@ -126,7 +126,7 @@ public partial class Chicken : Enemy
     {
         PlayerPathfinding.waypoints = GameManager.Waypoints;
 
-        PlayerPathfinding.SetTarget(_debugPlayer == null ?GameManager.Player.transform: _debugPlayer.transform);
+        PlayerPathfinding.SetTarget(_debugPlayer == null ? GameManager.Player.transform : _debugPlayer.transform);
 
         WormPathfinding.waypoints = GameManager.Waypoints;
     }
