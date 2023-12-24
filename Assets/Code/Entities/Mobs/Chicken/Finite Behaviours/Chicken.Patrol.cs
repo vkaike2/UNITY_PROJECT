@@ -10,35 +10,22 @@ public partial class Chicken : Enemy
     {
         public override Behaviour Behaviour => Behaviour.Patrol;
 
-        private ChickenPatrolModel _patrolModel;
-        private EnemyPatrolBehaviour _patrolBehaviour;
-
         public override void Start(Enemy enemy)
         {
             base.Start(enemy);
-            _patrolModel = _chicken.PatrolModel;
-
-            _patrolBehaviour = new EnemyPatrolBehaviour(EnemyPatrolBehaviour.MovementType.Walk, _patrolModel);
-
-            AddEventListeners();
-
-            _patrolBehaviour.Start(enemy);
         }
 
         public override void OnEnterBehaviour()
         {
-            _patrolBehaviour.OnEnterBehaviour();
         }
 
         public override void OnExitBehaviour()
         {
-            _patrolBehaviour.OnExitBehaviour();
             _chicken.PlayerPathfinding.StopPathFinding();
         }
 
         public override void Update()
         {
-            _patrolBehaviour.Update();
             FindFollowingTarget();
         }
 
@@ -73,25 +60,6 @@ public partial class Chicken : Enemy
             Node[] pathResult = _chicken.PlayerPathfinding.FindPath(Pathfinding.PossibleActions.Jump);
 
             return pathResult != null;
-        }
-
-
-        private void AddEventListeners()
-        {
-            _patrolModel.OnChangeAnimation.AddListener(OnChangeAnimation);
-        }
-
-        private void OnChangeAnimation(EnemyPatrolModel.PossibleAnimations possibleAnimations)
-        {
-            switch (possibleAnimations)
-            {
-                case EnemyPatrolModel.PossibleAnimations.Idle:
-                    _chicken.ChickenAnimator.PlayAnimation(ChickenAnimatorModel.AnimationName.Idle);
-                    break;
-                case EnemyPatrolModel.PossibleAnimations.Move:
-                    _chicken.ChickenAnimator.PlayAnimation(ChickenAnimatorModel.AnimationName.Move);
-                    break;
-            }
         }
     }
 }
