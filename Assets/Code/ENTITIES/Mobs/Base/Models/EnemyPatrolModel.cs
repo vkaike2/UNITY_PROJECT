@@ -52,6 +52,7 @@ public class EnemyPatrolModel
                     InitialRaycastPosition.position.y));
         }
     }
+    
     public RaycastHit2D DrawPatrolRaycast(PatrolDirection direction)
     {
         RaycastHit2D hit = Physics2D.Raycast(
