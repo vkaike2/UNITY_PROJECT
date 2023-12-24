@@ -1,173 +1,65 @@
-﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static EnemyPatrolModel;
 
 public partial class EnemyPatrolBehaviour
 {
     public class Walk : EnemyBaseBehaviour
     {
-        private EnemyPatrolModel _model;
-        private Coroutine _waitingCoroutine = null;
-        private Coroutine _patrolCoroutine = null;
-        private Vector2 _currentPatrolEndPosition;
+        private readonly EnemyWalkModel _model;
+        private float _directionMultiplier = 1;
 
-        private readonly List<PatrolDirection> _directions = new List<PatrolDirection>()
+        public Walk(EnemyWalkModel walkModel)
         {
-            PatrolDirection.Left, 
-            PatrolDirection.Right
-        };
-
-        public Walk(EnemyPatrolModel patrolModel)
-        {
-            _model = patrolModel;
+            _model = walkModel;
         }
 
-        public override void Start(Enemy enemy)
+         public override void Start(Enemy enemy)
         {
             base.Start(enemy);
         }
 
         public override void OnEnterBehaviour()
         {
-            _waitingCoroutine = _enemy.StartCoroutine(WaitForCdw());
+            GetRandomDirection();
+            _model.OnChangeAnimationToWalk.Invoke();
         }
 
         public override void OnExitBehaviour()
         {
-            _rigidbody2D.isKinematic = false;
-            _model.OnChangeAnimation.RemoveAllListeners();
-            ResetCoroutines();
-            DisableGizmo();
         }
 
-        public override void Update() { }
-
-        private void DisableGizmo() => _model.DisablePatrolGizmos();
-
-        private void ResetCoroutines()
+        public override void Update()
         {
-            if (_waitingCoroutine != null)
+             if (CheckIfNeedToChangeDirection())
             {
-                _enemy.StopCoroutine(_waitingCoroutine);
+                ChangeDirection();
+                return;
             }
-            if (_patrolCoroutine != null)
-            {
-                _enemy.StopCoroutine(_patrolCoroutine);
-            }
+            _rigidbody2D.velocity = new Vector2(_enemy.Status.MovementSpeed.Get() * _directionMultiplier, _rigidbody2D.velocity.y);
         }
 
-        private bool CheckIfCanPatrolToThisDirection(PatrolDirection direction)
+         private void ChangeDirection()
         {
-            RaycastHit2D hit = _model.DrawPatrolRaycast(direction);
-            return hit.collider == null;
+            _directionMultiplier *= -1;
+            _enemy.RotationalTransform.localScale = new Vector3(_directionMultiplier, 1, 1);
         }
 
-        private PatrolDirection? GetDirection(List<PatrolDirection> possibleDirections = null)
+        private bool CheckIfNeedToChangeDirection()
         {
-            if (possibleDirections == null)
-            {
-                possibleDirections = new List<PatrolDirection>();
-                possibleDirections.AddRange(_directions);
-            }
+            Collider2D wall = _model.WillHitTheWallCheck.DrawPhysics2D(_model.LayerMask);
+            if (wall != null) return true;
 
-            if (possibleDirections.Count == 0 )
-            {
-                return null;
-            }
-
-            PatrolDirection currentDirection = possibleDirections[UnityEngine.Random.Range(0, possibleDirections.Count)];
-
-            if (CheckIfCanPatrolToThisDirection(currentDirection))
-            {
-                return currentDirection;
-            }
-
-            possibleDirections.Remove(currentDirection);
-
-            return GetDirection(possibleDirections);
+            Collider2D ground = _model.WillHitTheGround.DrawPhysics2D(_model.LayerMask);
+            return ground == null;
         }
 
-        private Vector2 CalculateNextMove()
+         private void GetRandomDirection()
         {
-            PatrolDirection? direction = GetDirection();
-            Vector2 nextMoveDirection;
+            List<float> directions = new List<float>() { 1, -1 };
+            _directionMultiplier = directions[Random.Range(0, 2)];
 
-            if (direction == null)
-            {
-                _waitingCoroutine = _enemy.StartCoroutine(WaitForCdw());
-                return Vector2.zero;
-            }
-            else
-            {
-                _currentPatrolEndPosition =
-                    new Vector2(
-                        direction == PatrolDirection.Right ? _enemy.transform.position.x + _model.PatrolDistance : _enemy.transform.transform.position.x - _model.PatrolDistance,
-                        _enemy.transform.position.y);
-
-                nextMoveDirection = new Vector2(direction == PatrolDirection.Right ? 1 : -1, 0);
-
-                _enemy.RotationalTransform.localScale = new Vector3(direction == PatrolDirection.Right ? 1 : -1, 1, 1);
-
-                _enemy.StartCoroutine(DrawPatrolGizmoForSeconds(direction.Value));
-            }
-
-            return nextMoveDirection;
+            _enemy.RotationalTransform.localScale = new Vector3(_directionMultiplier, 1, 1);
         }
 
-        private IEnumerator WaitForCdw()
-        {
-            _model.OnChangeAnimation.Invoke(PossibleAnimations.Idle);
-            _rigidbody2D.velocity = Vector3.zero;
-            _rigidbody2D.isKinematic = true;
-
-            yield return new WaitForSeconds(_model.CdwBetweenWalks);
-
-
-            Vector2 nextMove = CalculateNextMove();
-            if (nextMove != Vector2.zero)
-            {
-                _rigidbody2D.isKinematic = false;
-                _patrolCoroutine = _enemy.StartCoroutine(Patrol(nextMove));
-            }
-        }
-
-        IEnumerator Patrol(Vector2 nextDirection)
-        {
-            _model.OnChangeAnimation.Invoke(PossibleAnimations.Move);
-            Vector2 myHorizontalPosition = new Vector2(_enemy.transform.position.x, 0);
-            Vector2 patrolHorizontalPosition = new Vector2(_currentPatrolEndPosition.x, 0);
-
-            while (Vector2.Distance(myHorizontalPosition, patrolHorizontalPosition) >= _model.DistanceToStopPatrolling)
-            {
-                if (_enemy.CanMove)
-                {
-                    if (!_model.WillCollideWithGround)
-                    {
-                        break;
-                    }
-
-                    _rigidbody2D.velocity = nextDirection * _enemy.Status.MovementSpeed.Get();
-                }
-                else
-                {
-                    _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-                }
-
-                myHorizontalPosition = new Vector2(_enemy.transform.position.x, 0);
-                yield return new WaitForFixedUpdate();
-            }
-
-            _rigidbody2D.velocity = Vector2.zero;
-
-            _waitingCoroutine = _enemy.StartCoroutine(WaitForCdw());
-        }
-
-        private IEnumerator DrawPatrolGizmoForSeconds(PatrolDirection direction)
-        {
-            _model.SetupPatrolGizmos(direction);
-            yield return new WaitForSeconds(2f);
-            _model.DisablePatrolGizmos();
-        }
     }
 }

@@ -8,14 +8,6 @@ public partial class Turtle : Enemy
     [field: SerializeField]
     public CdwIndicationUI CdwIndication { get; private set; }
 
-    [field: Header("ATTACKS")]
-    [field: SerializeField]
-    public float CdwBetweenShoots { get; set; } = 3f;
-    [field: SerializeField]
-    public float ProjectileSpeed { get; set; } = 5f;
-    [field: SerializeField]
-    public float ProjectileDuration { get; set; }
-
     [field: Header("COMPONENTS")]
     [field: SerializeField]
     public TurtleAnimatorModel Animator { get; private set; }
@@ -23,6 +15,8 @@ public partial class Turtle : Enemy
     [field: Header("MODELS")]
     [field: SerializeField]
     public TurtleWalkModel WalkModel { get; set; }
+    [field: SerializeField]
+    public TurtleAttackModel AttackModel { get; set; }
 
     public Behaviour? CurrentBehaviour => ((TurtleBaseBehaviour)_currentFiniteBehaviour)?.Behaviour;
     protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();

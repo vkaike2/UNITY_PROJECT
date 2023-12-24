@@ -8,15 +8,22 @@ public partial class Scorpion : Enemy
     {
         public override Behaviour Behaviour => Behaviour.Walk;
 
-        private float _directionMultiplier = 1;
-
         private Coroutine _walkCoroutine;
         private Coroutine _attackCoroutine;
+
+        private EnemyPatrolBehaviour _patrolBehaviour;
 
         public override void Start(Enemy enemy)
         {
             base.Start(enemy);
             _walkModel = _scorpion.WalkModel;
+
+            _walkModel.OnChangeAnimationToWalk.AddListener(() =>
+            {
+                _scorpion.Animator.PlayAnimation(ScorpionAnimatorModel.AnimationName.Scorpion_Walk);
+            });
+            _patrolBehaviour = new EnemyPatrolBehaviour(EnemyPatrolBehaviour.MovementType.Walk, _walkModel);
+            _patrolBehaviour.Start(enemy);
         }
 
         public override void OnEnterBehaviour()
@@ -26,52 +33,23 @@ public partial class Scorpion : Enemy
             _attackCoroutine = _scorpion.StartCoroutine(WaitForAttackAgain());
             _attackModel.OnReadyToShootAgain.AddListener(OnReadyToShootAgain);
 
-            GetRandomDirection();
-
-            _scorpion.Animator.PlayAnimation(ScorpionAnimatorModel.AnimationName.Scorpion_Walk);
+            _patrolBehaviour.OnEnterBehaviour();
         }
 
         public override void OnExitBehaviour()
         {
             _attackModel.Tail.gameObject.SetActive(false);
 
-
             _scorpion.AttackCdwIndication.ForceEndCdw();
             _scorpion.StopCoroutine(_walkCoroutine);
             _scorpion.StopCoroutine(_attackCoroutine);
+
+            _patrolBehaviour.OnExitBehaviour();
         }
 
         public override void Update()
         {
-            if (CheckIfNeedToChangeDirection())
-            {
-                ChangeDirection();
-                return;
-            }
-            _rigidbody2D.velocity = new Vector2(_scorpion.Status.MovementSpeed.Get() * _directionMultiplier, _rigidbody2D.velocity.y);
-        }
-
-        private void GetRandomDirection()
-        {
-            List<float> directions = new List<float>() { 1, -1 };
-            _directionMultiplier = directions[Random.Range(0, 2)];
-
-            _scorpion.RotationalTransform.localScale = new Vector3(_directionMultiplier, 1, 1);
-        }
-
-        private void ChangeDirection()
-        {
-            _directionMultiplier *= -1;
-            _scorpion.RotationalTransform.localScale = new Vector3(_directionMultiplier, 1, 1);
-        }
-
-        private bool CheckIfNeedToChangeDirection()
-        {
-            Collider2D wall = _walkModel.WillHitTheWallCheck.DrawPhysics2D(_walkModel.LayerMask);
-            if (wall != null) return true;
-
-            Collider2D ground = _walkModel.WillHitTheGround.DrawPhysics2D(_walkModel.LayerMask);
-            return ground == null;
+            _patrolBehaviour.Update();
         }
 
         private IEnumerator WaitForWalkCdw()

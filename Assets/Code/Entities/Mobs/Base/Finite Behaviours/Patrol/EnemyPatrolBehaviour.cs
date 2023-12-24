@@ -4,6 +4,7 @@ public partial class EnemyPatrolBehaviour
 {
     private readonly MovementType _movement;
     private readonly EnemyPatrolModel _enemyPatrolModel;
+    private readonly EnemyWalkModel _enemyWalkModel;
 
     private EnemyBaseBehaviour _behaviour;
 
@@ -12,13 +13,21 @@ public partial class EnemyPatrolBehaviour
         _movement = movement;
         _enemyPatrolModel = enemyPatrolModel;
     }
+    public EnemyPatrolBehaviour(MovementType movement, EnemyWalkModel enemyWalkModel)
+    {
+        _movement = movement;
+        _enemyWalkModel = enemyWalkModel;
+    }
 
     public void Start(Enemy enemy)
     {
         switch (_movement)
         {
+            case MovementType.Patrol:
+                _behaviour = new Patrol(_enemyPatrolModel);
+                break;
             case MovementType.Walk:
-                _behaviour = new Walk(_enemyPatrolModel);
+                _behaviour = new Walk(_enemyWalkModel);
                 break;
             case MovementType.Fly:
                 break;
@@ -33,6 +42,9 @@ public partial class EnemyPatrolBehaviour
 
     public enum MovementType
     {
+        // It includes walk and Idle
+        Patrol,
+        // Walk from one side to another
         Walk,
         Fly
     }

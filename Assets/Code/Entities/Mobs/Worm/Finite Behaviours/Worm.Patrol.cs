@@ -15,7 +15,7 @@ public partial class Worm : Enemy
         {
             base.Start(enemy);
             _patrolModel = _worm.PatrolModel;
-            _patrolBehaviour = new EnemyPatrolBehaviour(EnemyPatrolBehaviour.MovementType.Walk, _patrolModel);
+            _patrolBehaviour = new EnemyPatrolBehaviour(EnemyPatrolBehaviour.MovementType.Patrol, _patrolModel);
 
             AddEventListeners();
 

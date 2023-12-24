@@ -17,7 +17,7 @@ public partial class Porcupine : Enemy
             base.Start(enemy);
             _patrolModel = _porcupine.PatrolModel;
             _atkModel = _porcupine.AtkModel;
-            _patrolBehaviour = new EnemyPatrolBehaviour(EnemyPatrolBehaviour.MovementType.Walk, _patrolModel);
+            _patrolBehaviour = new EnemyPatrolBehaviour(EnemyPatrolBehaviour.MovementType.Patrol, _patrolModel);
 
             AddEventListeners();
 

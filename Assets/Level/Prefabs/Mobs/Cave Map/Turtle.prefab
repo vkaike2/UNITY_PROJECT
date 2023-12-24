@@ -166,9 +166,6 @@ MonoBehaviour:
   _hitbox: {fileID: 5901400419226057552}
   _spriteRenderer: {fileID: 5949775310922109186}
   <CdwIndication>k__BackingField: {fileID: 7254631801754235454}
-  <CdwBetweenShoots>k__BackingField: 3
-  <ProjectileSpeed>k__BackingField: 5
-  <ProjectileDuration>k__BackingField: 10
   <Animator>k__BackingField:
     _animator: {fileID: 5150435838036505717}
   <WalkModel>k__BackingField:
@@ -188,6 +185,11 @@ MonoBehaviour:
       <Widith>k__BackingField: 0.2
       <GroundRaycastTransform>k__BackingField: {fileID: 4080339863157190362}
     <TurtleGun>k__BackingField: {fileID: 5856677454604440337}
+  <AttackModel>k__BackingField:
+    <TurtleGun>k__BackingField: {fileID: 5856677454604440337}
+    <CdwBetweenShoots>k__BackingField: 3
+    <ProjectileSpeed>k__BackingField: 8
+    <ProjectileDuration>k__BackingField: 7
 --- !u!1 &1440514497200337982
 GameObject:
   m_ObjectHideFlags: 0
