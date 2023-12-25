@@ -17523,7 +17523,7 @@ GameObject:
   - component: {fileID: 2533430718636207580}
   - component: {fileID: 2937090474571810465}
   m_Layer: 0
-  m_Name: Grass Map
+  m_Name: First Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

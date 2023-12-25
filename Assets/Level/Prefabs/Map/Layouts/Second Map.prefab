@@ -7278,7 +7278,7 @@ GameObject:
   - component: {fileID: 4055348024633696671}
   - component: {fileID: 4467484183311613957}
   m_Layer: 0
-  m_Name: Cave Map
+  m_Name: Second Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
