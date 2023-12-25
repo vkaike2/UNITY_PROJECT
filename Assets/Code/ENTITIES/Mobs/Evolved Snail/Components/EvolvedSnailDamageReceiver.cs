@@ -7,7 +7,7 @@ public class EvolvedSnailDamageReceiver : DamageReceiver
         _evolvedSnail = GetComponent<EvolvedSnail>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _evolvedSnail.ChangeBehaviour(EvolvedSnail.Behaviour.Die);
     }

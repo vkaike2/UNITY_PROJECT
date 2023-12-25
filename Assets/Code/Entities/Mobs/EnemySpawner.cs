@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnPlayerDead()
+    private void OnPlayerDead(string damageSoruce)
     {
         _canSpawn = false;
     }

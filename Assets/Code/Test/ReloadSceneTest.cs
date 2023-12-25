@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,12 +10,15 @@ namespace Assets.Code.Test
     public class ReloadSceneTest : MonoBehaviour
     {
         public GameObject buttonGO;
+        public GameObject labelGO;
+
+        public TMP_Text damageSourceLabel;
 
         private GameManager _gameManager;
 
         private void Awake()
         {
-            buttonGO.SetActive(false);
+            ActivateSetUp(false);
         }
 
         private void Start()
@@ -29,6 +34,16 @@ namespace Assets.Code.Test
         }
 
 
-        private void ActivateButton() => buttonGO.SetActive(true);
+        private void ActivateButton(string damageSource)
+        {
+            damageSourceLabel.text = damageSource.ToUpper();
+            ActivateSetUp(true);
+        }
+
+        private void ActivateSetUp(bool value)
+        {
+            buttonGO.SetActive(value);
+            labelGO.SetActive(value);
+        }
     }
 }

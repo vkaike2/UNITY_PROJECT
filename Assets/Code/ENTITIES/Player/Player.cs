@@ -37,6 +37,8 @@ public partial class Player : MonoBehaviour
     public PlayerPoopModel PoopModel { get; private set; }
     [field: SerializeField]
     public PlayerEatModel EatModel { get; private set; }
+    [field: SerializeField]
+    public PlayerDieModel DieModel { get; set; }
 
     public FiniteState CurrentState => _currentState.State;
     public UIEventManager UIEventManager { get; private set; }

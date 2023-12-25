@@ -34,7 +34,7 @@ public class GunGarooDamageDealer : ImpactDamageDealer
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_gunGaroo.Status.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_gunGaroo.Status.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position, "GunGaroo Bullet");
 
         Destroy(myHitbox.gameObject);
     }

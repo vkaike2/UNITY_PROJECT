@@ -11,7 +11,7 @@ public class BatDamageReceiver : DamageReceiver
         _bat = GetComponent<Bat>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _bat.ChangeBehaviour(Bat.Behaviour.Die);
     }

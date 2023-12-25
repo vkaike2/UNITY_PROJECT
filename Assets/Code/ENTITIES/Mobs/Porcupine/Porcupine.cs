@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public partial class Porcupine : Enemy
@@ -8,6 +9,10 @@ public partial class Porcupine : Enemy
     [Header("DEBUG")]
     [SerializeField]
     private Behaviour _behaviourDebug;
+
+    [field: Header("UI")]
+    [field: SerializeField]
+    public CdwIndicationUI CdwIndicationUI {get; private set;}
 
     [field: Header("MY COMPONENTS")]
     [field: SerializeField]

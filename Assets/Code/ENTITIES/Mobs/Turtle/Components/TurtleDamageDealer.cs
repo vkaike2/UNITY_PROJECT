@@ -25,7 +25,7 @@ public class TurtleDamageDealer : ImpactDamageDealer
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_turtle.Status.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_turtle.Status.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position, "Turtle Projectile");
 
         Destroy(myHitbox.transform.parent.gameObject);
     }

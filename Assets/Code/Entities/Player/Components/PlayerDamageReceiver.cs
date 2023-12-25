@@ -54,13 +54,14 @@ public class PlayerDamageReceiver : DamageReceiver
         return _canReceiveDamage;
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         UIEventManager.instance.OnPlayerLifeChange.Invoke(0);
+        _player.DieModel.DamageSourceThatKilledYou = damageSource;
         _player.ChangeState(Player.FiniteState.Dead);
     }
 
-    private IEnumerator CalculateInvincibilityCdw()
+    private IEnumerator CalculateInvincibilityCdw() 
     {
         _canReceiveDamage = false;
         yield return new WaitForSeconds(_cdwInvincibility);

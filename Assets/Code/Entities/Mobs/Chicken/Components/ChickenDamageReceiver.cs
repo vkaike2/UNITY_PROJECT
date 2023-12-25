@@ -11,7 +11,7 @@ public class ChickenDamageReceiver : DamageReceiver
         _chicken = GetComponent<Chicken>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _chicken.ChangeBehaviour(Chicken.Behaviour.Die);
     }

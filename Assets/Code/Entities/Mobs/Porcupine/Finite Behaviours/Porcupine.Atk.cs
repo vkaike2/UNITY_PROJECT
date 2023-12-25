@@ -40,8 +40,6 @@ public partial class Porcupine : Enemy
 
         public override void OnExitBehaviour() 
         {
-            if (_cdwCoroutine == null) return;
-            _porcupine.StopCoroutine(_cdwCoroutine);
         }
 
         public override void Update() { }
@@ -88,12 +86,9 @@ public partial class Porcupine : Enemy
         private IEnumerator CountCdwBetweenAtks()
         {
             _atkModel.CanAtk = false;
-            float cdw = 0;
-            while (cdw <= _atkModel.CdwBetweenAtks)
-            {
-                cdw += Time.deltaTime;
-                yield return new WaitForFixedUpdate();
-            }
+            _porcupine.CdwIndicationUI.StartCdw(_atkModel.CdwBetweenAtks);
+            yield return new WaitForSeconds(_atkModel.CdwBetweenAtks);
+            Debug.Log("VOLTO PRA FALSE");
             _atkModel.CanAtk = true;
         }
     }

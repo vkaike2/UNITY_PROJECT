@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public List<Worm> Worms { get; private set; }
     public Waypoints Waypoints => _waypoints;
-    public UnityEvent OnPlayerDead { get; private set; } = new UnityEvent();
+    public PlayerDeadEvent OnPlayerDead { get; private set; } = new PlayerDeadEvent();
 
     //UI
     private InventoryUI _inventoryUI;
@@ -163,4 +163,10 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
+
+    /// <summary>
+    ///     string: damage source
+    /// </summary>
+    public class PlayerDeadEvent : UnityEvent<string> { }
+
 }

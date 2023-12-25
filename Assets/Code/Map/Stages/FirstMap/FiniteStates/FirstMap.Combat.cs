@@ -29,7 +29,7 @@ public partial class FirstMap : Map
             _map.GameManager.OnPlayerDead.AddListener(OnPlayerDead);
         }
 
-        private void OnPlayerDead()
+        private void OnPlayerDead(string damageSource)
         {
             _map.StopAllCoroutines();
         }

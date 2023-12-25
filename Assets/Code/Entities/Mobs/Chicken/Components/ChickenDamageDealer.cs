@@ -34,6 +34,6 @@ public class ChickenDamageDealer : ImpactDamageDealer
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_enemyStatus.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_enemyStatus.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position, "Chicken Attack");
     }
 }

@@ -6,7 +6,7 @@ public class ScorpionDamageReceiver : DamageReceiver
     {
         _scorpion = GetComponent<Scorpion>();
     }
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _scorpion.ChangeBehaviour(Scorpion.Behaviour.Die);
     }

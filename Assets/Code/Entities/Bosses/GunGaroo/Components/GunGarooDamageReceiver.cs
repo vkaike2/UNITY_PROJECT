@@ -12,7 +12,7 @@ public class GunGarooDamageReceiver : DamageReceiver
         _gunGaroo = GetComponent<GunGaroo>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _gunGaroo.ChangeBehaviour(GunGaroo.Behaviour.Death);
     }

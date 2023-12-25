@@ -29,7 +29,7 @@ public class Hitbox : MonoBehaviour
         if (targetHitbox == null) return;
         OnHitboxTriggerEnter.Invoke(targetHitbox, this);
 
-        RestartTriggerCorroutine("enter");
+        RestartTriggerCorroutine();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -40,10 +40,10 @@ public class Hitbox : MonoBehaviour
 
 
         OnHitboxTriggerEnter.Invoke(targetHitbox, this);
-        RestartTriggerCorroutine("stay");
+        RestartTriggerCorroutine();
     }
 
-    private void RestartTriggerCorroutine(string calledFrom)
+    private void RestartTriggerCorroutine()
     {        
         if (_resetTriggerCoroutine != null)
         {
@@ -77,5 +77,6 @@ public class OnHitboxTriggerEnter : UnityEvent<Hitbox, Hitbox> { }
 /// float - incoming damage
 /// int - instanceiD that is dealing the damage
 /// Vector2 - damage dealer position
+/// String - description on who is dealing the damage
 /// </summary>
-public class OnReceivingDamage : UnityEvent<float, int, Vector2> { }
+public class OnReceivingDamage : UnityEvent<float, int, Vector2, string> { }

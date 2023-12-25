@@ -12,7 +12,7 @@ public class WormDamageReceiver : DamageReceiver
         _worm = GetComponent<Worm>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _worm.ChangeBehaviour(Worm.Behaviour.Die);
     }

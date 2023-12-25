@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetDummyDamageReceiver : DamageReceiver
 {
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _status.Health.ResetToDefault();
     }

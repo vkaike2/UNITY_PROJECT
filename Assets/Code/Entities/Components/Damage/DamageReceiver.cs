@@ -72,7 +72,7 @@ public abstract class DamageReceiver : MonoBehaviour
         AfterStart();
     }
 
-    protected abstract void OnDie();
+    protected abstract void OnDie(string damageSource);
     protected virtual void OnReceiveDamage(float damage)
     {
         if (_dpsMeter == null) return;
@@ -86,7 +86,7 @@ public abstract class DamageReceiver : MonoBehaviour
     protected virtual void AfterStart() { }
     protected virtual bool CanReceiveDamage() => true;
 
-    private void ReceiveDamage(float incomingDamage, int instance, Vector2 entityPosition)
+    private void ReceiveDamage(float incomingDamage, int instance, Vector2 entityPosition, string damageSource)
     {
         if (_isDead) return;
         if (!CanReceiveDamage()) return;
@@ -104,7 +104,7 @@ public abstract class DamageReceiver : MonoBehaviour
         {
             _isDead = true;
             _status.Health.Set(0);
-            OnDie();
+            OnDie(damageSource);
             return;
         }
 

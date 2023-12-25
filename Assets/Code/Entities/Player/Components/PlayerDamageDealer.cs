@@ -34,7 +34,7 @@ public class PlayerDamageDealer : MonoBehaviour
     {
         if (!TestIfItShouldCollide(targetHitbox, friendlyFire)) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_status.Poop.Damage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_status.Poop.Damage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position, "Player's Poop");
 
         callback();
     }
@@ -54,7 +54,7 @@ public class PlayerDamageDealer : MonoBehaviour
         if (targetHitbox == null) return;
         if (targetHitbox.Type == Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_status.Fart.Damage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_status.Fart.Damage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position, "Player's Fart");
     }
     #endregion
 }

@@ -7,7 +7,7 @@ public class BirdDamageReceiver : DamageReceiver
         _bird = GetComponent<Bird>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _bird.ChangeBehaviour(Bird.Behaviour.Die);
     }

@@ -27,7 +27,7 @@ public class ScorpionDamgeDealer : ImpactDamageDealer
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_scorpion.Status.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_scorpion.Status.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position, "Scorpion Projectile");
     }
 
     protected override bool ValidateHit(Hitbox targetHitbox)

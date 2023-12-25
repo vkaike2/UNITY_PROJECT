@@ -10,7 +10,6 @@ public partial class Player : MonoBehaviour
 
         public override void EnterState()
         {
-            
             _rigidBody2D.velocity = new Vector2(0, _rigidBody2D.velocity.y);
 
             _player.StartCoroutine(WaitItTouchGroundThenMakeItStatic());
@@ -36,7 +35,7 @@ public partial class Player : MonoBehaviour
             _animator.ClearHightPriorityAnimation(_player);
             _animator.PlayAnimation(PlayerAnimatorModel.Animation.Die);
 
-            _player.GameManager.OnPlayerDead.Invoke();
+            _player.GameManager.OnPlayerDead.Invoke(_player.DieModel.DamageSourceThatKilledYou);
         }
     }
 }

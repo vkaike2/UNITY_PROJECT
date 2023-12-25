@@ -25,10 +25,7 @@ public abstract class ImpactDamageDealer : MonoBehaviour
         if (targetHitbox == null) return;
         if(!ValidateHit(targetHitbox)) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(
-            _status.ImpactDamage.Get(),
-            myHitbox.GetInstanceID(),
-            myHitbox.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_status.ImpactDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position, "Impact Damage");
     }
 
 }

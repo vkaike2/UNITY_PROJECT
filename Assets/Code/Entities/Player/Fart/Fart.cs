@@ -172,7 +172,7 @@ public class Fart : MonoBehaviour
         UIEventManager.instance.OnPlayerFartProgressBar.Invoke(1f);
     }
 
-    private void OnPayerDead()
+    private void OnPayerDead(string damageSource)
     {
         StopAllCoroutines();
         _isFartOnCdw = true;

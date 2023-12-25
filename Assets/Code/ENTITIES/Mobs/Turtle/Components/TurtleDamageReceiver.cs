@@ -7,7 +7,7 @@ public class TurtleDamageReceiver : DamageReceiver
         _turtle = GetComponent<Turtle>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _turtle.ChangeBehaviour(Turtle.Behaviour.Die);
     }

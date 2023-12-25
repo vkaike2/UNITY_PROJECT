@@ -11,7 +11,7 @@ public class EggDamageReceiver : DamageReceiver
         _egg = GetComponent<Egg>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _egg.ChangeBehaviour(Egg.Behaviour.Die);
     }

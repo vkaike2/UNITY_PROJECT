@@ -11,7 +11,7 @@ public class PorcupineDamageReceiver : DamageReceiver
         _porcupine = GetComponent<Porcupine>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _porcupine.ChangeBehaviour(Porcupine.Behaviour.Die);
     }

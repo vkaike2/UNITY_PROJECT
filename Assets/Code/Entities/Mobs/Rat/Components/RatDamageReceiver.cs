@@ -7,7 +7,7 @@ public class RatDamageReceiver : DamageReceiver
         _rat = GetComponent<Rat>();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(string damageSource)
     {
         _rat.ChangeBehaviour(Rat.Behaviour.Die);
     }

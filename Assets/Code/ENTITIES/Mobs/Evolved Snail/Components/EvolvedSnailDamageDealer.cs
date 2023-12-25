@@ -33,7 +33,7 @@ public class EvolvedSnailDamageDealer : ImpactDamageDealer
         if (targetHitbox == null) return;
         if (targetHitbox.Type != Hitbox.HitboxType.Player) return;
 
-        targetHitbox.OnReceivingDamage.Invoke(_evolvedSnail.Status.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position);
+        targetHitbox.OnReceivingDamage.Invoke(_evolvedSnail.Status.AtkDamage.Get(), myHitbox.GetInstanceID(), myHitbox.transform.position, "Evolved Snail Sheel");
     }
 
     public class RegisterProjectile : UnityEvent<EvolvedSnailProjectile> { }
