@@ -97,7 +97,7 @@ public partial class FirstMap : Map
                     {
                         internalTimer += Time.deltaTime;
 
-                        if(internalTimer > WARNING_COUNT_BEFORE_SPAWN_ENEMY + 1f && !_map.MapManager.EnemiesInsideMap.Any(e => e != null))
+                        if (internalTimer > WARNING_COUNT_BEFORE_SPAWN_ENEMY + 1f && !_map.MapManager.EnemiesInsideMap.Any(e => e != null))
                         {
                             break;
                         }
