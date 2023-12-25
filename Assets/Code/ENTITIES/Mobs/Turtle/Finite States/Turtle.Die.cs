@@ -12,7 +12,7 @@ public partial class Turtle : Enemy
         public override void OnEnterBehaviour()
         {
             _turtle.Animator.PlayAnimation(TurtleAnimatorModel.AnimationName.Turtle_Die);
-            _turtle.WalkModel.TurtleGun.gameObject.SetActive(false);
+            _turtle.AttackModel.TurtleGun.gameObject.SetActive(false);
             
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
