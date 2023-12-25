@@ -12,13 +12,11 @@ public class EnemyFollowModel : EnemyFollowEventsModel
     [field: SerializeField]
     public float DistanceToStopFollow { get; private set; } = 2f;
 
-
     [field: Header("LAYERS")]
     [field: Space]
     [field: SerializeField]
     public LayerMask GroundLayer { get; private set; }
-    [field: SerializeField]
-    public LayerMask WallLayer { get; private set; }
+
     [field: SerializeField]
     public LayerMask PlatformLayer { get; private set; }
 
@@ -28,9 +26,6 @@ public class EnemyFollowModel : EnemyFollowEventsModel
     public RaycastModel GroundCheck { get; private set; }
 
     [field: Space(5)]
-    [field: SerializeField]
-    public RaycastModel WallCheck { get; private set; }
-
     [field: Header("COMPONENTS")]
     [field: SerializeField]
     public BoxCollider2D MainCollider { get; private set; }

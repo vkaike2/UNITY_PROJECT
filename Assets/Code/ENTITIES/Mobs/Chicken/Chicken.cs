@@ -58,7 +58,6 @@ public partial class Chicken : Enemy
     {
         PatrolModel.OnDrawGizmos();
         FollowingModel.GroundCheck.DrawGizmos();
-        FollowingModel.WallCheck.DrawGizmos();
     }
 
     protected override void AfterAwake()
