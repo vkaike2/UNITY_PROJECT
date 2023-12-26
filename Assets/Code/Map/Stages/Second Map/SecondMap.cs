@@ -9,7 +9,7 @@ public partial class SecondMap : Map
         _finiteStates = new List<MapFiniteStateBase>()
         {
             new Idle(),
-            new InternalCombat(),
+            new Combat(),
             new Wait()
         };
     }
