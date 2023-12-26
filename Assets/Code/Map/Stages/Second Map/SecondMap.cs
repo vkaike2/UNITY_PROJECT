@@ -14,3 +14,11 @@ public partial class SecondMap : Map
         };
     }
 }
+
+public static class SecondMapChanges
+{
+    /// <summary>
+    ///     Step (1)
+    /// </summary>
+    public const int UNLOCK_FIRST_STEP = 1;
+}
