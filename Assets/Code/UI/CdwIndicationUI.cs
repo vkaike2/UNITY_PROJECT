@@ -22,12 +22,16 @@ public class CdwIndicationUI : MonoBehaviour
 
     public void StartCdw(float cdw)
     {
+        if (_cdwCoroutine != null)
+        {
+            StopCoroutine(_cdwCoroutine);
+        }
         _cdwCoroutine = StartCoroutine(CalculateCdw(cdw));
     }
-    
+
     public void ForceEndCdw()
     {
-        if(_cdwCoroutine != null)
+        if (_cdwCoroutine != null)
         {
             StopCoroutine(_cdwCoroutine);
         }
