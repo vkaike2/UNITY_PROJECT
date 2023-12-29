@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public partial class Map : MonoBehaviour
@@ -21,6 +22,8 @@ public partial class Map : MonoBehaviour
         private const int WARNING_COUNT_BEFORE_SPAWN_ENEMY = 3;
         private bool _waitForNextWaveButton = false;
 
+        private int _waitingForMapChangeEvent = 0;
+
         public override void Start(Map map)
         {
             _map = map;
@@ -30,6 +33,7 @@ public partial class Map : MonoBehaviour
             _chest.gameObject.SetActive(false);
 
             _map.GameManager.OnPlayerDead.AddListener(OnPlayerDead);
+            _map.MapEvents.OnChangeMapEvent.AddListener(OnMapChangeEvent);
         }
 
         private void OnPlayerDead(string damageSource)
@@ -84,10 +88,20 @@ public partial class Map : MonoBehaviour
                         break;
                 }
 
+
                 float timer = action.Timer;
-                if (timer == 0)
+                
+                if (action.WaitForMapChange != 0)
                 {
-                    timer = action.Timer + 1;
+                    _waitingForMapChangeEvent = action.WaitForMapChange;
+                    yield return new WaitUntil(() => _waitingForMapChangeEvent == 0);
+                }
+                else
+                {
+                    if (timer == 0)
+                    {
+                        timer = action.Timer + 1;
+                    }
                 }
 
                 ScriptableMapConfiguration.MapAction nextAction = actionCount <= i + 1 ? null : innerStage.Actions[i + 1];
@@ -113,9 +127,7 @@ public partial class Map : MonoBehaviour
                     yield return new WaitForSeconds(timer);
                 }
 
-                if (!(nextStageIsMonster && action.Type == ScriptableMapConfiguration.MapAction.ActionType.Monster && _map.MapManager.EnemiesInsideMap.Any(e => e != null)))
-                {
-                }
+
 
                 if (action.WaitForAllMonstersToBeKilled)
                 {
@@ -237,6 +249,17 @@ public partial class Map : MonoBehaviour
         private void OnClickNextWaveButton()
         {
             _waitForNextWaveButton = false;
+        }
+
+        private void OnMapChangeEvent(int mapId, int changeId)
+        {
+            if (_waitingForMapChangeEvent == 0) return;
+            if (mapId != _map.MapConfiguration.Id) return;
+
+            if (_waitingForMapChangeEvent == changeId)
+            {
+                _waitingForMapChangeEvent = 0;
+            }
         }
 
     }

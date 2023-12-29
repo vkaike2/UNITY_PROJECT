@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,6 +35,11 @@ public class StoneBall : MonoBehaviour
     private void Start()
     {
         _layeCheckCollider.OnLayerCheckTriggerEnter.AddListener(OnHitTheWall);
+    }
+
+    public void SetDirection(float direction)
+    {
+        _goingToTheRight = direction == 1;
     }
 
     private void OnHitTheWall(GameObject wallGameObject)

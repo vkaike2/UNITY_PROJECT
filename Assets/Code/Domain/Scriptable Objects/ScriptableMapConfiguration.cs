@@ -80,6 +80,9 @@ public class ScriptableMapConfiguration : ScriptableObject
         public bool WaitButtonSignal { get; private set; } = false;
         [field: SerializeField]
         public bool WaitForAllMonstersToBeKilled { get; private set; } = false;
+        [field: SerializeField]
+        [field: Tooltip("it understand 0 as false")]
+        public int WaitForMapChange { get; private set; } = 0;
 
         [field: Header("MONSTER")]
         [field: SerializeField]

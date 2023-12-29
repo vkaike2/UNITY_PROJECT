@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class BaseMapCameraConfiner : MonoBehaviour
 {
-    private MapManager _mapManager;
-    private GameManager _gameManager;
+    protected MapManager _mapManager;
+    protected GameManager _gameManager;
 
     private void Start()
     {
