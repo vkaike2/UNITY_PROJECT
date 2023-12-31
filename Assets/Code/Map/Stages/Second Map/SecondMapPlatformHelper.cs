@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Calcatz.MeshPathfinding;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SecondMapPlatformHelper : MonoBehaviour
@@ -12,69 +10,76 @@ public class SecondMapPlatformHelper : MonoBehaviour
     [SerializeField]
     private ScriptableMapEvents _mapEvents;
 
-    [Header("Step (0)")]
+    [Header("STEPS")]
     [SerializeField]
-    private MapChanges _initialStep;
+    private MapChanges _stepZero;
 
-    [Header("STEP (1)")]
     [SerializeField]
-    private MapChanges _firstStepChanges;
-    [Space]
+    private MapChanges _stepOne;
     [SerializeField]
-    private MapChanges _firstStep_One;
-    [Space]
+    private MapChanges _stepOneOne;
     [SerializeField]
-    private MapChanges _firstStep_Two;
-    [Space]
+    private MapChanges _stepOneTwo;
     [SerializeField]
-    private MapChanges _firstMap_Three;
-    [Space]
+    private MapChanges _stepOneThree;
     [SerializeField]
-    private MapChanges _firstMap_Four;
+    private MapChanges _stepOneFour;
 
-    [Header("STEP (2)")]
-    [SerializeField]
-    private MapChanges _secondStepChange;
-    [Space]
-    [SerializeField]
-    private MapChanges _secondStep_One;
-    [Space]
-    [SerializeField]
-    private MapChanges _secondStep_Two;
-    [Space]
-    [SerializeField]
-    private MapChanges _secondStep_Three;
 
-    [Header("STEP (3)")]
     [SerializeField]
-    private MapChanges _thirdStepChange;
+    private MapChanges _stepTwo;
+    [SerializeField]
+    private MapChanges _stepTwoOne;
+    [SerializeField]
+    private MapChanges _stepTwoTwo;
+    [SerializeField]
+    private MapChanges _stepTwoThree;
 
-    private void Awake()
-    {
-        ResetAll();
-    }
+    [SerializeField]
+    private MapChanges _stepThree;
+
+    private MapChanges _lastMapChangeApplied = null;
 
     private void Start()
     {
+        InitializeAllSteps();
+        ResetAllSteps();
         _mapEvents.OnChangeMapEvent.AddListener(OnChangeMap);
     }
 
-    private void ResetAll()
+    private void ResetAllSteps()
     {
-        _firstStepChanges.Reset();
-        _firstStep_One.Reset();
-        _firstStep_Two.Reset();
-        _firstMap_Three.Reset();
-        _firstMap_Four.Reset();
+        _stepOne.Reset();
+        _stepOneOne.Reset();
+        _stepOneTwo.Reset();
+        _stepOneThree.Reset();
+        _stepOneFour.Reset();
 
-        _secondStepChange.Reset();
-        _secondStep_One.Reset();
-        _secondStep_Two.Reset();
-        _secondStep_Three.Reset();
+        _stepTwo.Reset();
+        _stepTwoOne.Reset();
+        _stepTwoTwo.Reset();
+        _stepTwoThree.Reset();
 
-        _thirdStepChange.Reset();
+        _stepThree.Reset();
 
-        _initialStep.Apply();
+        _stepZero.Apply();
+        _lastMapChangeApplied = _stepZero;
+    }
+    private void InitializeAllSteps()
+    {
+        _stepZero.Initialize(this);
+        _stepOne.Initialize(this);
+        _stepOneOne.Initialize(this);
+        _stepOneTwo.Initialize(this);
+        _stepOneThree.Initialize(this);
+        _stepOneFour.Initialize(this);
+
+        _stepTwo.Initialize(this);
+        _stepTwoOne.Initialize(this);
+        _stepTwoTwo.Initialize(this);
+        _stepTwoThree.Initialize(this);
+
+        _stepThree.Initialize(this);
     }
 
     private void OnChangeMap(int mapId, int changeId)
@@ -84,180 +89,126 @@ public class SecondMapPlatformHelper : MonoBehaviour
         if (changeId == SecondMapChanges.UNLOCK_FIRST_STEP)
         {
             Debug.Log("Step (1)");
-            _firstStepChanges.Apply();
+            ApplyStepChange(_stepOne);
+            return;
         }
 
         if (changeId == SecondMapChanges.UNLOCK_FIRST_STEP_ONE)
         {
             Debug.Log("Step (1) - 1");
-            _firstStep_One.Apply();
+            ApplyStepChange(_stepOneOne);
+            return;
         }
 
         if (changeId == SecondMapChanges.UNLOCK_FIRST_STEP_TWO)
         {
             Debug.Log("Step (1) - 2");
-            _firstStep_Two.Apply();
+            ApplyStepChange(_stepOneTwo);
+            return;
         }
 
         if (changeId == SecondMapChanges.UNLOCK_FIRST_STEP_THREE)
         {
             Debug.Log("Step (1) - 3");
-            _firstMap_Three.Apply();
+            ApplyStepChange(_stepOneThree);
+            return;
         }
 
         if (changeId == SecondMapChanges.UNLOCK_FIRST_STEP_FOUR)
         {
             Debug.Log("Step (1) - 4");
-            _firstMap_Four.Apply();
+            ApplyStepChange(_stepOneFour);
+            return;
         }
 
         if (changeId == SecondMapChanges.UNLOCK_SECOND_STEP)
         {
             Debug.Log("Step (2)");
-            _secondStepChange.Apply();
+            ApplyStepChange(_stepTwo);
+            return;
         }
 
         if (changeId == SecondMapChanges.UNLOCK_SECOND_STEP_ONE)
         {
             Debug.Log("Step (2) - 1");
-            _secondStep_One.Apply();
+            ApplyStepChange(_stepTwoOne);
+            return;
         }
 
         if (changeId == SecondMapChanges.UNLOCK_SECOND_STEP_TWO)
         {
             Debug.Log("Step (2) - 2");
-            _secondStep_Two.Apply();
+            ApplyStepChange(_stepTwoTwo);
+            return;
         }
 
         if (changeId == SecondMapChanges.UNLOCK_SECOND_STEP_THREE)
         {
             Debug.Log("Step (2) - 3");
-            _secondStep_Three.Apply();
+            ApplyStepChange(_stepTwoThree);
+            return;
         }
 
         if (changeId == SecondMapChanges.UNLOCK_THIRD_STEP)
         {
             Debug.Log("Step (3)");
-            _thirdStepChange.Apply();
+            ApplyStepChange(_stepThree);
+            return;
         }
+    }
 
+    private void ApplyStepChange(MapChanges change)
+    {
+        change.Apply();
+        _lastMapChangeApplied.Reset();
+        _lastMapChangeApplied = change;
     }
 
     [Serializable]
     private class MapChanges
     {
-        #region HIDE
-        [field: Header("HIDE")]
+        [field: Header("MAP STEP CHANGE")]
+        [field: SerializeField]
+        public string StepName { get; private set; }
+        [field: SerializeField]
+        public MapStepParent MapStep { get; private set; }
 
-        [field: Header("MAP")]
-        [field: SerializeField]
-        public List<GameObject> TilesToHide { get; private set; }
-        [field: SerializeField]
-        public List<OneWayPlatform> OneWayPlatformsToHide { get; private set; }
-
-        [field: Header("OBJECTS")]
-        [field: SerializeField]
-        public List<Stalactite> StalactitesToHide { get; private set; }
-        [field: SerializeField]
-        public List<StoneBallSpawner> StoneBallsToHide { get; private set; }
-        [field: SerializeField]
-        public List<Spike> SpikesToHide { get; private set; }
-        [field: SerializeField]
-        public List<MapTrigger> TriggersToHide { get; private set; }
-        [field: SerializeField]
-        public List<GameObject> GoToInfoToHide { get; private set; }
-
+        [field: Header("- HIDE")]
         [field: Header("PATHFINDING")]
         [field: SerializeField]
         public List<Node> NodesToHide { get; private set; }
-
         [field: Header("ENEMY SPAWNER")]
         [field: SerializeField]
         public List<EnemySpawnPosition> SpawnPositionsToHide { get; set; }
-        #endregion
 
-        #region SHOW
-        [field: Header("SHOW")]
-
-        [field: Header("MAP")]
-        [field: SerializeField]
-        public List<GameObject> TilesToShow { get; private set; }
-        [field: SerializeField]
-        public List<OneWayPlatform> OneWayPlatformsToShow { get; private set; }
-
-        [field: Header("OBJECTS")]
-        [field: SerializeField]
-        public List<Stalactite> StalactitesToShow { get; private set; }
-        [field: SerializeField]
-        public List<StoneBallSpawner> StoneBallsToShow { get; private set; }
-        [field: SerializeField]
-        public List<Spike> SpikesToShow { get; private set; }
-        [field: SerializeField]
-        public List<MapTrigger> TriggersToShow { get; private set; }
-        [field: SerializeField]
-        public List<GameObject> GoToInfoToShow { get; private set; }
-
+        [field: Header("- SHOW")]
         [field: Header("PATHFINDING")]
         [field: SerializeField]
         public List<Node> NodesToShow { get; private set; }
         [field: Header("ENEMY SPAWNER")]
         [field: SerializeField]
         public List<EnemySpawnPosition> SpawnPositionsToShow { get; set; }
-        #endregion
 
-        public void ApplyOnGameObjects(List<GameObject> hides, List<GameObject> shows = null)
+        public void Initialize(MonoBehaviour monoBehaviour)
         {
-            if (hides != null)
-            {
-                foreach (var hide in hides)
-                {
-                    hide.SetActive(false);
-                }
-            }
-
-            if (shows != null)
-            {
-                foreach (var show in shows)
-                {
-                    show.SetActive(true);
-                }
-            }
+            MapStepParent[] stepParents = monoBehaviour.GetComponentsInChildren<MapStepParent>();
+            MapStep = stepParents.FirstOrDefault(e => e.StepName == StepName);
         }
 
-        public void ApplyOnComponents(List<MonoBehaviour> hides, List<MonoBehaviour> shows = null)
+        public void Apply()
         {
-            ApplyOnGameObjects(hides.Select(e => e.gameObject).ToList(), shows?.Select(e => e.gameObject).ToList());
+            MapStep.Show();
+
+            ApplyOnNodes();
+            ApplyOnEnemySpawners();
         }
 
-        public void ApplyOnSpikes()
+        public void Reset()
         {
-            if (SpikesToHide != null)
-            {
-                foreach (var spike in SpikesToHide)
-                {
-                    spike.Activate(false);
-                }
-            }
+            MapStep.Hide();
 
-            if (SpikesToShow != null)
-            {
-                foreach (var spike in SpikesToShow)
-                {
-                    spike.Activate(true);
-                }
-            }
-        }
-        private void ResetSpikes()
-        {
-            IEnumerable<Spike> allSpikes = SpikesToHide?.Concat(SpikesToShow);
-
-            if (allSpikes != null)
-            {
-                foreach (var spike in allSpikes)
-                {
-                    spike.Activate(false);
-                }
-            }
+            ResetNodes();
+            ResetEnemySpawners();
         }
 
         private void ApplyOnNodes()
@@ -322,88 +273,5 @@ public class SecondMapPlatformHelper : MonoBehaviour
             }
         }
 
-        private void ApplyOnStoneBalls()
-        {
-            if (StoneBallsToHide != null)
-            {
-                foreach (StoneBallSpawner stoneBall in StoneBallsToHide)
-                {
-                    stoneBall.Disable();
-                    stoneBall.gameObject.SetActive(false);
-                }
-            }
-
-            if (StoneBallsToShow != null)
-            {
-                foreach (StoneBallSpawner stoneBall in StoneBallsToShow)
-                {
-                    stoneBall.gameObject.SetActive(true);
-                }
-            }
-        }
-
-        private void ResetStoneBalls()
-        {
-            var allStoneBalls = StoneBallsToHide?.Concat(StoneBallsToShow);
-
-            foreach (var stoneBall in allStoneBalls)
-            {
-                stoneBall.Disable();
-                stoneBall.gameObject.SetActive(false);
-            }
-        }
-
-        public void Apply()
-        {
-            ApplyOnGameObjects(TilesToHide, TilesToShow);
-            ApplyOnGameObjects(GoToInfoToHide, GoToInfoToShow);
-            ApplyOnSpikes();
-            ApplyOnNodes();
-            ApplyOnEnemySpawners();
-            ApplyOnStoneBalls();
-
-            ApplyOnComponents(
-                StalactitesToHide.Select(e => (MonoBehaviour)e).ToList(),
-                StalactitesToShow.Select(e => (MonoBehaviour)e).ToList());
-
-            ApplyOnComponents(
-                StoneBallsToHide.Select(e => (MonoBehaviour)e).ToList(),
-                StoneBallsToShow.Select(e => (MonoBehaviour)e).ToList());
-
-            ApplyOnComponents(
-                StalactitesToHide.Select(e => (MonoBehaviour)e).ToList(),
-                StalactitesToShow.Select(e => (MonoBehaviour)e).ToList());
-
-            ApplyOnComponents(
-                OneWayPlatformsToHide.Select(e => (MonoBehaviour)e).ToList(),
-                OneWayPlatformsToShow.Select(e => (MonoBehaviour)e).ToList());
-
-            ApplyOnComponents(
-            TriggersToHide.Select(e => (MonoBehaviour)e).ToList(),
-            TriggersToShow.Select(e => (MonoBehaviour)e).ToList());
-        }
-
-        public void Reset()
-        {
-            ApplyOnGameObjects(TilesToHide.Concat(TilesToShow).ToList());
-            ApplyOnGameObjects(GoToInfoToHide.Concat(GoToInfoToShow).ToList());
-
-            ResetSpikes();
-            ResetNodes();
-            ResetEnemySpawners();
-            ResetStoneBalls();
-
-            ApplyOnComponents(
-                StalactitesToHide.Select(e => (MonoBehaviour)e).Concat(StalactitesToShow.Select(e => (MonoBehaviour)e)).ToList());
-
-            ApplyOnComponents(
-                StalactitesToHide.Select(e => (MonoBehaviour)e).Concat(StalactitesToShow.Select(e => (MonoBehaviour)e)).ToList());
-
-            ApplyOnComponents(
-                OneWayPlatformsToHide.Select(e => (MonoBehaviour)e).Concat(OneWayPlatformsToShow.Select(e => (MonoBehaviour)e)).ToList());
-
-            ApplyOnComponents(
-                TriggersToHide.Select(e => (MonoBehaviour)e).Concat(TriggersToShow.Select(e => (MonoBehaviour)e)).ToList());
-        }
     }
 }

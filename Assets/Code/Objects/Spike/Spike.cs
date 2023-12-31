@@ -11,10 +11,11 @@ public class Spike : MonoBehaviour
 
     [Header("CONFIGURATIONS")]
     [SerializeField]
-    private bool _isActive;
+    private bool _isActiveByDefault;
     [SerializeField]
     private float _warningCdw = 3f;
 
+    private bool _isActive;
 
     private const string ANIMATION_ACTIVE = "Spike_Active";
     private const string ANIMATION_DEACTIVE = "Spike_Deactive";
@@ -23,6 +24,12 @@ public class Spike : MonoBehaviour
     public void Activate(bool value)
     {
         _isActive = value;
+        if (_isActiveByDefault)
+        {
+            _animator.Play(ANIMATION_ACTIVE);
+            _damageDealer.enabled = true;
+            return;
+        }
         UpdateActivationState();
     }
 
