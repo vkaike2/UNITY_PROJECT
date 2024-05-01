@@ -54,13 +54,8 @@ public class LayerCheckCollider : MonoBehaviour
     {
         if (_collisionType != CollisionType.Collider) return;
 
-
         GameObject gameObject = FindLayerInParent(collision.gameObject, _collisonLayers.Select(e => e.LayerIndex).ToList());
         if (gameObject == null) return;
-        if (_collisonLayers.Any(e => e.name == "Player"))
-        {
-            ;   
-        }
 
         OnLayerCheckTriggerEnter.Invoke(gameObject);
     }

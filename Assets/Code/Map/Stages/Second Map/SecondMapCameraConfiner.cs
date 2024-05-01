@@ -27,6 +27,8 @@ public class SecondMapCameraConfiner : BaseMapCameraConfiner
         if (changeId == SecondMapChanges.UNLOCK_SECOND_STEP) UnlockSecondStep();
 
         if (changeId == SecondMapChanges.UNLOCK_THIRD_STEP) UnlockBossMap();
+
+        if (changeId == SecondMapChanges.HACK_TEST_BOSS) UnlockBossMap();
     }
 
     private void UnlockBossMap()

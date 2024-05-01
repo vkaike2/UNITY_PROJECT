@@ -45,5 +45,10 @@ public static class SecondMapChanges
     /// <summary>
     ///     Step (3)
     /// </summary>
-    public const int UNLOCK_THIRD_STEP = 11;
+    public const int UNLOCK_THIRD_STEP = 11;    
+
+    /// <summary>
+    ///     Used to test boss automatically
+    /// </summary>
+    public const int HACK_TEST_BOSS = 999;
 }

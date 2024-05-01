@@ -38,6 +38,8 @@ public abstract class DamageReceiver : MonoBehaviour
     [field: Header("EVENTS")]
     [field: SerializeField]
     public OnKnockbackEvent OnKnockbackEvent { get; private set; } = new OnKnockbackEvent();
+    [field: SerializeField]
+    public OnChangeHitboxEvent OnChangeHitbox { get; private set; } = new OnChangeHitboxEvent();
 
     protected bool _isPlayer = false;
 
@@ -59,9 +61,10 @@ public abstract class DamageReceiver : MonoBehaviour
     private void Start()
     {
         BeforeStart();
-        _hitbox.OnReceivingDamage.AddListener(ReceiveDamage);
+        ChangeHitbox(_hitbox);
+        OnChangeHitbox.AddListener(ChangeHitbox);
 
-        if(_auxiliarHitBoxes != null)
+        if (_auxiliarHitBoxes != null)
         {
             foreach (var hitbox in _auxiliarHitBoxes)
             {
@@ -85,6 +88,18 @@ public abstract class DamageReceiver : MonoBehaviour
     protected virtual void BeforeStart() { }
     protected virtual void AfterStart() { }
     protected virtual bool CanReceiveDamage() => true;
+
+    protected virtual void ChangeHitbox(Hitbox hitbox)
+    {
+        if (hitbox == null) return;
+        if (_hitbox != null)
+        {
+            _hitbox.OnReceivingDamage.RemoveListener(ReceiveDamage);
+        }
+
+        _hitbox = hitbox;
+        _hitbox.OnReceivingDamage.AddListener(ReceiveDamage);
+    }
 
     private void ReceiveDamage(float incomingDamage, int instance, Vector2 entityPosition, string damageSource)
     {
@@ -170,7 +185,7 @@ public abstract class DamageReceiver : MonoBehaviour
         int howManyTimesItWillBlink = 4;
         float blinkDuration = 0.5f;
 
-        int multiplier = (int) (_cdwInvincibility / 0.5f);
+        int multiplier = (int)(_cdwInvincibility / 0.5f);
 
         howManyTimesItWillBlink *= multiplier;
         blinkDuration *= multiplier;
@@ -186,7 +201,7 @@ public abstract class DamageReceiver : MonoBehaviour
             yield return new WaitForSeconds(blinkDuration / (howManyTimesItWillBlink * 2));
 
         }
-        
+
         color.a = 1;
         _spriteRenderer.color = color;
 

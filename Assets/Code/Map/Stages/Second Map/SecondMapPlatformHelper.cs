@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Calcatz.MeshPathfinding;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SecondMapPlatformHelper : MonoBehaviour
@@ -155,6 +157,16 @@ public class SecondMapPlatformHelper : MonoBehaviour
             ApplyStepChange(_stepThree);
             return;
         }
+
+        if (changeId == SecondMapChanges.HACK_TEST_BOSS)
+        {
+            TestUnlockBoss();
+        }
+    }
+
+    private void TestUnlockBoss()
+    {
+        ApplyStepChange(_stepThree);
     }
 
     private void ApplyStepChange(MapChanges change)

@@ -99,7 +99,6 @@ public partial class GunGaroo : MonoBehaviour
 
         StartCoroutine(WaitBehavioursToBeStarted(() =>
         {
-            Debug.Log("Started");
             this.ChangeBehaviour(Behaviour.Spawning);
         }));
     }
