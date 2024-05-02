@@ -28,7 +28,6 @@ public class CameraManager : MonoBehaviour
 
     private void OnScreenShake(GameObject source)
     {
-        Debug.Log("test");
         StartCoroutine(ShakeCamera());
     }
 

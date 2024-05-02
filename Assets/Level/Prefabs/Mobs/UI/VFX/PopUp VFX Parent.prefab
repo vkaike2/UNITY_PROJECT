@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5287024852279322775}
   - component: {fileID: 5911360381788571983}
   m_Layer: 7
-  m_Name: Hit Number VFX Parent
+  m_Name: PopUp VFX Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

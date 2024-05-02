@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: 675b22783eb6dce47b6cfbabfcb3f862
+guid: 41971baedd5ced249ade1a91e0553c02
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 9
-  forceTextureCase: 3
+  fontSize: 8
+  forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - vkaikePixelOutline
+  - vkpixel
   fallbackFontReferences: []
-  customCharacters: ABCDEFGHIJKLMNOPQRSTUVXYZW0123456789.,;:$#'!"-=?%&@()~+`
-  fontRenderingMode: 2
+  customCharacters: 
+  fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1
