@@ -25,7 +25,10 @@ public partial class Turtle : Enemy
                 _turtle.Animator.PlayAnimation(TurtleAnimatorModel.AnimationName.Turtle_Walk);
             });
 
-            _patrolBehaviour = new EnemyPatrolBehaviour(EnemyPatrolBehaviour.MovementType.Walk, _walkModel);
+            _patrolBehaviour = new EnemyPatrolBehaviour(
+                EnemyPatrolBehaviour.MovementType.Walk,
+                _walkModel);
+
             _patrolBehaviour.Start(enemy);
 
         }
