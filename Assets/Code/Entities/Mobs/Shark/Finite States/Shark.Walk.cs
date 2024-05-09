@@ -1,3 +1,5 @@
+using System;
+
 public partial class Shark : Enemy
 {
     private class Walk : SharkBaseBehaviour
@@ -24,17 +26,26 @@ public partial class Shark : Enemy
 
         public override void OnEnterBehaviour()
         {
+            _attackModel.PlayerOnRangeCheck.OnLayerCheckTriggerEnter.AddListener(OnPlayerInAttackRange);
             _patrolBehaviour.OnEnterBehaviour();
         }
 
         public override void OnExitBehaviour()
         {
+            _attackModel.PlayerOnRangeCheck.OnLayerCheckTriggerEnter.RemoveListener(OnPlayerInAttackRange);
             _patrolBehaviour.OnExitBehaviour();
         }
 
         public override void Update()
         {
             _patrolBehaviour.Update();
+        }
+
+        private void OnPlayerInAttackRange(UnityEngine.GameObject collidingWith)
+        {
+            if(!_attackModel.CanAttack) return;
+            
+            _shark.ChangeBehaviour(Behaviour.Attack);
         }
     }
 }
