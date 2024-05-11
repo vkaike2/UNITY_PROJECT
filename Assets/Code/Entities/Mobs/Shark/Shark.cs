@@ -15,7 +15,7 @@ public partial class Shark : Enemy
     public SharkAttackModel AttackModel { get; set; }
 
     protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();
-    protected Behaviour CurrentBehaviour { get; set; }
+    public Behaviour CurrentBehaviour { get; set; }
 
     private List<SharkBaseBehaviour> _finiteBaseBehaviours = new List<SharkBaseBehaviour>()
     {

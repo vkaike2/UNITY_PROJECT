@@ -9,6 +9,14 @@ partial class Shark : Enemy
     {
         public override Behaviour Behaviour => Behaviour.Attack;
 
+        public const float CDW_TO_ACTIVATE_ATTACK_HITBOX = 0.25f;
+
+        public override void Start(Enemy enemy)
+        {
+            base.Start(enemy);
+            _attackModel.AttackHitboxCollider.enabled = false;
+        }
+
         public override void OnEnterBehaviour()
         {
             _rigidbody2D.velocity = Vector2.zero;
@@ -16,12 +24,14 @@ partial class Shark : Enemy
 
             _attackModel.OnAttackFinished.AddListener(OnFinishedAttackAnimation);
 
+            _shark.StartCoroutine(WaitToActivateAttackHitboxOnTime());
             _shark.StartCoroutine(ResetAttackCdw());
         }
 
         public override void OnExitBehaviour()
         {
             _attackModel.OnAttackFinished.RemoveListener(OnFinishedAttackAnimation);
+            _attackModel.AttackHitboxCollider.enabled = false;
         }
 
         public override void Update()
@@ -40,6 +50,12 @@ partial class Shark : Enemy
             _attackModel.CanAttack = false;
             yield return new WaitForSeconds(_attackModel.AttakCdw);
             _attackModel.CanAttack = true;
+        }
+
+        private IEnumerator WaitToActivateAttackHitboxOnTime()
+        {
+            yield return new WaitForSeconds(CDW_TO_ACTIVATE_ATTACK_HITBOX);
+            _attackModel.AttackHitboxCollider.enabled = true;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +17,10 @@ public class SharkAttackModel
     [field: Header("CONFIGURATION")]
     [field: SerializeField]
     public float AttakCdw { get; set; } = 3f;
+
+    [field: Header("COMPONENTS")]
+    [field: SerializeField]
+    public Collider2D AttackHitboxCollider { get; set; }
 
     public bool CanAttack { get; set; } = true;
 }
