@@ -27,9 +27,11 @@ public class ScorpionTail : MonoBehaviour
     {
         ScorpionProjectile projectile = Instantiate(_scorpion.AttackModel.Projectile, this.transform.position, Quaternion.identity);
         _damageDealer.OnRegisterProjectileEvent.Invoke(projectile);
-        
+
         projectile.transform.parent = null;
-        projectile.ShootProjectile(_scorpion.AttackModel.ProjectileSpeed);
+        projectile.ShootProjectile(
+            _scorpion.AttackModel.ProjectileSpeed,
+            _scorpion.RotationalTransform.localScale.x == 1);
 
         _scorpion.AttackModel.OnReadyToShootAgain.Invoke();
     }

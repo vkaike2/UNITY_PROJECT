@@ -33,6 +33,7 @@ public partial class Shark : Enemy
 
     public override void Kill()
     {
+        ChangeBehaviour(Behaviour.Die);
     }
 
     #region ANIMATOR EVENTS

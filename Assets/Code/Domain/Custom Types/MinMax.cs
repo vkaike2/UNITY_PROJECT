@@ -9,6 +9,12 @@ public struct MinMax
     [SerializeField]
     private float _max;
 
+    public MinMax(float min, float max)
+    {
+        _min = min;
+        _max = max;
+    }
+
     public readonly float Min => _min;
     public readonly float Max => _max;
     public readonly float Range => _max - _min;

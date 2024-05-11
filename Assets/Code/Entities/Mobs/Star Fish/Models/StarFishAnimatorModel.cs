@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
-using static ArmadilloAnimatorModel;
 
 [Serializable]
-public class SharkAnimatorModel : EnemyAnimatorModel
+public class StarFishAnimatorModel : EnemyAnimatorModel
 {
     public void PlayAnimation(AnimationName animationName)
     {
@@ -20,11 +19,11 @@ public class SharkAnimatorModel : EnemyAnimatorModel
         return Enum.Parse<AnimationName>(base.GetCurrentAnimationString());
     }
 
-     public enum AnimationName
+    public enum AnimationName
     {
-        Shark_Born,
-        Shark_Walk,
-        Shark_Die,
-        Shark_Attack
+        Star_Fish_Born,
+        Star_Fish_Idle,
+        Star_Fish_Attack,
+        Star_Fish_Die
     }
 }
