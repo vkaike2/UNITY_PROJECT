@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class EnemyAnimatorModel 
+public class EnemyAnimatorModel
 {
     [SerializeField]
     private Animator _animator;
@@ -19,11 +19,16 @@ public class EnemyAnimatorModel
     {
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName(animationName)) return;
 
+        PlayIt(animationName);
+    }
+
+    public void PlayIt(string animationName)
+    {
         _lowPriorityAnimationName = animationName;
 
         if (_IsPlayingHightPriority) return;
 
-        _animator.Play(animationName);
+        _animator.Play(animationName, -1, 0f);
     }
 
 

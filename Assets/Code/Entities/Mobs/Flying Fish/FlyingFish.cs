@@ -2,34 +2,37 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public partial class Shark : Enemy
+public partial class FlyingFish : Enemy
 {
-    [field: Header("COMPONENTS")]
+    [field: Header("MY COMPONENTS")]
     [field: SerializeField]
-    public SharkAnimatorModel Animator { get; private set; }
+    public FlyingFishAnimatorModel Animator { get; private set; }
 
     [field: Header("MODELS")]
     [field: SerializeField]
-    public SharkWalkModel WalkModel { get; set; }
+    public FlyingFishIdleModel IdleModel { get; set; }
     [field: SerializeField]
-    public SharkAttackModel AttackModel { get; set; }
-    
-    public Behaviour CurrentBehaviour { get; set; }
+    public FlyingFishWalkModel WalkModel { get; set; }
+     [field: SerializeField]
+    public FlyingFishAttackModel AttackModel { get; set; }
 
+    public Behaviour CurrentBehaviour { get; set; }
     protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();
-    
-    private List<SharkBaseBehaviour> _finiteBaseBehaviours = new List<SharkBaseBehaviour>()
+    protected WaterSection WaterSection { get; private set; }
+
+
+    private List<FlyingFishBaseBehaviour> _finiteBaseBehaviours = new List<FlyingFishBaseBehaviour>()
     {
-        new Born(),
+        new Idle(),
         new Walk(),
         new Attack(),
+        new Floor(),
         new Die()
     };
 
-    private void OnDrawGizmos()
+    protected override void AfterStart()
     {
-        WalkModel.WillHitTheWallCheck.DrawGizmos();
-        WalkModel.WillHitTheGround.DrawGizmos();
+        WaterSection = GameObject.FindObjectOfType<WaterSection>();
     }
 
     public override void Kill()
@@ -40,19 +43,21 @@ public partial class Shark : Enemy
     #region ANIMATOR EVENTS
     public void ANIMATOR_SetInitialBehaviour()
     {
-        ChangeBehaviour(Behaviour.Walk);
+        ChangeBehaviour(Behaviour.Idle);
     }
-    public void ANIMATOR_FinishedAttackAnimation()
+
+    public void ANIMATOR_StartMoving()
     {
-        AttackModel.OnAttackFinished.Invoke();
+        WalkModel.OnStartMoving.Invoke();
     }
     #endregion
+
 
     public void ChangeBehaviour(Behaviour behaviour)
     {
         _currentFiniteBehaviour?.OnExitBehaviour();
         _currentFiniteBehaviour = _finiteBaseBehaviours.FirstOrDefault(e => e.Behaviour == behaviour);
-     
+
         _currentFiniteBehaviour.OnEnterBehaviour();
         CurrentBehaviour = behaviour;
     }
@@ -60,7 +65,9 @@ public partial class Shark : Enemy
     public enum Behaviour
     {
         Born,
+        Idle,
         Walk,
+        Floor,
         Attack,
         Die
     }

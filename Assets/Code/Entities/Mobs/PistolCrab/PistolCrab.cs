@@ -2,25 +2,29 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public partial class Shark : Enemy
+public partial class PistolCrab : Enemy
 {
-    [field: Header("COMPONENTS")]
+
+    [field: Header("MY COMPONENTS")]
     [field: SerializeField]
-    public SharkAnimatorModel Animator { get; private set; }
+    public PistolCrabAnimatorModel Animator { get; private set; }
 
     [field: Header("MODELS")]
     [field: SerializeField]
-    public SharkWalkModel WalkModel { get; set; }
+    public PistolCrabIdleModel IdleModel { get; private set; }
     [field: SerializeField]
-    public SharkAttackModel AttackModel { get; set; }
-    
+    public PistolCrabWalkModel WalkModel { get; private set; }
+    [field: SerializeField]
+    public PistolCrabAttackModel AttackModel { get; private set; }
+
+    protected PistolCrabDamageDealer DamageDealer { get; private set; }
     public Behaviour CurrentBehaviour { get; set; }
 
     protected override List<EnemyBaseBehaviour> FiniteBaseBehaviours => _finiteBaseBehaviours.Select(e => (EnemyBaseBehaviour)e).ToList();
-    
-    private List<SharkBaseBehaviour> _finiteBaseBehaviours = new List<SharkBaseBehaviour>()
+
+    private List<PistolCrabBaseBehaviour> _finiteBaseBehaviours = new List<PistolCrabBaseBehaviour>()
     {
-        new Born(),
+        new Idle(),
         new Walk(),
         new Attack(),
         new Die()
@@ -32,6 +36,12 @@ public partial class Shark : Enemy
         WalkModel.WillHitTheGround.DrawGizmos();
     }
 
+    protected override void AfterAwake()
+    {
+        base.AfterAwake();
+        DamageDealer = GetComponent<PistolCrabDamageDealer>();
+    }
+
     public override void Kill()
     {
         ChangeBehaviour(Behaviour.Die);
@@ -40,19 +50,29 @@ public partial class Shark : Enemy
     #region ANIMATOR EVENTS
     public void ANIMATOR_SetInitialBehaviour()
     {
-        ChangeBehaviour(Behaviour.Walk);
+        ChangeBehaviour(Behaviour.Idle);
     }
-    public void ANIMATOR_FinishedAttackAnimation()
+
+    public void ANIMATOR_ShootPistol(PistolCrabAnimatorEvents.Direction direction)
     {
-        AttackModel.OnAttackFinished.Invoke();
+        switch (direction)
+        {
+            case PistolCrabAnimatorEvents.Direction.Left:
+                AttackModel.OnShootLeftPistol.Invoke();
+                break;
+            case PistolCrabAnimatorEvents.Direction.Right:
+                AttackModel.OnShootRightPistol.Invoke();
+                break;
+        }
     }
     #endregion
+
 
     public void ChangeBehaviour(Behaviour behaviour)
     {
         _currentFiniteBehaviour?.OnExitBehaviour();
         _currentFiniteBehaviour = _finiteBaseBehaviours.FirstOrDefault(e => e.Behaviour == behaviour);
-     
+
         _currentFiniteBehaviour.OnEnterBehaviour();
         CurrentBehaviour = behaviour;
     }
@@ -60,6 +80,7 @@ public partial class Shark : Enemy
     public enum Behaviour
     {
         Born,
+        Idle,
         Walk,
         Attack,
         Die

@@ -71,7 +71,12 @@ public class EnemyBaseFollowingProjectile : MonoBehaviour
 
     private IEnumerator ManageProjectileTrajectory(float projectileSpeed, bool isFacingRight)
     {
-        Vector2 normalizedSpeed = new Vector2(_horizontalAxisVelocity.GetRandom(), isFacingRight ? 1 : 1);
+        float randomAngle = _horizontalAxisVelocity.GetRandom();
+
+        Vector2 normalizedSpeed = new Vector2(
+            isFacingRight ? randomAngle : -randomAngle,
+            1);
+
         _rigidbody2D.velocity = normalizedSpeed * _initialSpeed;
 
         yield return new WaitForSeconds(_cdwToStartFollowingPlayer);
