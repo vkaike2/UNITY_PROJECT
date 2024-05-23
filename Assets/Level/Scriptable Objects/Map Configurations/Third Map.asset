@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df636ef0e88587499e8d37b9a39c862, type: 3}
+  m_Name: Third Map
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: 3
+  <InnerStages>k__BackingField:
+  - name: 00:00 -> First Chest
+    <Actions>k__BackingField:
+    - name: 00:01 -> Chest
+      <Type>k__BackingField: 1
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 0}
+        <UseRandomPosition>k__BackingField: 0
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: f0de405899cc8354a8a81b2e79392f0e, type: 2}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+  - name: 00:01 -> STEP (1)
+    <Actions>k__BackingField:
+    - name: 00:01 -> ChangeMap
+      <Type>k__BackingField: 2
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 1
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 0}
+        <UseRandomPosition>k__BackingField: 0
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 1
+        _description: 
+  - name: 00:02 -> STEP (2)
+    <Actions>k__BackingField:
+    - name: 00:01 -> ChangeMap
+      <Type>k__BackingField: 2
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 1
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 0}
+        <UseRandomPosition>k__BackingField: 0
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 2
+        _description: 
+  - name: 00:03 -> STEP (3)
+    <Actions>k__BackingField:
+    - name: 00:01 -> ChangeMap
+      <Type>k__BackingField: 2
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 1
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 0}
+        <UseRandomPosition>k__BackingField: 0
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 3
+        _description: 
+  - name: 00:04 -> STEP (4)
+    <Actions>k__BackingField:
+    - name: 00:01 -> ChangeMap
+      <Type>k__BackingField: 2
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 1
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 0}
+        <UseRandomPosition>k__BackingField: 0
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 4
+        _description: 
+  - name: 00:05 -> STEP (5)
+    <Actions>k__BackingField:
+    - name: 00:01 -> ChangeMap
+      <Type>k__BackingField: 2
+      <Timer>k__BackingField: 1
+      <WaitButtonSignal>k__BackingField: 1
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 0}
+        <UseRandomPosition>k__BackingField: 0
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 0}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 5
+        _description: 

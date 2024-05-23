@@ -13036,7 +13036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433df9ccdb6740d468d16bc87e3470fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MapConfiguration>k__BackingField: {fileID: 11400000, guid: 54a42b45264094d4ead4c1810ede92cc, type: 2}
+  <MapConfiguration>k__BackingField: {fileID: 11400000, guid: ce4595705e116d94796c787ba7487962, type: 2}
   <MapEvents>k__BackingField: {fileID: 11400000, guid: 109d223325bc54b4fb98e72fc7db066d, type: 2}
   _startWithState: 2
   <CentralPosition>k__BackingField: {fileID: 3665738478459929556}
