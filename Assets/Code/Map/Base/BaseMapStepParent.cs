@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class MapStepParent : MonoBehaviour
+public abstract class BaseMapStepParent : MonoBehaviour
 {
     [field: Header("CONFIGURATION")]
     [field: SerializeField]

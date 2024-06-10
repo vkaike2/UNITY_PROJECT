@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public partial class Map : MonoBehaviour
+public partial class BaseMap : MonoBehaviour
 {
     /// <summary>
     ///  Toilet -> disable
@@ -17,14 +17,14 @@ public partial class Map : MonoBehaviour
 
         private Chest _chest;
         private ScriptableMapConfiguration _mapConfiguration;
-        private Map _map;
+        private BaseMap _map;
 
         private const int WARNING_COUNT_BEFORE_SPAWN_ENEMY = 3;
         private bool _waitForNextWaveButton = false;
 
         private int _waitingForMapChangeEvent = 0;
 
-        public override void Start(Map map)
+        public override void Start(BaseMap map)
         {
             _map = map;
             _chest = map.Chest;

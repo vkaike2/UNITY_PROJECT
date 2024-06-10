@@ -5,19 +5,7 @@ using UnityEngine;
 
 public class FirstMapCameraConfiner : BaseMapCameraConfiner
 {
-    [Header("COMPONENTS")]
-    [SerializeField]
-    private ScriptableMapEvents _mapEvents;
-    [Space]
-    [SerializeField]
-    private List<CameraConfiner> _cameraConfiners;
-    
-    protected override void AfterStart()
-    {
-        _mapEvents.OnChangeMapEvent.AddListener(OnChangeMap);
-    }
-
-    private void OnChangeMap(int mapId, int changeId)
+    protected override void OnChangeMap(int mapId, int changeId)
     {
         if (mapId != ConstantValues.FIRST_MAP_ID) return;
 

@@ -13,7 +13,7 @@ public partial class Toilet : MonoBehaviour
 
     [field: Header("COMPONENTS")]
     [field: SerializeField]
-    public Map ParentMap { get; private set; }
+    public BaseMap ParentMap { get; private set; }
     [field: Space]
     [field: SerializeField]
     public Animator Animator { get; private set; }

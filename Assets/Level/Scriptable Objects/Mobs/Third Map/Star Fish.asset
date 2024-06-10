@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebdc1281ee250c43907b9c5a5300af1, type: 3}
+  m_Name: Star Fish
+  m_EditorClassIdentifier: 
+  <SpawnType>k__BackingField: 0
+  <Spawner>k__BackingField: {fileID: 5488290335995387055, guid: d90a46c6a4347d84ba89b28fb7fb1682, type: 3}
+  <Enemy>k__BackingField: {fileID: 8892626284672159650, guid: 2781c6d0ef69c474499b92e4388ef5dc, type: 3}
+  <SpawnerSprite>k__BackingField: {fileID: 558581094, guid: 5062b4864b3464045919c9eb16d80d9e, type: 3}

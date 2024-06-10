@@ -6,7 +6,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public partial class Map : MonoBehaviour
+public partial class BaseMap : MonoBehaviour
 {
     [field: Header("CONFIGURATIONS")]
     [field: SerializeField]

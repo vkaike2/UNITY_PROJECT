@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public partial class Map : MonoBehaviour
+public partial class BaseMap : MonoBehaviour
 {
     /// <summary>
     ///  Description -> this is the initial state, where tha map will be waiting for 
@@ -11,11 +11,11 @@ public partial class Map : MonoBehaviour
     {
         public override FiniteState State => FiniteState.Idle;
 
-        private Map _map;
+        private BaseMap _map;
         private Toilet _toilet;
         private GameManager _gameManager;
 
-        public override void Start(Map map)
+        public override void Start(BaseMap map)
         {
             _map = map;
             _toilet = map.Toilet;

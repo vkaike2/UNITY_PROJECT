@@ -1,4 +1,4 @@
-public partial class ThirdMapTest : Map
+public partial class ThirdMapTest : BaseMap
 {
     protected override void BeforeStart()
     {

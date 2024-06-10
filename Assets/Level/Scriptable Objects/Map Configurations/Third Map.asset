@@ -19,7 +19,7 @@ MonoBehaviour:
     - name: 00:01 -> Chest
       <Type>k__BackingField: 1
       <Timer>k__BackingField: 1
-      <WaitButtonSignal>k__BackingField: 0
+      <WaitButtonSignal>k__BackingField: 1
       <WaitForAllMonstersToBeKilled>k__BackingField: 0
       <WaitForMapChange>k__BackingField: 0
       <Enemy>k__BackingField:
@@ -32,7 +32,75 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 0
         _description: 
-  - name: 00:01 -> STEP (1)
+    - name: "00:04 -> Monster Shark      \t t:03 - pos:XX - drop:Small Chance to
+        drop - Frist Map"
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 3
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 29871696889aa104db92d360c2fd622f, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: f0de405899cc8354a8a81b2e79392f0e, type: 2}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: "00:07 -> Monster Star Fish  \t t:03 - pos:XX - drop:Small Chance to
+        drop - Frist Map"
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 3
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: f3f7fdda1e012d044ba0e72d0ab2b4ae, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: f0de405899cc8354a8a81b2e79392f0e, type: 2}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: "00:10 -> Monster Flying Fish \t t:03 - pos:XX - drop:Small Chance to
+        drop - Frist Map"
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 3
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 0
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: 033e6d46adc2ccb4499b6c232c8c92da, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: f0de405899cc8354a8a81b2e79392f0e, type: 2}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+    - name: "00:13 -> Monster Seagull    \t t:03 - pos:XX - drop:Small Chance to
+        drop - Frist Map"
+      <Type>k__BackingField: 0
+      <Timer>k__BackingField: 3
+      <WaitButtonSignal>k__BackingField: 0
+      <WaitForAllMonstersToBeKilled>k__BackingField: 1
+      <WaitForMapChange>k__BackingField: 0
+      <Enemy>k__BackingField:
+        <ScriptableEnemy>k__BackingField: {fileID: 11400000, guid: ceba9108fbb3dd74ab32b9a7abf23b93, type: 2}
+        <UseRandomPosition>k__BackingField: 1
+        <SpawnPositionId>k__BackingField: 0
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: 432ed1e82898c26458cfe1207f5222ce, type: 2}
+      <MapChest>k__BackingField:
+        <ScriptablePossibleDrop>k__BackingField: {fileID: 11400000, guid: f0de405899cc8354a8a81b2e79392f0e, type: 2}
+      <MapChange>k__BackingField:
+        <ChangeId>k__BackingField: 0
+        _description: 
+  - name: 00:13 -> STEP (1)
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -50,7 +118,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 1
         _description: 
-  - name: 00:02 -> STEP (2)
+  - name: 00:14 -> STEP (2)
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -68,7 +136,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 2
         _description: 
-  - name: 00:03 -> STEP (3)
+  - name: 00:15 -> STEP (3)
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -86,7 +154,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 3
         _description: 
-  - name: 00:04 -> STEP (4)
+  - name: 00:16 -> STEP (4)
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2
@@ -104,7 +172,7 @@ MonoBehaviour:
       <MapChange>k__BackingField:
         <ChangeId>k__BackingField: 4
         _description: 
-  - name: 00:05 -> STEP (5)
+  - name: 00:17 -> STEP (5)
     <Actions>k__BackingField:
     - name: 00:01 -> ChangeMap
       <Type>k__BackingField: 2

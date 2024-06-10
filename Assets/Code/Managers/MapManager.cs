@@ -19,10 +19,10 @@ public class MapManager : MonoBehaviour
 
     [Header("CONFIGURATIONS")]
     [SerializeField]
-    private Map _test;
+    private BaseMap _test;
 
     public Toilet Toilet { get; set; }
-    public Map CurrentMap { get; private set; } = null;
+    public BaseMap CurrentMap { get; private set; } = null;
     public List<Enemy> EnemiesInsideMap { get; set; } = new List<Enemy>();
 
 
@@ -46,7 +46,7 @@ public class MapManager : MonoBehaviour
         VirtualCamera.m_Lens.OrthographicSize = cameraSize;
     }
 
-    public void StartNextMap(Map currentMap)
+    public void StartNextMap(BaseMap currentMap)
     {
         Destroy(currentMap.gameObject);
         CurrentMap = Instantiate(_test, this.transform);

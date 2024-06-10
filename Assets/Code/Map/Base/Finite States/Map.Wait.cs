@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public partial class Map : MonoBehaviour
+public partial class BaseMap : MonoBehaviour
 {
     /// <summary>
     ///  Toilet -> available to go to next stage
@@ -10,11 +10,11 @@ public partial class Map : MonoBehaviour
     /// </summary>
     protected class Wait : MapFiniteStateBase
     {
-        public override Map.FiniteState State => Map.FiniteState.Wait;
+        public override BaseMap.FiniteState State => BaseMap.FiniteState.Wait;
 
         private Toilet _toilet;
 
-        public override void Start(Map map)
+        public override void Start(BaseMap map)
         {
             _toilet = map.Toilet;
         }

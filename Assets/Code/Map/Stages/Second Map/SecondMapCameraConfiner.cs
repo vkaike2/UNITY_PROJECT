@@ -4,19 +4,7 @@ using UnityEngine;
 
 public class SecondMapCameraConfiner : BaseMapCameraConfiner
 {
-    [Header("COMPONENTS")]
-    [SerializeField]
-    private ScriptableMapEvents _mapEvents;
-    [Space]
-    [SerializeField]
-    private List<CameraConfiner> _cameraConfiners;
-
-    protected override void AfterStart()
-    {
-        _mapEvents.OnChangeMapEvent.AddListener(OnChangeMap);
-    }
-
-    private void OnChangeMap(int mapId, int changeId)
+    protected override void OnChangeMap(int mapId, int changeId)
     {
         if (mapId != ConstantValues.SECOND_MAP_ID) return;
 
@@ -56,5 +44,4 @@ public class SecondMapCameraConfiner : BaseMapCameraConfiner
 
         StartCoroutine(ChangeCameraSize(confiner));
     }
-
 }

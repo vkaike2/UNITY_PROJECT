@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SecondMapStepParent : MapStepParent
+public class SecondMapStepParent : BaseMapStepParent
 {
     [Header("CONFIGURATIONS")]
     [SerializeField]

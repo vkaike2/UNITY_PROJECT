@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public partial class SecondMap : Map
+public partial class SecondMap : BaseMap
 {
     protected override void BeforeStart()
     {

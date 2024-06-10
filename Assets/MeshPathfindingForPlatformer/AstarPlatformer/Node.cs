@@ -174,7 +174,7 @@ namespace Calcatz.MeshPathfinding
 
             public bool needToJump;
             public bool needToGoDownPlatform;
-            [Tooltip("When you are falling from one platform to other")]
+            [Tooltip("When you are falling from one platform to other (walk)")]
             public bool needToFallDown;
 
             public Neighbours() { }

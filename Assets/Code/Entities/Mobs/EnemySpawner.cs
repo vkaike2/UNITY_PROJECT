@@ -81,7 +81,7 @@ public class EnemySpawner : MonoBehaviour
         public Vector2 Position { get; set; }
         public Transform EnemyContainer { get; set; }
         public MapManager MapManager { get; set; }
-        public Map ParentMap { get; set; }
+        public BaseMap ParentMap { get; set; }
         public Transform ItemContainer { get; set; }
         public PossibleDrop PossibleDrop { get; set; }
     }

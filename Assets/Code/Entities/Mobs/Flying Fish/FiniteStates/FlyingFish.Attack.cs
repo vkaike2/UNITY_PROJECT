@@ -161,7 +161,7 @@ public partial class FlyingFish : Enemy
             yield return new WaitUntil(() => _targetPosition.y < _flyingFish.transform.position.y);
 
             _rigidbody2D.gravityScale = _attackModel.FlyingGravity;
-            _attackModel.MainCollider.enabled = true;
+            _attackModel.ToggleColliderActivation(true);
 
             // Rotate back to normal Position
             float cdw = 0;
@@ -189,7 +189,7 @@ public partial class FlyingFish : Enemy
             
             float verticalPositionToStop = _flyingFish.WaterSection.GetRandomVerticalPosition();
             _rigidbody2D.constraints = RigidbodyConstraints2D.None;
-            _attackModel.MainCollider.enabled = false;
+            _attackModel.ToggleColliderActivation(false);
 
             yield return new WaitUntil(() => _flyingFish.transform.position.y <= verticalPositionToStop);
 

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-public partial class FirstMap : Map
+public partial class FirstMap : BaseMap
 {
     protected override void BeforeStart()
     {

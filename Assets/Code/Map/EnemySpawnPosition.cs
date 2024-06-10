@@ -37,7 +37,8 @@ public class EnemySpawnPosition : MonoBehaviour
     public enum SpawnType
     {
         Ground,
-        Air
+        Air,
+        Water
     }
 
     public void UseIt(float duringCdw)

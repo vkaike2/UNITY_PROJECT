@@ -1,11 +1,24 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseMapCameraConfiner : MonoBehaviour
 {
+    [Header("COMPONENTS")]
+    [SerializeField]
+    protected ScriptableMapEvents _mapEvents;
+    [Space]
+    [SerializeField]
+    protected List<CameraConfiner> _cameraConfiners;
+
     protected MapManager _mapManager;
     protected GameManager _gameManager;
+
+    private void Awake()
+    {
+        _mapEvents.OnChangeMapEvent.AddListener(OnChangeMap);
+    }
 
     private void Start()
     {
@@ -14,7 +27,9 @@ public abstract class BaseMapCameraConfiner : MonoBehaviour
         AfterStart();
     }
 
-    protected abstract void AfterStart();
+    protected virtual void AfterStart() { }
+
+    protected abstract void OnChangeMap(int mapId, int changeId);
 
     protected IEnumerator ChangeCameraSize(CameraConfiner confiner, Action callback = null)
     {

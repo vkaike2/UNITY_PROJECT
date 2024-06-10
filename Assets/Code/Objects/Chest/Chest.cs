@@ -17,7 +17,7 @@ public class Chest : MouseInteractable
 
     [Header("COMPONENTS")]
     [SerializeField]
-    private Map _parentMap;
+    private BaseMap _parentMap;
     [SerializeField]
     private Animator _animator;
 
